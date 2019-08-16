@@ -2,6 +2,41 @@
 
 Free Color Picker is a program that lets you capture the color of any pixel displayed on the screen. To capture a color, just move the cursor to the desired position and press the **F4** key. The color below the cursor will be added to the color palette located in the right part of the main window.
 
+---
+
+**The main window**
+
+![The main window](./doc_img/fcp_main.png)
+
+---
+
+**Color dialog**
+
+![Color dialog](./doc_img/fcp_color_dialog.png)
+
+---
+
+**Color wheel**
+
+![Color wheel](./doc_img/fcp_color_wheel.png)
+
+
+---
+
+**Modify color palette**
+
+![Modify color palette](./doc_img/fcp_modify_palette_colors_basic.png)
+
+
+---
+
+**Random colors**
+
+![Random colors](./doc_img/fcp_random_colors.png)
+
+---
+
+
 To facilitate color capturing, there is a screen magnifier in the center of the main window that displays an enlarged image around the current cursor position. The maximum magnification is 30x.
 
 Any captured color can be changed freely using the built-in color editor. In addition, the program allows easy modification of the entire color palette, sorting according to various criteria, generating random colors for given ranges of RGB component colors, searching for triad colors on a color wheel and many more.
