@@ -1,0 +1,81 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web blue colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#B0C4DE",
+					"LightSteelBlue"
+				],
+				[
+					"#B0E0E6",
+					"PowderBlue"
+				],
+				[
+					"#ADD8E6",
+					"LightBlue"
+				],
+				[
+					"#87CEEB",
+					"SkyBlue"
+				],
+				[
+					"#87CEFA",
+					"LightSkyBlue"
+				],
+				[
+					"#00BFFF",
+					"DeepSkyBlue"
+				],
+				[
+					"#1E90FF",
+					"DodgerSkyBlue"
+				],
+				[
+					"#6495ED",
+					"CornflowerBlue"
+				],
+				[
+					"#4682B4",
+					"SteelBlue"
+				],
+				[
+					"#4169E1",
+					"RoyalBlue"
+				],
+				[
+					"#0000FF",
+					"Blue"
+				],
+				[
+					"#0000CD",
+					"MediumBlue"
+				],
+				[
+					"#00008B",
+					"DarkBlue"
+				],
+				[
+					"#000080",
+					"Navy"
+				],
+				[
+					"#191970",
+					"MidnightBlue"
+				]
+			]
+		}
+	}
+}

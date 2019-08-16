@@ -1,0 +1,101 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web green colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#556B2F",
+					"DarkOliveGreen"
+				],
+				[
+					"#808000",
+					"Olive"
+				],
+				[
+					"#6B8E23",
+					"OliveDrab"
+				],
+				[
+					"#9ACD32",
+					"YellowGreen"
+				],
+				[
+					"#32CD32",
+					"LimeGreen"
+				],
+				[
+					"#00FF00",
+					"Lime"
+				],
+				[
+					"#7CFC00",
+					"LawnGreen"
+				],
+				[
+					"#7FFF00",
+					"Chartreuse"
+				],
+				[
+					"#ADFF2F",
+					"GreenYellow"
+				],
+				[
+					"#00FF7F",
+					"SpringGreen"
+				],
+				[
+					"#00FA9A",
+					"MediumSpringGreen"
+				],
+				[
+					"#90EE90",
+					"LightGreen"
+				],
+				[
+					"#98FB98",
+					"PaleGreen"
+				],
+				[
+					"#8FBC8F",
+					"DarkSeaGreen"
+				],
+				[
+					"#66CDAA",
+					"MediumAquamarine"
+				],
+				[
+					"#3CB371",
+					"MediumSeaGreen"
+				],
+				[
+					"#2E8B57",
+					"SeaGreen"
+				],
+				[
+					"#228B22",
+					"ForestGreen"
+				],
+				[
+					"#008000",
+					"Green"
+				],
+				[
+					"#006400",
+					"DarkGreen"
+				]
+			]
+		}
+	}
+}

@@ -1,0 +1,93 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web purple, violet, and magenta colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#E6E6FA",
+					"Lavender"
+				],
+				[
+					"#D8BFD8",
+					"Thistle"
+				],
+				[
+					"#DDA0DD",
+					"Plum"
+				],
+				[
+					"#EE82EE",
+					"Violet"
+				],
+				[
+					"#DA70D6",
+					"Orchid"
+				],
+				[
+					"#FF00FF",
+					"Fuchsia"
+				],
+				[
+					"#FF00FF",
+					"Magenta"
+				],
+				[
+					"#BA55D3",
+					"MediumOrchid"
+				],
+				[
+					"#9370DB",
+					"MediumPurple"
+				],
+				[
+					"#8A2BE2",
+					"BlueViolet"
+				],
+				[
+					"#9400D3",
+					"DarkViolet"
+				],
+				[
+					"#9932CC",
+					"DarkOrchid"
+				],
+				[
+					"#8B008B",
+					"DarkMagenta"
+				],
+				[
+					"#800080",
+					"Purple"
+				],
+				[
+					"#4B0082",
+					"Indigo"
+				],
+				[
+					"#483D8B",
+					"DarkSlateBlue"
+				],
+				[
+					"#6A5ACD",
+					"SlateBlue"
+				],
+				[
+					"#7563E2",
+					"MediumSlateBlue"
+				]
+			]
+		}
+	}
+}

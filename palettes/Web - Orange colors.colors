@@ -1,0 +1,41 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web orange colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#FF4500",
+					"OrangeRed"
+				],
+				[
+					"#FF6347",
+					"Tomato"
+				],
+				[
+					"#FF7F50",
+					"Coral"
+				],
+				[
+					"#FF8C00",
+					"DarkOrange"
+				],
+				[
+					"#FFA500",
+					"Orange"
+				]
+			]
+		}
+	}
+}

@@ -1,0 +1,89 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web brown colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#FFF8DC",
+					"Cornsilk"
+				],
+				[
+					"#FFEBCD",
+					"BlanchedAlmond"
+				],
+				[
+					"#FFE4C4",
+					"Bisque"
+				],
+				[
+					"#FFDEAD",
+					"NavajoWhite"
+				],
+				[
+					"#F5DEB3",
+					"Wheat"
+				],
+				[
+					"#DEB887",
+					"BurlyWood"
+				],
+				[
+					"#D2B48C",
+					"Tan"
+				],
+				[
+					"#BC8F8F",
+					"RosyBrown"
+				],
+				[
+					"#F4A460",
+					"SandyBrown"
+				],
+				[
+					"#DAA520",
+					"Goldenrod"
+				],
+				[
+					"#B8860B",
+					"DarkGoldenrod"
+				],
+				[
+					"#CD853F",
+					"Peru"
+				],
+				[
+					"#D2691E",
+					"Chocolate"
+				],
+				[
+					"#8B4513",
+					"SaddleBrown"
+				],
+				[
+					"#A0522D",
+					"Sienna"
+				],
+				[
+					"#A52A2A",
+					"Brown"
+				],
+				[
+					"#800000",
+					"Maroon"
+				]
+			]
+		}
+	}
+}

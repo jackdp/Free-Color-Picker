@@ -1,0 +1,48 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 3"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web pink colors",
+		"Comment": ""
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Collapsed": false,
+			"BackgroundColor": "",
+			"FontColor": "",
+			"Colors": [
+				[
+					"#FFC0CB",
+					"Pink"
+				],
+				[
+					"#FFB6C1",
+					"LightPink"
+				],
+				[
+					"#FF69B4",
+					"HotPink"
+				],
+				[
+					"#FF1493",
+					"DeepPink"
+				],
+				[
+					"#DB7093",
+					"PaleVioletRed"
+				],
+				[
+					"#C71585",
+					"MediumVioletRed"
+				]
+			]
+		}
+	}
+}

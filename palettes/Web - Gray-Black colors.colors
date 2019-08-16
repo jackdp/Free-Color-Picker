@@ -1,0 +1,64 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 3"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web gray and black colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Collapsed": false,
+			"BackgroundColor": "",
+			"FontColor": "",
+			"Colors": [
+				[
+					"#DCDCDC",
+					"Gainsboro"
+				],
+				[
+					"#D3D3D3",
+					"LightGrey"
+				],
+				[
+					"#C0C0C0",
+					"Silver"
+				],
+				[
+					"#A9A9A9",
+					"DarkGray"
+				],
+				[
+					"#808080",
+					"Gray"
+				],
+				[
+					"#696969",
+					"DimGray"
+				],
+				[
+					"#778899",
+					"LightSlateGray"
+				],
+				[
+					"#708090",
+					"SlateGray"
+				],
+				[
+					"#2F4F4F",
+					"DarkSlateGray"
+				],
+				[
+					"#000000",
+					"Black"
+				]
+			]
+		}
+	}
+}

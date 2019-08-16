@@ -1,0 +1,88 @@
+{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Free Color Picker",
+		"Version": "1.0"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "",
+		"Comment": ""
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "FCP Colors",
+			"Collapsed": false,
+			"BackgroundColor": "",
+			"FontColor": "",
+			"Colors": [
+				[
+					"#800000",
+					"Maroon"
+				],
+				[
+					"#008000",
+					"Green"
+				],
+				[
+					"#808000",
+					"Olive"
+				],
+				[
+					"#000080",
+					"Navy"
+				],
+				[
+					"#800080",
+					"Purple"
+				],
+				[
+					"#008080",
+					"Teal"
+				],
+				[
+					"#C0C0C0",
+					"Silver"
+				],
+				[
+					"#808080",
+					"Gray"
+				],
+				[
+					"#FF0000",
+					"Red"
+				],
+				[
+					"#00FF00",
+					"Lime"
+				],
+				[
+					"#FFFF00",
+					"Yellow"
+				],
+				[
+					"#0000FF",
+					"Blue"
+				],
+				[
+					"#FF00FF",
+					"Fuchsia"
+				],
+				[
+					"#00FFFF",
+					"Aqua"
+				],
+				[
+					"#000000",
+					"Black"
+				],
+				[
+					"#FFFFFF",
+					"White"
+				]
+			]
+		}
+	}
+}

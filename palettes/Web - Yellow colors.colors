@@ -1,0 +1,65 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web yellow colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#FFFF00",
+					"Yellow"
+				],
+				[
+					"#FFFFE0",
+					"LightYellow"
+				],
+				[
+					"#FFFACD",
+					"LemonChiffon"
+				],
+				[
+					"#FAFAD2",
+					"LightGoldenrodYellow"
+				],
+				[
+					"#FFEFD5",
+					"PapayaWhip"
+				],
+				[
+					"#FFE4B5",
+					"Moccasin"
+				],
+				[
+					"#FFDAB9",
+					"PeachPuff"
+				],
+				[
+					"#EEE8AA",
+					"PaleGoldenrod"
+				],
+				[
+					"#F0E68C",
+					"Khaki"
+				],
+				[
+					"#BDB76B",
+					"DarkKhaki"
+				],
+				[
+					"#FFD700",
+					"Gold"
+				]
+			]
+		}
+	}
+}

@@ -1,0 +1,29 @@
+object FormScreenCursor: TFormScreenCursor
+  Left = 0
+  Top = 0
+  AlphaBlend = True
+  BorderStyle = bsNone
+  Caption = 'FormScreenCursor'
+  ClientHeight = 120
+  ClientWidth = 120
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnPaint = FormPaint
+  PixelsPerInch = 96
+  TextHeight = 13
+  object tmAnim: TJppTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = tmAnimTimer
+    Counter = 0
+    Left = 49
+    Top = 18
+  end
+end

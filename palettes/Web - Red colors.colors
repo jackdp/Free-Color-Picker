@@ -1,0 +1,60 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 3"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web red colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Collapsed": false,
+			"BackgroundColor": "",
+			"FontColor": "",
+			"Colors": [
+				[
+					"#FFA07A",
+					"LightSalmon"
+				],
+				[
+					"#FA8072",
+					"Salmon"
+				],
+				[
+					"#E9967A",
+					"DarkSalmon"
+				],
+				[
+					"#F08080",
+					"LightCoral"
+				],
+				[
+					"#CD5C5C",
+					"IndianRed"
+				],
+				[
+					"#CD5C5C",
+					"Crimson"
+				],
+				[
+					"#B22222",
+					"FireBrick"
+				],
+				[
+					"#8B0000",
+					"DarkRed"
+				],
+				[
+					"#FF0000",
+					"Red"
+				]
+			]
+		}
+	}
+}

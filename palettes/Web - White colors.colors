@@ -1,0 +1,89 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web white colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#FFFFFF",
+					"White"
+				],
+				[
+					"#FFFAFA",
+					"Snow"
+				],
+				[
+					"#F0FFF0",
+					"Honeydew"
+				],
+				[
+					"#F5FFFA",
+					"MintCream"
+				],
+				[
+					"#F0FFFF",
+					"Azure"
+				],
+				[
+					"#F0F8FF",
+					"AliceBlue"
+				],
+				[
+					"#F8F8FF",
+					"GhostWhite"
+				],
+				[
+					"#F5F5F5",
+					"WhiteSmoke"
+				],
+				[
+					"#FFF5EE",
+					"Seashell"
+				],
+				[
+					"#F5F5DC",
+					"Beige"
+				],
+				[
+					"#FDF5E6",
+					"OldLace"
+				],
+				[
+					"#FFFAF0",
+					"FloralWhite"
+				],
+				[
+					"#FFFFF0",
+					"Ivory"
+				],
+				[
+					"#FAEBD7",
+					"AntiqueWhite"
+				],
+				[
+					"#FAF0E6",
+					"Linen"
+				],
+				[
+					"#FFF0F5",
+					"LavenderBlush"
+				],
+				[
+					"#FFE4E1",
+					"MistyRose"
+				]
+			]
+		}
+	}
+}

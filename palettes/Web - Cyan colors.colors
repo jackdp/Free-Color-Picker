@@ -1,0 +1,69 @@
+﻿{
+	"FormatInfo": {
+		"Version": "1.0"
+	},
+	"AppInfo": {
+		"Name": "Colors",
+		"Version": "1.0 BETA 2"
+	},
+	"PaletteInfo": {
+		"Author": "",
+		"Name": "Web cyan colors",
+		"Comment": "https://en.wikipedia.org/wiki/Web_colors"
+	},
+	"Palette": {
+		"ColorGroup_0": {
+			"Name": "Group1",
+			"Colors": [
+				[
+					"#00FFFF",
+					"Aqua"
+				],
+				[
+					"#00FFFF",
+					"Cyan"
+				],
+				[
+					"#E0FFFF",
+					"LightCyan"
+				],
+				[
+					"#AFEEEE",
+					"PaleTurquoise"
+				],
+				[
+					"#7FFFD4",
+					"Aquamarine"
+				],
+				[
+					"#40E0D0",
+					"Turquoise"
+				],
+				[
+					"#48D1CC",
+					"MediumTurquoise"
+				],
+				[
+					"#00CED1",
+					"DarkTurquoise"
+				],
+				[
+					"#20B2AA",
+					"LightSeaGreen"
+				],
+				[
+					"#5F9EA0",
+					"CadetBlue"
+				],
+				[
+					"#008B8B",
+					"DarkCyan"
+				],
+				[
+					"#008080",
+					"Teal"
+				]
+			]
+		}
+	}
+}
