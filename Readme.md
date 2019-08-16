@@ -2,6 +2,8 @@
 
 Free Color Picker is a program that lets you capture the color of any pixel displayed on the screen. To capture a color, just move the cursor to the desired position and press the **F4** key. The color below the cursor will be added to the color palette located in the right part of the main window.
 
+Compiled executable files (32 and 64-bit) can be downloaded from the program website: http://www.pazera-software.com/products/free-color-picker/
+
 ---
 
 **The main window**
