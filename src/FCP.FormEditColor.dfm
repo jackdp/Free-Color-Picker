@@ -33,7 +33,7 @@ object FormEditColor: TFormEditColor
       349
       99)
     object lblRgbRed: TLabel
-      Left = 44
+      Left = 47
       Top = 26
       Width = 23
       Height = 13
@@ -41,7 +41,7 @@ object FormEditColor: TFormEditColor
       Caption = 'Red:'
     end
     object lblRgbGreen: TLabel
-      Left = 33
+      Left = 36
       Top = 50
       Width = 34
       Height = 13
@@ -49,7 +49,7 @@ object FormEditColor: TFormEditColor
       Caption = 'Green:'
     end
     object lblRgbBlue: TLabel
-      Left = 42
+      Left = 45
       Top = 74
       Width = 25
       Height = 13
@@ -244,7 +244,7 @@ object FormEditColor: TFormEditColor
       ColorRect.Margins.Bottom = 5
     end
     object spedRgbRed: TSpTBXSpinEdit
-      Left = 72
+      Left = 73
       Top = 23
       Width = 52
       Height = 21
@@ -267,7 +267,7 @@ object FormEditColor: TFormEditColor
       OnValueChanged = spedRgbRedValueChanged
     end
     object spedRgbGreen: TSpTBXSpinEdit
-      Left = 72
+      Left = 73
       Top = 47
       Width = 52
       Height = 21
@@ -290,7 +290,7 @@ object FormEditColor: TFormEditColor
       OnValueChanged = spedRgbRedValueChanged
     end
     object spedRgbBlue: TSpTBXSpinEdit
-      Left = 72
+      Left = 73
       Top = 71
       Width = 52
       Height = 21
@@ -366,7 +366,7 @@ object FormEditColor: TFormEditColor
       349
       99)
     object lblHslHue: TLabel
-      Left = 43
+      Left = 46
       Top = 26
       Width = 24
       Height = 13
@@ -374,7 +374,7 @@ object FormEditColor: TFormEditColor
       Caption = 'Hue:'
     end
     object lblHslSat: TLabel
-      Left = 48
+      Left = 51
       Top = 50
       Width = 19
       Height = 13
@@ -382,7 +382,7 @@ object FormEditColor: TFormEditColor
       Caption = 'Sat:'
     end
     object lblHslLum: TLabel
-      Left = 43
+      Left = 46
       Top = 74
       Width = 24
       Height = 13
@@ -416,7 +416,7 @@ object FormEditColor: TFormEditColor
       ExplicitWidth = 342
     end
     object spedHslHue: TSpTBXSpinEdit
-      Left = 72
+      Left = 73
       Top = 23
       Width = 52
       Height = 21
@@ -433,7 +433,7 @@ object FormEditColor: TFormEditColor
       OnValueChanged = spedHslHueValueChanged
     end
     object spedHslSat: TSpTBXSpinEdit
-      Left = 72
+      Left = 73
       Top = 47
       Width = 52
       Height = 21
@@ -450,7 +450,7 @@ object FormEditColor: TFormEditColor
       OnValueChanged = spedHslHueValueChanged
     end
     object spedHslLum: TSpTBXSpinEdit
-      Left = 72
+      Left = 73
       Top = 71
       Width = 52
       Height = 21

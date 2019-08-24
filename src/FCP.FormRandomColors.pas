@@ -217,6 +217,18 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
 
+  tbRange_RgbRed.LabelCaption := lsMain.GetString('RGB_Red', 'Red') + ': <min> - <max>';
+  tbRange_RgbGreen.LabelCaption := lsMain.GetString('RGB_Green', 'Green') + ': <min> - <max>';
+  tbRange_RgbBlue.LabelCaption := lsMain.GetString('RGB_Blue', 'Blue') + ': <min> - <max>';
+
+  tbRange_HslWin_Hue.LabelCaption := lsMain.GetString('HSL_Hue', 'Hue') + ': <min> - <max>';
+  tbRange_HslWin_Sat.LabelCaption := lsMain.GetString('HSL_Sat', 'Saturation') + ': <min> - <max>';
+  tbRange_HslWin_Lum.LabelCaption := lsMain.GetString('HSL_Lum', 'Luminance') + ': <min> - <max>';
+
+  tbRange_HslCss_Hue.LabelCaption := lsMain.GetString('HSL_Hue', 'Hue') + ': <min> - <max>';
+  tbRange_HslCss_Sat.LabelCaption := lsMain.GetString('HSL_Sat', 'Saturation') + ': <min> - <max>';
+  tbRange_HslCss_Lum.LabelCaption := lsMain.GetString('HSL_Lum', 'Luminance') + ': <min> - <max>';
+
   InitControls;
 end;
 {$endregion SetLang}

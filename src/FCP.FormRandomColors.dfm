@@ -4,7 +4,7 @@ object FormRandomColors: TFormRandomColors
   BorderIcons = [biSystemMenu]
   Caption = 'FormRandomColors'
   ClientHeight = 460
-  ClientWidth = 762
+  ClientWidth = 803
   Color = 14342874
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object FormRandomColors: TFormRandomColors
   object pnBottom: TJppSimplePanel
     Left = 0
     Top = 419
-    Width = 762
+    Width = 803
     Height = 41
     Align = alBottom
     TabOrder = 2
@@ -30,17 +30,19 @@ object FormRandomColors: TFormRandomColors
     Appearance.DrawBottomBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
+    ExplicitWidth = 762
     DesignSize = (
-      762
+      803
       41)
     object lblAddPos: TLabel
-      Left = 498
+      Left = 539
       Top = 14
       Width = 45
       Height = 13
       Alignment = taRightJustify
       Anchors = [akTop, akRight]
       Caption = 'Position:'
+      ExplicitLeft = 498
     end
     object btnClearColors: TJppPngButton
       Left = 101
@@ -210,7 +212,7 @@ object FormRandomColors: TFormRandomColors
       Appearance.BorderWhenDefault.Color = 13675044
     end
     object btnAdd: TJppPngButton
-      Left = 662
+      Left = 703
       Top = 8
       Width = 90
       Height = 25
@@ -292,9 +294,10 @@ object FormRandomColors: TFormRandomColors
       Appearance.Focused.UpperGradientPercent = 46
       Appearance.FocusRect.Pen.Color = 13675044
       Appearance.BorderWhenDefault.Color = 13675044
+      ExplicitLeft = 662
     end
     object cbAddPos: TComboBox
-      Left = 547
+      Left = 588
       Top = 10
       Width = 109
       Height = 21
@@ -306,10 +309,11 @@ object FormRandomColors: TFormRandomColors
       Items.Strings = (
         'At the top'
         'At the end')
+      ExplicitLeft = 547
     end
   end
   object pnRight: TJppSimplePanel
-    Left = 368
+    Left = 409
     Top = 0
     Width = 394
     Height = 419
@@ -320,6 +324,7 @@ object FormRandomColors: TFormRandomColors
     Appearance.DrawTopBorder = False
     Appearance.DrawBottomBorder = False
     Appearance.DrawRightBorder = False
+    ExplicitLeft = 368
     object pnColorPaletteTitle: TJppBasicPanel
       AlignWithMargins = True
       Left = 1
@@ -436,7 +441,7 @@ object FormRandomColors: TFormRandomColors
   object pnRanges: TJppSimplePanel
     Left = 0
     Top = 0
-    Width = 358
+    Width = 390
     Height = 413
     TabOrder = 0
     Appearance.BackgroundColor = 14342874
@@ -444,16 +449,17 @@ object FormRandomColors: TFormRandomColors
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
     DesignSize = (
-      358
+      390
       413)
     object shRgb: TShape
       Left = 9
       Top = 9
-      Width = 340
+      Width = 372
       Height = 118
       Anchors = [akLeft, akTop, akRight]
       Brush.Color = 15395562
       Pen.Color = 11053224
+      ExplicitWidth = 340
     end
     object lblRange_RgbRed: TLabel
       Left = 264
@@ -479,11 +485,12 @@ object FormRandomColors: TFormRandomColors
     object shHslWin: TShape
       Left = 9
       Top = 133
-      Width = 340
+      Width = 372
       Height = 110
       Anchors = [akLeft, akTop, akRight]
       Brush.Color = 15395562
       Pen.Color = 11053224
+      ExplicitWidth = 340
     end
     object lblRange_HslWin_Hue: TLabel
       Left = 264
@@ -509,11 +516,12 @@ object FormRandomColors: TFormRandomColors
     object shHslCss: TShape
       Left = 9
       Top = 250
-      Width = 340
+      Width = 372
       Height = 110
       Anchors = [akLeft, akTop, akRight]
       Brush.Color = 15395562
       Pen.Color = 11053224
+      ExplicitWidth = 340
     end
     object lblRange_HslCss_Hue: TLabel
       Left = 264

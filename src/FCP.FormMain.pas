@@ -95,7 +95,7 @@ type
     actSwitchToImageMode: TAction;
     pnImgPreviewBg: TJppSimplePanel;
     img: TImage;
-    dlgOpen: TOpenPictureDialog;
+    dlgOpenImage: TOpenPictureDialog;
     sbtnOpenImage: TJppBasicSpeedButton;
     actOpenImage: TAction;
     dlgSaveImage: TSavePictureDialog;
@@ -683,7 +683,7 @@ begin
   clbColors.Align := alClient;
   clbColors.Items.Clear;
 
-  dlgOpen.InitialDir := AP.PicturesDir;
+  dlgOpenImage.InitialDir := AP.PicturesDir;
   dlgSaveImage.InitialDir := AP.PicturesDir;
 
 end;
@@ -777,8 +777,7 @@ begin
   btnStartCapturing.Caption := btnStartCapturing.Caption + ' (' + ShortCutToText(actStartCapturing.ShortCut) + ')';
   btnStopCapturing.Caption := btnStopCapturing.Caption + ' (' + ShortCutToText(actStopCapturing.ShortCut) + ')';
 
-  chCreatePreview.Caption := lsMain.GetComponentProperty(chCreatePreview.Name, 'Caption', 'Create preview image') + ' (' +
-    ShortCutToText(actCreatePreview.ShortCut) + ')';
+  chCreatePreview.Caption := lsMain.GetComponentProperty(chCreatePreview.Name, 'Caption', 'Create preview image') + ' (' + ShortCutToText(actCreatePreview.ShortCut) + ')';
 
   pnColor.Hint := lsMain.GetString('ColorUnderCursor', 'Color under cursor');
 
@@ -796,6 +795,18 @@ begin
       Break;
     end;
   end;
+
+  dlgOpenImage.Title := lsMain.GetString('OpenPictureDialog_Title', 'Select image file');
+  dlgSaveImage.Title := lsMain.GetString('SavePictureDialog_Title', 'Save image as');
+
+  dlgOpenImage.Filter :=
+    lsMain.GetString('DialogFilter_AllSupported', 'All supported files (PNG, JPG, BMP, GIF)') + '|*.png;*.jpg;*.jpeg;*.gif;*.bmp|' +
+    lsMain.GetString('DialogFilter_PNG', 'Portable Network Graphics (*.png)') + '|*.png|' +
+    lsMain.GetString('DialogFilter_JPG', 'JPEG Image File (*.jpg, *.jpeg)') + '|*.jpg;*.jpeg|' +
+    lsMain.GetString('DialogFilter_GIF', 'CompuServe GIF Image (*.gif)') + '|*.gif|' +
+    lsMain.GetString('DialogFilter_BMP', 'Bitmap') + '|*.bmp';
+
+  dlgSaveImage.Filter := lsMain.GetString('DialogFilter_PNG', 'Portable Network Graphics (*.png)') + '|*.png';
 
   UpdateColorPaletteCount;
 end;
@@ -1278,7 +1289,7 @@ begin
     Ini.WriteInteger(Section, 'MonospaceFont_Size', AP.MonospaceFont.Size);
     Ini.WriteInteger(Section, 'MonospaceFont_PosYDelta', AP.MonospaceFont.PosYDelta);
 
-    Ini.WriteString(Section, 'dlOpenPictureDir', dlgOpen.InitialDir);
+    Ini.WriteString(Section, 'dlOpenPictureDir', dlgOpenImage.InitialDir);
     Ini.WriteString(Section, 'dlgSavePictureDir', dlgSaveImage.InitialDir);
 
     Ini.WriteBool(Section, 'CopyOnCapture', AP.CopyOnCapture);
@@ -1427,7 +1438,7 @@ begin
       ApplyMonospaceFont;
 
       s := Ini.ReadString(Section, 'dlOpenPictureDir', '');
-      if DirectoryExists(s) then dlgOpen.InitialDir := s;
+      if DirectoryExists(s) then dlgOpenImage.InitialDir := s;
 
       s := Ini.ReadString(Section, 'dlgSavePictureDir', '');
       if DirectoryExists(s) then dlgSaveImage.InitialDir := s;
@@ -1805,10 +1816,10 @@ end;
 
 procedure TFormMain.actOpenImageExecute(Sender: TObject);
 begin
-  if not dlgOpen.Execute then Exit;
-  dlgOpen.InitialDir := ExtractFileDir(dlgOpen.FileName);
+  if not dlgOpenImage.Execute then Exit;
+  dlgOpenImage.InitialDir := ExtractFileDir(dlgOpenImage.FileName);
   actSwitchToImageMode.Execute;
-  PerformOpenImage(dlgOpen.FileName);
+  PerformOpenImage(dlgOpenImage.FileName);
 end;
 
 procedure TFormMain.actCloseImageExecute(Sender: TObject);
@@ -2229,7 +2240,7 @@ begin
   fName := dropFile.Files[0];
   if IsSupportedGraphicFile(fName) then
   begin
-    dlgOpen.InitialDir := ExtractFileDir(fName);
+    dlgOpenImage.InitialDir := ExtractFileDir(fName);
     actSwitchToImageMode.Execute;
     PerformOpenImage(fName);
     Exit;

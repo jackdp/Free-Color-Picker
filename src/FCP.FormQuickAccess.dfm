@@ -29,9 +29,6 @@ object FormQuickAccess: TFormQuickAccess
     Appearance.DrawBottomBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitLeft = -127
-    ExplicitTop = 258
-    ExplicitWidth = 762
     DesignSize = (
       596
       41)

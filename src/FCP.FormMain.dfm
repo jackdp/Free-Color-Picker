@@ -218,8 +218,6 @@ object FormMain: TFormMain
     Appearance.DrawBottomBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitTop = 551
-    ExplicitWidth = 840
     object lblImageRect: TLabel
       AlignWithMargins = True
       Left = 462
@@ -312,7 +310,6 @@ object FormMain: TFormMain
       Appearance.Borders.Right.Pen.Color = 11053224
       Appearance.Borders.Top.Pen.Color = 11053224
       Appearance.Borders.Bottom.Pen.Color = 11053224
-      ExplicitLeft = 697
       object lblCaptureCopyColorInfo: TLabel
         Left = 0
         Top = 0
@@ -395,8 +392,6 @@ object FormMain: TFormMain
     Appearance.BorderColor = 11053224
     Appearance.DrawBottomBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitLeft = 681
-    ExplicitHeight = 476
     object clbColors: TJppColorListBox
       AlignWithMargins = True
       Left = 1
@@ -628,7 +623,6 @@ object FormMain: TFormMain
       Appearance.BorderColor = 11053224
       Appearance.DrawTopBorder = False
       Appearance.DrawLeftBorder = False
-      ExplicitWidth = 585
       object sbtnSwitchToImageMode: TJppBasicSpeedButton
         AlignWithMargins = True
         Left = 311
@@ -787,7 +781,6 @@ object FormMain: TFormMain
       Appearance.BorderColor = 11053224
       Appearance.DrawTopBorder = False
       Appearance.DrawLeftBorder = False
-      ExplicitWidth = 585
       object sbtnSwitchToPreviewMode: TJppBasicSpeedButton
         AlignWithMargins = True
         Left = 425
@@ -908,8 +901,6 @@ object FormMain: TFormMain
       Appearance.DrawBottomBorder = False
       Appearance.DrawLeftBorder = False
       Appearance.DrawRightBorder = False
-      ExplicitLeft = 2
-      ExplicitTop = 279
       object pnColorUnderCursor: TJppSimplePanel
         AlignWithMargins = True
         Left = 0
@@ -1282,7 +1273,6 @@ object FormMain: TFormMain
     Width = 726
     Height = 28
     AllowDrag = False
-    ExplicitWidth = 842
     object tbMainMenu: TSpTBXToolbar
       Left = 0
       Top = 0
@@ -1625,7 +1615,6 @@ object FormMain: TFormMain
     OnMouseMove = MoveFoldedForm
     Appearance.BackgroundColor = 14342874
     Appearance.BorderColor = 11053224
-    ExplicitWidth = 842
     DesignSize = (
       726
       47)
@@ -1704,7 +1693,6 @@ object FormMain: TFormMain
       ParentBackground = True
       TabOrder = 1
       OnMouseMove = MoveFoldedForm
-      ExplicitLeft = 707
       DesignSize = (
         134
         45)
@@ -3610,29 +3598,34 @@ object FormMain: TFormMain
         Background = clWindow
         Name = 'ColorWheel_icon'
         PngImage.Data = {
-          89504E470D0A1A0A0000000D4948445200000010000000100802000000909168
-          36000000017352474200AECE1CE9000000097048597300000EC300000EC301C7
-          6FA864000002804944415478DA65925D48536118C7FFCF7BCED9999ECD69D9DC
-          A6365D980A861FD1C755A044DD4857DD1804E55594D71244D16D201244742175
-          5517D14DF441902411842146F4A56B454EE79C1BC9749E9D6D677BDFB7AD8494
-          9EDBE7F93DF03CFF1F4929B1B3783C990E874B22BFA7AB53F13583687B97FE01
-          42969E7CE5F72759F453CA913477E7439E8CEC6AA49367D4EED3C4941D80B478
-          69F43DDECD032BB68C9ACE959CD7AAAF5DD75B0901C88E1EF5C838D36AB60059
-          DE3D12C74C1C480231537E83336E06D6DDF5EB463BA119F04106BAB4960922AD
-          02141E15E9468E900656B33262D082A9CF9B2D295FEB861992AEFD5406B00BC2
-          B8A8EBC32484583C655725980B9CE1979051ADFAFB66FBB2D9B2EAF77E29B699
-          0882F9C8D29095B54DDA0BDA88143F0E49276000BAB47C86700CA62D77C40C2E
-          35B46DDA75CF524AC6765116C803ED34410BAFECE95128956B6C1DACB197EDED
-          614C5934FBA75C213B2EE75668C62C48721207FAE4559A7B59787A0502C8C92C
-          31C3DF27BC0790692C61E0758D1A5BA7F0329BA69CD49DA4100DC8CB14FD5C1C
-          3B272D992D90B1C93805ECFEA12AA59751E8A7901FDE580FB91E732BC26149A3
-          9A2EE016158B62F88495DAE47907592E4D3429F54745E771628178185349F696
-          F19851B4AAB85DA739EE564D56DE7AFDDADCF3299FF0E8F07204091D40B764CD
-          09C167A146C0A3A0942232C7A287C6BA6F56805C5E9C1D2D45CB4934007B817D
-          402794FA24A730F0A31C65391FBF640FD4F11AE6DE5223B1C62FDDE34B2AA1F1
-          0F1302AB5D13B4002C02719F2CDC66E783AA7F877C6641DC992D3DCEA0E0AFE8
-          C0DC6941CB9A4C0C4A63443BEC61D5FFD9FA172B8AD92C5F5605D44280950E2A
-          8647D1B70FFC06D1F93D2686BFBDB70000000049454E44AE426082}
+          89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+          610000000473424954080808087C086488000003374944415478DA6D536D4853
+          51187ECFAEDBEE74575DAEA9332C6CDA32CAE14756964516C5C4282A8AE8C794
+          0AFD15E19F20A4C2FAE10F49A22CA4CC48A28F1F512D2BA38444FBB06C6699A6
+          99664ECD5A73CEDD7DDCEDF4DE6D82812F9C03EF739EF7793FCE3904C2C62DD2
+          C02A93116253923208902308ADF5D8D599FC44CA2000F5A2FF0257DDCCE48865
+          E0E905981EED0DC691D9E0F515C52C2395D6002187109488B8C7A1D2F0569D05
+          595AD1A71402B89FA6DF7B2A879BEBE0A7FD3B109D92853D6BF430B87BEB7617
+          2B7F88D999D9AABCCEE81CD768DA7DCC1316A0AE18B790976D9DD6B23EA1E54A
+          5BB59BD4AF4D8515AAA88AA185710F1E65AE5C69E394D708210C92FB055E79C0
+          39A23F08941811D3457A84E2AC316720D6E3BF46815EB5CD4C9692B74683010F
+          DF5100F778345766CE5A45ADAA9808BFE06BB0BEFE0633E309A04ECB2391118A
+          BCACB1E964352F5C17136039016C294B14A845A0345C35B52BE4F9359CAAADC5
+          FC0A5C93F620288D524141C63ED814BFDA2421A47EB645ACF29228F005059685
+          817EB7E0D7EF6FEDA556DE07732D52A684F22D674129E7FA909F1AE677910EA3
+          6110272FC37244BBDBF4F3CFB1531F7FC07CB66345111875B9390C083824EF10
+          03DE5FE4565129F8895C23806C89803A2DC33D1D8D967BF30A1C4ED5C2A1D4C4
+          738404F606DF00A55E52B5ABFE03969431DB02EF732DAB7E7602A63D53FF052B
+          1809DCC9D743BC42D68BFCB430FFAB28701181B239832979657DDB60EE6A04C1
+          ED0C628C5C06B9DB564325E3CD8BF6F85EE2C32261EE6552B5B33E0305DE2324
+          414070C8185387961B9E129CED13DDCFA954390AC99BD241A1E24C4936BBAFB0
+          B39B4970386A09252CBE856C525E700634D1DACB2858C24710536722C7FC55C8
+          1AF07000B1A6A8A4FE9B52A5BD519C3C62FE3887D354F8BEFBD3E2DF7F76D83C
+          BE4AB278810ECA361C67850866A3253E6A6C8293B7E3AD4486FBB12A120777C9
+          636C6FE6B4E857F2EE224373EB13737B4FA897A5EAE590BC6E3FF8F4860A444E
+          623649880D56563394C92E981C0FB93480DB151439D671FE36FFAB6B202410FA
+          91E99056781414B1090674C5EFBC192F4AC6AA4752D8B8310BFA6D98BE8E77CC
+          747DBEF118C63BFB8271FF00493F63340A5AC8CB0000000049454E44AE426082}
       end
       item
         Background = clWindow
@@ -3693,13 +3686,12 @@ object FormMain: TFormMain
     Top = 126
     Bitmap = {}
   end
-  object dlgOpen: TOpenPictureDialog
-    FileName = 'E:\Projects_G\apps\HTMLTextEditor\images\HTMLText.ico'
+  object dlgOpenImage: TOpenPictureDialog
     Filter = 
       'All supported files (PNG, JPG, BMP)|*.png;*.jpg;*.jpeg;*.bmp;*.g' +
       'if|Portable Network Graphics (*.png)|*.png|CompuServe GIF Image ' +
-      '(*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|JPEG Image File (*.jpg)|*.jpg' +
-      '|JPEG Image File (*.jpeg)|*.jpeg'
+      '(*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|JPEG Image File (*.jpg, *.jpe' +
+      'g)|*.jpg;*.jpeg'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
     Title = 'Select image file'
     Left = 397
@@ -3849,7 +3841,7 @@ object FormMain: TFormMain
   end
   object popupCopyColors: TSpTBXPopupMenu
     Images = pilMain
-    Left = 504
+    Left = 508
     Top = 276
     object popCopyColor_HTML: TSpTBXItem
       Action = actCopyColor_HTML
@@ -3882,8 +3874,8 @@ object FormMain: TFormMain
   object popColorPalette: TSpTBXPopupMenu
     Images = pilMain
     OnPopup = popColorPalettePopup
-    Left = 397
-    Top = 211
+    Left = 388
+    Top = 208
     object SpTBXItem90: TSpTBXItem
       Action = actEditColorName
     end
@@ -3972,7 +3964,7 @@ object FormMain: TFormMain
   end
   object popupMini: TSpTBXPopupMenu
     Images = pilMain
-    Left = 444
+    Left = 438
     Top = 273
     object SpTBXItem48: TSpTBXItem
       Action = actCollapse
@@ -3991,7 +3983,7 @@ object FormMain: TFormMain
   end
   object popupTray: TSpTBXPopupMenu
     Images = pilMain
-    Left = 388
+    Left = 382
     Top = 280
     object SpTBXItem55: TSpTBXItem
       Action = actRestoreMainWindow

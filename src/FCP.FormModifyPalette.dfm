@@ -773,9 +773,9 @@ object FormModifyPalette: TFormModifyPalette
           Appearance.DrawLeftBorder = False
           Appearance.DrawRightBorder = False
           object sbtnReset_Brightness: TJppBasicSpeedButton
-            Left = 312
+            Left = 311
             Top = 16
-            Width = 48
+            Width = 50
             Height = 20
             Caption = 'Reset'
             Appearance.Normal.Color = 16312779
@@ -958,9 +958,9 @@ object FormModifyPalette: TFormModifyPalette
           Appearance.DrawLeftBorder = False
           Appearance.DrawRightBorder = False
           object sbtnReset_Contrast: TJppBasicSpeedButton
-            Left = 312
+            Left = 311
             Top = 16
-            Width = 48
+            Width = 50
             Height = 20
             Caption = 'Reset'
             Appearance.Normal.Color = 16508110
@@ -1142,9 +1142,9 @@ object FormModifyPalette: TFormModifyPalette
           Appearance.DrawLeftBorder = False
           Appearance.DrawRightBorder = False
           object sbtnReset_Pale: TJppBasicSpeedButton
-            Left = 312
+            Left = 311
             Top = 16
-            Width = 48
+            Width = 50
             Height = 20
             Caption = 'Reset'
             Appearance.Normal.Color = 16508110
@@ -1557,9 +1557,9 @@ object FormModifyPalette: TFormModifyPalette
             ExplicitWidth = 282
           end
           object sbtnReset_Hsl: TJppBasicSpeedButton
-            Left = 312
-            Top = 18
-            Width = 48
+            Left = 311
+            Top = 21
+            Width = 50
             Height = 20
             Caption = 'Reset'
             Appearance.Normal.Color = 16508110
@@ -1745,8 +1745,6 @@ object FormModifyPalette: TFormModifyPalette
         Left = 0
         Top = 0
         Caption = 'RGB'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object pnRgbSet: TJppSimplePanel
           AlignWithMargins = True
           Left = 0
@@ -1768,12 +1766,13 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 156
+            Width = 358
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Set the value of RGB channels:'
+            ExplicitWidth = 156
           end
           object btnModify_SetRgbValue: TJppPngButton
             Left = 324
@@ -2130,12 +2129,13 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 105
+            Width = 358
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Invert RGB channels:'
+            ExplicitWidth = 105
           end
           object btnModify_InvertRgbChannels: TJppPngButton
             Left = 281
@@ -2270,12 +2270,13 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 237
+            Width = 358
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Change the RGB channels by the given values:'
+            ExplicitWidth = 237
           end
           object btnModify_ChangeRgbValue: TJppPngButton
             Left = 281
@@ -2439,8 +2440,6 @@ object FormModifyPalette: TFormModifyPalette
         Left = 0
         Top = 0
         Caption = 'HSL_Win'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object pnHslWinSet: TJppSimplePanel
           AlignWithMargins = True
           Left = 0
@@ -2462,12 +2461,13 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 187
+            Width = 358
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Set the HSL color component values:'
+            ExplicitWidth = 187
           end
           object btnModify_SetHslWinHue: TJppPngButton
             Left = 317

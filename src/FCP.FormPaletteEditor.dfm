@@ -52,7 +52,7 @@ object FormPaletteEditor: TFormPaletteEditor
       RightCaptionPosDeltaY = 2
     end
     object sbtnEditColor: TJppBasicSpeedButton
-      Left = 505
+      Left = 508
       Top = 25
       Width = 41
       Height = 22
@@ -79,7 +79,7 @@ object FormPaletteEditor: TFormPaletteEditor
       ShowHint = True
     end
     object ccbColor: TJppColorComboBox
-      Left = 97
+      Left = 100
       Top = 25
       Width = 334
       Height = 22
@@ -544,7 +544,7 @@ object FormPaletteEditor: TFormPaletteEditor
       BoundLabel.FocusControl = ccbColor
       BoundLabelSpacing = 3
       ButtonsSpacing = 2
-      ButtonChangeColor.Left = 433
+      ButtonChangeColor.Left = 436
       ButtonChangeColor.Top = 25
       ButtonChangeColor.Width = 22
       ButtonChangeColor.Height = 22
@@ -570,7 +570,7 @@ object FormPaletteEditor: TFormPaletteEditor
       ButtonChangeColor.ParentShowHint = False
       ButtonChangeColor.ShowHint = True
       ButtonChangeColor.Visible = True
-      ButtonCopyColor.Left = 457
+      ButtonCopyColor.Left = 460
       ButtonCopyColor.Top = 25
       ButtonCopyColor.Width = 22
       ButtonCopyColor.Height = 22
@@ -596,7 +596,7 @@ object FormPaletteEditor: TFormPaletteEditor
       ButtonCopyColor.ParentShowHint = False
       ButtonCopyColor.ShowHint = True
       ButtonCopyColor.Visible = True
-      ButtonPasteColor.Left = 481
+      ButtonPasteColor.Left = 484
       ButtonPasteColor.Top = 25
       ButtonPasteColor.Width = 22
       ButtonPasteColor.Height = 22
@@ -665,7 +665,7 @@ object FormPaletteEditor: TFormPaletteEditor
       ColorListSet = [cltBasic, cltStandard16, cltStandard48, cltWin10Theme, cltSystem, cltWebGrayBlack, cltWebWhite, cltWebPink, cltWebRed, cltWebOrange, cltWebYellow, cltWebBrown, cltWebGreen, cltWebCyan, cltWebBlue, cltWebPurpleVioletMagenta]
     end
     object edColorName: TLabeledEdit
-      Left = 97
+      Left = 100
       Top = 53
       Width = 334
       Height = 22
@@ -934,9 +934,9 @@ object FormPaletteEditor: TFormPaletteEditor
       end
     end
     object btnSaveSelectedColor: TJppPngButton
-      Left = 503
+      Left = 492
       Top = 53
-      Width = 85
+      Width = 96
       Height = 25
       Action = actSaveSelectedColor
       Anchors = [akTop, akRight]

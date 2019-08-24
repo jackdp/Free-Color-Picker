@@ -4,7 +4,7 @@ object FormOptions: TFormOptions
   BorderStyle = bsDialog
   Caption = 'FormOptions'
   ClientHeight = 423
-  ClientWidth = 712
+  ClientWidth = 720
   Color = 14342874
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,7 +15,7 @@ object FormOptions: TFormOptions
   Position = poMainFormCenter
   OnCreate = FormCreate
   DesignSize = (
-    712
+    720
     423)
   PixelsPerInch = 96
   TextHeight = 13
@@ -23,7 +23,7 @@ object FormOptions: TFormOptions
     AlignWithMargins = True
     Left = 6
     Top = 6
-    Width = 341
+    Width = 349
     Height = 50
     Margins.Left = 6
     Margins.Top = 6
@@ -50,7 +50,7 @@ object FormOptions: TFormOptions
     end
   end
   object btnClose: TJppPngButton
-    Left = 620
+    Left = 628
     Top = 390
     Width = 84
     Height = 25
@@ -132,10 +132,11 @@ object FormOptions: TFormOptions
     Appearance.Focused.UpperGradientPercent = 46
     Appearance.FocusRect.Pen.Color = 13675044
     Appearance.BorderWhenDefault.Color = 13675044
+    ExplicitLeft = 620
   end
   object pnColorPalette: TJppSimplePanel
     AlignWithMargins = True
-    Left = 353
+    Left = 361
     Top = 6
     Width = 351
     Height = 376
@@ -166,7 +167,7 @@ object FormOptions: TFormOptions
       ExplicitWidth = 67
     end
     object lblColorPalette_ColorFormat: TLabel
-      Left = 34
+      Left = 40
       Top = 33
       Width = 68
       Height = 13
@@ -240,7 +241,7 @@ object FormOptions: TFormOptions
         AlignWithMargins = True
         Left = 6
         Top = 3
-        Width = 79
+        Width = 321
         Height = 13
         Margins.Left = 6
         Align = alTop
@@ -251,6 +252,7 @@ object FormOptions: TFormOptions
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitWidth = 79
       end
       object edColorRectangle_Width: TLabeledEdit
         Left = 73
@@ -810,31 +812,30 @@ object FormOptions: TFormOptions
     AlignWithMargins = True
     Left = 6
     Top = 62
-    Width = 341
+    Width = 349
     Height = 320
     Margins.Left = 6
     Margins.Right = 6
     TabOrder = 3
     Appearance.BackgroundColor = 15395562
     Appearance.BorderColor = 11053224
-    object lbl1: TLabel
-      Left = 25
-      Top = 17
+    object lblResampler: TLabel
+      Left = 10
+      Top = 7
       Width = 56
       Height = 13
-      Alignment = taRightJustify
       Caption = 'Resampler:'
     end
     object lblCopyColorFormat: TLabel
       Left = 34
-      Top = 71
+      Top = 78
       Width = 68
       Height = 13
       Caption = 'Color format:'
     end
     object lblCopyColor: TLabel
       Left = 10
-      Top = 125
+      Top = 131
       Width = 258
       Height = 13
       Caption = 'The color format to copy after pressing the F3 key:'
@@ -856,8 +857,8 @@ object FormOptions: TFormOptions
       Caption = 'ms'
     end
     object cbResampler: TComboBox
-      Left = 87
-      Top = 13
+      Left = 34
+      Top = 24
       Width = 145
       Height = 21
       Style = csDropDownList
@@ -877,7 +878,7 @@ object FormOptions: TFormOptions
     end
     object chCopyColor_Capture: TCheckBox
       Left = 10
-      Top = 52
+      Top = 59
       Width = 328
       Height = 17
       Caption = 'Copy the color to the clipboard after the capture'
@@ -886,7 +887,7 @@ object FormOptions: TFormOptions
     end
     object cbColorFormat_Capture: TComboBox
       Left = 34
-      Top = 87
+      Top = 94
       Width = 145
       Height = 21
       Style = csDropDownList
@@ -914,7 +915,7 @@ object FormOptions: TFormOptions
     end
     object cbColorFormat: TComboBox
       Left = 34
-      Top = 141
+      Top = 147
       Width = 145
       Height = 21
       Style = csDropDownList

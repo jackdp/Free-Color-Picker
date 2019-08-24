@@ -201,6 +201,13 @@ begin
     lsMain.AddAction(actShowFormSimilarColors);
 
     lsMain.AddString('EditQuickAccessList', 'Edit list of recently opened files...');
+    lsMain.AddString('OpenPictureDialog_Title', 'Select image file');
+    lsMain.AddString('SavePictureDialog_Title', 'Save image as');
+    lsMain.AddString('DialogFilter_AllSupported', 'All supported files (PNG, JPG, BMP, GIF)');
+    lsMain.AddString('DialogFilter_PNG', 'Portable Network Graphics (*.png)');
+    lsMain.AddString('DialogFilter_JPG', 'JPEG Image File (*.jpg, *.jpeg)');
+    lsMain.AddString('DialogFilter_GIF', 'CompuServe GIF Image (*.gif)');
+    lsMain.AddString('DialogFilter_BMP', 'Bitmap (*.bmp)');
 
     // ----------- COMMON ---------------
     lsMain.AddString('lblAddPos', 'Add to the color palette:');
@@ -212,6 +219,9 @@ begin
     lsMain.AddString('RGB_Red', 'Red');
     lsMain.AddString('RGB_Green', 'Green');
     lsMain.AddString('RGB_Blue', 'Blue');
+    lsMain.AddString('HSL_Hue', 'Hue');
+    lsMain.AddString('HSL_Sat', 'Saturation');
+    lsMain.AddString('HSL_Lum', 'Luminance');
   end;
 
 end;
@@ -255,6 +265,7 @@ begin
     lsOptions.AddLabel(lblAddColorsPosition);
     lsOptions.AddString('AddPos_Top', 'At the top of the color palette');
     lsOptions.AddString('AddPos_End', 'At the end of the color palette');
+    lsOptions.AddLabel(lblResampler);
 
   end;
 end;

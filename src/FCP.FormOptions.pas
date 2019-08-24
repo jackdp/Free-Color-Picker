@@ -41,7 +41,7 @@ type
     chColorPalette_ShowNames: TCheckBox;
     rbColorPalette_None: TRadioButton;
     pnMain: TJppSimplePanel;
-    lbl1: TLabel;
+    lblResampler: TLabel;
     cbResampler: TComboBox;
     chShowBottomPanel: TCheckBox;
     chCopyColor_Capture: TCheckBox;
@@ -246,7 +246,8 @@ begin
     ccbColorPalette_FontColor.ButtonCopyColor.Hint := ccbColorPalette_BgColor.ButtonCopyColor.Hint;
     ccbColorPalette_FontColor.ButtonPasteColor.Hint := ccbColorPalette_BgColor.ButtonPasteColor.Hint;
 
-    cbResampler.Hint := lsMain.GetComponentProperty('cbResampler', 'Hint', '');
+    //cbResampler.Hint := lsMain.GetComponentProperty('cbResampler', 'Hint', '');
+    //lblResampler.Caption := lsMain.GetComponentProperty('cbResampler', 'Hint', '') + ':';
 
     x := cbAddColorsPosition.ItemIndex;
     cbAddColorsPosition.Items[0] := lsOptions.GetString('AddPos_Top', 'At the top of the color palette');
