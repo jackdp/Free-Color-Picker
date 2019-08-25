@@ -54,7 +54,7 @@ object FormPaletteEditor: TFormPaletteEditor
     object sbtnEditColor: TJppBasicSpeedButton
       Left = 508
       Top = 25
-      Width = 41
+      Width = 25
       Height = 22
       Caption = '...'
       Appearance.Normal.Color = clBtnFace
@@ -1036,6 +1036,7 @@ object FormPaletteEditor: TFormPaletteEditor
       Width = 499
       Height = 105
       BorderStyle = bsNone
+      Color = clBtnFace
       Colors.FocusedSelectionColor = 13987089
       Colors.FocusedSelectionBorderColor = 13987089
       Colors.GridLineColor = 15724527
@@ -1046,6 +1047,7 @@ object FormPaletteEditor: TFormPaletteEditor
       Colors.UnfocusedColor = clBlack
       Colors.UnfocusedSelectionColor = 16305317
       Colors.UnfocusedSelectionBorderColor = 16305317
+      DefaultNodeHeight = 19
       DragMode = dmAutomatic
       DragType = dtVCL
       Header.AutoSizeIndex = 0
@@ -1063,6 +1065,7 @@ object FormPaletteEditor: TFormPaletteEditor
       OnAdvancedHeaderDraw = vstAdvancedHeaderDraw
       OnAfterCellPaint = vstAfterCellPaint
       OnAfterColumnWidthTracking = vstAfterColumnWidthTracking
+      OnBeforeCellPaint = vstBeforeCellPaint
       OnChange = vstChange
       OnClick = InitCtrls
       OnColumnVisibilityChanged = vstColumnVisibilityChanged
@@ -1079,6 +1082,9 @@ object FormPaletteEditor: TFormPaletteEditor
       Columns = <
         item
           Alignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
           Position = 0
           Text = 'No'
           Width = 40
@@ -1091,61 +1097,212 @@ object FormPaletteEditor: TFormPaletteEditor
           Width = 60
         end
         item
+          Color = clWhite
+          MaxWidth = 1000
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
           Position = 2
           Text = 'Name'
           Width = 140
         end
         item
           Alignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
           Position = 3
           Text = 'RGB'
           Width = 100
         end
         item
           Alignment = taCenter
+          Color = clWindow
+          MaxWidth = 80
+          MinWidth = 36
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
           Position = 4
+          Text = 'Red'
+          Width = 44
+        end
+        item
+          Alignment = taCenter
+          Color = clWindow
+          MaxWidth = 80
+          MinWidth = 36
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 5
+          Text = 'Green'
+          Width = 44
+        end
+        item
+          Alignment = taCenter
+          Color = clWindow
+          MaxWidth = 80
+          MinWidth = 36
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 6
+          Text = 'Blue'
+          Width = 44
+        end
+        item
+          Alignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 7
           Text = 'RGB %'
           Width = 100
         end
         item
           Alignment = taCenter
-          Position = 5
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 8
           Text = 'HTML'
           Width = 90
         end
         item
           Alignment = taCenter
-          Position = 6
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 9
           Text = 'HSL CSS'
           Width = 100
         end
         item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 10
+          Text = 'Hue - HSL CSS'
+        end
+        item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 11
+          Text = 'Sat - HSL CSS'
+        end
+        item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 12
+          Text = 'Lum - HSL CSS'
+        end
+        item
           Alignment = taCenter
-          Position = 7
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 13
           Text = 'HSL WIN'
           Width = 100
         end
         item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 14
+          Text = 'Hue - HSL WIN'
+        end
+        item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 15
+          Text = 'Sat - HSL WIN'
+        end
+        item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 16
+          Text = 'Lum - HSL WIN'
+        end
+        item
           Alignment = taCenter
-          Position = 8
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 17
           Text = 'CMYK'
           Width = 120
         end
         item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 18
+          Text = 'Cyan'
+        end
+        item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 19
+          Text = 'Magenta'
+        end
+        item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 20
+          Text = 'Yellow'
+        end
+        item
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 21
+          Text = 'Black'
+        end
+        item
           Alignment = taCenter
-          Position = 9
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 22
           Text = 'Pascal HEX'
           Width = 90
         end
         item
-          Alignment = taCenter
-          Position = 10
+          Alignment = taRightJustify
+          CaptionAlignment = taCenter
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Position = 23
           Text = 'Pascal INT'
           Width = 90
         end
         item
           Alignment = taCenter
-          Position = 11
+          Color = clWhite
+          MaxWidth = 200
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Position = 24
           Text = 'C++ Hex'
           Width = 90
         end>

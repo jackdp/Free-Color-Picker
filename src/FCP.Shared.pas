@@ -78,6 +78,7 @@ function IsSupportedGraphicFile(const FileName: string): Boolean;
 procedure SwitchFormTop(Form: TForm);
 
 function EditColor(var AColor: TColor): Boolean;
+function Darker(const cl: TColor; const xPercent: integer): TColor;
 
 
 
@@ -89,6 +90,12 @@ uses
 
 
 {$region '                            routines                                 '}
+
+function Darker(const cl: TColor; const xPercent: integer): TColor;
+begin
+  //Result := GetSimilarColor(cl, xPercent, False);
+  Result := ColorSetPercentPale(cl, -xPercent);
+end;
 
 function EditColor(var AColor: TColor): Boolean;
 var

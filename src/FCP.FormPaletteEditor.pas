@@ -7,7 +7,7 @@ uses
   Winapi.Windows, Winapi.Messages, Winapi.ActiveX,
 
   // System
-  System.SysUtils, System.Variants, System.Classes, {System.IniFiles,} System.Actions,
+  System.SysUtils, System.Variants, System.Classes, {System.IniFiles,} System.Actions, System.UITypes,
 
   // VCL
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList, Vcl.Buttons, Vcl.Menus,
@@ -33,15 +33,34 @@ const
   COL_NO = 0;
   COL_COLOR = 1;
   COL_NAME = 2;
+
   COL_COLOR_RGB = 3;
-  COL_COLOR_RGB_PERCENT = 4;
-  COL_COLOR_HTML = 5;
-  COL_COLOR_HSL_CSS = 6;
-  COL_COLOR_HSL_WIN = 7;
-  COL_COLOR_CMYK = 8;
-  COL_COLOR_PASCAL_HEX = 9;
-  COL_COLOR_PASCAL_INT = 10;
-  COL_COLOR_CPP_HEX = 11;
+  COL_COLOR_RGB_RED = 4;
+  COL_COLOR_RGB_GREEN = 5;
+  COL_COLOR_RGB_BLUE = 6;
+  COL_COLOR_RGB_PERCENT = 7;
+
+  COL_COLOR_HTML = 8;
+
+  COL_COLOR_HSL_CSS = 9;
+  COL_COLOR_HSL_CSS_HUE = 10;
+  COL_COLOR_HSL_CSS_SAT = 11;
+  COL_COLOR_HSL_CSS_LUM = 12;
+
+  COL_COLOR_HSL_WIN = 13;
+  COL_COLOR_HSL_WIN_HUE = 14;
+  COL_COLOR_HSL_WIN_SAT = 15;
+  COL_COLOR_HSL_WIN_LUM = 16;
+
+  COL_COLOR_CMYK = 17;
+  COL_COLOR_CMYK_CYAN = 18;
+  COL_COLOR_CMYK_MAGENTA = 19;
+  COL_COLOR_CMYK_YELLOW = 20;
+  COL_COLOR_CMYK_BLACK = 21;
+
+  COL_COLOR_PASCAL_HEX = 22;
+  COL_COLOR_PASCAL_INT = 23;
+  COL_COLOR_CPP_HEX = 24;
 
 type
 
@@ -54,6 +73,12 @@ type
     procedure AssignColumn(const Column: TVirtualTreeColumn);
     function ToIniStr: string;
     procedure ApplyIniStr(const Column: TVirtualTreeColumn; const IniValue: string; const MaxPos: integer);
+  end;
+
+  TVstColumnColors = record
+    Header: TColor;
+    Background: TColor;
+    Text: TColor;
   end;
 
   {$region '     TFormPaletteEditor     '}
@@ -209,6 +234,8 @@ type
     procedure vstAdvancedHeaderDraw(Sender: TVTHeader; var PaintInfo: THeaderPaintInfo; const Elements: THeaderPaintElements);
     procedure vstAfterCellPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; CellRect: TRect);
     procedure vstAfterColumnWidthTracking(Sender: TVTHeader; Column: TColumnIndex);
+    procedure vstBeforeCellPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; CellPaintMode: TVTCellPaintMode;
+        CellRect: TRect; var ContentRect: TRect);
     procedure vstChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure vstDragAllowed(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; var Allowed: Boolean);
     procedure vstDragDrop(Sender: TBaseVirtualTree; Source: TObject; DataObject: IDataObject; Formats: TFormatArray; Shift: TShiftState; Pt: TPoint; var Effect: Integer; Mode: TDropMode);
@@ -230,6 +257,10 @@ type
   private
     bUpdatingControls: Boolean;
     SortDirection: TSortDirection;
+    ccRgb_Red, ccRgb_Green, ccRgb_Blue, ccHtml: TVstColumnColors;
+    ccHslCss, ccHslCss_Hue, ccHslCss_Sat, ccHslCss_Lum: TVstColumnColors;
+    ccHslWin, ccHslWin_Hue, ccHslWin_Sat, ccHslWin_Lum: TVstColumnColors;
+    ccCmykCyan, ccCmykMagenta, ccCmykYellow, ccCmykBlack: TVstColumnColors;
   end;
   {$endregion TFormPaletteEditor}
 
@@ -268,6 +299,21 @@ end;
 
 {$region '                           PrepareControls                            '}
 procedure TFormPaletteEditor.PrepareControls;
+
+//  procedure AssignColors(var cc: TVstColumnColors; const clHeader, clBackground, clText: TColor); overload;
+//  begin
+//    cc.Header := clHeader;
+//    cc.Background := clBackground;
+//    cc.Text := clText;
+//  end;
+
+  procedure AssignColors(var cc: TVstColumnColors; const clBackground: TColor; xpHeader: integer = 50; xpText: integer = 300); overload;
+  begin
+    cc.Header := Darker(clBackground, xpHeader);
+    cc.Background := clBackground;
+    cc.Text := Darker(AvgColor(clBackground, clSilver), xpText);
+  end;
+
 begin
   pnMain.Align := alClient;
 
@@ -296,6 +342,47 @@ begin
   dlgOpenPalette.InitialDir := AP.PalettesDir;
   dlgSavePalette.InitialDir := AP.PalettesDir;
   dlgExport.InitialDir := dlgSavePalette.InitialDir;
+
+
+  // ---------------- Column colors -------------------
+  AssignColors(ccRgb_Red, RGB(255,215,215));
+  vst.Header.Columns[COL_COLOR_RGB_RED].Color := ccRgb_Red.Background;
+
+  AssignColors(ccRgb_Green, RGB(213,238,224));
+  vst.Header.Columns[COL_COLOR_RGB_GREEN].Color := ccRgb_Green.Background;
+
+  AssignColors(ccRgb_Blue, RGB(207,230,254));
+  vst.Header.Columns[COL_COLOR_RGB_BLUE].Color := ccRgb_Blue.Background;
+
+  AssignColors(ccHtml, 9395330, -40, -300);
+  vst.Header.Columns[COL_COLOR_HTML].Color := ccHtml.Background;
+
+  AssignColors(ccHslCss, 15331571, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_CSS].Color := ccHslCss.Background;
+  AssignColors(ccHslCss_Hue, 15331571, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_CSS_HUE].Color := ccHslCss_Hue.Background;
+  AssignColors(ccHslCss_Sat, 15331571, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_CSS_SAT].Color := ccHslCss_Sat.Background;
+  AssignColors(ccHslCss_Lum, 15331571, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_CSS_LUM].Color := ccHslCss_Lum.Background;
+
+  AssignColors(ccHslWin, 16314855, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_WIN].Color := ccHslWin.Background;
+  AssignColors(ccHslWin_Hue, 16314855, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_WIN_HUE].Color := ccHslWin_Hue.Background;
+  AssignColors(ccHslWin_Sat, 16314855, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_WIN_SAT].Color := ccHslWin_Sat.Background;
+  AssignColors(ccHslWin_Lum, 16314855, 80, 400);
+  vst.Header.Columns[COL_COLOR_HSL_WIN_LUM].Color := ccHslWin_Lum.Background;
+
+  AssignColors(ccCmykCyan, 16513205);
+  vst.Header.Columns[COL_COLOR_CMYK_CYAN].Color := ccCmykCyan.Background;
+  AssignColors(ccCmykMagenta, 16765695);
+  vst.Header.Columns[COL_COLOR_CMYK_MAGENTA].Color := ccCmykMagenta.Background;
+  AssignColors(ccCmykYellow, 11599871);
+  vst.Header.Columns[COL_COLOR_CMYK_YELLOW].Color := ccCmykYellow.Background;
+  AssignColors(ccCmykBlack, RGB3(110), -26, -300);
+  vst.Header.Columns[COL_COLOR_CMYK_BLACK].Color := ccCmykBlack.Background;
 
 end;
 {$endregion PrepareControls}
@@ -363,6 +450,10 @@ begin
   vst.Header.Columns[COL_COLOR_PASCAL_HEX].Text := lsEditor.GetString('colPascalHex', 'Pascal HEX');
   vst.Header.Columns[COL_COLOR_PASCAL_INT].Text := lsEditor.GetString('colPascalInt', 'Pascal INT');
   vst.Header.Columns[COL_COLOR_CPP_HEX].Text := lsEditor.GetString('colCppHex', 'C++ Hex');
+
+  vst.Header.Columns[COL_COLOR_RGB_RED].Text := lsMain.GetString('RGB_Red', 'Red');
+  vst.Header.Columns[COL_COLOR_RGB_GREEN].Text := lsMain.GetString('RGB_Green', 'Green');
+  vst.Header.Columns[COL_COLOR_RGB_BLUE].Text := lsMain.GetString('RGB_Blue', 'Blue');
 
   actClearColorList.Caption := lsMain.GetComponentProperty('actClearPalette', 'Caption');
   actClearColorList.Hint := lsMain.GetComponentProperty('actClearPalette', 'Hint');
@@ -801,8 +892,32 @@ begin
       R := PaintInfo.PaintRectangle;
       Column := PaintInfo.Column;
 
-      BgColor := RGB3(210);
-      if PaintInfo.IsHoverIndex then BgColor := RGB3(230);
+      case Column.Index of
+        COL_COLOR_RGB_RED: BgColor := ccRgb_Red.Header;
+        COL_COLOR_RGB_GREEN: BgColor := ccRgb_Green.Header;
+        COL_COLOR_RGB_BLUE: BgColor := ccRgb_Blue.Header;
+        COL_COLOR_HTML: BgColor := ccHtml.Header;
+
+        COL_COLOR_HSL_CSS: BgColor := ccHslCss.Header;
+        COL_COLOR_HSL_CSS_HUE: BgColor := ccHslCss_Hue.Header;
+        COL_COLOR_HSL_CSS_SAT: BgColor := ccHslCss_Sat.Header;
+        COL_COLOR_HSL_CSS_LUM: BgColor := ccHslCss_Lum.Header;
+
+        COL_COLOR_HSL_WIN: BgColor := ccHslWin.Header;
+        COL_COLOR_HSL_WIN_HUE: BgColor := ccHslWin_Hue.Header;
+        COL_COLOR_HSL_WIN_SAT: BgColor := ccHslWin_Sat.Header;
+        COL_COLOR_HSL_WIN_LUM: BgColor := ccHslWin_Lum.Header;
+
+        COL_COLOR_CMYK_CYAN: BgColor := ccCmykCyan.Header;
+        COL_COLOR_CMYK_MAGENTA: BgColor := ccCmykMagenta.Header;
+        COL_COLOR_CMYK_YELLOW: BgColor := ccCmykYellow.Header;
+        COL_COLOR_CMYK_BLACK: BgColor := ccCmykBlack.Header;
+      else
+        BgColor := RGB3(210);
+      end;
+
+      if (PaintInfo.IsHoverIndex) and (coAllowClick in Column.Options) then BgColor := GetSimilarColor(BgColor, 10, True);
+
       FrameColor := RGB3(170);
 
       Brush.Color := BgColor;
@@ -836,34 +951,171 @@ begin
 end;
 
 
+procedure TFormPaletteEditor.vstBeforeCellPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; CellPaintMode:
+    TVTCellPaintMode; CellRect: TRect; var ContentRect: TRect);
+var
+  clGrid: TColor;
+  R: TRect;
+  bSelected: Boolean;
+  dx: integer;
+  //clOriginalBg, clOriginalBorder: TColor;
+begin
+  if CellPaintMode <> cpmPaint then Exit;
+
+  bSelected := vsSelected in Node^.States;
+  R := CellRect;
+  InflateRect(R, 1, 1);
+
+  if vst.Focused then
+    if bSelected then clGrid := vst.Colors.FocusedSelectionBorderColor else clGrid := vst.Colors.GridLineColor
+  else
+    if bSelected then clGrid := vst.Colors.UnfocusedSelectionBorderColor else clGrid := vst.Colors.GridLineColor;
+
+  dx := 50;
+
+  case Column of
+
+    COL_COLOR_RGB_RED: if not bSelected then clGrid := Darker(ccRgb_Red.Background, dx);
+    COL_COLOR_RGB_GREEN: if not bSelected then clGrid := Darker(ccRgb_Green.Background, dx);
+    COL_COLOR_RGB_BLUE: if not bSelected then clGrid := Darker(ccRgb_Blue.Background, dx);
+
+    COL_COLOR_HTML: if not bSelected then clGrid := Darker(ccHtml.Background, dx-30);
+
+    COL_COLOR_HSL_CSS: if not bSelected then clGrid := Darker(ccHslCss.Background, dx+50);
+    COL_COLOR_HSL_CSS_HUE: if not bSelected then clGrid := Darker(ccHslCss_Hue.Background, dx+50);
+    COL_COLOR_HSL_CSS_SAT: if not bSelected then clGrid := Darker(ccHslCss_Sat.Background, dx+50);
+    COL_COLOR_HSL_CSS_LUM: if not bSelected then clGrid := Darker(ccHslCss_Lum.Background, dx+50);
+
+    COL_COLOR_HSL_WIN: if not bSelected then clGrid := Darker(ccHslWin.Background, dx+50);
+    COL_COLOR_HSL_WIN_HUE: if not bSelected then clGrid := Darker(ccHslWin_Hue.Background, dx+50);
+    COL_COLOR_HSL_WIN_SAT: if not bSelected then clGrid := Darker(ccHslWin_Sat.Background, dx+50);
+    COL_COLOR_HSL_WIN_LUM: if not bSelected then clGrid := Darker(ccHslWin_Lum.Background, dx+50);
+
+    COL_COLOR_CMYK_CYAN: if not bSelected then clGrid := Darker(ccCmykCyan.Background, dx+20);
+    COL_COLOR_CMYK_MAGENTA: if not bSelected then clGrid := Darker(ccCmykMagenta.Background, dx+20);
+    COL_COLOR_CMYK_YELLOW: if not bSelected then clGrid := Darker(AvgColor(ccCmykYellow.Background, RGB3(220)), dx-30);
+    COL_COLOR_CMYK_BLACK: if not bSelected then clGrid := Darker(ccCmykBlack.Background, dx-30);
+
+  end; // case
+
+  if bSelected then
+  begin
+    clGrid := Darker(clGrid, 20);
+  end;
+
+
+  with TargetCanvas do
+  begin
+    Brush.Style := bsClear;
+    Pen.Style := psSolid;
+    Pen.Color := clGrid;
+    Rectangle(R);
+  end;
+
+
+
+//    clOriginalBg := $00D56D11;
+//    clOriginalBorder := $00D56D11;
+////      vst.Colors.FocusedSelectionColor := clOriginalBg;
+////      vst.Colors.FocusedSelectionBorderColor := clOriginalBorder;
+//
+//  if bSelected then
+//  begin
+//
+//
+//    case Column of
+//      COL_COLOR_RGB_RED:
+//        begin
+//          vst.Colors.FocusedSelectionColor := AvgColor(clOriginalBg, ccRgb_Red.Background);// else vst.Colors.FocusedSelectionColor := clOriginalBg;
+//          vst.Colors.FocusedSelectionBorderColor := vst.Colors.FocusedSelectionColor;
+//        end;
+//    else
+////      vst.Colors.FocusedSelectionColor := clOriginalBg;
+////      vst.Colors.FocusedSelectionBorderColor := clOriginalBorder;
+//    end;
+//  end;
+
+//  if bSelected then
+//  with TargetCanvas do
+//  begin
+//    Brush.Style := bsSolid;
+//    Brush.Color := clRed;
+//    Rectangle(R);
+//  end;
+
+end;
+
+procedure TFormPaletteEditor.vstPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
+var
+  clText: TColor;
+begin
+  //if (Column in [COL_COLOR_RGB..COL_COLOR_CPP_HEX]) then
+  if Column > COL_NAME then
+  with TargetCanvas do
+  begin
+    Font.Name := AP.MonospaceFont.Name;
+    Font.Size := AP.MonospaceFont.Size;
+  end;
+
+  if vst.Selected[Node] then Exit;
+
+  clText := clNone;
+  case Column of
+    COL_COLOR_RGB_RED: clText := ccRgb_Red.Text;
+    COL_COLOR_RGB_GREEN: clText := ccRgb_Green.Text;
+    COL_COLOR_RGB_BLUE: clText := ccRgb_Blue.Text;
+    COL_COLOR_HTML: clText := ccHtml.Text;
+
+    COL_COLOR_HSL_CSS: clText := ccHslCss.Text;
+    COL_COLOR_HSL_CSS_HUE: clText := ccHslCss_Hue.Text;
+    COL_COLOR_HSL_CSS_SAT: clText := ccHslCss_Sat.Text;
+    COL_COLOR_HSL_CSS_LUM: clText := ccHslCss_Lum.Text;
+
+    COL_COLOR_HSL_WIN: clText := ccHslWin.Text;
+    COL_COLOR_HSL_WIN_HUE: clText := ccHslWin_Hue.Text;
+    COL_COLOR_HSL_WIN_SAT: clText := ccHslWin_Sat.Text;
+    COL_COLOR_HSL_WIN_LUM: clText := ccHslWin_Lum.Text;
+
+    COL_COLOR_CMYK_CYAN: clText := ccCmykCyan.Text;
+    COL_COLOR_CMYK_MAGENTA: clText := ccCmykMagenta.Text;
+    COL_COLOR_CMYK_YELLOW: clText := ccCmykYellow.Text;
+    COL_COLOR_CMYK_BLACK: clText := ccCmykBlack.Text;
+  end;
+
+  if clText <> clNone then TargetCanvas.Font.Color := clText;
+end;
+
 procedure TFormPaletteEditor.vstAfterCellPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; CellRect: TRect);
 var
   Color: TColor;
   vd: PVSTData;
-  dx: integer;
+  R: TRect;
 begin
   if not Assigned(Node) then Exit;
   if not vstGetNodeData(Node, vd) then Exit;
 
+  R := CellRect;
+  InflateRect(R, 1, 1);
+  R.Left := R.Left + 1;
 
   if Column = COL_COLOR then
     with TargetCanvas do
     begin
-      //Color := vst.Header.Columns[COL_COLOR].Color;
-      //Brush.Color := Color;
-      //Pen.Color := Color;
-      //Rectangle(CellRect);
-
-      dx := 1;
-      InflateRect(CellRect, dx, dx);
       Color := vstGetNodeColorValue(Node, clNone);
       if Color = clNone then Exit;
       Brush.Color := Color;
       Pen.Style := psSolid;
-      //Pen.Color := Color;// AvgColor(Color, clGray);
-      Pen.Color := vst.Colors.GridLineColor;
-      Rectangle(CellRect);
+      Pen.Color := AvgColor(Color, clGray);
+      Rectangle(R);
     end;
+
+//  if vsSelected in Node^.States then
+//  with TargetCanvas do
+//  begin
+//    Brush.Style := bsSolid;
+//    Brush.Color := clGray;
+//    Rectangle(R);
+//  end;
 
 end;
 
@@ -885,11 +1137,6 @@ begin
   end;
   vst.Refresh;
   InitControls;
-end;
-
-procedure TFormPaletteEditor.vstDragAllowed(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; var Allowed: Boolean);
-begin
-  Allowed := (Sender = vst);
 end;
 
 
@@ -989,18 +1236,18 @@ begin
 
   if NodeSrc = NodeDest then Exit;
 
-  case Mode of
-    dmNowhere: AttachMode := amNoWhere;
-    dmAbove: AttachMode := amInsertBefore;
-    dmBelow: AttachMode := amInsertAfter;
-    dmOnNode: AttachMode := amInsertBefore; // amAddChildLast;
-  else
-    AttachMode := amNoWhere;
-  end;
+    case Mode of
+      dmNowhere: AttachMode := amNoWhere;
+      dmAbove: AttachMode := amInsertBefore;
+      dmBelow: AttachMode := amInsertAfter;
+      dmOnNode: AttachMode := amInsertBefore; // amAddChildLast;
+    else
+      AttachMode := amNoWhere;
+    end;
 
-  Sender.MoveTo(NodeSrc, NodeDest, AttachMode, False);
+    Sender.MoveTo(NodeSrc, NodeDest, AttachMode, False);
 
-  vst.Refresh;
+    vst.Refresh;
 end;
 
 procedure TFormPaletteEditor.vstDragOver(Sender: TBaseVirtualTree; Source: TObject; Shift: TShiftState; State: TDragState; Pt: TPoint; Mode: TDropMode; var
@@ -1008,6 +1255,12 @@ procedure TFormPaletteEditor.vstDragOver(Sender: TBaseVirtualTree; Source: TObje
 begin
   Accept := Mode <> dmNowhere; //Mode in [dmAbove, dmBelow];
 end;
+
+procedure TFormPaletteEditor.vstDragAllowed(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; var Allowed: Boolean);
+begin
+  Allowed := (Sender = vst);
+end;
+
 
 function TFormPaletteEditor.vstGetNodeColorValue(Node: PVirtualNode; clInvalid: TColor): TColor;
 var
@@ -1049,15 +1302,34 @@ begin
   if AColor = clNone then Exit;
 
   case Column of
-    COL_COLOR_HTML: CellText := ColorToHtmlColorStr(AColor);
-    COL_COLOR_RGB: CellText := ColorToRgbIntStr(AColor, 3, '0', ',');
-    COL_COLOR_RGB_PERCENT: CellText := ColorToRgbPercentStr(AColor, 3, '0', ',', False);
-    COL_COLOR_HSL_CSS: CellText := ColorToHslCssStr(AColor);
-    COL_COLOR_HSL_WIN: CellText := ColorToHslStr(AColor, 239, 240, 240, 3, '0', ',');
-    COL_COLOR_CMYK: CellText := ColorToCmykStr(AColor, 3);
-    COL_COLOR_PASCAL_HEX: CellText := ColorToDelphiHex(AColor, '$');
-    COL_COLOR_PASCAL_INT: CellText := ColorToDelphiIntStr(AColor);
-    COL_COLOR_CPP_HEX: CellText := ColorToDelphiHex(AColor, '0x');
+
+    COL_COLOR_RGB: CellText := ColorToRgbIntStr(AColor, 3, ' ', ' ');
+    COL_COLOR_RGB_RED: CellText := itos(GetRValue(AColor));
+    COL_COLOR_RGB_GREEN: CellText := itos(GetGValue(AColor));
+    COL_COLOR_RGB_BLUE: CellText := itos(GetBValue(AColor));
+    COL_COLOR_RGB_PERCENT: CellText := ColorToRgbPercentStr(AColor, 3, ' ', ' ', False);
+
+    COL_COLOR_HTML: CellText := InsertNumSep(ColorToHtmlColorStr(AColor), ' ', 2, 2);
+
+    COL_COLOR_HSL_CSS: CellText := ColorToHslCssStr(AColor, True, 3, ' ', ' ');
+    COL_COLOR_HSL_CSS_HUE: CellText := itos(GetHueCssValue(AColor)) + DEG;
+    COL_COLOR_HSL_CSS_SAT: CellText := itos(GetSatCssValue(AColor)) + '%';
+    COL_COLOR_HSL_CSS_LUM: CellText := itos(GetLumCssValue(AColor)) + '%';
+
+    COL_COLOR_HSL_WIN: CellText := ColorToHslWinStr(AColor, False, 3, ' ', ' ');
+    COL_COLOR_HSL_WIN_HUE: CellText := itos(GetHueWinValue(AColor));
+    COL_COLOR_HSL_WIN_SAT: CellText := itos(GetSatWinValue(AColor));
+    COL_COLOR_HSL_WIN_LUM: CellText := itos(GetLumWinValue(AColor));
+
+    COL_COLOR_CMYK: CellText := ColorToCmykStr(AColor, 3, ' ', ' ');
+    COL_COLOR_CMYK_CYAN: CellText := itos(GetCmykCyanValue(AColor));
+    COL_COLOR_CMYK_MAGENTA: CellText := itos(GetCmykMagentaValue(AColor));
+    COL_COLOR_CMYK_YELLOW: CellText := itos(GetCmykYellowValue(AColor));
+    COL_COLOR_CMYK_BLACK: CellText := itos(GetCmykBlackValue(AColor));
+
+    COL_COLOR_PASCAL_HEX: CellText := InsertNumSep(ColorToDelphiHex(AColor, '$'), ' ', 2, 3);
+    COL_COLOR_PASCAL_INT: CellText := InsertNumSep(ColorToDelphiIntStr(AColor), ' ', 3);
+    COL_COLOR_CPP_HEX: CellText := InsertNumSep(ColorToDelphiHex(AColor, '0x'), ' ', 2, 3);
   end;
 
 end;
@@ -1069,15 +1341,7 @@ end;
 
 
 
-procedure TFormPaletteEditor.vstPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
-begin
-  if (Column in [COL_COLOR_RGB..COL_COLOR_CPP_HEX]) then
-  with TargetCanvas do
-  begin
-    Font.Name := AP.MonospaceFont.Name;
-    Font.Size := AP.MonospaceFont.Size;
-  end;
-end;
+
 
 procedure TFormPaletteEditor.vstHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
 begin
@@ -1090,30 +1354,62 @@ end;
 procedure TFormPaletteEditor.vstCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
 var
   vd1, vd2: PVSTData;
+  cl1, cl2: TColor;
+  //Red1, Red2, Green1, Green2, Blue1, Blue2: Byte;
+
+  function CompareBytes(const bt1, bt2: integer): integer;
+  begin
+    if bt1 < bt2 then Result := -1
+    else if bt1 > bt2 then Result := 1
+    else Result := 0;
+  end;
+
+  function CompareIntegers(const x1, x2: integer): integer;
+  begin
+    if x1 < x2 then Result := -1
+    else if x1 > x2 then Result := 1
+    else Result := 0;
+  end;
+
 begin
   if bUpdatingControls then Exit;
 
   vd1 := vst.GetNodeData(Node1);
   vd2 := vst.GetNodeData(Node2);
+  cl1 := vd1^.Color;
+  cl2 := vd2^.Color;
 
-  if Column = COL_NO then
-  begin
-    if vd1^.No < vd2^.No then Result := -1
-    else if vd1^.No > vd2^.No then Result := 1
-    else Result := 0;
-  end
+  case Column of
 
-  else if Column = COL_NAME then
-  begin
-    Result := CompareText(vd1^.ColorName, vd2^.ColorName);
-  end
+    COL_NO:
+      begin
+        if vd1^.No < vd2^.No then Result := -1
+        else if vd1^.No > vd2^.No then Result := 1
+        else Result := 0;
+      end;
 
-  else if Column = COL_COLOR then
-  begin
-    if vd1^.Color < vd2^.Color then Result := -1
-    else if vd1^.Color > vd2^.Color then Result := 1
-    else Result := 0;
-  end;
+    COL_NAME: Result := CompareText(vd1^.ColorName, vd2^.ColorName);
+
+    COL_COLOR, COL_COLOR_PASCAL_HEX, COL_COLOR_PASCAL_INT, COL_COLOR_CPP_HEX: Result := CompareIntegers(cl1, cl2);
+
+    COL_COLOR_RGB_RED: Result := CompareBytes(GetRValue(cl1), GetRValue(cl2));
+    COL_COLOR_RGB_GREEN: Result := CompareBytes(GetGValue(cl1), GetGValue(cl2));
+    COL_COLOR_RGB_BLUE: Result := CompareBytes(GetBValue(cl1), GetBValue(cl2));
+
+    COL_COLOR_HSL_CSS_HUE: Result := CompareIntegers(GetHueCssValue(cl1), GetHueCssValue(cl2));
+    COL_COLOR_HSL_CSS_SAT: Result := CompareIntegers(GetSatCssValue(cl1), GetSatCssValue(cl2));
+    COL_COLOR_HSL_CSS_LUM: Result := CompareIntegers(GetLumCssValue(cl1), GetLumCssValue(cl2));
+
+    COL_COLOR_HSL_WIN_HUE: Result := CompareIntegers(GetHueWinValue(cl1), GetHueWinValue(cl2));
+    COL_COLOR_HSL_WIN_SAT: Result := CompareIntegers(GetSatWinValue(cl1), GetSatWinValue(cl2));
+    COL_COLOR_HSL_WIN_LUM: Result := CompareIntegers(GetLumWinValue(cl1), GetLumWinValue(cl2));
+
+    COL_COLOR_CMYK_CYAN: Result := CompareIntegers(GetCmykCyanValue(cl1), GetCmykCyanValue(cl2));
+    COL_COLOR_CMYK_MAGENTA: Result := CompareIntegers(GetCmykMagentaValue(cl1), GetCmykMagentaValue(cl2));
+    COL_COLOR_CMYK_YELLOW: Result := CompareIntegers(GetCmykYellowValue(cl1), GetCmykYellowValue(cl2));
+    COL_COLOR_CMYK_BLACK: Result := CompareIntegers(GetCmykBlackValue(cl1), GetCmykBlackValue(cl2));
+
+  end; // case
 
 
 end;
@@ -1412,7 +1708,6 @@ end;
 
 
 
-
 {$region '                                    TVstColumnParams                                     '}
 
 procedure TVstColumnParams.ApplyIniStr(const Column: TVirtualTreeColumn; const IniValue: string; const MaxPos: integer);
@@ -1459,15 +1754,30 @@ begin
   Visible := coVisible in Column.Options;
   Position := Column.Position;
   Width := Column.Width;
+
   case Column.Index of
     COL_NO: IniID := 'colNo';
     COL_NAME: IniID := 'colName';
     COL_COLOR: IniID := 'colColor';
+
     COL_COLOR_RGB: IniID := 'colRgb';
+    COL_COLOR_RGB_RED: IniID := 'colRgb_Red';
+    COL_COLOR_RGB_GREEN: IniID := 'colRgb_Green';
+    COL_COLOR_RGB_BLUE: IniID := 'colRgb_Blue';
     COL_COLOR_RGB_PERCENT: IniID := 'colRgbPercent';
+
     COL_COLOR_HTML: IniID := 'colHtml';
+
     COL_COLOR_HSL_CSS: IniID := 'colHslCss';
+    COL_COLOR_HSL_CSS_HUE: IniID := 'colHslCss_Hue';
+    COL_COLOR_HSL_CSS_SAT: IniID := 'colHslCss_Sat';
+    COL_COLOR_HSL_CSS_LUM: IniID := 'colHslCss_Lum';
+
     COL_COLOR_HSL_WIN: IniID := 'colHslWin';
+    COL_COLOR_HSL_WIN_HUE: IniID := 'colHslWin_Hue';
+    COL_COLOR_HSL_WIN_SAT: IniID := 'colHslWin_Sat';
+    COL_COLOR_HSL_WIN_LUM: IniID := 'colHslWin_Lum';
+
     COL_COLOR_CMYK: IniID := 'colCmyk';
     COL_COLOR_PASCAL_HEX: IniID := 'colPascalHex';
     COL_COLOR_PASCAL_INT: IniID := 'colPascalInt';
@@ -1475,6 +1785,7 @@ begin
   else
     IniID := '';
   end;
+
 end;
 
 function TVstColumnParams.ToIniStr: string;

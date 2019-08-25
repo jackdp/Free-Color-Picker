@@ -292,7 +292,7 @@ begin
   try
 
     edRgbPercent.Text := ColorToRgbPercentStr(cl, 1, '0', ',', False); // cc.RgbPercentIntStr;
-    edHslCss.Text := cc.HslCssStr;
+    edHslCss.Text := ColorToHslCssStr(cl, False, 3, '0', ',', False); // cc.HslCssStr;
     edHslWin.Text := cc.HslSysStr;
 
     s := cc.HtmlColorStr;
