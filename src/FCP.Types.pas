@@ -40,6 +40,9 @@ const
   ICON_INDEX_COLORS_FILE = 19;
   ICON_INDEX_GPL_FILE = 58;
 
+  PIXEL_INDICATOR_SMALL_CROSS = 30;
+  PIXEL_INDICATOR_MEDIUM_CROSS = 50;
+
 
 type
 
@@ -88,6 +91,7 @@ type
     ColorName: string;
   end;
 
+  TPixelIndicator = (piSquare, piSmallCross, piMediumCross, piFullCross);
 
   ////////////////////////////////////////////////////////////////
   TAppParams = record
@@ -105,6 +109,8 @@ type
     ShowColorCodesOnTitleBar: Boolean;
     AskForColorName: Boolean;
     AddNewColorsAtTheTop: Boolean;
+    PixelIndicator: TPixelIndicator;
+    PixelIndicatorColor: TColor;
   end;
   ////////////////////////////////////////////////////////////////
 

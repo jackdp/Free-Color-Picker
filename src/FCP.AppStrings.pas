@@ -266,6 +266,12 @@ begin
     lsOptions.AddString('AddPos_Top', 'At the top of the color palette');
     lsOptions.AddString('AddPos_End', 'At the end of the color palette');
     lsOptions.AddLabel(lblResampler);
+    lsOptions.AddLabel(lblPixelIndicator);
+    lsOptions.AddString('PixelIndicator_Square', 'Square');
+    lsOptions.AddString('PixelIndicator_SmallCross', 'Small cross');
+    lsOptions.AddString('PixelIndicator_MediumCross', 'Medium cross');
+    lsOptions.AddString('PixelIndicator_FullCross', 'Full cross');
+    lsOptions.ac(cswPixelIndicator).ap('BoundLabel.Caption', 'Color:');
 
   end;
 end;

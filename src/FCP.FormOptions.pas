@@ -19,7 +19,7 @@ uses
   JPP.PngButton, JPP.ColorListBox, JPP.ColorComboBox, JPP.SimplePanel,
 
   // FCP
-  FCP.Types, FCP.Shared, FCP.AppStrings;
+  FCP.Types, FCP.Shared, FCP.AppStrings, JPP.ColorSwatch;
 
 type
 
@@ -69,8 +69,13 @@ type
     chAskForName: TCheckBox;
     cbAddColorsPosition: TComboBox;
     lblAddColorsPosition: TLabel;
+    pnPixelIndicator: TJppSimplePanel;
+    lblPixelIndicator: TLabel;
+    cbPixelIndicator: TComboBox;
+    cswPixelIndicator: TJppColorSwatchEx;
     procedure actCloseExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
+    procedure cbPixelIndicatorChange(Sender: TObject);
     procedure cbAddColorsPositionChange(Sender: TObject);
     procedure cbColorFormatChange(Sender: TObject);
     procedure cbColorFormat_CaptureChange(Sender: TObject);
@@ -88,6 +93,7 @@ type
     procedure chShowBottomPanelClick(Sender: TObject);
     procedure chShowColorCodesPanelClick(Sender: TObject);
     procedure chShowRgbGraphClick(Sender: TObject);
+    procedure cswPixelIndicatorSelectedColorChanged(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure PrepareControls;
     procedure InitLanguageCombo;
@@ -168,6 +174,17 @@ begin
     udCapturingInterval.Min := CAPTURING_INTERVAL_MIN;
     udCapturingInterval.Max := CAPTURING_INTERVAL_MAX;
     udCapturingInterval.Position := FormMain.tmColor.Interval;
+
+    case AP.PixelIndicator of
+      piSquare: cbPixelIndicator.ItemIndex := 0;
+      piSmallCross: cbPixelIndicator.ItemIndex := 1;
+      piMediumCross: cbPixelIndicator.ItemIndex := 2;
+      piFullCross: cbPixelIndicator.ItemIndex := 3;
+    end;
+
+    cswPixelIndicator.SelectedColor := AP.PixelIndicatorColor;
+    cswPixelIndicator.ButtonChangeColor.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+    cswPixelIndicator.ButtonChangeColor.PngImage.Assign(FormMain.PngCollection.GetPngImageByName('Colors'));
 
   finally
     bUpdatingControls := False;
@@ -253,6 +270,15 @@ begin
     cbAddColorsPosition.Items[0] := lsOptions.GetString('AddPos_Top', 'At the top of the color palette');
     cbAddColorsPosition.Items[1] := lsOptions.GetString('AddPos_End', 'At the end of the color palette');
     cbAddColorsPosition.ItemIndex := x;
+
+    x := cbPixelIndicator.ItemIndex;
+    cbPixelIndicator.Items[0] := lsOptions.GetString('PixelIndicator_Square', 'Square');
+    cbPixelIndicator.Items[1] := lsOptions.GetString('PixelIndicator_SmallCross', 'Small cross');
+    cbPixelIndicator.Items[2] := lsOptions.GetString('PixelIndicator_MediumCross', 'Medium cross');
+    cbPixelIndicator.Items[3] := lsOptions.GetString('PixelIndicator_FullCross', 'Full cross');
+    cbPixelIndicator.ItemIndex := x;
+
+    cswPixelIndicator.ButtonChangeColor.Hint := lsMain.GetString('ButtonChangeColor', 'Change color...');
 
   finally
     bUpdatingControls := False;
@@ -534,6 +560,18 @@ begin
   Close;
 end;
 
+procedure TFormOptions.cbPixelIndicatorChange(Sender: TObject);
+begin
+  if bUpdatingControls then Exit;
+  case cbPixelIndicator.ItemIndex of
+    0: AP.PixelIndicator := piSquare;
+    1: AP.PixelIndicator := piSmallCross;
+    2: AP.PixelIndicator := piMediumCross;
+    3: AP.PixelIndicator := piFullCross;
+  end;
+  FormMain.UpdatePreviewImg;
+end;
+
 procedure TFormOptions.ccbColorPalette_BgColorBtnChangeColorClick(Sender: TObject);
 var
   cl: TColor;
@@ -566,6 +604,13 @@ begin
   if bUpdatingControls then Exit;
   FormMain.clbColors.Appearance.NumericFont.Color := ccbColorPalette_FontColor.SelectedColor;
   FormMain.clbColors.Font.Color := ccbColorPalette_FontColor.SelectedColor;
+end;
+
+procedure TFormOptions.cswPixelIndicatorSelectedColorChanged(Sender: TObject);
+begin
+  if bUpdatingControls then Exit;
+  AP.PixelIndicatorColor := cswPixelIndicator.SelectedColor;
+  FormMain.UpdatePreviewImg;
 end;
 
 end.
