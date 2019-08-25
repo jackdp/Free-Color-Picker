@@ -897,6 +897,10 @@ begin
   // F3
   AP.CopyColorType := ctHtml;
 
+  // Pixel indicator
+  AP.PixelIndicator := piSquare;
+  AP.PixelIndicatorColor := RGB(255, 102, 000);
+
 end;
 {$endregion InitAppParams}
 
@@ -1324,6 +1328,18 @@ begin
 
     Ini.WriteBool(Section, 'ShowColorCodesOnTitleBar', AP.ShowColorCodesOnTitleBar);
 
+    case AP.PixelIndicator of
+      piSquare: s := 'Square';
+      piSmallCross: s := 'SmallCross';
+      piMediumCross: s := 'MediumCross';
+      piFullCross: s := 'FullCross';
+    else
+      s := 'Square';
+    end;
+    Ini.WriteString(Section, 'PixelIndicator', s);
+
+    Ini.WriteString(Section, 'PixelIndicatorColor', ColorToHtmlColorStr(AP.PixelIndicatorColor, '#'));
+
     // -------------- Quick Access: The last opened files ----------------
     sl := TStringList.Create;
     try
@@ -1519,6 +1535,12 @@ begin
       tmColor.Interval := x;
 
       AP.ShowColorCodesOnTitleBar := Ini.ReadBool(Section, 'ShowColorCodesOnTitleBar', AP.ShowColorCodesOnTitleBar);
+
+      s := Ini.ReadString(Section, 'PixelIndicator', 'Square');
+      AP.PixelIndicator := TAppHelper.GetValueByID(s, ['Square', 'SmallCross', 'MediumCross', 'FullCross'], [piSquare, piSmallCross, piMediumCross, piFullCross], piSquare, True);
+
+      s := Ini.ReadString(Section, 'PixelIndicatorColor', '#FF6600');
+      TryGetColor(s, AP.PixelIndicatorColor);
 
       // ------------- Quick Access: Last opened files -------------
       Section := INI_SECTION_RECENTLY_OPENED;
@@ -1937,6 +1959,7 @@ var
   clPointer: TColor;
   xFactor, xd: integer;
   rt: FCP.Bitmap.TResamplerType;
+  xHalfBmpWidth, xHalfBmpHeight, dx, dy: integer;
 begin
 
   xFactor := ZoomFactor;
@@ -1970,7 +1993,7 @@ begin
     Bmp.Width := RectSrc.Width;
     Bmp.Height := RectSrc.Height;
 
-    // Background
+    // -------- Background -----------
     with Bmp.Canvas do
     begin
       Brush.Color := RGB3(31);
@@ -1987,8 +2010,7 @@ begin
       CopyRect(RectDest, Canv, RectSrc);
     end;
 
-    // TResamplerType = (rtBox, rtLinear, rtCubic, rtMitchell, rtSpline, rtLanczos);
-    //BitmapResize(Bmp, Bmp.Width * xFactor, Bmp.Height * xFactor, rtBox);
+    // ----------- Bitmap -------------
     case cbResampler.ItemIndex of
       IND_RESAMPLER_BOX: rt := rtBox;
       IND_RESAMPLER_LINEAR: rt := rtLinear;
@@ -2000,15 +2022,83 @@ begin
     end;
     BitmapResize(Bmp, Image.Width, Image.Height, rt);
 
+
+    // -------------- Pixel indicator ----------------
     xd := xFactor;
-    clPointer := RGB(255, 102, 000); // orange
+    clPointer := AP.PixelIndicatorColor;
     with Bmp.Canvas do
     begin
+
+      // --------- Square ----------
       Pen.Color := clPointer;
       Pen.Style := psSolid;
       Brush.Style := bsClear;
-      Rectangle((Bmp.Width div 2) - 1, (Bmp.Height div 2) - 1, (Bmp.Width div 2) + xd + 1, (Bmp.Height div 2) + xd + 1);
-    end;
+      xHalfBmpWidth := Bmp.Width div 2;
+      xHalfBmpHeight := Bmp.Height div 2;
+      Rectangle(xHalfBmpWidth - 1, xHalfBmpHeight - 1, xHalfBmpWidth + xd + 1, xHalfBmpHeight + xd + 1);
+
+      if AP.PixelIndicator <> piSquare then
+      begin
+
+      // ---------- Lines -----------
+      Pen.Style := psDot;
+      Pen.Color := clPointer;
+
+      case AP.PixelIndicator of
+        piSmallCross:
+          begin
+            dx := PIXEL_INDICATOR_SMALL_CROSS;
+            dy := dx;
+          end;
+        piMediumCross:
+          begin
+            dx := PIXEL_INDICATOR_MEDIUM_CROSS;
+            dy := dx;
+          end;
+        piFullCross:
+          begin
+            dx := xHalfBmpWidth;
+            dy := xHalfBmpHeight;
+          end;
+      else
+        dx := 30;
+        dy := dx;
+      end;
+
+
+
+      // linia pionowa u góry
+      MoveTo(xHalfBmpWidth + (xd div 2), xHalfBmpHeight - 2);
+      LineTo(xHalfBmpWidth + (xd div 2), xHalfBmpHeight - dy);
+
+      MoveTo(xHalfBmpWidth + (xd div 2) - 1, xHalfBmpHeight - 2);
+      LineTo(xHalfBmpWidth + (xd div 2) - 1, xHalfBmpHeight - dy);
+
+      // linia pionowa u do³u
+      MoveTo(xHalfBmpWidth + (xd div 2) - 1, xHalfBmpHeight + (xd) + 1);
+      LineTo(xHalfBmpWidth + (xd div 2) - 1, xHalfBmpHeight + (xd) + 1 + dy);
+
+      MoveTo(xHalfBmpWidth + (xd div 2), xHalfBmpHeight + (xd) + 1);
+      LineTo(xHalfBmpWidth + (xd div 2), xHalfBmpHeight + (xd) + 1 + dy);
+
+      // linia pozioma z lewej
+      MoveTo(xHalfBmpWidth - 2, xHalfBmpHeight + (xd div 2));
+      LineTo(xHalfBmpWidth - 2 - dx, xHalfBmpHeight + (xd div 2));
+
+      MoveTo(xHalfBmpWidth - 2, xHalfBmpHeight + (xd div 2) - 1);
+      LineTo(xHalfBmpWidth - 2 - dx, xHalfBmpHeight + (xd div 2) - 1);
+
+      // linia pozioma z prawej
+      MoveTo(xHalfBmpWidth + xd + 1, xHalfBmpHeight + (xd div 2));
+      LineTo(xHalfBmpWidth + xd + 1 + dx, xHalfBmpHeight + (xd div 2));
+
+      MoveTo(xHalfBmpWidth + xd + 1, xHalfBmpHeight + (xd div 2) - 1);
+      LineTo(xHalfBmpWidth + xd + 1 + dx, xHalfBmpHeight + (xd div 2) - 1);
+      end;
+
+    end; // with Bmp.Canvas
+
+
 
     Image.Picture.Assign(Bmp);
 
