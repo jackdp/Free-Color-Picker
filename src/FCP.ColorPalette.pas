@@ -300,7 +300,7 @@ begin
     begin
       A('<div class="div_json">');
       A('<h2>JSON</h2>');
-      A('<textarea rows="50" cols="50">');
+      A('<textarea rows="50" cols="54">');
 
       s := AsJsonStr(False);
       s := ReplaceAll(s, TAB, '  ');
