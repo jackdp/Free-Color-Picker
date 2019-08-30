@@ -158,23 +158,23 @@ CheckedAndHotTrack.Borders=0, $007E7E7E, $007E7E7E, clNone, clNone
 CheckedAndHotTrack.TextColor=clNone
 
 [Button]
-Normal.Body=0, $00E1E1E1, clNone, clNone, clNone
-Normal.Borders=0, $00ADADAD, $00ADADAD, clNone, clNone
-Normal.TextColor=clNone
-Disabled.Body=0, clNone, clNone, clNone, clNone
-Disabled.Borders=0, clNone, clNone, clNone, clNone
-Disabled.TextColor=clNone
-HotTrack.Body=0, $00FBF1E5, clNone, clNone, clNone
-HotTrack.Borders=0, $00D77800, $00D77800, clNone, clNone
-HotTrack.TextColor=clNone
-Pushed.Body=0, clNone, clNone, clNone, clNone
-Pushed.Borders=0, clNone, clNone, clNone, clNone
+Normal.Body=3, $00E2E2E2, $00DDDDDD, $00DDDDDD, $00E2E2E2
+Normal.Borders=0, $008D8D8D, $008D8D8D, clNone, clNone
+Normal.TextColor=clBlack
+Disabled.Body=0, $00D7D7D7, clNone, clNone, clNone
+Disabled.Borders=0, $00B4B4B4, $00B4B4B4, clNone, clNone
+Disabled.TextColor=$00969696
+HotTrack.Body=3, $00BEBEBE, $00C9C9C9, $00C9C9C9, $00BEBEBE
+HotTrack.Borders=0, $008D8D8D, $008D8D8D, clNone, clNone
+HotTrack.TextColor=clBlack
+Pushed.Body=1, $00D4D4D4, $00B6B6B6, clNone, clNone
+Pushed.Borders=0, $007E7E7E, $007E7E7E, clNone, clNone
 Pushed.TextColor=clNone
-Checked.Body=0, $00FBF1E5, clNone, clNone, clNone
-Checked.Borders=0, $00D77800, $00D77800, clNone, clNone
+Checked.Body=1, $00CDCDCD, $00C4C4C4, clNone, clNone
+Checked.Borders=0, $00A4A4A4, $00A4A4A4, clNone, clNone
 Checked.TextColor=clNone
-CheckedAndHotTrack.Body=0, $00FAECDC, clNone, clNone, clNone
-CheckedAndHotTrack.Borders=0, $00FF9411, $00FF9411, clNone, clNone
+CheckedAndHotTrack.Body=1, $00D4D4D4, $00B6B6B6, clNone, clNone
+CheckedAndHotTrack.Borders=0, $007E7E7E, $007E7E7E, clNone, clNone
 CheckedAndHotTrack.TextColor=clNone
 
 [CheckBox]
