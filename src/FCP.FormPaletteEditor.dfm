@@ -32,8 +32,6 @@ object FormPaletteEditor: TFormPaletteEditor
     Appearance.DrawBottomBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitTop = 624
-    ExplicitWidth = 1074
     DesignSize = (
       831
       83)
@@ -56,7 +54,7 @@ object FormPaletteEditor: TFormPaletteEditor
     object sbtnEditColor: TJppBasicSpeedButton
       Left = 623
       Top = 25
-      Width = 41
+      Width = 25
       Height = 22
       Caption = '...'
       Appearance.Normal.Color = clBtnFace
@@ -79,7 +77,6 @@ object FormPaletteEditor: TFormPaletteEditor
       Anchors = [akTop, akRight]
       ParentShowHint = False
       ShowHint = True
-      ExplicitLeft = 866
     end
     object ccbColor: TJppColorComboBox
       Left = 100
@@ -667,7 +664,6 @@ object FormPaletteEditor: TFormPaletteEditor
       Appearance.ChangeColorItem.CaptionMargin = 6
       Appearance.ChangeColorItem.Caption = 'Change color...'
       ColorListSet = [cltBasic, cltStandard16, cltStandard48, cltWin10Theme, cltSystem, cltWebGrayBlack, cltWebWhite, cltWebPink, cltWebRed, cltWebOrange, cltWebYellow, cltWebBrown, cltWebGreen, cltWebCyan, cltWebBlue, cltWebPurpleVioletMagenta]
-      ExplicitWidth = 692
     end
     object edColorName: TLabeledEdit
       Left = 100
@@ -687,7 +683,6 @@ object FormPaletteEditor: TFormPaletteEditor
       LabelPosition = lpLeft
       ParentFont = False
       TabOrder = 1
-      ExplicitWidth = 692
     end
     object pnTop_Caption: TJppSimplePanel
       AlignWithMargins = True
@@ -706,7 +701,6 @@ object FormPaletteEditor: TFormPaletteEditor
       Appearance.DrawTopBorder = False
       Appearance.DrawLeftBorder = False
       Appearance.DrawRightBorder = False
-      ExplicitWidth = 1074
       object lblSelectedColor: TLabel
         AlignWithMargins = True
         Left = 5
@@ -738,7 +732,6 @@ object FormPaletteEditor: TFormPaletteEditor
       Appearance.DrawTopBorder = False
       Appearance.DrawBottomBorder = False
       Appearance.DrawRightBorder = False
-      ExplicitLeft = 954
       object btnOK: TJppPngButton
         Left = 18
         Top = 5
@@ -1024,7 +1017,6 @@ object FormPaletteEditor: TFormPaletteEditor
       Appearance.Focused.UpperGradientPercent = 46
       Appearance.FocusRect.Pen.Color = 13675044
       Appearance.BorderWhenDefault.Color = 13675044
-      ExplicitLeft = 850
     end
   end
   object pnMain: TJppSimplePanel
@@ -1323,7 +1315,6 @@ object FormPaletteEditor: TFormPaletteEditor
     Width = 831
     Height = 26
     AllowDrag = False
-    ExplicitWidth = 1074
     object SpTBXToolbar1: TSpTBXToolbar
       Left = 0
       Top = 0
@@ -1438,8 +1429,6 @@ object FormPaletteEditor: TFormPaletteEditor
     Appearance.BorderColor = 11053224
     Appearance.DrawBottomBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitLeft = 850
-    ExplicitHeight = 598
     object sboxFilter: TScrollBox
       AlignWithMargins = True
       Left = 7
@@ -1662,7 +1651,7 @@ object FormPaletteEditor: TFormPaletteEditor
           object chFilter_ColorName: TCheckBox
             Left = 10
             Top = 10
-            Width = 97
+            Width = 149
             Height = 17
             Caption = 'Color name'
             TabOrder = 0
