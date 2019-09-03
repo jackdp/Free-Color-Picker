@@ -352,6 +352,27 @@ type
     SpTBXItem97: TSpTBXItem;
     actShowFormQuickAccess: TAction;
     mnuPaletteFiles: TSpTBXSubmenuItem;
+    actShowHideColorCodesPanel: TAction;
+    popShowHideColorCodesPanel: TSpTBXItem;
+    SpTBXItem99: TSpTBXItem;
+    actShowHideBottomPanel: TAction;
+    popShowHideBottomPanel: TSpTBXItem;
+    SpTBXItem98: TSpTBXItem;
+    actSetSize_Small: TAction;
+    actSetSize_Medium: TAction;
+    actSetSize_Large: TAction;
+    SpTBXSeparatorItem35: TSpTBXSeparatorItem;
+    SpTBXSeparatorItem36: TSpTBXSeparatorItem;
+    SpTBXItem100: TSpTBXItem;
+    SpTBXItem101: TSpTBXItem;
+    SpTBXItem102: TSpTBXItem;
+    SpTBXSeparatorItem37: TSpTBXSeparatorItem;
+    SpTBXSeparatorItem38: TSpTBXSeparatorItem;
+    SpTBXItem103: TSpTBXItem;
+    SpTBXItem104: TSpTBXItem;
+    SpTBXItem105: TSpTBXItem;
+    actReloadCurrentLanguageFile: TAction;
+    shLine: TShape;
     procedure actAboutExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -436,6 +457,10 @@ type
     procedure actRestoreMainWindowExecute(Sender: TObject);
     procedure actPalette_SelectAllExecute(Sender: TObject);
     procedure actPalette_UnselectAllExecute(Sender: TObject);
+    procedure actReloadCurrentLanguageFileExecute(Sender: TObject);
+    procedure actSetSize_LargeExecute(Sender: TObject);
+    procedure actSetSize_MediumExecute(Sender: TObject);
+    procedure actSetSize_SmallExecute(Sender: TObject);
     procedure actShowFormColorMixerExecute(Sender: TObject);
     procedure actShowFormColorWheelExecute(Sender: TObject);
     procedure actShowFormGradientColorsExecute(Sender: TObject);
@@ -443,6 +468,8 @@ type
     procedure actShowFormQuickAccessExecute(Sender: TObject);
     procedure actShowFormRandomColorsExecute(Sender: TObject);
     procedure actShowFormSimilarColorsExecute(Sender: TObject);
+    procedure actShowHideBottomPanelExecute(Sender: TObject);
+    procedure actShowHideColorCodesPanelExecute(Sender: TObject);
     procedure actStartCapturingExecute(Sender: TObject);
     procedure actStopCapturingExecute(Sender: TObject);
     procedure actSwitchOnTopExecute(Sender: TObject);
@@ -539,7 +566,7 @@ implementation
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   InitAppParams;
-  Application.HintHidePause := 5000;
+  Application.HintHidePause := 6000;
   AppMode := amPreview;
   MouseScrollStep := 6;
 
@@ -628,22 +655,19 @@ begin
   TrayIcon.Icon.Assign(Application.Icon);
   TrayIcon.Hint := AppInfo.FullName;
 
-  //pnColorSwatch.ParentBackground := True;
-
   pnMini.Hide;
   pnMiniImgBg.Align := alClient;
   imgMini.Align := alClient;
   pnMini_Right.Appearance.BorderStyle := psClear;
 
   Constraints.MinWidth := 200; // 474;
-  Constraints.MinHeight := 278; //362;
+  Constraints.MinHeight := 240; //278; //362;
 
   pnColor.Align := alClient;
   ntb.Align := alClient;
 
   sbox.Align := alClient;
   sbox.BorderStyle := bsNone;
-  //img2.Align := alClient;
 
   lblCaptureCopyColorInfo.Align := alClient;
   pnImg.Align := alClient;
@@ -686,6 +710,8 @@ begin
   dlgOpenImage.InitialDir := AP.PicturesDir;
   dlgSaveImage.InitialDir := AP.PicturesDir;
 
+  actShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
+  shLine.Height := 1;
 end;
 {$ENDREGION PrepareControls}
 
@@ -900,6 +926,8 @@ begin
   // Pixel indicator
   AP.PixelIndicator := piSquare;
   AP.PixelIndicatorColor := RGB(255, 102, 000);
+
+  AP.HtmlExport_AddJson := True;
 
 end;
 {$endregion InitAppParams}
@@ -1340,6 +1368,8 @@ begin
 
     Ini.WriteString(Section, 'PixelIndicatorColor', ColorToHtmlColorStr(AP.PixelIndicatorColor, '#'));
 
+    Ini.WriteBool(Section, 'HtmlExport_AddJson', AP.HtmlExport_AddJson);
+
     // -------------- Quick Access: The last opened files ----------------
     sl := TStringList.Create;
     try
@@ -1388,12 +1418,13 @@ begin
 
       actEsc.Enabled := Ini.ReadBool(Section, 'EscExit', False);
 
-      if AP.LanguageIni = '' then
+      //if AP.LanguageIni = '' then
       begin
         s := AP.LangDir + PathDelim + Ini.ReadString(Section, 'LanguageIni', AP.LanguageIni);
         if FileExists(s) then AP.LanguageIni := s;
       end;
       //if Assigned(LangMgr) and (FileExists(AP.LanguageIni)) then LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni); // <-- moved to DPR
+      //ShowMessage(AP.LanguageIni);
 
       x := Ini.ReadInteger(Section, 'Left', Left);
       x := GetIntInRange(x, -60, Screen.Width - 200);
@@ -1537,10 +1568,13 @@ begin
       AP.ShowColorCodesOnTitleBar := Ini.ReadBool(Section, 'ShowColorCodesOnTitleBar', AP.ShowColorCodesOnTitleBar);
 
       s := Ini.ReadString(Section, 'PixelIndicator', 'Square');
-      AP.PixelIndicator := TAppHelper.GetValueByID(s, ['Square', 'SmallCross', 'MediumCross', 'FullCross'], [piSquare, piSmallCross, piMediumCross, piFullCross], piSquare, True);
+      AP.PixelIndicator :=
+        TAppHelper.GetValueByID<TPixelIndicator>(s, ['Square', 'SmallCross', 'MediumCross', 'FullCross'], [piSquare, piSmallCross, piMediumCross, piFullCross], piSquare, True);
 
       s := Ini.ReadString(Section, 'PixelIndicatorColor', '#FF6600');
       TryGetColor(s, AP.PixelIndicatorColor);
+
+      AP.HtmlExport_AddJson := Ini.ReadBool(Section, 'HtmlExport_AddJson', AP.HtmlExport_AddJson);
 
       // ------------- Quick Access: Last opened files -------------
       Section := INI_SECTION_RECENTLY_OPENED;
@@ -1573,6 +1607,7 @@ begin
   finally
     bUpdatingControls := bUD;
   end;
+
 end;
 
 
@@ -1749,6 +1784,7 @@ begin
     cp.Free;
   end;
 
+  FormPaletteEditor.vstUpdateFilterStats;
   FormPaletteEditor.Show;
   FormPaletteEditor.SelectFirst;
   FormPaletteEditor.vst.SetFocus;
@@ -1776,7 +1812,7 @@ begin
   dlg.Filter := 'HTML files (*.html)|*.html';
   if not dlg.Execute then Exit;
   dlg.InitialDir := ExtractFileDir(dlg.FileName);
-  TAppHelper.SaveListBoxColorsToHtmlFile(dlg.FileName, clbColors, True);
+  TAppHelper.SaveListBoxColorsToHtmlFile(dlg.FileName, clbColors, AP.HtmlExport_AddJson);
 end;
 {$endregion Export palette: GPL, HTML}
 
@@ -2691,6 +2727,10 @@ procedure TFormMain.popupImgPopup(Sender: TObject);
 begin
   IniZoomPopup;
   popSwitchOnTop.Checked := actSwitchOnTop.Checked;
+  actShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
+  popShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
+  actShowHideBottomPanel.Checked := pnBottom.Visible;
+  popShowHideBottomPanel.Checked := pnBottom.Visible;
 end;
 
 procedure TFormMain.actShowFormColorMixerExecute(Sender: TObject);
@@ -2748,6 +2788,7 @@ procedure TFormMain.actEscExecute(Sender: TObject);
 begin
   actClose.Execute;
 end;
+
 
 
 
@@ -2900,6 +2941,39 @@ begin
   end;
 end;
 
+procedure TFormMain.actShowHideBottomPanelExecute(Sender: TObject);
+begin
+  if bUpdatingControls then Exit;
+  pnBottom.Visible := not pnBottom.Visible;
+  actShowHideBottomPanel.Checked := pnBottom.Visible;
+  if Assigned(FormOptions) and FormOptions.Visible then
+  begin
+    bUpdatingControls := True;
+    try
+      FormOptions.chShowBottomPanel.Checked := pnBottom.Visible;
+    finally
+      bUpdatingControls := False;
+    end;
+  end;
+end;
+
+procedure TFormMain.actShowHideColorCodesPanelExecute(Sender: TObject);
+begin
+  if bUpdatingControls then Exit;
+  pnColorCodes.Visible := not pnColorCodes.Visible;
+  actShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
+  popShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
+  if Assigned(FormOptions) and FormOptions.Visible then
+  begin
+    bUpdatingControls := True;
+    try
+      FormOptions.chShowColorCodesPanel.Checked := pnColorCodes.Visible;
+    finally
+      bUpdatingControls := False;
+    end;
+  end;
+end;
+
 
 function TFormMain.RecentFileAlreadyOnList(const FileName: string): Boolean;
 var
@@ -2917,6 +2991,45 @@ begin
     end;
   end;
 end;
+
+
+procedure TFormMain.actSetSize_SmallExecute(Sender: TObject);
+begin
+  if Folded then actCollapse.Execute;
+  WindowState := wsNormal;
+  pnRight.Width := 138;
+  Width := 514;
+  Height := 240;
+end;
+
+procedure TFormMain.actSetSize_MediumExecute(Sender: TObject);
+begin
+  if Folded then actCollapse.Execute;
+  WindowState := wsNormal;
+  pnRight.Width := 138;
+  Width := 580;
+  Height := 370;
+end;
+
+procedure TFormMain.actSetSize_LargeExecute(Sender: TObject);
+begin
+  if Folded then actCollapse.Execute;
+  WindowState := wsNormal;
+  pnRight.Width := 138;
+  Width := 810;
+  Height := 528;
+end;
+
+
+procedure TFormMain.actReloadCurrentLanguageFileExecute(Sender: TObject);
+begin
+  if not Assigned(FormOptions) then Exit;
+  FormOptions.cbLangChange(Self);
+end;
+
+
+
+
 
 {$endregion mniej istotne}
 

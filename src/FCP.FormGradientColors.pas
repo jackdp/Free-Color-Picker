@@ -10,7 +10,7 @@ uses
   System.SysUtils, System.Variants, System.Classes, System.Actions, // System.IniFiles,
 
   // VCL
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Menus,
 
   // JPLib
   JPL.Strings, JPL.Conversion, JPL.Colors, JPL.IniFile,
@@ -22,7 +22,7 @@ uses
   JPEsGrad,
 
   // SpTBX
-  SpTBXEditors,
+  SpTBXEditors, TB2Item, SpTBXItem,
 
   // FCP
   FCP.Types, FCP.Shared, FCP.AppStrings;
@@ -54,11 +54,23 @@ type
     pnTop: TJppSimplePanel;
     lblGradient: TLabel;
     Grad: TJPEsGradient;
+    actSelectAll: TAction;
+    actInvertSelection: TAction;
+    actDeleteSelected: TAction;
+    popColorList: TSpTBXPopupMenu;
+    SpTBXItem1: TSpTBXItem;
+    SpTBXItem2: TSpTBXItem;
+    SpTBXItem3: TSpTBXItem;
+    SpTBXSeparatorItem1: TSpTBXSeparatorItem;
+    SpTBXItem4: TSpTBXItem;
     procedure actCloseExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
     procedure actClearColorsExecute(Sender: TObject);
     procedure actAddToColorListExecute(Sender: TObject);
+    procedure actDeleteSelectedExecute(Sender: TObject);
+    procedure actInvertSelectionExecute(Sender: TObject);
+    procedure actSelectAllExecute(Sender: TObject);
     procedure cswEndColorBtnChangeColorClick(Sender: TObject);
     procedure cswStartColorBtnChangeColorClick(Sender: TObject);
     procedure cswStartColorSelectedColorChanged(Sender: TObject);
@@ -71,6 +83,7 @@ type
     procedure LoadSettingsFromIni;
     procedure spedStepsValueChanged(Sender: TObject);
     procedure InitControls;
+    procedure InitCtrls(Sender: TObject);
     procedure UpdateColorCountLabel;
   private
     bUpdatingControls: Boolean;
@@ -82,7 +95,7 @@ var
 implementation
 
 uses
-  FCP.FormMain;
+  FCP.FormMain, FCP.FormPaletteEditor;
 
 {$R *.dfm}
 
@@ -164,8 +177,18 @@ begin
   cbAddPos.Enabled := xCount > 0;
   lblAddPos.Enabled := xCount > 0;
 
+  actSelectAll.Enabled := (clbColors.SelCount <> xCount) and (xCount > 0);
+  actInvertSelection.Enabled := xCount > 0;
+  actDeleteSelected.Enabled := clbColors.SelCount > 0;
+
   UpdateColorCountLabel;
 end;
+
+procedure TFormGradientColors.InitCtrls(Sender: TObject);
+begin
+  InitControls;
+end;
+
 {$endregion InitControls}
 
 
@@ -188,6 +211,13 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_Top', 'At the top'));
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
+
+  actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
+  actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
+  actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
+  actInvertSelection.Hint := FormPaletteEditor.actInvertSelection.Hint;
+  actDeleteSelected.Caption := FormPaletteEditor.actDeleteSelected.Caption;
+  actDeleteSelected.Hint := FormPaletteEditor.actDeleteSelected.Hint;
 
   UpdateColorCountLabel;
 end;
@@ -348,6 +378,24 @@ begin
   if not EditColor(cl) then Exit;
   cswStartColor.SelectedColor := cl;
   SwitchFormTop(Self);
+end;
+
+procedure TFormGradientColors.actSelectAllExecute(Sender: TObject);
+begin
+  clbColors.SelectAll;
+  InitControls;
+end;
+
+procedure TFormGradientColors.actInvertSelectionExecute(Sender: TObject);
+begin
+  clbColors.InvertSelection;
+  InitControls;
+end;
+
+procedure TFormGradientColors.actDeleteSelectedExecute(Sender: TObject);
+begin
+  clbColors.RemoveSelectedItems;
+  InitControls;
 end;
 
 end.

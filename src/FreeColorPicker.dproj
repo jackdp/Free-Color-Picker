@@ -102,17 +102,18 @@
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <OutputExt>32.exe</OutputExt>
-        <Icon_MainIcon>..\images\main.ico</Icon_MainIcon>
+        <Icon_MainIcon>FreeColorPicker_Icon.ico</Icon_MainIcon>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <DCC_DcuOutput>..\dcu32</DCC_DcuOutput>
         <DCC_ExeOutput>..\</DCC_ExeOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Jacek Pazera;FileDescription=Free Color Picker;FileVersion=1.0.0.0;InternalName=Free Color Picker;LegalCopyright=Jacek Pazera;LegalTrademarks=Jacek Pazera;OriginalFilename=FreeColorPicker.exe;ProductName=Free Color Picker;ProductVersion=1.0.0.0;Comments=http://www.pazera-software.com;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Jacek Pazera;FileDescription=Free Color Picker;FileVersion=1.1.0.0;InternalName=Free Color Picker;LegalCopyright=Jacek Pazera;LegalTrademarks=Jacek Pazera;OriginalFilename=FreeColorPicker.exe;ProductName=Free Color Picker;ProductVersion=1.1.0.0;Comments=http://www.pazera-software.com;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
-        <Icon_MainIcon>..\images\main.ico</Icon_MainIcon>
-        <VerInfo_Keys>CompanyName=Jacek Pazera;FileDescription=Free Color Picker;FileVersion=1.0.0.0;InternalName=Free Color Picker;LegalCopyright=Jacek Pazera;LegalTrademarks=Jacek Pazera;OriginalFilename=FreeColorPicker.exe;ProductName=Free Color Picker;ProductVersion=1.0.0.0;Comments=http://www.pazera-software.com;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <Icon_MainIcon>FreeColorPicker_Icon.ico</Icon_MainIcon>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=Jacek Pazera;FileDescription=Free Color Picker;FileVersion=1.1.0.0;InternalName=Free Color Picker;LegalCopyright=Jacek Pazera;LegalTrademarks=Jacek Pazera;OriginalFilename=FreeColorPicker.exe;ProductName=Free Color Picker;ProductVersion=1.1.0.0;Comments=http://www.pazera-software.com;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_ExeOutput>..\</DCC_ExeOutput>
         <OutputExt>64.exe</OutputExt>
@@ -247,13 +248,13 @@
                 <Platform value="Win64">True</Platform>
             </Platforms>
             <Deployment Version="3">
+                <DeployFile LocalName="..\FreeColorPicker.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="..\FreeColorPicker.32.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>FreeColorPicker.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\FreeColorPicker.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="FCP.Notes.md" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
@@ -637,16 +638,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

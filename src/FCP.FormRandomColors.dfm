@@ -3,8 +3,8 @@ object FormRandomColors: TFormRandomColors
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'FormRandomColors'
-  ClientHeight = 460
-  ClientWidth = 803
+  ClientHeight = 500
+  ClientWidth = 874
   Color = 14342874
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object FormRandomColors: TFormRandomColors
   TextHeight = 13
   object pnBottom: TJppSimplePanel
     Left = 0
-    Top = 419
-    Width = 803
+    Top = 459
+    Width = 874
     Height = 41
     Align = alBottom
     TabOrder = 2
@@ -30,12 +30,11 @@ object FormRandomColors: TFormRandomColors
     Appearance.DrawBottomBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitWidth = 762
     DesignSize = (
-      803
+      874
       41)
     object lblAddPos: TLabel
-      Left = 539
+      Left = 610
       Top = 14
       Width = 45
       Height = 13
@@ -212,7 +211,7 @@ object FormRandomColors: TFormRandomColors
       Appearance.BorderWhenDefault.Color = 13675044
     end
     object btnAdd: TJppPngButton
-      Left = 703
+      Left = 774
       Top = 8
       Width = 90
       Height = 25
@@ -294,10 +293,9 @@ object FormRandomColors: TFormRandomColors
       Appearance.Focused.UpperGradientPercent = 46
       Appearance.FocusRect.Pen.Color = 13675044
       Appearance.BorderWhenDefault.Color = 13675044
-      ExplicitLeft = 662
     end
     object cbAddPos: TComboBox
-      Left = 588
+      Left = 659
       Top = 10
       Width = 109
       Height = 21
@@ -309,14 +307,13 @@ object FormRandomColors: TFormRandomColors
       Items.Strings = (
         'At the top'
         'At the end')
-      ExplicitLeft = 547
     end
   end
   object pnRight: TJppSimplePanel
-    Left = 409
+    Left = 460
     Top = 0
-    Width = 394
-    Height = 419
+    Width = 414
+    Height = 459
     Align = alRight
     TabOrder = 1
     Appearance.BackgroundColor = 15395562
@@ -324,12 +321,22 @@ object FormRandomColors: TFormRandomColors
     Appearance.DrawTopBorder = False
     Appearance.DrawBottomBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitLeft = 368
+    object shLine: TShape
+      Left = 0
+      Top = 46
+      Width = 414
+      Height = 10
+      Align = alTop
+      Pen.Color = 11053224
+      ExplicitLeft = 101
+      ExplicitTop = 380
+      ExplicitWidth = 203
+    end
     object pnColorPaletteTitle: TJppBasicPanel
       AlignWithMargins = True
       Left = 1
       Top = 0
-      Width = 393
+      Width = 413
       Height = 20
       Margins.Left = 1
       Margins.Top = 0
@@ -372,8 +379,8 @@ object FormRandomColors: TFormRandomColors
     object clbColors: TJppColorListBox
       AlignWithMargins = True
       Left = 1
-      Top = 20
-      Width = 393
+      Top = 56
+      Width = 413
       Height = 212
       Margins.Left = 1
       Margins.Top = 0
@@ -381,7 +388,10 @@ object FormRandomColors: TFormRandomColors
       Margins.Bottom = 0
       Align = alTop
       ItemHeight = 15
+      PopupMenu = popColorList
       TabOrder = 1
+      OnClick = InitColorListActns
+      Multiselect = True
       BorderStyle = bsNone
       Items.Strings = (
         '-=Web red colors'
@@ -436,47 +446,92 @@ object FormRandomColors: TFormRandomColors
       Options = [clboAddAtTop]
       SelectedColor = clNone
       OnGetColorStrValue = clbColorsGetColorStrValue
+      ExplicitLeft = -1
+      ExplicitTop = 296
+    end
+    object dockMenu: TSpTBXDock
+      AlignWithMargins = True
+      Left = 1
+      Top = 20
+      Width = 413
+      Height = 26
+      Margins.Left = 1
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      AllowDrag = False
+      ExplicitLeft = 0
+      ExplicitWidth = 414
+      object tbMain: TSpTBXToolbar
+        AlignWithMargins = True
+        Left = 1
+        Top = 0
+        Margins.Left = 1
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 1
+        Align = alLeft
+        DockPos = 1
+        Images = FormMain.pilMain
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        Caption = 'tbMain'
+        object SpTBXItem52: TSpTBXItem
+          Action = actSelectAll
+        end
+        object SpTBXItem51: TSpTBXItem
+          Action = actInvertSelection
+        end
+        object SpTBXItem50: TSpTBXItem
+          Action = actDeleteSelected
+        end
+        object SpTBXSeparatorItem3: TSpTBXSeparatorItem
+        end
+        object SpTBXItem53: TSpTBXItem
+          Action = actClearColors
+        end
+      end
     end
   end
   object pnRanges: TJppSimplePanel
     Left = 0
     Top = 0
-    Width = 390
-    Height = 413
+    Width = 445
+    Height = 456
     TabOrder = 0
     Appearance.BackgroundColor = 14342874
     Appearance.DrawTopBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
     DesignSize = (
-      390
-      413)
+      445
+      456)
     object shRgb: TShape
-      Left = 9
-      Top = 9
-      Width = 372
+      Left = 8
+      Top = 11
+      Width = 427
       Height = 118
       Anchors = [akLeft, akTop, akRight]
       Brush.Color = 15395562
       Pen.Color = 11053224
-      ExplicitWidth = 340
     end
     object lblRange_RgbRed: TLabel
-      Left = 264
+      Left = 312
       Top = 43
       Width = 60
       Height = 13
       Caption = 'Red: 0 - 255'
     end
     object lblRange_RgbGreen: TLabel
-      Left = 264
+      Left = 312
       Top = 70
       Width = 71
       Height = 13
       Caption = 'Green: 0 - 255'
     end
     object lblRange_RgbBlue: TLabel
-      Left = 264
+      Left = 312
       Top = 98
       Width = 62
       Height = 13
@@ -484,89 +539,348 @@ object FormRandomColors: TFormRandomColors
     end
     object shHslWin: TShape
       Left = 9
-      Top = 133
-      Width = 372
-      Height = 110
+      Top = 135
+      Width = 427
+      Height = 122
       Anchors = [akLeft, akTop, akRight]
       Brush.Color = 15395562
       Pen.Color = 11053224
-      ExplicitWidth = 340
+      ExplicitWidth = 372
     end
     object lblRange_HslWin_Hue: TLabel
-      Left = 264
-      Top = 167
+      Left = 312
+      Top = 182
       Width = 61
       Height = 13
       Caption = 'Hue: 0 - 239'
     end
     object lblRange_HslWin_Sat: TLabel
-      Left = 264
-      Top = 193
-      Width = 56
+      Left = 312
+      Top = 207
+      Width = 68
       Height = 13
-      Caption = 'Sat: 0 - 240'
+      Caption = 'Sat: 115 - 125'
     end
     object lblRange_HslWin_Lum: TLabel
-      Left = 264
-      Top = 219
-      Width = 61
+      Left = 312
+      Top = 233
+      Width = 73
       Height = 13
-      Caption = 'Lum: 0 - 240'
+      Caption = 'Lum: 115 - 125'
     end
     object shHslCss: TShape
       Left = 9
-      Top = 250
-      Width = 372
-      Height = 110
+      Top = 265
+      Width = 427
+      Height = 154
       Anchors = [akLeft, akTop, akRight]
       Brush.Color = 15395562
       Pen.Color = 11053224
-      ExplicitWidth = 340
+      ExplicitWidth = 372
     end
     object lblRange_HslCss_Hue: TLabel
-      Left = 264
-      Top = 285
+      Left = 312
+      Top = 343
       Width = 61
       Height = 13
       Caption = 'Hue: 0 - 360'
     end
     object lblRange_HslCss_Sat: TLabel
-      Left = 264
-      Top = 311
+      Left = 312
+      Top = 368
       Width = 56
       Height = 13
-      Caption = 'Sat: 0 - 100'
+      Caption = 'Sat: 45 - 55'
     end
     object lblRange_HslCss_Lum: TLabel
-      Left = 264
-      Top = 337
+      Left = 312
+      Top = 393
       Width = 61
       Height = 13
-      Caption = 'Lum: 0 - 100'
+      Caption = 'Lum: 45 - 55'
     end
     object lblColorCount: TLabel
       Left = 70
-      Top = 383
+      Top = 430
       Width = 92
       Height = 13
       Alignment = taRightJustify
+      Anchors = [akLeft, akBottom]
       Caption = 'Number of colors:'
+      ExplicitTop = 407
+    end
+    object imgHue_Css: TImage
+      Left = 31
+      Top = 322
+      Width = 385
+      Height = 14
+      Anchors = [akLeft, akTop, akRight]
+      ExplicitWidth = 330
+    end
+    object imgHue_Win: TImage
+      Left = 31
+      Top = 162
+      Width = 385
+      Height = 14
+      Anchors = [akLeft, akTop, akRight]
+      ExplicitWidth = 330
+    end
+    object sbtnLockUnlockRange_HslCss_Hue: TJppBasicSpeedButton
+      Left = 15
+      Top = 340
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_HslCss_Hue'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_HslCss_Hue
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_HslCss_Sat: TJppBasicSpeedButton
+      Left = 15
+      Top = 365
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_HslCss_Sat'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_HslCss_Sat
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_HslCss_Lum: TJppBasicSpeedButton
+      Left = 15
+      Top = 389
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_HslCss_Lum'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_HslCss_Lum
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_HslWin_Hue: TJppBasicSpeedButton
+      Left = 15
+      Top = 180
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_HslWin_Hue'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_HslWin_Hue
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_HslWin_Sat: TJppBasicSpeedButton
+      Left = 15
+      Top = 204
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_HslWin_Sat'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_HslWin_Sat
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_HslWin_Lum: TJppBasicSpeedButton
+      Left = 15
+      Top = 229
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_HslWin_Lum'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_HslWin_Lum
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_Rgb_Red: TJppBasicSpeedButton
+      Left = 15
+      Top = 38
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_Rgb_Red'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_Rgb_Red
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_Rgb_Green: TJppBasicSpeedButton
+      Left = 15
+      Top = 66
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_Rgb_Green'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_Rgb_Green
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object sbtnLockUnlockRange_Rgb_Blue: TJppBasicSpeedButton
+      Left = 15
+      Top = 94
+      Width = 20
+      Height = 20
+      Caption = 'actLockUnlockRange_Rgb_Blue'
+      Appearance.Normal.Color = clBtnFace
+      Appearance.Normal.FontColor = clWindowText
+      Appearance.Normal.BorderColor = clWindowFrame
+      Appearance.Normal.BorderWidth = 1
+      Appearance.Hot.Color = clHighlight
+      Appearance.Hot.FontColor = clHighlightText
+      Appearance.Hot.BorderColor = clHighlight
+      Appearance.Hot.BorderWidth = 1
+      Appearance.Down.Color = 9917440
+      Appearance.Down.FontColor = clHighlightText
+      Appearance.Down.BorderColor = 9917440
+      Appearance.Down.BorderWidth = 1
+      Appearance.Disabled.Color = 16250871
+      Appearance.Disabled.FontColor = clBtnShadow
+      Appearance.Disabled.BorderColor = clBtnShadow
+      Appearance.Disabled.BorderWidth = 1
+      Appearance.ShowCaption = False
+      Action = actLockUnlockRange_Rgb_Blue
+      ParentShowHint = False
+      ShowHint = True
     end
     object rbRgb: TRadioButton
       Left = 17
-      Top = 14
+      Top = 15
       Width = 113
       Height = 17
       Caption = 'RGB'
-      Checked = True
       TabOrder = 0
-      TabStop = True
       OnClick = InitCtrls
     end
     object tbRange_RgbRed: TJPPegtopRangeBar
-      Left = 31
-      Top = 35
-      Width = 223
+      Left = 43
+      Top = 34
+      Width = 260
       Height = 28
       Cursor = crDefault
       TabOrder = 1
@@ -611,9 +925,9 @@ object FormRandomColors: TFormRandomColors
       PositionMax = 255
     end
     object tbRange_RgbGreen: TJPPegtopRangeBar
-      Left = 31
+      Left = 43
       Top = 62
-      Width = 223
+      Width = 260
       Height = 28
       Cursor = crDefault
       TabOrder = 2
@@ -658,9 +972,9 @@ object FormRandomColors: TFormRandomColors
       PositionMax = 255
     end
     object tbRange_RgbBlue: TJPPegtopRangeBar
-      Left = 31
+      Left = 43
       Top = 90
-      Width = 223
+      Width = 260
       Height = 28
       Cursor = crDefault
       TabOrder = 3
@@ -705,7 +1019,7 @@ object FormRandomColors: TFormRandomColors
     end
     object rbHslWin: TRadioButton
       Left = 17
-      Top = 140
+      Top = 142
       Width = 225
       Height = 17
       Caption = 'HSL - Windows [239 / 240 / 240]'
@@ -714,10 +1028,11 @@ object FormRandomColors: TFormRandomColors
     end
     object btnGenerateRandomColors: TJppPngButton
       Left = 250
-      Top = 377
+      Top = 424
       Width = 99
       Height = 25
       Action = actGenerateRandomColors
+      Anchors = [akLeft, akBottom]
       Caption = 'Generate'
       ParentShowHint = False
       ShowHint = True
@@ -796,12 +1111,14 @@ object FormRandomColors: TFormRandomColors
       Appearance.BorderWhenDefault.Color = 13675044
     end
     object tbRange_HslWin_Hue: TJPPegtopRangeBar
-      Left = 31
-      Top = 160
-      Width = 223
-      Height = 28
+      Left = 43
+      Top = 178
+      Width = 260
+      Height = 24
       Cursor = crDefault
       TabOrder = 5
+      TrackDisabledColor = 13421772
+      TrackDisabledBorderColor = 11974326
       ButtonParams.Normal.GradientDirection = gdVertical
       ButtonParams.Hot.GradientDirection = gdVertical
       ButtonParams.Pushed.GradientDirection = gdVertical
@@ -814,16 +1131,19 @@ object FormRandomColors: TFormRandomColors
       PositionLabel = lblRange_HslWin_Hue
       RangeOptions = []
       Max = 239
+      OnScroll = tbRange_HslWin_HueScroll
       PositionMin = 0
       PositionMax = 239
     end
     object tbRange_HslWin_Sat: TJPPegtopRangeBar
-      Left = 31
-      Top = 186
-      Width = 223
+      Left = 43
+      Top = 200
+      Width = 260
       Height = 28
       Cursor = crDefault
       TabOrder = 6
+      TrackDisabledColor = 13421772
+      TrackDisabledBorderColor = 11974326
       ButtonParams.Normal.GradientDirection = gdVertical
       ButtonParams.Hot.GradientDirection = gdVertical
       ButtonParams.Pushed.GradientDirection = gdVertical
@@ -836,16 +1156,19 @@ object FormRandomColors: TFormRandomColors
       PositionLabel = lblRange_HslWin_Sat
       RangeOptions = []
       Max = 240
-      PositionMin = 0
-      PositionMax = 240
+      OnScroll = tbRange_HslWin_HueScroll
+      PositionMin = 115
+      PositionMax = 125
     end
     object tbRange_HslWin_Lum: TJPPegtopRangeBar
-      Left = 31
-      Top = 211
-      Width = 223
+      Left = 43
+      Top = 225
+      Width = 260
       Height = 28
       Cursor = crDefault
       TabOrder = 7
+      TrackDisabledColor = 13421772
+      TrackDisabledBorderColor = 11974326
       ButtonParams.Normal.GradientDirection = gdVertical
       ButtonParams.Hot.GradientDirection = gdVertical
       ButtonParams.Pushed.GradientDirection = gdVertical
@@ -858,25 +1181,30 @@ object FormRandomColors: TFormRandomColors
       PositionLabel = lblRange_HslWin_Lum
       RangeOptions = []
       Max = 240
-      PositionMin = 0
-      PositionMax = 240
+      OnScroll = tbRange_HslWin_HueScroll
+      PositionMin = 115
+      PositionMax = 125
     end
     object rbHslCss: TRadioButton
       Left = 17
-      Top = 258
-      Width = 225
+      Top = 273
+      Width = 189
       Height = 17
       Caption = 'HSL - CSS [360 / 100 / 100]'
+      Checked = True
       TabOrder = 8
+      TabStop = True
       OnClick = InitCtrls
     end
     object tbRange_HslCss_Hue: TJPPegtopRangeBar
-      Left = 31
-      Top = 278
-      Width = 223
-      Height = 28
+      Left = 43
+      Top = 338
+      Width = 260
+      Height = 24
       Cursor = crDefault
       TabOrder = 9
+      TrackDisabledColor = 13421772
+      TrackDisabledBorderColor = 11974326
       ButtonParams.Normal.GradientDirection = gdVertical
       ButtonParams.Hot.GradientDirection = gdVertical
       ButtonParams.Pushed.GradientDirection = gdVertical
@@ -889,16 +1217,19 @@ object FormRandomColors: TFormRandomColors
       PositionLabel = lblRange_HslCss_Hue
       RangeOptions = []
       Max = 360
+      OnScroll = tbRange_HslCss_HueScroll
       PositionMin = 0
       PositionMax = 360
     end
     object tbRange_HslCss_Sat: TJPPegtopRangeBar
-      Left = 31
-      Top = 304
-      Width = 223
+      Left = 43
+      Top = 361
+      Width = 260
       Height = 28
       Cursor = crDefault
       TabOrder = 10
+      TrackDisabledColor = 13421772
+      TrackDisabledBorderColor = 11974326
       ButtonParams.Normal.GradientDirection = gdVertical
       ButtonParams.Hot.GradientDirection = gdVertical
       ButtonParams.Pushed.GradientDirection = gdVertical
@@ -910,16 +1241,19 @@ object FormRandomColors: TFormRandomColors
       LabelOptions = []
       PositionLabel = lblRange_HslCss_Sat
       RangeOptions = []
-      PositionMin = 0
-      PositionMax = 100
+      OnScroll = tbRange_HslCss_HueScroll
+      PositionMin = 45
+      PositionMax = 55
     end
     object tbRange_HslCss_Lum: TJPPegtopRangeBar
-      Left = 31
-      Top = 329
-      Width = 223
+      Left = 43
+      Top = 385
+      Width = 260
       Height = 28
       Cursor = crDefault
       TabOrder = 11
+      TrackDisabledColor = 13421772
+      TrackDisabledBorderColor = 11974326
       ButtonParams.Normal.GradientDirection = gdVertical
       ButtonParams.Hot.GradientDirection = gdVertical
       ButtonParams.Pushed.GradientDirection = gdVertical
@@ -931,14 +1265,16 @@ object FormRandomColors: TFormRandomColors
       LabelOptions = []
       PositionLabel = lblRange_HslCss_Lum
       RangeOptions = []
-      PositionMin = 0
-      PositionMax = 100
+      OnScroll = tbRange_HslCss_HueScroll
+      PositionMin = 45
+      PositionMax = 55
     end
     object spedColorCount: TSpTBXSpinEdit
       Left = 168
-      Top = 379
+      Top = 426
       Width = 60
       Height = 21
+      Anchors = [akLeft, akBottom]
       TabOrder = 13
       SpinButton.Left = 42
       SpinButton.Top = 0
@@ -949,11 +1285,65 @@ object FormRandomColors: TFormRandomColors
       SpinOptions.MinValue = 1.000000000000000000
       SpinOptions.Value = 16.000000000000000000
     end
+    object btnPresets_HslCss_Pastels: TSpTBXButton
+      Left = 31
+      Top = 296
+      Width = 93
+      Height = 20
+      Caption = 'Pastels'
+      TabOrder = 14
+      DropDownMenu = popPresets_HslCss_Pastels
+    end
+    object btnPresets_HslCss_Intensive: TSpTBXButton
+      Left = 134
+      Top = 296
+      Width = 93
+      Height = 20
+      Caption = 'Intensive'
+      TabOrder = 15
+      DropDownMenu = popPresets_HslCss_Intensive
+    end
+    object btnPresets_HslCss_Dark: TSpTBXButton
+      Left = 235
+      Top = 296
+      Width = 93
+      Height = 20
+      Caption = 'Dark'
+      TabOrder = 16
+      DropDownMenu = popPresets_HslCss_Dark
+    end
+    object btnPresets_HslCss_Light: TSpTBXButton
+      Left = 336
+      Top = 296
+      Width = 93
+      Height = 20
+      Caption = 'Light'
+      TabOrder = 17
+      DropDownMenu = popPresets_HslCss_Light
+    end
+    object btnPresets_HslCss_Grayscale: TSpTBXButton
+      Left = 276
+      Top = 271
+      Width = 153
+      Height = 20
+      Caption = 'Grayscale'
+      TabOrder = 18
+      DropDownMenu = popPresets_HslCss_Grayscale
+    end
+    object btnPresets_Rgb: TSpTBXButton
+      Left = 276
+      Top = 17
+      Width = 153
+      Height = 20
+      Caption = 'RGB Presets'
+      TabOrder = 19
+      DropDownMenu = popPresets_Rgb
+    end
   end
   object Actions: TActionList
     Images = FormMain.pilMain
-    Left = 411
-    Top = 151
+    Left = 490
+    Top = 147
     object actEsc: TAction
       Caption = 'actEsc'
       ShortCut = 27
@@ -979,6 +1369,531 @@ object FormRandomColors: TFormRandomColors
       Hint = 'Generate random colors'
       ImageIndex = 1
       OnExecute = actGenerateRandomColorsExecute
+    end
+    object actPreset_HslCss_Pastels_BlueLight: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Blue pastels - Light'
+      ImageIndex = 62
+      OnExecute = actPreset_HslCss_Pastels_BlueLightExecute
+    end
+    object actPreset_HslCss_Pastels_RedLight: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Red pastels - Light'
+      ImageIndex = 60
+      OnExecute = actPreset_HslCss_Pastels_RedLightExecute
+    end
+    object actPreset_HslCss_Pastels_GreenLight: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Green pastels - Light'
+      ImageIndex = 61
+      OnExecute = actPreset_HslCss_Pastels_GreenLightExecute
+    end
+    object actPreset_HslCss_Pastels_BlueDark: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Blue pastels - Dark'
+      ImageIndex = 64
+      OnExecute = actPreset_HslCss_Pastels_BlueDarkExecute
+    end
+    object actPreset_HslCss_Pastels_RedDark: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Red pastels - Dark'
+      ImageIndex = 66
+      OnExecute = actPreset_HslCss_Pastels_RedDarkExecute
+    end
+    object actPreset_HslCss_Pastels_GreenDark: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Green pastels - Dark'
+      ImageIndex = 65
+      OnExecute = actPreset_HslCss_Pastels_GreenDarkExecute
+    end
+    object actPreset_HslCss_Pastels_YellowLight: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Yellow pastels - Light'
+      ImageIndex = 70
+      OnExecute = actPreset_HslCss_Pastels_YellowLightExecute
+    end
+    object actPreset_HslCss_Pastels_CyanLight: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Cyan pastels - Light'
+      ImageIndex = 67
+      OnExecute = actPreset_HslCss_Pastels_CyanLightExecute
+    end
+    object actPreset_HslCss_Pastels_VioletLight: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Violet pastels - Light'
+      ImageIndex = 69
+      OnExecute = actPreset_HslCss_Pastels_VioletLightExecute
+    end
+    object actPreset_HslCss_Pastels_PinkLight: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Pink pastels - Light'
+      ImageIndex = 68
+      OnExecute = actPreset_HslCss_Pastels_PinkLightExecute
+    end
+    object actPreset_HslCss_Pastels_YellowDark: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Yellow pastels - Dark'
+      ImageIndex = 74
+      OnExecute = actPreset_HslCss_Pastels_YellowDarkExecute
+    end
+    object actPreset_HslCss_Pastels_CyanDark: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Cyan pastels - Dark'
+      ImageIndex = 71
+      OnExecute = actPreset_HslCss_Pastels_CyanDarkExecute
+    end
+    object actPreset_HslCss_Pastels_VioletDark: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Violet pastels - Dark'
+      ImageIndex = 73
+      OnExecute = actPreset_HslCss_Pastels_VioletDarkExecute
+    end
+    object actPreset_HslCss_Pastels_PinkDark: TAction
+      Category = 'Preset_Pastels'
+      Caption = 'Pink pastels - Dark'
+      ImageIndex = 72
+      OnExecute = actPreset_HslCss_Pastels_PinkDarkExecute
+    end
+    object actLockUnlockRange_HslCss_Hue: TAction
+      Caption = 'actLockUnlockRange_HslCss_Hue'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_HslCss_HueExecute
+    end
+    object actLockUnlockRange_HslCss_Sat: TAction
+      Caption = 'actLockUnlockRange_HslCss_Sat'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_HslCss_SatExecute
+    end
+    object actLockUnlockRange_HslCss_Lum: TAction
+      Caption = 'actLockUnlockRange_HslCss_Lum'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_HslCss_LumExecute
+    end
+    object actPreset_HslCss_Intensive_Red: TAction
+      Category = 'Preset_Intensive'
+      Caption = 'Intense red'
+      ImageIndex = 60
+      OnExecute = actPreset_HslCss_Intensive_RedExecute
+    end
+    object actPreset_HslCss_Intensive_Green: TAction
+      Category = 'Preset_Intensive'
+      Caption = 'Intense green'
+      ImageIndex = 61
+      OnExecute = actPreset_HslCss_Intensive_GreenExecute
+    end
+    object actPreset_HslCss_Intensive_Blue: TAction
+      Category = 'Preset_Intensive'
+      Caption = 'Intense blue'
+      ImageIndex = 62
+      OnExecute = actPreset_HslCss_Intensive_BlueExecute
+    end
+    object actPreset_HslCss_Intensive_Yellow: TAction
+      Category = 'Preset_Intensive'
+      Caption = 'Intense yellow'
+      ImageIndex = 70
+      OnExecute = actPreset_HslCss_Intensive_YellowExecute
+    end
+    object actPreset_HslCss_Intensive_Cyan: TAction
+      Category = 'Preset_Intensive'
+      Caption = 'Intense cyan'
+      ImageIndex = 67
+      OnExecute = actPreset_HslCss_Intensive_CyanExecute
+    end
+    object actPreset_HslCss_Intensive_Violet: TAction
+      Category = 'Preset_Intensive'
+      Caption = 'Intense violet'
+      ImageIndex = 69
+      OnExecute = actPreset_HslCss_Intensive_VioletExecute
+    end
+    object actPreset_HslCss_Intensive_Pink: TAction
+      Category = 'Preset_Intensive'
+      Caption = 'Intense pink'
+      ImageIndex = 68
+      OnExecute = actPreset_HslCss_Intensive_PinkExecute
+    end
+    object actLockUnlockRange_HslWin_Hue: TAction
+      Caption = 'actLockUnlockRange_HslWin_Hue'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_HslWin_HueExecute
+    end
+    object actLockUnlockRange_HslWin_Sat: TAction
+      Caption = 'actLockUnlockRange_HslWin_Sat'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_HslWin_SatExecute
+    end
+    object actLockUnlockRange_HslWin_Lum: TAction
+      Caption = 'actLockUnlockRange_HslWin_Lum'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_HslWin_LumExecute
+    end
+    object actPreset_HslCss_Dark_Red: TAction
+      Category = 'Preset_Dark'
+      Caption = 'Dark red'
+      ImageIndex = 66
+      OnExecute = actPreset_HslCss_Dark_RedExecute
+    end
+    object actPreset_HslCss_Dark_Green: TAction
+      Category = 'Preset_Dark'
+      Caption = 'Dark green'
+      ImageIndex = 65
+      OnExecute = actPreset_HslCss_Dark_GreenExecute
+    end
+    object actPreset_HslCss_Dark_Blue: TAction
+      Category = 'Preset_Dark'
+      Caption = 'Dark blue'
+      ImageIndex = 64
+      OnExecute = actPreset_HslCss_Dark_BlueExecute
+    end
+    object actPreset_HslCss_Dark_Yellow: TAction
+      Category = 'Preset_Dark'
+      Caption = 'Dark yellow'
+      ImageIndex = 74
+      OnExecute = actPreset_HslCss_Dark_YellowExecute
+    end
+    object actPreset_HslCss_Dark_Cyan: TAction
+      Category = 'Preset_Dark'
+      Caption = 'Dark cyan'
+      ImageIndex = 71
+      OnExecute = actPreset_HslCss_Dark_CyanExecute
+    end
+    object actPreset_HslCss_Dark_Violet: TAction
+      Category = 'Preset_Dark'
+      Caption = 'Dark violet'
+      ImageIndex = 73
+      OnExecute = actPreset_HslCss_Dark_VioletExecute
+    end
+    object actPreset_HslCss_Dark_Pink: TAction
+      Category = 'Preset_Dark'
+      Caption = 'Dark pink'
+      ImageIndex = 72
+      OnExecute = actPreset_HslCss_Dark_PinkExecute
+    end
+    object actPreset_HslCss_Light_Red: TAction
+      Category = 'Preset_Light'
+      Caption = 'Light red'
+      ImageIndex = 60
+      OnExecute = actPreset_HslCss_Light_RedExecute
+    end
+    object actPreset_HslCss_Light_Green: TAction
+      Category = 'Preset_Light'
+      Caption = 'Light green'
+      ImageIndex = 61
+      OnExecute = actPreset_HslCss_Light_GreenExecute
+    end
+    object actPreset_HslCss_Light_Blue: TAction
+      Category = 'Preset_Light'
+      Caption = 'Light blue'
+      ImageIndex = 62
+      OnExecute = actPreset_HslCss_Light_BlueExecute
+    end
+    object actPreset_HslCss_Light_Yellow: TAction
+      Category = 'Preset_Light'
+      Caption = 'Light yellow'
+      ImageIndex = 70
+      OnExecute = actPreset_HslCss_Light_YellowExecute
+    end
+    object actPreset_HslCss_Light_Cyan: TAction
+      Category = 'Preset_Light'
+      Caption = 'Light cyan'
+      ImageIndex = 67
+      OnExecute = actPreset_HslCss_Light_CyanExecute
+    end
+    object actPreset_HslCss_Light_Violet: TAction
+      Category = 'Preset_Light'
+      Caption = 'Light violet'
+      ImageIndex = 69
+      OnExecute = actPreset_HslCss_Light_VioletExecute
+    end
+    object actPreset_HslCss_Light_Pink: TAction
+      Category = 'Preset_Light'
+      Caption = 'Light pink'
+      ImageIndex = 68
+      OnExecute = actPreset_HslCss_Light_PinkExecute
+    end
+    object actPreset_HslCss_Grayscale_VeryDark: TAction
+      Category = 'Preset_Grayscale'
+      Caption = 'Very dark'
+      ImageIndex = 75
+      OnExecute = actPreset_HslCss_Grayscale_VeryDarkExecute
+    end
+    object actPreset_HslCss_Grayscale_Dark: TAction
+      Category = 'Preset_Grayscale'
+      Caption = 'Dark'
+      ImageIndex = 76
+      OnExecute = actPreset_HslCss_Grayscale_DarkExecute
+    end
+    object actPreset_HslCss_Grayscale_Medium: TAction
+      Category = 'Preset_Grayscale'
+      Caption = 'Medium'
+      ImageIndex = 77
+      OnExecute = actPreset_HslCss_Grayscale_MediumExecute
+    end
+    object actPreset_HslCss_Grayscale_Light: TAction
+      Category = 'Preset_Grayscale'
+      Caption = 'Light'
+      ImageIndex = 78
+      OnExecute = actPreset_HslCss_Grayscale_LightExecute
+    end
+    object actPreset_HslCss_Grayscale_VeryLight: TAction
+      Category = 'Preset_Grayscale'
+      Caption = 'Very light'
+      ImageIndex = 79
+      OnExecute = actPreset_HslCss_Grayscale_VeryLightExecute
+    end
+    object actLockUnlockRange_Rgb_Red: TAction
+      Caption = 'actLockUnlockRange_Rgb_Red'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_Rgb_RedExecute
+    end
+    object actLockUnlockRange_Rgb_Green: TAction
+      Caption = 'actLockUnlockRange_Rgb_Green'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_Rgb_GreenExecute
+    end
+    object actLockUnlockRange_Rgb_Blue: TAction
+      Caption = 'actLockUnlockRange_Rgb_Blue'
+      Hint = 'Lock / unlock range'
+      ImageIndex = 63
+      OnExecute = actLockUnlockRange_Rgb_BlueExecute
+    end
+    object actPreset_Rgb_VeryDark: TAction
+      Category = 'Preset_RGB'
+      Caption = 'Very dark'
+      OnExecute = actPreset_Rgb_VeryDarkExecute
+    end
+    object actPreset_Rgb_Dark: TAction
+      Category = 'Preset_RGB'
+      Caption = 'Dark'
+      OnExecute = actPreset_Rgb_DarkExecute
+    end
+    object actPreset_Rgb_Medium: TAction
+      Category = 'Preset_RGB'
+      Caption = 'Medium'
+      OnExecute = actPreset_Rgb_MediumExecute
+    end
+    object actPreset_Rgb_Light: TAction
+      Category = 'Preset_RGB'
+      Caption = 'Light'
+      OnExecute = actPreset_Rgb_LightExecute
+    end
+    object actPreset_Rgb_VeryLight: TAction
+      Category = 'Preset_RGB'
+      Caption = 'Very light'
+      OnExecute = actPreset_Rgb_VeryLightExecute
+    end
+    object actSelectAll: TAction
+      Caption = 'Select all'
+      Hint = 'Select all'
+      ImageIndex = 9
+      ShortCut = 16449
+      OnExecute = actSelectAllExecute
+    end
+    object actInvertSelection: TAction
+      Caption = 'Invert selection'
+      Hint = 'Invert selection'
+      ImageIndex = 10
+      ShortCut = 16457
+      OnExecute = actInvertSelectionExecute
+    end
+    object actDeleteSelected: TAction
+      Caption = 'Remove selected'
+      Hint = 'Remove selected'
+      ImageIndex = 83
+      ShortCut = 46
+      OnExecute = actDeleteSelectedExecute
+    end
+  end
+  object popPresets_HslCss_Pastels: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 529
+    Top = 305
+    object SpTBXItem2: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_RedLight
+    end
+    object SpTBXItem3: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_GreenLight
+    end
+    object SpTBXItem1: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_BlueLight
+    end
+    object SpTBXItem13: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_YellowLight
+    end
+    object SpTBXItem12: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_CyanLight
+    end
+    object SpTBXItem11: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_VioletLight
+    end
+    object SpTBXItem10: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_PinkLight
+    end
+    object SpTBXSeparatorItem1: TSpTBXSeparatorItem
+    end
+    object SpTBXItem9: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_RedDark
+    end
+    object SpTBXItem8: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_GreenDark
+    end
+    object SpTBXItem7: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_BlueDark
+    end
+    object SpTBXItem17: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_YellowDark
+    end
+    object SpTBXItem16: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_CyanDark
+    end
+    object SpTBXItem15: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_VioletDark
+    end
+    object SpTBXItem14: TSpTBXItem
+      Action = actPreset_HslCss_Pastels_PinkDark
+    end
+  end
+  object popPresets_HslCss_Intensive: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 682
+    Top = 311
+    object SpTBXItem6: TSpTBXItem
+      Action = actPreset_HslCss_Intensive_Red
+    end
+    object SpTBXItem5: TSpTBXItem
+      Action = actPreset_HslCss_Intensive_Green
+    end
+    object SpTBXItem4: TSpTBXItem
+      Action = actPreset_HslCss_Intensive_Blue
+    end
+    object SpTBXItem21: TSpTBXItem
+      Action = actPreset_HslCss_Intensive_Yellow
+    end
+    object SpTBXItem20: TSpTBXItem
+      Action = actPreset_HslCss_Intensive_Cyan
+    end
+    object SpTBXItem19: TSpTBXItem
+      Action = actPreset_HslCss_Intensive_Violet
+    end
+    object SpTBXItem18: TSpTBXItem
+      Action = actPreset_HslCss_Intensive_Pink
+    end
+  end
+  object popPresets_HslCss_Dark: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 729
+    Top = 247
+    object SpTBXItem24: TSpTBXItem
+      Action = actPreset_HslCss_Dark_Red
+    end
+    object SpTBXItem23: TSpTBXItem
+      Action = actPreset_HslCss_Dark_Green
+    end
+    object SpTBXItem22: TSpTBXItem
+      Action = actPreset_HslCss_Dark_Blue
+    end
+    object SpTBXItem28: TSpTBXItem
+      Action = actPreset_HslCss_Dark_Yellow
+    end
+    object SpTBXItem27: TSpTBXItem
+      Action = actPreset_HslCss_Dark_Cyan
+    end
+    object SpTBXItem26: TSpTBXItem
+      Action = actPreset_HslCss_Dark_Violet
+    end
+    object SpTBXItem25: TSpTBXItem
+      Action = actPreset_HslCss_Dark_Pink
+    end
+  end
+  object popPresets_HslCss_Light: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 556
+    Top = 225
+    object SpTBXItem35: TSpTBXItem
+      Action = actPreset_HslCss_Light_Red
+    end
+    object SpTBXItem34: TSpTBXItem
+      Action = actPreset_HslCss_Light_Green
+    end
+    object SpTBXItem33: TSpTBXItem
+      Action = actPreset_HslCss_Light_Blue
+    end
+    object SpTBXItem32: TSpTBXItem
+      Action = actPreset_HslCss_Light_Yellow
+    end
+    object SpTBXItem31: TSpTBXItem
+      Action = actPreset_HslCss_Light_Cyan
+    end
+    object SpTBXItem30: TSpTBXItem
+      Action = actPreset_HslCss_Light_Violet
+    end
+    object SpTBXItem29: TSpTBXItem
+      Action = actPreset_HslCss_Light_Pink
+    end
+  end
+  object popPresets_HslCss_Grayscale: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 728
+    Top = 186
+    object SpTBXItem40: TSpTBXItem
+      Action = actPreset_HslCss_Grayscale_VeryDark
+    end
+    object SpTBXItem39: TSpTBXItem
+      Action = actPreset_HslCss_Grayscale_Dark
+    end
+    object SpTBXItem38: TSpTBXItem
+      Action = actPreset_HslCss_Grayscale_Medium
+    end
+    object SpTBXItem37: TSpTBXItem
+      Action = actPreset_HslCss_Grayscale_Light
+    end
+    object SpTBXItem36: TSpTBXItem
+      Action = actPreset_HslCss_Grayscale_VeryLight
+    end
+  end
+  object popPresets_Rgb: TSpTBXPopupMenu
+    Left = 581
+    Top = 157
+    object SpTBXItem45: TSpTBXItem
+      Action = actPreset_Rgb_VeryDark
+    end
+    object SpTBXItem44: TSpTBXItem
+      Action = actPreset_Rgb_Dark
+    end
+    object SpTBXItem43: TSpTBXItem
+      Action = actPreset_Rgb_Medium
+    end
+    object SpTBXItem42: TSpTBXItem
+      Action = actPreset_Rgb_Light
+    end
+    object SpTBXItem41: TSpTBXItem
+      Action = actPreset_Rgb_VeryLight
+    end
+  end
+  object popColorList: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 751
+    Top = 81
+    object SpTBXItem48: TSpTBXItem
+      Action = actSelectAll
+    end
+    object SpTBXItem47: TSpTBXItem
+      Action = actInvertSelection
+    end
+    object SpTBXItem46: TSpTBXItem
+      Action = actDeleteSelected
+    end
+    object SpTBXSeparatorItem2: TSpTBXSeparatorItem
+    end
+    object SpTBXItem49: TSpTBXItem
+      Action = actClearColors
     end
   end
 end

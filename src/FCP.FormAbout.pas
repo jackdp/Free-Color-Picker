@@ -60,6 +60,7 @@ begin
   lblLinkTarget.Caption := '';
   lblLinkTarget.Align := alClient;
   Constraints.MinHeight := 360;
+  Constraints.MaxHeight := Height;
   Constraints.MinWidth := 360;
   {$IFDEF DCC}Width := Width + 1;{$ENDIF} // force recreate htt bitmap
 end;

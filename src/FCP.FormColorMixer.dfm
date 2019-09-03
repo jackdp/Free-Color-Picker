@@ -315,6 +315,7 @@ object FormColorMixer: TFormColorMixer
     Width = 344
     Height = 252
     Align = alRight
+    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 2
     Appearance.BackgroundColor = 15395562
     Appearance.BorderColor = 11053224
@@ -377,7 +378,10 @@ object FormColorMixer: TFormColorMixer
       Margins.Bottom = 0
       Align = alTop
       ItemHeight = 15
+      PopupMenu = popColorList
       TabOrder = 1
+      OnClick = InitCtrls
+      Multiselect = True
       BorderStyle = bsNone
       Items.Strings = (
         '-=Web red colors'
@@ -951,8 +955,8 @@ object FormColorMixer: TFormColorMixer
   end
   object Actions: TActionList
     Images = FormMain.pilMain
-    Left = 394
-    Top = 105
+    Left = 400
+    Top = 168
     object actAddToColorList: TAction
       Caption = 'Add to list'
       Hint = 'Add the result color to the list on the right'
@@ -980,6 +984,46 @@ object FormColorMixer: TFormColorMixer
       Caption = 'actEsc'
       ShortCut = 27
       OnExecute = actEscExecute
+    end
+    object actSelectAll: TAction
+      Caption = 'Select all'
+      Hint = 'Select all'
+      ImageIndex = 9
+      ShortCut = 16449
+      OnExecute = actSelectAllExecute
+    end
+    object actInvertSelection: TAction
+      Caption = 'Invert selection'
+      Hint = 'Invert selection'
+      ImageIndex = 10
+      ShortCut = 16457
+      OnExecute = actInvertSelectionExecute
+    end
+    object actDeleteSelected: TAction
+      Caption = 'Remove selected colors'
+      Hint = 'Remove selected colors'
+      ImageIndex = 83
+      ShortCut = 46
+      OnExecute = actDeleteSelectedExecute
+    end
+  end
+  object popColorList: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 534
+    Top = 170
+    object SpTBXItem3: TSpTBXItem
+      Action = actSelectAll
+    end
+    object SpTBXItem2: TSpTBXItem
+      Action = actInvertSelection
+    end
+    object SpTBXItem1: TSpTBXItem
+      Action = actDeleteSelected
+    end
+    object SpTBXSeparatorItem1: TSpTBXSeparatorItem
+    end
+    object SpTBXItem4: TSpTBXItem
+      Action = actClearColors
     end
   end
 end

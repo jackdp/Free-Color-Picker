@@ -10,22 +10,22 @@ uses
   System.SysUtils, System.Variants, System.Classes, System.Actions, // System.IniFiles,
 
   // VCL
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.ActnList,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus,
 
   // JPLib
   JPL.Strings, JPL.Conversion, JPL.Colors, JPL.Math, JPL.IniFile,
 
   // JPPack
-  JPP.SimplePanel, JPP.ColorListBox, JPP.BasicPanel, JPP.PngButton,
+  JPP.SimplePanel, JPP.ColorListBox, JPP.BasicPanel, JPP.PngButton, JPP.BasicSpeedButton,
 
   // JPModLib
   JPPegtopTrackBars,
 
   // SpTBX
-  SpTBXEditors,
+  SpTBXEditors, TB2Item, SpTBXItem, SpTBXControls, TB2Dock, TB2Toolbar,
 
   // FCP
-  FCP.Types, FCP.Shared, FCP.AppStrings;
+  FCP.Types, FCP.Shared, FCP.AppStrings, FCP.Bitmap;
 
 type
 
@@ -75,11 +75,208 @@ type
     lblAddPos: TLabel;
     spedColorCount: TSpTBXSpinEdit;
     lblColorCount: TLabel;
+    imgHue_Css: TImage;
+    imgHue_Win: TImage;
+    popPresets_HslCss_Pastels: TSpTBXPopupMenu;
+    actPreset_HslCss_Pastels_BlueLight: TAction;
+    SpTBXItem1: TSpTBXItem;
+    btnPresets_HslCss_Pastels: TSpTBXButton;
+    actPreset_HslCss_Pastels_RedLight: TAction;
+    SpTBXItem2: TSpTBXItem;
+    actPreset_HslCss_Pastels_GreenLight: TAction;
+    SpTBXItem3: TSpTBXItem;
+    popPresets_HslCss_Intensive: TSpTBXPopupMenu;
+    btnPresets_HslCss_Intensive: TSpTBXButton;
+    actPreset_HslCss_Intensive_Red: TAction;
+    SpTBXItem4: TSpTBXItem;
+    SpTBXItem5: TSpTBXItem;
+    SpTBXItem6: TSpTBXItem;
+    actPreset_HslCss_Intensive_Green: TAction;
+    actPreset_HslCss_Intensive_Blue: TAction;
+    actPreset_HslCss_Pastels_BlueDark: TAction;
+    SpTBXSeparatorItem1: TSpTBXSeparatorItem;
+    SpTBXItem7: TSpTBXItem;
+    SpTBXItem8: TSpTBXItem;
+    SpTBXItem9: TSpTBXItem;
+    actPreset_HslCss_Pastels_RedDark: TAction;
+    actPreset_HslCss_Pastels_GreenDark: TAction;
+    sbtnLockUnlockRange_HslCss_Hue: TJppBasicSpeedButton;
+    actLockUnlockRange_HslCss_Hue: TAction;
+    actPreset_HslCss_Pastels_YellowLight: TAction;
+    SpTBXItem10: TSpTBXItem;
+    SpTBXItem11: TSpTBXItem;
+    SpTBXItem12: TSpTBXItem;
+    SpTBXItem13: TSpTBXItem;
+    actPreset_HslCss_Pastels_CyanLight: TAction;
+    actPreset_HslCss_Pastels_VioletLight: TAction;
+    actPreset_HslCss_Pastels_PinkLight: TAction;
+    actPreset_HslCss_Pastels_YellowDark: TAction;
+    SpTBXItem14: TSpTBXItem;
+    SpTBXItem15: TSpTBXItem;
+    SpTBXItem16: TSpTBXItem;
+    SpTBXItem17: TSpTBXItem;
+    actPreset_HslCss_Pastels_CyanDark: TAction;
+    actPreset_HslCss_Pastels_VioletDark: TAction;
+    actPreset_HslCss_Pastels_PinkDark: TAction;
+    actLockUnlockRange_HslCss_Sat: TAction;
+    actLockUnlockRange_HslCss_Lum: TAction;
+    sbtnLockUnlockRange_HslCss_Sat: TJppBasicSpeedButton;
+    sbtnLockUnlockRange_HslCss_Lum: TJppBasicSpeedButton;
+    actPreset_HslCss_Intensive_Yellow: TAction;
+    SpTBXItem18: TSpTBXItem;
+    SpTBXItem19: TSpTBXItem;
+    SpTBXItem20: TSpTBXItem;
+    SpTBXItem21: TSpTBXItem;
+    actPreset_HslCss_Intensive_Cyan: TAction;
+    actPreset_HslCss_Intensive_Violet: TAction;
+    actPreset_HslCss_Intensive_Pink: TAction;
+    sbtnLockUnlockRange_HslWin_Hue: TJppBasicSpeedButton;
+    sbtnLockUnlockRange_HslWin_Sat: TJppBasicSpeedButton;
+    sbtnLockUnlockRange_HslWin_Lum: TJppBasicSpeedButton;
+    actLockUnlockRange_HslWin_Hue: TAction;
+    actLockUnlockRange_HslWin_Sat: TAction;
+    actLockUnlockRange_HslWin_Lum: TAction;
+    btnPresets_HslCss_Dark: TSpTBXButton;
+    popPresets_HslCss_Dark: TSpTBXPopupMenu;
+    actPreset_HslCss_Dark_Red: TAction;
+    SpTBXItem22: TSpTBXItem;
+    SpTBXItem23: TSpTBXItem;
+    SpTBXItem24: TSpTBXItem;
+    actPreset_HslCss_Dark_Green: TAction;
+    actPreset_HslCss_Dark_Blue: TAction;
+    actPreset_HslCss_Dark_Yellow: TAction;
+    SpTBXItem25: TSpTBXItem;
+    SpTBXItem26: TSpTBXItem;
+    SpTBXItem27: TSpTBXItem;
+    SpTBXItem28: TSpTBXItem;
+    actPreset_HslCss_Dark_Cyan: TAction;
+    actPreset_HslCss_Dark_Violet: TAction;
+    actPreset_HslCss_Dark_Pink: TAction;
+    btnPresets_HslCss_Light: TSpTBXButton;
+    popPresets_HslCss_Light: TSpTBXPopupMenu;
+    actPreset_HslCss_Light_Red: TAction;
+    SpTBXItem29: TSpTBXItem;
+    SpTBXItem30: TSpTBXItem;
+    SpTBXItem31: TSpTBXItem;
+    SpTBXItem32: TSpTBXItem;
+    SpTBXItem33: TSpTBXItem;
+    SpTBXItem34: TSpTBXItem;
+    SpTBXItem35: TSpTBXItem;
+    actPreset_HslCss_Light_Green: TAction;
+    actPreset_HslCss_Light_Blue: TAction;
+    actPreset_HslCss_Light_Yellow: TAction;
+    actPreset_HslCss_Light_Cyan: TAction;
+    actPreset_HslCss_Light_Violet: TAction;
+    actPreset_HslCss_Light_Pink: TAction;
+    btnPresets_HslCss_Grayscale: TSpTBXButton;
+    popPresets_HslCss_Grayscale: TSpTBXPopupMenu;
+    actPreset_HslCss_Grayscale_VeryDark: TAction;
+    SpTBXItem36: TSpTBXItem;
+    SpTBXItem37: TSpTBXItem;
+    SpTBXItem38: TSpTBXItem;
+    SpTBXItem39: TSpTBXItem;
+    SpTBXItem40: TSpTBXItem;
+    actPreset_HslCss_Grayscale_Dark: TAction;
+    actPreset_HslCss_Grayscale_Medium: TAction;
+    actPreset_HslCss_Grayscale_Light: TAction;
+    actPreset_HslCss_Grayscale_VeryLight: TAction;
+    sbtnLockUnlockRange_Rgb_Red: TJppBasicSpeedButton;
+    actLockUnlockRange_Rgb_Red: TAction;
+    actLockUnlockRange_Rgb_Green: TAction;
+    actLockUnlockRange_Rgb_Blue: TAction;
+    sbtnLockUnlockRange_Rgb_Green: TJppBasicSpeedButton;
+    sbtnLockUnlockRange_Rgb_Blue: TJppBasicSpeedButton;
+    popPresets_Rgb: TSpTBXPopupMenu;
+    btnPresets_Rgb: TSpTBXButton;
+    actPreset_Rgb_VeryDark: TAction;
+    SpTBXItem41: TSpTBXItem;
+    SpTBXItem42: TSpTBXItem;
+    SpTBXItem43: TSpTBXItem;
+    SpTBXItem44: TSpTBXItem;
+    SpTBXItem45: TSpTBXItem;
+    actPreset_Rgb_Dark: TAction;
+    actPreset_Rgb_Medium: TAction;
+    actPreset_Rgb_Light: TAction;
+    actPreset_Rgb_VeryLight: TAction;
+    actSelectAll: TAction;
+    actInvertSelection: TAction;
+    actDeleteSelected: TAction;
+    popColorList: TSpTBXPopupMenu;
+    SpTBXItem46: TSpTBXItem;
+    SpTBXItem47: TSpTBXItem;
+    SpTBXItem48: TSpTBXItem;
+    SpTBXItem49: TSpTBXItem;
+    SpTBXSeparatorItem2: TSpTBXSeparatorItem;
+    dockMenu: TSpTBXDock;
+    tbMain: TSpTBXToolbar;
+    SpTBXItem50: TSpTBXItem;
+    SpTBXItem51: TSpTBXItem;
+    SpTBXItem52: TSpTBXItem;
+    SpTBXSeparatorItem3: TSpTBXSeparatorItem;
+    SpTBXItem53: TSpTBXItem;
+    shLine: TShape;
     procedure actClearColorsExecute(Sender: TObject);
     procedure actCloseExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
     procedure actGenerateRandomColorsExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
+    procedure actDeleteSelectedExecute(Sender: TObject);
+    procedure actInvertSelectionExecute(Sender: TObject);
+    procedure actPreset_HslCss_Dark_BlueExecute(Sender: TObject);
+    procedure actPreset_HslCss_Dark_CyanExecute(Sender: TObject);
+    procedure actPreset_HslCss_Dark_GreenExecute(Sender: TObject);
+    procedure actPreset_HslCss_Dark_PinkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Dark_RedExecute(Sender: TObject);
+    procedure actPreset_HslCss_Dark_VioletExecute(Sender: TObject);
+    procedure actPreset_HslCss_Dark_YellowExecute(Sender: TObject);
+    procedure actPreset_HslCss_Intensive_GreenExecute(Sender: TObject);
+    procedure actPreset_HslCss_Intensive_BlueExecute(Sender: TObject);
+    procedure actPreset_HslCss_Intensive_CyanExecute(Sender: TObject);
+    procedure actPreset_HslCss_Intensive_PinkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Intensive_RedExecute(Sender: TObject);
+    procedure actPreset_HslCss_Intensive_VioletExecute(Sender: TObject);
+    procedure actPreset_HslCss_Intensive_YellowExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_BlueDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_BlueLightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_CyanDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_CyanLightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_GreenDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_GreenLightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_PinkDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_PinkLightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_RedDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_RedLightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_VioletDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_VioletLightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_YellowDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Pastels_YellowLightExecute(Sender: TObject);
+    procedure actLockUnlockRange_HslCss_HueExecute(Sender: TObject);
+    procedure actLockUnlockRange_HslCss_LumExecute(Sender: TObject);
+    procedure actLockUnlockRange_HslCss_SatExecute(Sender: TObject);
+    procedure actLockUnlockRange_HslWin_HueExecute(Sender: TObject);
+    procedure actLockUnlockRange_HslWin_LumExecute(Sender: TObject);
+    procedure actLockUnlockRange_HslWin_SatExecute(Sender: TObject);
+    procedure actLockUnlockRange_Rgb_BlueExecute(Sender: TObject);
+    procedure actLockUnlockRange_Rgb_GreenExecute(Sender: TObject);
+    procedure actLockUnlockRange_Rgb_RedExecute(Sender: TObject);
+    procedure actPreset_HslCss_Grayscale_DarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Grayscale_LightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Grayscale_MediumExecute(Sender: TObject);
+    procedure actPreset_HslCss_Grayscale_VeryDarkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Grayscale_VeryLightExecute(Sender: TObject);
+    procedure actPreset_HslCss_Light_BlueExecute(Sender: TObject);
+    procedure actPreset_HslCss_Light_CyanExecute(Sender: TObject);
+    procedure actPreset_HslCss_Light_GreenExecute(Sender: TObject);
+    procedure actPreset_HslCss_Light_PinkExecute(Sender: TObject);
+    procedure actPreset_HslCss_Light_RedExecute(Sender: TObject);
+    procedure actPreset_HslCss_Light_VioletExecute(Sender: TObject);
+    procedure actPreset_HslCss_Light_YellowExecute(Sender: TObject);
+    procedure actPreset_Rgb_DarkExecute(Sender: TObject);
+    procedure actPreset_Rgb_LightExecute(Sender: TObject);
+    procedure actPreset_Rgb_MediumExecute(Sender: TObject);
+    procedure actPreset_Rgb_VeryDarkExecute(Sender: TObject);
+    procedure actPreset_Rgb_VeryLightExecute(Sender: TObject);
+    procedure actSelectAllExecute(Sender: TObject);
     procedure clbColorsGetColorStrValue(const Index: Integer; const CurrentColor: TColor; var ColorStr: string);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -87,9 +284,16 @@ type
     procedure PrepareControls;
     procedure InitControls;
     procedure InitCtrls(Sender: TObject);
+    procedure InitColorListActions;
+    procedure InitColorListActns(Sender: TObject);
     procedure UpdateColorCountLabel;
     procedure SaveSettingsToIni;
     procedure LoadSettingsFromIni;
+    procedure DrawImgHue_Css(Sat: integer = -1; Lum: integer = -1);
+    procedure DrawImgHue_Win(Sat: integer = -1; Lum: integer = -1);
+    procedure tbRange_HslCss_HueScroll(Sender: TObject; ScrollCode: TJPPegtopScrollCode; var ScrollPos: Integer);
+    procedure tbRange_HslWin_HueScroll(Sender: TObject; ScrollCode: TJPPegtopScrollCode; var ScrollPos: Integer);
+    procedure SetRangeBarMinMax(RangeBar: TJPPegtopRangeBar; const PosMin, PosMax: integer);
   private
     bUpdatingControls: Boolean;
   end;
@@ -103,7 +307,7 @@ var
 implementation
 
 uses
-  FCP.FormMain;
+  FCP.FormMain, FCP.FormPaletteEditor;
 
 {$R *.dfm}
 
@@ -116,8 +320,11 @@ begin
   PrepareControls;
   Constraints.MinHeight := Height;
   Constraints.MinWidth := Width;
+  Constraints.MaxWidth := Width;
   PrepareModuleStrings_RandomColors;
   LoadSettingsFromIni;
+  DrawImgHue_Css;
+  DrawImgHue_Win;
   InitControls;
   SetLang;
 end;
@@ -141,15 +348,36 @@ begin
   btnClose.Appearance.Assign(FormMain.btnT1.Appearance);
   btnAdd.Appearance.Assign(FormMain.btnT1.Appearance);
   btnGenerateRandomColors.Appearance.Assign(FormMain.btnT1.Appearance);
+
+  sbtnLockUnlockRange_HslCss_Hue.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+  sbtnLockUnlockRange_HslCss_Sat.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+  sbtnLockUnlockRange_HslCss_Lum.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+
+  sbtnLockUnlockRange_HslWin_Hue.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+  sbtnLockUnlockRange_HslWin_Sat.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+  sbtnLockUnlockRange_HslWin_Lum.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+
+  sbtnLockUnlockRange_Rgb_Red.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+  sbtnLockUnlockRange_Rgb_Green.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+  sbtnLockUnlockRange_Rgb_Blue.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+
+  DrawImgHue_Css;
+  DrawImgHue_Win;
+
+ tbMain.FullSize := True;
+ shLine.Height := 1;
 end;
+
 {$endregion PrepareControls}
 
 
 {$region '                           InitControls                             '}
+
+
 procedure TFormRandomColors.InitControls;
 var
   b: Boolean;
-  xCount: integer;
+  Sat: integer;
 begin
   bUpdatingControls := True;
   try
@@ -165,6 +393,10 @@ begin
     lblRange_RgbRed.Enabled := tbRange_RgbRed.Enabled;
     lblRange_RgbGreen.Enabled := tbRange_RgbGreen.Enabled;
     lblRange_RgbBlue.Enabled := tbRange_RgbBlue.Enabled;
+    sbtnLockUnlockRange_Rgb_Red.Enabled := b;
+    sbtnLockUnlockRange_Rgb_Green.Enabled := b;
+    sbtnLockUnlockRange_Rgb_Blue.Enabled := b;
+    btnPresets_Rgb.Enabled := b;
 
     b := rbHslWin.Checked;
     tbRange_HslWin_Hue.Enabled := b;
@@ -173,6 +405,17 @@ begin
     lblRange_HslWin_Hue.Enabled := tbRange_HslWin_Hue.Enabled;
     lblRange_HslWin_Sat.Enabled := tbRange_HslWin_Sat.Enabled;
     lblRange_HslWin_Lum.Enabled := tbRange_HslWin_Lum.Enabled;
+    actLockUnlockRange_HslWin_Hue.Enabled := b;
+    actLockUnlockRange_HslWin_Sat.Enabled := b;
+    actLockUnlockRange_HslWin_Lum.Enabled := b;
+    if b then
+    begin
+      if tbRange_HslCss_Hue.PositionMin = tbRange_HslCss_Hue.PositionMax then Sat := tbRange_HslCss_Hue.PositionMin
+      else Sat := 30;
+      DrawImgHue_Css(Sat, 80);
+      DrawImgHue_Win;
+    end;
+
 
     b := rbHslCss.Checked;
     tbRange_HslCss_Hue.Enabled := b;
@@ -181,12 +424,23 @@ begin
     lblRange_HslCss_Hue.Enabled := tbRange_HslCss_Hue.Enabled;
     lblRange_HslCss_Sat.Enabled := tbRange_HslCss_Sat.Enabled;
     lblRange_HslCss_Lum.Enabled := tbRange_HslCss_Lum.Enabled;
+    btnPresets_HslCss_Pastels.Enabled := b;
+    btnPresets_HslCss_Intensive.Enabled := b;
+    btnPresets_HslCss_Dark.Enabled := b;
+    btnPresets_HslCss_Light.Enabled := b;
+    btnPresets_HslCss_Grayscale.Enabled := b;
+    actLockUnlockRange_HslCss_Hue.Enabled := b;
+    actLockUnlockRange_HslCss_Sat.Enabled := b;
+    actLockUnlockRange_HslCss_Lum.Enabled := b;
+    if b then
+    begin
+      DrawImgHue_Css;
+      if tbRange_HslWin_Hue.PositionMin = tbRange_HslWin_Hue.PositionMax then Sat := tbRange_HslWin_Hue.PositionMin
+      else Sat := 80;
+      DrawImgHue_Win(Sat, 200);
+    end;
 
-    xCount := clbColors.Count;
-    actClearColors.Enabled := xCount > 0;
-    actAdd.Enabled := xCount > 0;
-    cbAddPos.Enabled := xCount > 0;
-    lblAddPos.Enabled := xCount > 0;
+    InitColorListActions;
 
     clbColors.Repaint;
     UpdateColorCountLabel;
@@ -194,6 +448,26 @@ begin
   finally
     bUpdatingControls := False;
   end;
+end;
+
+procedure TFormRandomColors.InitColorListActions;
+var
+  xCount: integer;
+begin
+  xCount := clbColors.Count;
+  actClearColors.Enabled := xCount > 0;
+  actAdd.Enabled := xCount > 0;
+  cbAddPos.Enabled := xCount > 0;
+  lblAddPos.Enabled := xCount > 0;
+
+  actSelectAll.Enabled := (clbColors.SelCount <> xCount) and (xCount > 0);
+  actInvertSelection.Enabled := xCount > 0;
+  actDeleteSelected.Enabled := clbColors.SelCount > 0;
+end;
+
+procedure TFormRandomColors.InitColorListActns(Sender: TObject);
+begin
+  InitColorListActions;
 end;
 
 procedure TFormRandomColors.InitCtrls(Sender: TObject);
@@ -207,6 +481,7 @@ end;
 procedure TFormRandomColors.SetLang;
 var
   x: integer;
+  s: string;
 begin
   Caption := lsRandom.GetString('Caption', Caption);
 
@@ -229,8 +504,29 @@ begin
   tbRange_HslCss_Sat.LabelCaption := lsMain.GetString('HSL_Sat', 'Saturation') + ': <min> - <max>';
   tbRange_HslCss_Lum.LabelCaption := lsMain.GetString('HSL_Lum', 'Luminance') + ': <min> - <max>';
 
+  s := lsRandom.GetString('LockUnlockRange', 'Lock / unlock range');
+  actLockUnlockRange_Rgb_Red.Hint := s;
+  actLockUnlockRange_Rgb_Green.Hint := s;
+  actLockUnlockRange_Rgb_Blue.Hint := s;
+  actLockUnlockRange_HslCss_Hue.Hint := s;
+  actLockUnlockRange_HslCss_Sat.Hint := s;
+  actLockUnlockRange_HslCss_Lum.Hint := s;
+  actLockUnlockRange_HslWin_Hue.Hint := s;
+  actLockUnlockRange_HslWin_Sat.Hint := s;
+  actLockUnlockRange_HslWin_Lum.Hint := s;
+
+  actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
+  actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
+  actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
+  actInvertSelection.Hint := FormPaletteEditor.actInvertSelection.Hint;
+  actDeleteSelected.Caption := FormPaletteEditor.actDeleteSelected.Caption;
+  actDeleteSelected.Hint := FormPaletteEditor.actDeleteSelected.Hint;
+
+
   InitControls;
 end;
+
+
 {$endregion SetLang}
 
 
@@ -265,6 +561,18 @@ begin
     TAppHelper.WriteRadioButtonGroup('ColorMode', [rbRgb, rbHslWin, rbHslCss]);
 
     TAppHelper.WriteComboBoxIndexName(cbAddPos, ['AtTop', 'AtEnd']);
+
+    Section.WriteBool('tbRange_RgbRed_Locked', tbRange_RgbRed.Constrained);
+    Section.WriteBool('tbRange_RgbGreen_Locked', tbRange_RgbGreen.Constrained);
+    Section.WriteBool('tbRange_RgbBlue_Locked', tbRange_RgbBlue.Constrained);
+
+    Section.WriteBool('tbRange_HslWin_Hue_Locked', tbRange_HslWin_Hue.Constrained);
+    Section.WriteBool('tbRange_HslWin_Sat_Locked', tbRange_HslWin_Sat.Constrained);
+    Section.WriteBool('tbRange_HslWin_Lum_Locked', tbRange_HslWin_Lum.Constrained);
+
+    Section.WriteBool('tbRange_HslCss_Hue_Locked', tbRange_HslCss_Hue.Constrained);
+    Section.WriteBool('tbRange_HslCss_Sat_Locked', tbRange_HslCss_Sat.Constrained);
+    Section.WriteBool('tbRange_HslCss_Lum_Locked', tbRange_HslCss_Lum.Constrained);
 
     Ini.UpdateFile;
 
@@ -303,10 +611,21 @@ begin
 
     TAppHelper.ReadSpinEditIntValue(spedColorCount);
 
-    TAppHelper.ReadRadioButtonGroup('ColorMode', [rbRgb, rbHslWin, rbHslCss], rbRgb);
+    TAppHelper.ReadRadioButtonGroup('ColorMode', [rbRgb, rbHslWin, rbHslCss], rbHslCss);
 
     TAppHelper.ReadComboBoxIndexByName(cbAddPos, ['AtTop', 'AtEnd'], 0);
 
+    tbRange_RgbRed.Constrained := Section.ReadBool('tbRange_RgbRed_Locked', False);
+    tbRange_RgbGreen.Constrained := Section.ReadBool('tbRange_RgbGreen_Locked', False);
+    tbRange_RgbBlue.Constrained := Section.ReadBool('tbRange_RgbBlue_Locked', False);
+
+    tbRange_HslWin_Hue.Constrained := Section.ReadBool('tbRange_HslWin_Hue_Locked', False);
+    tbRange_HslWin_Sat.Constrained := Section.ReadBool('tbRange_HslWin_Sat_Locked', False);
+    tbRange_HslWin_Lum.Constrained := Section.ReadBool('tbRange_HslWin_Lum_Locked', False);
+
+    tbRange_HslCss_Hue.Constrained := Section.ReadBool('tbRange_HslCss_Hue_Locked', False);
+    tbRange_HslCss_Sat.Constrained := Section.ReadBool('tbRange_HslCss_Sat_Locked', False);
+    tbRange_HslCss_Lum.Constrained := Section.ReadBool('tbRange_HslCss_Lum_Locked', False);
 
   finally
     bUpdatingControls := False;
@@ -455,6 +774,64 @@ begin
   else if rbHslCss.Checked then ColorStr := ColorToHslCssStr(CurrentColor, True, 3, '0');
 end;
 
+
+
+
+procedure TFormRandomColors.DrawImgHue_Css(Sat: integer = -1; Lum: integer = -1);
+var
+  Bmp: TBitmap;
+begin
+  Bmp := TBitmap.Create;
+  try
+    Bmp.PixelFormat := pf24bit;
+    Bmp.SetSize(imgHue_Css.Width, imgHue_Css.Height);
+
+    if Sat < 0 then Sat := tbRange_HslCss_Sat.PositionMin + (tbRange_HslCss_Sat.PositionMax - tbRange_HslCss_Sat.PositionMin) div 2;
+    if Lum < 0 then Lum := tbRange_HslCss_Lum.PositionMin + (tbRange_HslCss_Lum.PositionMax - tbRange_HslCss_Lum.PositionMin) div 2;
+
+    DrawHueCssBar(Bmp, clGray, Sat, Lum, tbRange_HslCss_Hue.PositionMin, tbRange_HslCss_Hue.PositionMax);
+
+    imgHue_Css.Canvas.Draw(0, 0, Bmp);
+  finally
+    Bmp.Free;
+  end;
+end;
+
+procedure TFormRandomColors.DrawImgHue_Win(Sat: integer = -1; Lum: integer = -1);
+var
+  Bmp: TBitmap;
+begin
+  Bmp := TBitmap.Create;
+  try
+    Bmp.PixelFormat := pf24bit;
+    Bmp.SetSize(imgHue_Win.Width, imgHue_Win.Height);
+
+    if Sat < 0 then Sat := tbRange_HslWin_Sat.PositionMin + (tbRange_HslWin_Sat.PositionMax - tbRange_HslWin_Sat.PositionMin) div 2;
+    if Lum < 0 then Lum := tbRange_HslWin_Lum.PositionMin + (tbRange_HslWin_Lum.PositionMax - tbRange_HslWin_Lum.PositionMin) div 2;
+
+    DrawHueWinBar(Bmp, clGray, Sat, Lum, tbRange_HslWin_Hue.PositionMin, tbRange_HslWin_Hue.PositionMax);
+
+    imgHue_Win.Canvas.Draw(0, 0, Bmp);
+  finally
+    Bmp.Free;
+  end;
+end;
+
+procedure TFormRandomColors.tbRange_HslCss_HueScroll(Sender: TObject; ScrollCode: TJPPegtopScrollCode; var ScrollPos: Integer);
+begin
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.tbRange_HslWin_HueScroll(Sender: TObject; ScrollCode: TJPPegtopScrollCode; var ScrollPos: Integer);
+begin
+  DrawImgHue_Win;
+end;
+
+
+
+
+
+
 procedure TFormRandomColors.UpdateColorCountLabel;
 var
   s: string;
@@ -482,5 +859,444 @@ begin
   clbColors.Clear;
   InitControls;
 end;
+
+
+
+
+
+
+procedure TFormRandomColors.actLockUnlockRange_HslCss_HueExecute(Sender: TObject);
+begin
+  tbRange_HslCss_Hue.Constrained := not tbRange_HslCss_Hue.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_HslCss_LumExecute(Sender: TObject);
+begin
+  tbRange_HslCss_Lum.Constrained := not tbRange_HslCss_Lum.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_HslCss_SatExecute(Sender: TObject);
+begin
+  tbRange_HslCss_Sat.Constrained := not tbRange_HslCss_Sat.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_HslWin_HueExecute(Sender: TObject);
+begin
+  tbRange_HslWin_Hue.Constrained := not tbRange_HslWin_Hue.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_HslWin_LumExecute(Sender: TObject);
+begin
+  tbRange_HslWin_Lum.Constrained := not tbRange_HslWin_Lum.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_HslWin_SatExecute(Sender: TObject);
+begin
+  tbRange_HslWin_Sat.Constrained := not tbRange_HslWin_Sat.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_Rgb_BlueExecute(Sender: TObject);
+begin
+  tbRange_RgbBlue.Constrained := not tbRange_RgbBlue.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_Rgb_GreenExecute(Sender: TObject);
+begin
+  tbRange_RgbGreen.Constrained := not tbRange_RgbGreen.Constrained;
+end;
+
+procedure TFormRandomColors.actLockUnlockRange_Rgb_RedExecute(Sender: TObject);
+begin
+  tbRange_RgbRed.Constrained := not tbRange_RgbRed.Constrained;
+end;
+
+
+{$region '                    Presets                    '}
+
+procedure TFormRandomColors.actPreset_HslCss_Dark_BlueExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 204, 258);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 80, 95);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 18, 38);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Dark_CyanExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 182, 195);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 80, 95);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 26, 46);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Dark_GreenExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 95, 140);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 80, 95);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 15, 35);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Dark_PinkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 306, 334);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 80, 90);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 26, 46);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Dark_RedExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 10);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 80, 95);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 32, 52);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Dark_VioletExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 264, 285);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 80, 95);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 30, 50);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Dark_YellowExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 40, 50);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 80, 95);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 15, 35);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.SetRangeBarMinMax(RangeBar: TJPPegtopRangeBar; const PosMin, PosMax: integer);
+begin
+  RangeBar.PositionMin := PosMin;
+  RangeBar.PositionMax := PosMax;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Intensive_GreenExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 95, 140);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 85, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 40, 60);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Intensive_BlueExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 188, 250);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 85, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 40, 60);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Intensive_CyanExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 175, 186);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 85, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 50, 70);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Intensive_PinkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 300, 324);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 85, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 50, 70);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Intensive_RedExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 10);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 85, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 40, 60);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Intensive_VioletExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 264, 285);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 85, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 50, 70);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Intensive_YellowExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 48, 58);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 85, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 50, 70);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_BlueDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 195, 215);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 40, 60);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 60, 75);
+  DrawImgHue_Css;
+end;
+
+
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_BlueLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 195, 215);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 50, 70);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_CyanDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 178, 198);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 45, 65);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 60, 75);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_CyanLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 180, 200);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 50, 70);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_GreenDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 122, 142);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 30, 50);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 60, 75);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_GreenLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 122, 142);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 45, 65);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_PinkDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 308, 338);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 40, 60);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 65, 80);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_PinkLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 300, 320);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 50, 70);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_RedDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 20);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 45, 65);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 60, 75);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_RedLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 20);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 50, 70);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_VioletDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 232, 269);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 45, 65);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 65, 80);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_VioletLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 235, 255);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 50, 70);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 83, 98);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_YellowDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 42, 56);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 45, 65);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 60, 75);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Pastels_YellowLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 45, 65);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 50, 70);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+
+procedure TFormRandomColors.actPreset_HslCss_Grayscale_DarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 25, 40);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Grayscale_LightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 75, 85);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Grayscale_MediumExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 50, 65);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Grayscale_VeryDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 0, 20);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Grayscale_VeryLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 0, 0);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 88, 98);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Light_BlueExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 195, 222);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 96, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 77, 92);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Light_CyanExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 180, 200);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 96, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Light_GreenExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 122, 142);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 96, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Light_PinkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 300, 320);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 96, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Light_RedExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 0, 20);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 96, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Light_VioletExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 235, 255);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 96, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_HslCss_Light_YellowExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_HslCss_Hue, 45, 65);
+  SetRangeBarMinMax(tbRange_HslCss_Sat, 96, 100);
+  SetRangeBarMinMax(tbRange_HslCss_Lum, 80, 95);
+  DrawImgHue_Css;
+end;
+
+procedure TFormRandomColors.actPreset_Rgb_DarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_RgbRed, 36, 76);
+  SetRangeBarMinMax(tbRange_RgbGreen, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+  SetRangeBarMinMax(tbRange_RgbBlue, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+end;
+
+procedure TFormRandomColors.actPreset_Rgb_LightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_RgbRed, 178, 218);
+  SetRangeBarMinMax(tbRange_RgbGreen, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+  SetRangeBarMinMax(tbRange_RgbBlue, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+end;
+
+procedure TFormRandomColors.actPreset_Rgb_MediumExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_RgbRed, 106, 146);
+  SetRangeBarMinMax(tbRange_RgbGreen, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+  SetRangeBarMinMax(tbRange_RgbBlue, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+end;
+
+procedure TFormRandomColors.actPreset_Rgb_VeryDarkExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_RgbRed, 0, 40);
+  SetRangeBarMinMax(tbRange_RgbGreen, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+  SetRangeBarMinMax(tbRange_RgbBlue, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+end;
+
+procedure TFormRandomColors.actPreset_Rgb_VeryLightExecute(Sender: TObject);
+begin
+  SetRangeBarMinMax(tbRange_RgbRed, 215, 255);
+  SetRangeBarMinMax(tbRange_RgbGreen, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+  SetRangeBarMinMax(tbRange_RgbBlue, tbRange_RgbRed.PositionMin, tbRange_RgbRed.PositionMax);
+end;
+
+procedure TFormRandomColors.actSelectAllExecute(Sender: TObject);
+begin
+  clbColors.SelectAll;
+  InitColorListActions;
+end;
+
+procedure TFormRandomColors.actInvertSelectionExecute(Sender: TObject);
+begin
+  clbColors.InvertSelection;
+  InitColorListActions;
+end;
+
+procedure TFormRandomColors.actDeleteSelectedExecute(Sender: TObject);
+begin
+  clbColors.RemoveSelectedItems;
+  InitColorListActions;
+end;
+
+
+
+{$endregion Presets}
 
 end.

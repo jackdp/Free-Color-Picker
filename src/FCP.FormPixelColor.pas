@@ -10,7 +10,7 @@ uses
   System.SysUtils, System.Variants, System.Classes, System.Actions, // System.IniFiles,
 
   // VCL
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList, Vcl.Buttons,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList, Vcl.Buttons, Vcl.Menus,
 
   // JPLib
   JPL.Strings, JPL.Conversion, JPL.Colors, JPL.Dialogs, JPL.Math, JPL.IniFile,
@@ -19,7 +19,7 @@ uses
   JPP.BasicSpeedButton, JPP.Panel, JPP.PngButton, JPP.BasicPanel, JPP.ColorListBox, JPP.Timer, JPP.ColorSwatch, JPP.SimplePanel,
 
   // SpTBX
-  SpTBXEditors,
+  SpTBXEditors, TB2Item, SpTBXItem,
 
   // FCP
   FCP.Types, FCP.Shared, FCP.AppStrings, FCP.FormScreenCursor;
@@ -57,11 +57,23 @@ type
     cswCursorColor: TJppColorSwatch;
     cbAddPos: TComboBox;
     lblAddPos: TLabel;
+    actSelectAll: TAction;
+    actInvertSelection: TAction;
+    actDeleteSelected: TAction;
+    popColorList: TSpTBXPopupMenu;
+    SpTBXItem1: TSpTBXItem;
+    SpTBXItem2: TSpTBXItem;
+    SpTBXItem3: TSpTBXItem;
+    SpTBXSeparatorItem1: TSpTBXSeparatorItem;
+    SpTBXItem4: TSpTBXItem;
     procedure actClearColorsExecute(Sender: TObject);
     procedure actCloseExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
     procedure actAddToListExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
+    procedure actDeleteSelectedExecute(Sender: TObject);
+    procedure actInvertSelectionExecute(Sender: TObject);
+    procedure actSelectAllExecute(Sender: TObject);
     procedure actShowPixelPosExecute(Sender: TObject);
     procedure cswCursorColorGetBottomColorStrValue(const AColor: TColor; var ColorStr, Prefix, Suffix: string);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -75,6 +87,7 @@ type
     procedure tmUpdateColorTimer(Sender: TObject);
     procedure StartTimer(Sender: TObject);
     procedure InitControls;
+    procedure InitCtrls(Sender: TObject);
   private
     bUpdatingControls: Boolean;
     sCapturedColors: string;
@@ -89,7 +102,7 @@ var
 implementation
 
 uses
-  FCP.FormMain;
+  FCP.FormMain, FCP.FormPaletteEditor;
 
 
 {$R *.dfm}
@@ -158,7 +171,17 @@ begin
   actAdd.Enabled := xCount > 0;
   cbAddPos.Enabled := xCount > 0;
   lblAddPos.Enabled := xCount > 0;
+
+  actSelectAll.Enabled := (clbColors.SelCount <> xCount) and (xCount > 0);
+  actInvertSelection.Enabled := xCount > 0;
+  actDeleteSelected.Enabled := clbColors.SelCount > 0;
 end;
+
+procedure TFormPixelColor.InitCtrls(Sender: TObject);
+begin
+  InitControls;
+end;
+
 {$endregion InitControls}
 
 
@@ -179,6 +202,13 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_Top', 'At the top'));
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
+
+  actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
+  actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
+  actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
+  actInvertSelection.Hint := FormPaletteEditor.actInvertSelection.Hint;
+  actDeleteSelected.Caption := FormPaletteEditor.actDeleteSelected.Caption;
+  actDeleteSelected.Hint := FormPaletteEditor.actDeleteSelected.Hint;
 
   InitControls;
 end;
@@ -327,9 +357,29 @@ begin
   Close;
 end;
 
+
+
 procedure TFormPixelColor.cswCursorColorGetBottomColorStrValue(const AColor: TColor; var ColorStr, Prefix, Suffix: string);
 begin
   ColorStr := InsertNumSep(ColorStr, ' ', 2, 2);
+end;
+
+procedure TFormPixelColor.actSelectAllExecute(Sender: TObject);
+begin
+  clbColors.SelectAll;
+  InitControls;
+end;
+
+procedure TFormPixelColor.actInvertSelectionExecute(Sender: TObject);
+begin
+  clbColors.InvertSelection;
+  InitControls;
+end;
+
+procedure TFormPixelColor.actDeleteSelectedExecute(Sender: TObject);
+begin
+  clbColors.RemoveSelectedItems;
+  InitControls;
 end;
 
 end.

@@ -3,7 +3,7 @@ object FormGradientColors: TFormGradientColors
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'FormGradientColors'
-  ClientHeight = 327
+  ClientHeight = 356
   ClientWidth = 694
   Color = 14342874
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object FormGradientColors: TFormGradientColors
   TextHeight = 13
   object pnBottom: TJppSimplePanel
     Left = 0
-    Top = 286
+    Top = 315
     Width = 694
     Height = 41
     Align = alBottom
@@ -30,6 +30,7 @@ object FormGradientColors: TFormGradientColors
     Appearance.DrawBottomBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
+    ExplicitTop = 286
     DesignSize = (
       694
       41)
@@ -560,7 +561,7 @@ object FormGradientColors: TFormGradientColors
       SpinButton.Height = 17
       SpinButton.Align = alRight
       SpinOptions.MaxValue = 256.000000000000000000
-      SpinOptions.MinValue = 2.000000000000000000
+      SpinOptions.MinValue = 3.000000000000000000
       SpinOptions.Value = 16.000000000000000000
       OnValueChanged = spedStepsValueChanged
     end
@@ -653,14 +654,16 @@ object FormGradientColors: TFormGradientColors
     Left = 274
     Top = 59
     Width = 420
-    Height = 227
+    Height = 256
     Align = alRight
+    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1
     Appearance.BackgroundColor = 15395562
     Appearance.BorderColor = 11053224
     Appearance.DrawTopBorder = False
     Appearance.DrawBottomBorder = False
     Appearance.DrawRightBorder = False
+    ExplicitHeight = 227
     object pnColorPaletteTitle: TJppBasicPanel
       AlignWithMargins = True
       Left = 1
@@ -717,7 +720,10 @@ object FormGradientColors: TFormGradientColors
       Margins.Bottom = 0
       Align = alTop
       ItemHeight = 15
+      PopupMenu = popColorList
       TabOrder = 1
+      OnClick = InitCtrls
+      Multiselect = True
       BorderStyle = bsNone
       Items.Strings = (
         '-=Web red colors'
@@ -817,8 +823,8 @@ object FormGradientColors: TFormGradientColors
   end
   object Actions: TActionList
     Images = FormMain.pilMain
-    Left = 509
-    Top = 62
+    Left = 479
+    Top = 194
     object actEsc: TAction
       Caption = 'actEsc'
       ShortCut = 27
@@ -845,6 +851,46 @@ object FormGradientColors: TFormGradientColors
       Caption = 'Clear color list'
       ImageIndex = 7
       OnExecute = actClearColorsExecute
+    end
+    object actSelectAll: TAction
+      Caption = 'Select all'
+      Hint = 'Select all'
+      ImageIndex = 9
+      ShortCut = 16449
+      OnExecute = actSelectAllExecute
+    end
+    object actInvertSelection: TAction
+      Caption = 'Invert selection'
+      Hint = 'Invert selection'
+      ImageIndex = 10
+      ShortCut = 16457
+      OnExecute = actInvertSelectionExecute
+    end
+    object actDeleteSelected: TAction
+      Caption = 'Remove selected colors'
+      Hint = 'Remove selected colors'
+      ImageIndex = 83
+      ShortCut = 46
+      OnExecute = actDeleteSelectedExecute
+    end
+  end
+  object popColorList: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 376
+    Top = 195
+    object SpTBXItem3: TSpTBXItem
+      Action = actSelectAll
+    end
+    object SpTBXItem2: TSpTBXItem
+      Action = actInvertSelection
+    end
+    object SpTBXItem1: TSpTBXItem
+      Action = actDeleteSelected
+    end
+    object SpTBXSeparatorItem1: TSpTBXSeparatorItem
+    end
+    object SpTBXItem4: TSpTBXItem
+      Action = actClearColors
     end
   end
 end

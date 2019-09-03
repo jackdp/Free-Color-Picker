@@ -3,7 +3,7 @@ object FormOptions: TFormOptions
   Top = 0
   BorderStyle = bsDialog
   Caption = 'FormOptions'
-  ClientHeight = 450
+  ClientHeight = 479
   ClientWidth = 720
   Color = 14342874
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object FormOptions: TFormOptions
   OnCreate = FormCreate
   DesignSize = (
     720
-    450)
+    479)
   PixelsPerInch = 96
   TextHeight = 13
   object pnLanguage: TJppSimplePanel
@@ -41,7 +41,7 @@ object FormOptions: TFormOptions
     object cbLang: TComboBox
       Left = 10
       Top = 21
-      Width = 169
+      Width = 242
       Height = 21
       Style = csDropDownList
       DropDownCount = 12
@@ -51,7 +51,7 @@ object FormOptions: TFormOptions
   end
   object btnClose: TJppPngButton
     Left = 628
-    Top = 418
+    Top = 446
     Width = 84
     Height = 25
     Action = actClose
@@ -132,14 +132,13 @@ object FormOptions: TFormOptions
     Appearance.Focused.UpperGradientPercent = 46
     Appearance.FocusRect.Pen.Color = 13675044
     Appearance.BorderWhenDefault.Color = 13675044
-    ExplicitTop = 419
   end
   object pnColorPalette: TJppSimplePanel
     AlignWithMargins = True
     Left = 361
     Top = 6
     Width = 351
-    Height = 406
+    Height = 434
     Margins.Left = 6
     Margins.Right = 6
     TabOrder = 2
@@ -147,7 +146,7 @@ object FormOptions: TFormOptions
     Appearance.BorderColor = 11053224
     DesignSize = (
       351
-      406)
+      434)
     object lblColorPalette: TLabel
       AlignWithMargins = True
       Left = 8
@@ -807,13 +806,24 @@ object FormOptions: TFormOptions
         'At the top of the color palette'
         'At the end of the color palette')
     end
+    object chHtmlExport_AddJson: TCheckBox
+      Left = 10
+      Top = 405
+      Width = 333
+      Height = 17
+      Caption = 'Add JSON code when exporting the palette to HTML'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 13
+      OnClick = chHtmlExport_AddJsonClick
+    end
   end
   object pnMain: TJppSimplePanel
     AlignWithMargins = True
     Left = 6
     Top = 62
     Width = 349
-    Height = 379
+    Height = 378
     Margins.Left = 6
     Margins.Right = 6
     TabOrder = 3
@@ -821,7 +831,7 @@ object FormOptions: TFormOptions
     Appearance.BorderColor = 11053224
     DesignSize = (
       349
-      379)
+      378)
     object lblResampler: TLabel
       Left = 10
       Top = 7
@@ -853,7 +863,7 @@ object FormOptions: TFormOptions
         'a'#13#10'preview image:'
     end
     object lblMs: TLabel
-      Left = 273
+      Left = 279
       Top = 272
       Width = 14
       Height = 13
@@ -927,7 +937,7 @@ object FormOptions: TFormOptions
       OnChange = cbColorFormatChange
     end
     object edCapturingInterval: TEdit
-      Left = 213
+      Left = 219
       Top = 269
       Width = 39
       Height = 21
@@ -937,7 +947,7 @@ object FormOptions: TFormOptions
       Text = '50'
     end
     object udCapturingInterval: TUpDown
-      Left = 252
+      Left = 258
       Top = 269
       Width = 16
       Height = 21
@@ -996,6 +1006,7 @@ object FormOptions: TFormOptions
         Width = 117
         Height = 21
         TabOrder = 1
+        Appearance.BackgroundColor = 4276545
         Appearance.BorderColor = 4276545
         Appearance.TopColorValue.Font.Charset = DEFAULT_CHARSET
         Appearance.TopColorValue.Font.Color = 16053492
@@ -1012,6 +1023,11 @@ object FormOptions: TFormOptions
         Appearance.BottomColorValue.BackgroundColor = 9211020
         Appearance.BottomColorValue.Visible = False
         Appearance.ColorRect.Width = 21
+        Appearance.ColorRect.Margins.Left = 1
+        Appearance.ColorRect.Margins.Right = 1
+        Appearance.ColorRect.Margins.Top = 1
+        Appearance.ColorRect.Margins.Bottom = 1
+        Appearance.ColorRect.DrawBorder = False
         OnSelectedColorChanged = cswPixelIndicatorSelectedColorChanged
         BoundLabel.Width = 31
         BoundLabel.Height = 13
@@ -1099,9 +1115,91 @@ object FormOptions: TFormOptions
       end
     end
   end
+  object btnDesktopShortcut: TJppPngButton
+    Left = 6
+    Top = 446
+    Width = 236
+    Height = 25
+    Action = actCreateDesktopShortcut
+    Anchors = [akLeft, akBottom]
+    Caption = 'Create shortcut on the Desktop'
+    TabOrder = 4
+    Appearance.Normal.Border.Color = 7368816
+    Appearance.Normal.Color = 15987699
+    Appearance.Normal.Font.Charset = DEFAULT_CHARSET
+    Appearance.Normal.Font.Color = clBlack
+    Appearance.Normal.Font.Height = -11
+    Appearance.Normal.Font.Name = 'Tahoma'
+    Appearance.Normal.Font.Style = []
+    Appearance.Normal.UpperGradient.SpeedPercent = 100
+    Appearance.Normal.UpperGradient.ColorFrom = 15856113
+    Appearance.Normal.UpperGradient.ColorTo = 15461355
+    Appearance.Normal.BottomGradient.SpeedPercent = 100
+    Appearance.Normal.BottomGradient.ColorFrom = 14540253
+    Appearance.Normal.BottomGradient.ColorTo = 13619151
+    Appearance.Normal.UpperGradientPercent = 46
+    Appearance.Hot.Border.Color = 11632444
+    Appearance.Hot.Color = 16578024
+    Appearance.Hot.Font.Charset = DEFAULT_CHARSET
+    Appearance.Hot.Font.Color = clBlack
+    Appearance.Hot.Font.Height = -11
+    Appearance.Hot.Font.Name = 'Tahoma'
+    Appearance.Hot.Font.Style = []
+    Appearance.Hot.UpperGradient.SpeedPercent = 100
+    Appearance.Hot.UpperGradient.ColorFrom = 16643818
+    Appearance.Hot.UpperGradient.ColorTo = 16576729
+    Appearance.Hot.BottomGradient.SpeedPercent = 100
+    Appearance.Hot.BottomGradient.ColorFrom = 16639678
+    Appearance.Hot.BottomGradient.ColorTo = 16112039
+    Appearance.Hot.UpperGradientPercent = 46
+    Appearance.Down.Border.Color = 5849118
+    Appearance.Down.Color = 15852229
+    Appearance.Down.Font.Charset = DEFAULT_CHARSET
+    Appearance.Down.Font.Color = clBlack
+    Appearance.Down.Font.Height = -11
+    Appearance.Down.Font.Name = 'Tahoma'
+    Appearance.Down.Font.Style = []
+    Appearance.Down.UpperGradient.SpeedPercent = 100
+    Appearance.Down.UpperGradient.ColorFrom = 16577765
+    Appearance.Down.UpperGradient.ColorTo = 16180676
+    Appearance.Down.BottomGradient.SpeedPercent = 100
+    Appearance.Down.BottomGradient.ColorFrom = 15716760
+    Appearance.Down.BottomGradient.ColorTo = 14662002
+    Appearance.Down.UpperGradientPercent = 52
+    Appearance.Disabled.Border.Color = 11907757
+    Appearance.Disabled.Color = 16053492
+    Appearance.Disabled.Font.Charset = DEFAULT_CHARSET
+    Appearance.Disabled.Font.Color = 10526880
+    Appearance.Disabled.Font.Height = -11
+    Appearance.Disabled.Font.Name = 'Tahoma'
+    Appearance.Disabled.Font.Style = []
+    Appearance.Disabled.UpperGradient.SpeedPercent = 100
+    Appearance.Disabled.UpperGradient.ColorFrom = 16053492
+    Appearance.Disabled.UpperGradient.ColorTo = 16053492
+    Appearance.Disabled.BottomGradient.SpeedPercent = 100
+    Appearance.Disabled.BottomGradient.ColorFrom = 16053492
+    Appearance.Disabled.BottomGradient.ColorTo = 16053492
+    Appearance.Disabled.UpperGradientPercent = 46
+    Appearance.Focused.Border.Color = 13675044
+    Appearance.Focused.Color = 15987699
+    Appearance.Focused.Font.Charset = DEFAULT_CHARSET
+    Appearance.Focused.Font.Color = clBlack
+    Appearance.Focused.Font.Height = -11
+    Appearance.Focused.Font.Name = 'Tahoma'
+    Appearance.Focused.Font.Style = []
+    Appearance.Focused.UpperGradient.SpeedPercent = 100
+    Appearance.Focused.UpperGradient.ColorFrom = 15856113
+    Appearance.Focused.UpperGradient.ColorTo = 15461355
+    Appearance.Focused.BottomGradient.SpeedPercent = 100
+    Appearance.Focused.BottomGradient.ColorFrom = 14540253
+    Appearance.Focused.BottomGradient.ColorTo = 13619151
+    Appearance.Focused.UpperGradientPercent = 46
+    Appearance.FocusRect.Pen.Color = 13675044
+    Appearance.BorderWhenDefault.Color = 13675044
+  end
   object Actions: TActionList
-    Left = 210
-    Top = 20
+    Left = 299
+    Top = 78
     object actEsc: TAction
       Caption = 'actEsc'
       ShortCut = 27
@@ -1110,6 +1208,10 @@ object FormOptions: TFormOptions
     object actClose: TAction
       Caption = 'Close'
       OnExecute = actCloseExecute
+    end
+    object actCreateDesktopShortcut: TAction
+      Caption = 'Create shortcut on the Desktop'
+      OnExecute = actCreateDesktopShortcutExecute
     end
   end
 end

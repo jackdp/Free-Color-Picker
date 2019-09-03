@@ -327,11 +327,11 @@ object FormEditColor: TFormEditColor
       Margins.Right = 5
       Margins.Bottom = 6
       Align = alClient
-      Hue = 0.406810045242309600
+      Hue = 0.833333313465118500
       MarkerType = mtCross
       ParentBackground = False
-      Saturation = 0.502702713012695300
-      SelectedColor = -13726889
+      Saturation = 1.000000000000000000
+      SelectedColor = -65281
       TabOrder = 0
       OnChanged = cpHSChanged
     end
@@ -349,8 +349,8 @@ object FormEditColor: TFormEditColor
       OnChange = LPickerChange
       CanDrawArrowPos = False
       Saturation = 212
-      Luminance = 106
-      SelectedColor = 855508
+      Luminance = 128
+      SelectedColor = 2039793
     end
   end
   object pnHslSliders: TJppSimplePanel
@@ -2289,8 +2289,8 @@ object FormEditColor: TFormEditColor
   end
   object Actions: TActionList
     Images = FormMain.pilMain
-    Left = 486
-    Top = 126
+    Left = 198
+    Top = 254
     object actEsc: TAction
       Caption = 'actEsc'
       ShortCut = 27
@@ -2418,7 +2418,7 @@ object FormEditColor: TFormEditColor
   end
   object dlgColor: TColorDialog
     Options = [cdFullOpen, cdAnyColor]
-    Left = 384
-    Top = 129
+    Left = 106
+    Top = 254
   end
 end

@@ -743,7 +743,9 @@ object FormColorWheel: TFormColorWheel
         Margins.Bottom = 1
         Align = alTop
         ItemHeight = 15
+        PopupMenu = popColorList
         TabOrder = 3
+        OnClick = InitCtrls
         Multiselect = True
         BorderStyle = bsNone
         Items.Strings = (
@@ -2506,6 +2508,46 @@ object FormColorWheel: TFormColorWheel
       Hint = 'Add colors from the list to the main color palette'
       ImageIndex = 13
       OnExecute = actAddExecute
+    end
+    object actSelectAll: TAction
+      Caption = 'Select all'
+      Hint = 'Select all'
+      ImageIndex = 9
+      ShortCut = 16449
+      OnExecute = actSelectAllExecute
+    end
+    object actInvertSelection: TAction
+      Caption = 'Invert selection'
+      Hint = 'Invert selection'
+      ImageIndex = 10
+      ShortCut = 16457
+      OnExecute = actInvertSelectionExecute
+    end
+    object actDeleteSelected: TAction
+      Caption = 'Remove selected colors'
+      Hint = 'Remove selected colors'
+      ImageIndex = 83
+      ShortCut = 46
+      OnExecute = actDeleteSelectedExecute
+    end
+  end
+  object popColorList: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 442
+    Top = 204
+    object SpTBXItem3: TSpTBXItem
+      Action = actSelectAll
+    end
+    object SpTBXItem2: TSpTBXItem
+      Action = actInvertSelection
+    end
+    object SpTBXItem1: TSpTBXItem
+      Action = actDeleteSelected
+    end
+    object SpTBXSeparatorItem1: TSpTBXSeparatorItem
+    end
+    object SpTBXItem4: TSpTBXItem
+      Action = actClearColors
     end
   end
 end

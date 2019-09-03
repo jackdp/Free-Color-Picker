@@ -13,13 +13,13 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList, Vcl.Buttons, Vcl.ComCtrls,
 
   // JPLib
-  JPL.Colors, JPL.Strings,
+  JPL.Colors, JPL.Strings, JPL.Win.Shortcuts,
 
   // JPPack
-  JPP.PngButton, JPP.ColorListBox, JPP.ColorComboBox, JPP.SimplePanel,
+  JPP.PngButton, JPP.ColorListBox, JPP.ColorComboBox, JPP.SimplePanel, JPP.ColorSwatch,
 
   // FCP
-  FCP.Types, FCP.Shared, FCP.AppStrings, JPP.ColorSwatch;
+  FCP.Types, FCP.Shared, FCP.AppStrings;
 
 type
 
@@ -73,7 +73,11 @@ type
     lblPixelIndicator: TLabel;
     cbPixelIndicator: TComboBox;
     cswPixelIndicator: TJppColorSwatchEx;
+    chHtmlExport_AddJson: TCheckBox;
+    btnDesktopShortcut: TJppPngButton;
+    actCreateDesktopShortcut: TAction;
     procedure actCloseExecute(Sender: TObject);
+    procedure actCreateDesktopShortcutExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
     procedure cbPixelIndicatorChange(Sender: TObject);
     procedure cbAddColorsPositionChange(Sender: TObject);
@@ -90,6 +94,7 @@ type
     procedure chColorRectangle_ConnectedClick(Sender: TObject);
     procedure chColorRectangle_DrawBorderClick(Sender: TObject);
     procedure chCopyColor_CaptureClick(Sender: TObject);
+    procedure chHtmlExport_AddJsonClick(Sender: TObject);
     procedure chShowBottomPanelClick(Sender: TObject);
     procedure chShowColorCodesPanelClick(Sender: TObject);
     procedure chShowRgbGraphClick(Sender: TObject);
@@ -185,6 +190,10 @@ begin
     cswPixelIndicator.SelectedColor := AP.PixelIndicatorColor;
     cswPixelIndicator.ButtonChangeColor.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
     cswPixelIndicator.ButtonChangeColor.PngImage.Assign(FormMain.PngCollection.GetPngImageByName('Colors'));
+
+    chHtmlExport_AddJson.Checked := AP.HtmlExport_AddJson;
+
+    btnDesktopShortcut.Appearance.Assign(FormMain.btnT1.Appearance);
 
   finally
     bUpdatingControls := False;
@@ -517,12 +526,14 @@ procedure TFormOptions.chShowBottomPanelClick(Sender: TObject);
 begin
   if bUpdatingControls then Exit;
   FormMain.pnBottom.Visible := chShowBottomPanel.Checked;
+  FormMain.actShowHideBottomPanel.Checked := FormMain.pnBottom.Visible;
 end;
 
 procedure TFormOptions.chShowColorCodesPanelClick(Sender: TObject);
 begin
   if bUpdatingControls then Exit;
   FormMain.pnColorCodes.Visible := chShowColorCodesPanel.Checked;
+  FormMain.actShowHideColorCodesPanel.Checked := FormMain.pnColorCodes.Visible;
   InitControls;
 end;
 
@@ -554,6 +565,8 @@ procedure TFormOptions.actCloseExecute(Sender: TObject);
 begin
   Close;
 end;
+
+
 
 procedure TFormOptions.actEscExecute(Sender: TObject);
 begin
@@ -606,11 +619,24 @@ begin
   FormMain.clbColors.Font.Color := ccbColorPalette_FontColor.SelectedColor;
 end;
 
+procedure TFormOptions.chHtmlExport_AddJsonClick(Sender: TObject);
+begin
+  AP.HtmlExport_AddJson := chHtmlExport_AddJson.Checked;
+end;
+
 procedure TFormOptions.cswPixelIndicatorSelectedColorChanged(Sender: TObject);
 begin
   if bUpdatingControls then Exit;
   AP.PixelIndicatorColor := cswPixelIndicator.SelectedColor;
   FormMain.UpdatePreviewImg;
+end;
+
+procedure TFormOptions.actCreateDesktopShortcutExecute(Sender: TObject);
+var
+  LnkShortName: string;
+begin
+  LnkShortName := AppInfo.Name + ' (' + AppInfo.BitsStr + '-bit)' + '.lnk';
+  if not ShortcutExists('Desktop', LnkShortName) then CreateShortcut(AppInfo.Name, ParamStr(0), 'Desktop', LnkShortName, AppInfo.FullName + ' (' + AppInfo.BitsStr + '-bit)');
 end;
 
 end.

@@ -10,7 +10,7 @@ uses
   System.SysUtils, System.Variants, System.Classes, System.Actions,
 
   // VCL
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Menus,
 
   // JPLib
   JPL.Strings, JPL.Conversion, JPL.Colors, JPL.Math, JPL.IniFile,
@@ -25,7 +25,7 @@ uses
   GdiPlus, GdiPlusHelpers,
 
   // SpTBX
-  SpTBXEditors,
+  SpTBXEditors, TB2Item, SpTBXItem,
 
   // FCP
   FCP.Types, FCP.Shared, FCP.AppStrings;
@@ -86,12 +86,24 @@ type
     actClose: TAction;
     actAdd: TAction;
     imgHue: TImage;
+    actSelectAll: TAction;
+    actInvertSelection: TAction;
+    actDeleteSelected: TAction;
+    popColorList: TSpTBXPopupMenu;
+    SpTBXItem1: TSpTBXItem;
+    SpTBXItem2: TSpTBXItem;
+    SpTBXItem3: TSpTBXItem;
+    SpTBXSeparatorItem1: TSpTBXSeparatorItem;
+    SpTBXItem4: TSpTBXItem;
     procedure actAddExecute(Sender: TObject);
     procedure actAddToList_TetradicColorsExecute(Sender: TObject);
     procedure actAddToList_TriadicColorsExecute(Sender: TObject);
     procedure actClearColorsExecute(Sender: TObject);
     procedure actCloseExecute(Sender: TObject);
+    procedure actDeleteSelectedExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
+    procedure actInvertSelectionExecute(Sender: TObject);
+    procedure actSelectAllExecute(Sender: TObject);
     procedure chTriadComplementaryClick(Sender: TObject);
     procedure cswCompGetBottomColorStrValue(const AColor: TColor; var ColorStr, Prefix, Suffix: string);
     procedure cswCurrentColorSelectedColorChanged(Sender: TObject);
@@ -122,12 +134,13 @@ type
     procedure PrepareControls;
     procedure SetLang;
     procedure InitControls;
+    procedure InitCtrls(Sender: TObject);
     procedure UpdateColorCountLabel;
     procedure SaveSettingsToIni;
     procedure LoadSettingsFromIni;
     procedure spedDegDist_TetradValueChanged(Sender: TObject);
     procedure spedDegDist_TriadValueChanged(Sender: TObject);
-    procedure DrawHueBar(Bmp: TBitmap; BorderColor: TColor = clNone);
+    //procedure DrawHueBar(Bmp: TBitmap; BorderColor: TColor = clNone);  // moved to FCP.Shared
     procedure DrawImgHue;
   private
     bUpdatingControls: Boolean;
@@ -150,7 +163,7 @@ var
 implementation
 
 uses
-  FCP.FormMain;
+  FCP.FormMain, FCP.FormPaletteEditor;
 
 {$R *.dfm}
 
@@ -241,6 +254,13 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
 
+  actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
+  actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
+  actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
+  actInvertSelection.Hint := FormPaletteEditor.actInvertSelection.Hint;
+  actDeleteSelected.Caption := FormPaletteEditor.actDeleteSelected.Caption;
+  actDeleteSelected.Hint := FormPaletteEditor.actDeleteSelected.Hint;
+
   InitControls;
 end;
 {$endregion SetLang}
@@ -257,10 +277,20 @@ begin
     actAdd.Enabled := xCount > 0;
     cbAddPos.Enabled := xCount > 0;
     lblAddPos.Enabled := xCount > 0;
+
+    actSelectAll.Enabled := (clbColors.SelCount <> xCount) and (xCount > 0);
+    actInvertSelection.Enabled := xCount > 0;
+    actDeleteSelected.Enabled := clbColors.SelCount > 0;
+
     UpdateColorCountLabel;
   finally
     bUpdatingControls := False;
   end;
+end;
+
+procedure TFormColorWheel.InitCtrls(Sender: TObject);
+begin
+  InitControls;
 end;
 
 procedure TFormColorWheel.actAddToList_TriadicColorsExecute(Sender: TObject);
@@ -579,51 +609,6 @@ begin
   UpdateColorControls;
 end;
 
-
-procedure TFormColorWheel.DrawHueBar(Bmp: TBitmap; BorderColor: TColor = clNone);
-var
-  i, Hue, Sat, Lum: integer;
-  xrw: Single;
-  cl: TColor;
-  Bar: TRect;
-begin
-  if (Bmp.Width < 2) or (Bmp.Height < 2) then Exit;
-
-  with Bmp.Canvas do
-  begin
-
-    xrw := Bmp.Width / 360;
-    Sat := 100;
-    Lum := 50;
-    Bar.Height := Bmp.Height;
-
-    for i := 0 to 360 do
-    begin
-      Hue := Round(xrw + i);
-      cl := HslCssToColor(Hue, Sat, Lum);
-      Bar.Left := Round(xrw * i);
-      Bar.Width := 1;
-      Pen.Color := cl;
-      Brush.Color := cl;
-      Rectangle(Bar);
-    end;
-
-    if BorderColor <> clNone then
-    begin
-      Brush.Style := bsClear;
-      Bar.Left := 0;
-      Bar.Top := 0;
-      Bar.Width := Bmp.Width;
-      Bar.Height := Bmp.Height;
-      Pen.Style := psSolid;
-      Pen.Width := 1;
-      Pen.Color := BorderColor;
-      Rectangle(Bar);
-    end;
-
-  end;
-
-end;
 
 
 procedure TFormColorWheel.DrawImgHue;
@@ -1009,5 +994,24 @@ begin
 end;
 
 {$endregion DrawColorWheel}
+
+
+procedure TFormColorWheel.actSelectAllExecute(Sender: TObject);
+begin
+  clbColors.SelectAll;
+  InitControls;
+end;
+
+procedure TFormColorWheel.actInvertSelectionExecute(Sender: TObject);
+begin
+  clbColors.InvertSelection;
+  InitControls;
+end;
+
+procedure TFormColorWheel.actDeleteSelectedExecute(Sender: TObject);
+begin
+  clbColors.RemoveSelectedItems;
+  InitControls;
+end;
 
 end.

@@ -7,7 +7,7 @@ uses
   Winapi.Windows, Winapi.Messages,
 
   // System
-  System.SysUtils, System.Variants, System.Classes, System.Actions, //System.IniFiles,
+  System.SysUtils, System.Variants, System.Classes, System.Actions,
 
   // VCL
   Vcl.Graphics, Vcl.Menus, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ActnList, Vcl.StdCtrls, Vcl.Buttons,
@@ -19,7 +19,7 @@ uses
   JPP.BasicPanel, JPP.PngButton, JPP.Timer, JPP.ColorListBox, JPP.SimplePanel, JPL.IniFile,
 
   // SpTBX
-  SpTBXEditors,
+  SpTBXEditors, TB2Item, SpTBXItem,
 
   // FCP
   FCP.Types, FCP.Shared, FCP.AppStrings;
@@ -55,11 +55,23 @@ type
     btnClearColors: TJppPngButton;
     cbAddPos: TComboBox;
     lblAddPos: TLabel;
+    actSelectAll: TAction;
+    actInvertSelection: TAction;
+    actDeleteSelected: TAction;
+    popColorList: TSpTBXPopupMenu;
+    SpTBXItem1: TSpTBXItem;
+    SpTBXItem2: TSpTBXItem;
+    SpTBXItem3: TSpTBXItem;
+    SpTBXSeparatorItem1: TSpTBXSeparatorItem;
+    SpTBXItem4: TSpTBXItem;
     procedure actClearColorsExecute(Sender: TObject);
     procedure actCloseExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
+    procedure actDeleteSelectedExecute(Sender: TObject);
+    procedure actInvertSelectionExecute(Sender: TObject);
+    procedure actSelectAllExecute(Sender: TObject);
     procedure actStartCapturingExecute(Sender: TObject);
     procedure actStopCapturingExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -85,7 +97,7 @@ var
 implementation
 
 uses
-  FCP.FormMain;
+  FCP.FormMain, FCP.FormPaletteEditor;
 
 {$R *.dfm}
 
@@ -147,6 +159,10 @@ begin
   actAdd.Enabled := xCount > 0;
   cbAddPos.Enabled := xCount > 0;
   lblAddPos.Enabled := xCount > 0;
+
+  actSelectAll.Enabled := (clbColors.SelCount <> xCount) and (xCount > 0);
+  actInvertSelection.Enabled := xCount > 0;
+  actDeleteSelected.Enabled := clbColors.SelCount > 0;
 end;
 
 procedure TFormAutoCapture.InitCtrls(Sender: TObject);
@@ -179,6 +195,13 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_Top', 'At the top'));
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
+
+  actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
+  actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
+  actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
+  actInvertSelection.Hint := FormPaletteEditor.actInvertSelection.Hint;
+  actDeleteSelected.Caption := FormPaletteEditor.actDeleteSelected.Caption;
+  actDeleteSelected.Hint := FormPaletteEditor.actDeleteSelected.Hint;
 
 end;
 {$endregion SetLang}
@@ -328,9 +351,29 @@ begin
   Close;
 end;
 
+
+
 procedure TFormAutoCapture.actEscExecute(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TFormAutoCapture.actInvertSelectionExecute(Sender: TObject);
+begin
+  clbColors.InvertSelection;
+  InitControls;
+end;
+
+procedure TFormAutoCapture.actSelectAllExecute(Sender: TObject);
+begin
+  clbColors.SelectAll;
+  InitControls;
+end;
+
+procedure TFormAutoCapture.actDeleteSelectedExecute(Sender: TObject);
+begin
+  clbColors.RemoveSelectedItems;
+  InitControls;
 end;
 
 end.

@@ -400,9 +400,17 @@ end;
 procedure TFormEditColor.cpHSChanged(Sender: TObject);
 var
   Lum: integer;
+  CssHue, CssSat, CssLum: Single;
 begin
+
   if bUpdatingControls then Exit;
-  CurrentColor := WinColor(cpHS.SelectedColor);
+
+  CssHue := cpHS.Hue * 360;
+  CssSat := cpHS.Saturation * 100;
+  CssLum := LPicker.Luminance * 100 / 240;
+  CurrentColor := HslCssToColor(CssHue, CssSat, CssLum);
+
+  //CurrentColor := WinColor(cpHS.SelectedColor);
 
   bUpdatingControls := True;
   try
@@ -416,9 +424,12 @@ begin
   end;
 
   UpdateCurrentColorPanel(CurrentColor);
+
 end;
 
 procedure TFormEditColor.LPickerChange(Sender: TObject);
+var
+  CssHue, CssSat, CssLum: Single;
 begin
   if bUpdatingControls then Exit;
 
@@ -427,9 +438,14 @@ begin
 
   try
 
+    CssHue := cpHS.Hue * 360;
+    CssSat := cpHS.Saturation * 100;
+    CssLum := LPicker.Luminance * 100 / 240;
+    CurrentColor := HslCssToColor(CssHue, CssSat, CssLum);
+
     bUpdatingControls := True;
     try
-      CurrentColor := LPicker.SelectedColor;
+      //CurrentColor := LPicker.SelectedColor;
       SetRgbControls(CurrentColor, True, True);
       SetHslControls(CurrentColor, True, True);
     finally

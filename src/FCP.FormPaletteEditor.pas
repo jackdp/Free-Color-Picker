@@ -7,22 +7,22 @@ uses
   Winapi.Windows, Winapi.Messages, Winapi.ActiveX,
 
   // System
-  System.SysUtils, System.Variants, System.Classes, {System.IniFiles,} System.Actions, System.UITypes,
+  System.SysUtils, System.Variants, System.Classes, System.Actions, System.UITypes, System.StrUtils, System.Masks,
 
   // VCL
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList, Vcl.Buttons, Vcl.Menus,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList, Vcl.Buttons, Vcl.Menus, Vcl.ClipBrd,
 
   // JPLib
   JPL.Strings, JPL.Conversion, JPL.Colors, JPL.Colors.ColorClass, JPL.LangMgr, JPL.Colors.List, JPL.Dialogs, JPL.IniFile,
 
   // JPPack
-  JPP.Panel, JPP.BasicSpeedButton, JPP.BasicPanel, JPP.ColorComboBox, JPP.PngButton, JPP.DoubleLabel, JPP.SimplePanel,
+  JPP.Panel, JPP.BasicSpeedButton, JPP.BasicPanel, JPP.ColorComboBox, JPP.PngButton, JPP.DoubleLabel, JPP.SimplePanel, JPP.DoubleLineLabel, JPP.Edit,
 
   // SpTBX
-  TB2Item, SpTBXItem, TB2Dock, TB2Toolbar,
+  TB2Item, SpTBXItem, TB2Dock, TB2Toolbar, SpTBXEditors,
 
   // Virtual TreeView
-  VirtualTrees, VirtualTrees.HeaderPopup,
+  VirtualTrees,
 
   // FCP
   FCP.Types, FCP.ColorPalette, FCP.AppStrings, FCP.FormEditColor, FCP.Shared, FCP.FormSortBy, FCP.FormModifyPalette, FCP.FormColorWheel;
@@ -62,6 +62,15 @@ const
   COL_COLOR_PASCAL_INT = 23;
   COL_COLOR_CPP_HEX = 24;
 
+  OPERATOR_LESS = 0;               // <
+  OPERATOR_LESS_OR_EQUAL = 1;      // <=
+  OPERATOR_EQUAL = 2;              // =
+  OPERATOR_GREATER_OR_EQUAL = 3;   // >=
+  OPERATOR_GREATER = 4;            // >
+  OPERATOR_NOT_EQUAL = 5;          // <>
+
+  OPERATORS_STR = 'Less,LessOrEqual,Equal,GreaterOrEqual,Greater,NotEqual';
+
 type
 
 
@@ -79,6 +88,12 @@ type
     Header: TColor;
     Background: TColor;
     Text: TColor;
+  end;
+
+  TVstNodeStats = record
+    Visible: integer;
+    Hidden: integer;
+    All: integer;
   end;
 
   {$region '     TFormPaletteEditor     '}
@@ -123,7 +138,6 @@ type
     SpTBXItem8: TSpTBXItem;
     actExportPaletteToGPL: TAction;
     SpTBXItem9: TSpTBXItem;
-    popVstHeader: TVTHeaderPopupMenu;
     popVst: TSpTBXPopupMenu;
     SpTBXItem10: TSpTBXItem;
     SpTBXItem11: TSpTBXItem;
@@ -180,6 +194,147 @@ type
     actColorWheel: TAction;
     SpTBXItem37: TSpTBXItem;
     SpTBXItem38: TSpTBXItem;
+    popColumns: TSpTBXPopupMenu;
+    SpTBXItem39: TSpTBXItem;
+    actSwitchColVisible_No: TAction;
+    actSwitchColVisible_Name: TAction;
+    actSwitchColVisible_Rgb: TAction;
+    actSwitchColVisible_RgbRed: TAction;
+    actSwitchColVisible_RgbGreen: TAction;
+    actSwitchColVisible_RgbBlue: TAction;
+    SpTBXItem40: TSpTBXItem;
+    SpTBXItem41: TSpTBXItem;
+    SpTBXItem42: TSpTBXItem;
+    SpTBXItem43: TSpTBXItem;
+    SpTBXSeparatorItem13: TSpTBXSeparatorItem;
+    SpTBXItem44: TSpTBXItem;
+    SpTBXSeparatorItem14: TSpTBXSeparatorItem;
+    SpTBXItem45: TSpTBXItem;
+    actSwitchColVisible_Html: TAction;
+    actSwitchColVisible_HslCss: TAction;
+    actSwitchColVisible_HslCss_Hue: TAction;
+    actSwitchColVisible_HslCss_Sat: TAction;
+    actSwitchColVisible_HslCss_Lum: TAction;
+    actSwitchColVisible_HslWin: TAction;
+    actSwitchColVisible_HslWin_Hue: TAction;
+    actSwitchColVisible_HslWin_Sat: TAction;
+    actSwitchColVisible_HslWin_Lum: TAction;
+    SpTBXSeparatorItem15: TSpTBXSeparatorItem;
+    SpTBXItem46: TSpTBXItem;
+    SpTBXItem47: TSpTBXItem;
+    SpTBXItem48: TSpTBXItem;
+    SpTBXItem49: TSpTBXItem;
+    SpTBXSeparatorItem16: TSpTBXSeparatorItem;
+    SpTBXItem50: TSpTBXItem;
+    SpTBXItem51: TSpTBXItem;
+    SpTBXItem52: TSpTBXItem;
+    SpTBXItem53: TSpTBXItem;
+    actSwitchColVisible_Rgb_Percent: TAction;
+    SpTBXItem54: TSpTBXItem;
+    actSwitchColVisible_Cmyk: TAction;
+    actSwitchColVisible_Cmyk_Cyan: TAction;
+    actSwitchColVisible_Cmyk_Magenta: TAction;
+    actSwitchColVisible_Cmyk_Yellow: TAction;
+    actSwitchColVisible_Cmyk_Black: TAction;
+    actSwitchColVisible_PascalHex: TAction;
+    actSwitchColVisible_PascalInt: TAction;
+    actSwitchColVisible_CppHex: TAction;
+    SpTBXSeparatorItem17: TSpTBXSeparatorItem;
+    SpTBXItem55: TSpTBXItem;
+    SpTBXItem56: TSpTBXItem;
+    SpTBXItem57: TSpTBXItem;
+    SpTBXItem58: TSpTBXItem;
+    SpTBXItem59: TSpTBXItem;
+    SpTBXSeparatorItem18: TSpTBXSeparatorItem;
+    SpTBXItem60: TSpTBXItem;
+    SpTBXItem61: TSpTBXItem;
+    SpTBXItem62: TSpTBXItem;
+    mnuColumns: TSpTBXSubmenuItem;
+    pnFilterParams: TJppSimplePanel;
+    actFilterList: TAction;
+    actDisableFilter: TAction;
+    pnFilter_RGB: TJppSimplePanel;
+    chFilter_RgbRed: TCheckBox;
+    cbFilter_RgbRed_Operator: TComboBox;
+    spedFilter_RgbRed: TSpTBXSpinEdit;
+    chFilter_RgbGreen: TCheckBox;
+    cbFilter_RgbGreen_Operator: TComboBox;
+    spedFilter_RgbGreen: TSpTBXSpinEdit;
+    chFilter_RgbBlue: TCheckBox;
+    cbFilter_RgbBlue_Operator: TComboBox;
+    spedFilter_RgbBlue: TSpTBXSpinEdit;
+    actShowHideFilterPanel: TAction;
+    SpTBXItem63: TSpTBXItem;
+    SpTBXItem64: TSpTBXItem;
+    sboxFilter: TScrollBox;
+    pnFilter_ColorName: TJppSimplePanel;
+    chFilter_ColorName: TCheckBox;
+    edFilter_Name: TJppEdit;
+    lblFilter_WildcardsTip: TLabel;
+    pnFilter_HslCss: TJppSimplePanel;
+    dlblFilter_HslCss: TJppDoubleLineLabel;
+    chFilter_HslCss_Hue: TCheckBox;
+    cbFilter_HslCss_Hue_Operator: TComboBox;
+    spedFilter_HslCss_Hue: TSpTBXSpinEdit;
+    chFilter_HslCss_Sat: TCheckBox;
+    cbFilter_HslCss_Sat_Operator: TComboBox;
+    spedFilter_HslCss_Sat: TSpTBXSpinEdit;
+    chFilter_HslCss_Lum: TCheckBox;
+    cbFilter_HslCss_Lum_Operator: TComboBox;
+    spedFilter_HslCss_Lum: TSpTBXSpinEdit;
+    pnFilter_HslWin: TJppSimplePanel;
+    dlblFilter_HslWin: TJppDoubleLineLabel;
+    chFilter_HslWin_Hue: TCheckBox;
+    cbFilter_HslWin_Hue_Operator: TComboBox;
+    spedFilter_HslWin_Hue: TSpTBXSpinEdit;
+    chFilter_HslWin_Sat: TCheckBox;
+    cbFilter_HslWin_Sat_Operator: TComboBox;
+    spedFilter_HslWin_Sat: TSpTBXSpinEdit;
+    chFilter_HslWin_Lum: TCheckBox;
+    cbFilter_HslWin_Lum_Operator: TComboBox;
+    spedFilter_HslWin_Lum: TSpTBXSpinEdit;
+    dlblFilter_Rgb: TJppDoubleLineLabel;
+    pnFilter: TJppSimplePanel;
+    pnFilter_Buttons: TJppSimplePanel;
+    btnFilterList: TJppPngButton;
+    btnDisableFilter: TJppPngButton;
+    dlblFilter_Stats_All: TJppDoubleLineLabel;
+    dlblFilter_Stats_Visible: TJppDoubleLineLabel;
+    dlblFilter_Stats_Hidden: TJppDoubleLineLabel;
+    pnFilter_Separator: TJppSimplePanel;
+    pnFilter_Cmyk: TJppSimplePanel;
+    dlblFilter_Cmyk: TJppDoubleLineLabel;
+    chFilter_Cmyk_Cyan: TCheckBox;
+    cbFilter_Cmyk_Cyan_Operator: TComboBox;
+    spedFilter_Cmyk_Cyan: TSpTBXSpinEdit;
+    chFilter_Cmyk_Magenta: TCheckBox;
+    cbFilter_Cmyk_Magenta_Operator: TComboBox;
+    spedFilter_Cmyk_Magenta: TSpTBXSpinEdit;
+    chFilter_Cmyk_Yellow: TCheckBox;
+    cbFilter_Cmyk_Yellow_Operator: TComboBox;
+    spedFilter_Cmyk_Yellow: TSpTBXSpinEdit;
+    chFilter_Cmyk_Black: TCheckBox;
+    cbFilter_Cmyk_Black_Operator: TComboBox;
+    spedFilter_Cmyk_Black: TSpTBXSpinEdit;
+    actCopySelectedColors_RGB: TAction;
+    SpTBXSeparatorItem19: TSpTBXSeparatorItem;
+    SpTBXItem65: TSpTBXItem;
+    actCopySelectedColors_HTML: TAction;
+    actCopySelectedColors_RGB_Percent: TAction;
+    SpTBXItem66: TSpTBXItem;
+    SpTBXItem67: TSpTBXItem;
+    actCopySelectedColors_HslCss: TAction;
+    actCopySelectedColors_HslWin: TAction;
+    actCopySelectedColors_CMYK: TAction;
+    SpTBXItem68: TSpTBXItem;
+    SpTBXItem69: TSpTBXItem;
+    SpTBXItem70: TSpTBXItem;
+    actCopySelectedColors_PascalHex: TAction;
+    actCopySelectedColors_PascalInt: TAction;
+    actCopySelectedColors_CppHex: TAction;
+    SpTBXItem71: TSpTBXItem;
+    SpTBXItem72: TSpTBXItem;
+    SpTBXItem73: TSpTBXItem;
     procedure actAddColorAtEndExecute(Sender: TObject);
     procedure actAddColorAtTopExecute(Sender: TObject);
     procedure actCancelExecute(Sender: TObject);
@@ -189,9 +344,20 @@ type
     procedure actAdvancedColorEditorExecute(Sender: TObject);
     procedure actClearColorNamesExecute(Sender: TObject);
     procedure actColorWheelExecute(Sender: TObject);
+    procedure actCopySelectedColors_CMYKExecute(Sender: TObject);
+    procedure actCopySelectedColors_CppHexExecute(Sender: TObject);
+    procedure actCopySelectedColors_HslCssExecute(Sender: TObject);
+    procedure actCopySelectedColors_HslWinExecute(Sender: TObject);
+    procedure actCopySelectedColors_HTMLExecute(Sender: TObject);
+    procedure actCopySelectedColors_PascalHexExecute(Sender: TObject);
+    procedure actCopySelectedColors_PascalIntExecute(Sender: TObject);
+    procedure actCopySelectedColors_RGBExecute(Sender: TObject);
+    procedure actCopySelectedColors_RGB_PercentExecute(Sender: TObject);
+    procedure actDisableFilterExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
     procedure actExportPaletteToGPLExecute(Sender: TObject);
     procedure actExportPaletteToHtmlExecute(Sender: TObject);
+    procedure actFilterListExecute(Sender: TObject);
     procedure actMoveDownExecute(Sender: TObject);
     procedure actMoveToEndExecute(Sender: TObject);
     procedure actMoveToTopExecute(Sender: TObject);
@@ -205,6 +371,31 @@ type
     procedure actSelectAllExecute(Sender: TObject);
     procedure actShowFormModifyPaletteExecute(Sender: TObject);
     procedure actShowFormSortByExecute(Sender: TObject);
+    procedure actShowHideFilterPanelExecute(Sender: TObject);
+    procedure actSwitchColVisible_CmykExecute(Sender: TObject);
+    procedure actSwitchColVisible_Cmyk_BlackExecute(Sender: TObject);
+    procedure actSwitchColVisible_Cmyk_CyanExecute(Sender: TObject);
+    procedure actSwitchColVisible_Cmyk_MagentaExecute(Sender: TObject);
+    procedure actSwitchColVisible_Cmyk_YellowExecute(Sender: TObject);
+    procedure actSwitchColVisible_CppHexExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslCssExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslCss_HueExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslCss_LumExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslCss_SatExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslWinExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslWin_HueExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslWin_LumExecute(Sender: TObject);
+    procedure actSwitchColVisible_HslWin_SatExecute(Sender: TObject);
+    procedure actSwitchColVisible_HtmlExecute(Sender: TObject);
+    procedure actSwitchColVisible_NameExecute(Sender: TObject);
+    procedure actSwitchColVisible_NoExecute(Sender: TObject);
+    procedure actSwitchColVisible_PascalHexExecute(Sender: TObject);
+    procedure actSwitchColVisible_PascalIntExecute(Sender: TObject);
+    procedure actSwitchColVisible_RgbBlueExecute(Sender: TObject);
+    procedure actSwitchColVisible_RgbExecute(Sender: TObject);
+    procedure actSwitchColVisible_RgbGreenExecute(Sender: TObject);
+    procedure actSwitchColVisible_RgbRedExecute(Sender: TObject);
+    procedure actSwitchColVisible_Rgb_PercentExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure PrepareControls;
     procedure SelectFirst;
@@ -214,8 +405,10 @@ type
     procedure LoadSettingsFromIni;
     procedure InitControls;
     procedure InitCtrls(Sender: TObject);
+    procedure InitFilterControls;
+    procedure InitFilterCtrls(Sender: TObject);
 
-    procedure FillColorPalette(const cp: TColorPalette);
+    procedure FillColorPalette(const cp: TColorPalette; VisibleOnly: Boolean = True; SelectedOnly: Boolean = False);
 
     procedure SaveToVSTItemArray(var Arr: TColorListArray);
     procedure LoadFromVSTItemArray(var Arr: TColorListArray; bClear: Boolean = True);
@@ -229,7 +422,12 @@ type
     procedure AddColorsFromColorPalette(const cp: TColorPalette; bClear: Boolean);
     function AddColor(const ColorName: string; const AColor: TColor; ColorNo: integer = -1; bAtEnd: Boolean = True): PVirtualNode;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+
+    procedure InitColumnsPopup;
+    procedure mnuColumnsPopup(Sender: TTBCustomItem; FromLink: Boolean);
+    procedure popColumnsPopup(Sender: TObject);
     procedure popVstHeaderAddHeaderPopupItem(const Sender: TBaseVirtualTree; const Column: TColumnIndex; var Cmd: TAddPopupItemType);
+    procedure CopyVstColorsToClipboard(const ColorType: TColorType; SelectedOnly: Boolean);
 
     procedure vstAdvancedHeaderDraw(Sender: TVTHeader; var PaintInfo: THeaderPaintInfo; const Elements: THeaderPaintElements);
     procedure vstAfterCellPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; CellRect: TRect);
@@ -254,6 +452,13 @@ type
     procedure vstMoveDown;
     procedure vstMoveToTop;
     procedure vstMoveToEnd;
+    procedure vstSwitchColumnVisible(const ColumnIndex: integer);
+    function vstColumnVisible(const ColumnIndex: integer): Boolean;
+    function vstGetColumnCaption(const ColumnIndex: integer): string;
+    procedure vstGetStats(var NodeStats: TVstNodeStats);
+    function vstVisibleCount: integer;
+    function vstHiddenCount: integer;
+    procedure vstUpdateFilterStats;
   private
     bUpdatingControls: Boolean;
     SortDirection: TSortDirection;
@@ -287,6 +492,7 @@ begin
 
   LoadSettingsFromIni;
   InitControls;
+  InitFilterControls;
 end;
 
 procedure TFormPaletteEditor.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -299,13 +505,11 @@ end;
 
 {$region '                           PrepareControls                            '}
 procedure TFormPaletteEditor.PrepareControls;
-
-//  procedure AssignColors(var cc: TVstColumnColors; const clHeader, clBackground, clText: TColor); overload;
-//  begin
-//    cc.Header := clHeader;
-//    cc.Background := clBackground;
-//    cc.Text := clText;
-//  end;
+var
+  i: integer;
+  Item: TTBCustomItem;
+  NormalItem: TSpTBXItem;
+  SeparatorItem: TSpTBXSeparatorItem;
 
   procedure AssignColors(var cc: TVstColumnColors; const clBackground: TColor; xpHeader: integer = 50; xpText: integer = 300); overload;
   begin
@@ -342,6 +546,17 @@ begin
   dlgOpenPalette.InitialDir := AP.PalettesDir;
   dlgSavePalette.InitialDir := AP.PalettesDir;
   dlgExport.InitialDir := dlgSavePalette.InitialDir;
+
+  btnFilterList.Appearance.Assign(FormMain.btnT1.Appearance);
+  btnDisableFilter.Appearance.Assign(FormMain.btnT1.Appearance);
+
+  sboxFilter.Align := alClient;
+  sboxFilter.BorderStyle := bsNone;
+  pnFilterParams.Align := alTop;
+  sboxFilter.Color := pnFilterParams.Appearance.BackgroundColor;
+  actShowHideFilterPanel.Checked := pnFilter.Visible;
+
+  vstUpdateFilterStats;
 
 
   // ---------------- Column colors -------------------
@@ -384,11 +599,30 @@ begin
   AssignColors(ccCmykBlack, RGB3(110), -26, -300);
   vst.Header.Columns[COL_COLOR_CMYK_BLACK].Color := ccCmykBlack.Background;
 
+  mnuColumns.Clear;
+  for i := 0 to popColumns.Items.Count - 1 do
+  begin
+    Item := popColumns.Items[i];
+    if Item is TSpTBXItem then
+    begin
+      NormalItem := TSpTBXItem.Create(mnuColumns);
+      NormalItem.Action := Item.Action;
+      mnuColumns.Add(NormalItem);
+    end
+    else if Item is TSpTBXSeparatorItem then
+    begin
+      SeparatorItem := TSpTBXSeparatorItem.Create(mnuColumns);
+      mnuColumns.Add(SeparatorItem);
+    end;
+  end;
+
 end;
 {$endregion PrepareControls}
 
 
 {$region '                             InitControls                             '}
+
+
 procedure TFormPaletteEditor.InitControls;
 var
   b: Boolean;
@@ -418,12 +652,90 @@ begin
 
   actMoveToTop.Enabled := actMoveUp.Enabled;
   actMoveToEnd.Enabled := actMoveDown.Enabled;
+
+  b := xSelCount > 0;
+  actCopySelectedColors_HTML.Enabled := b;
+  actCopySelectedColors_RGB.Enabled := b;
+  actCopySelectedColors_RGB_Percent.Enabled := b;
+  actCopySelectedColors_HslCss.Enabled := b;
+  actCopySelectedColors_HslWin.Enabled := b;
+  actCopySelectedColors_CMYK.Enabled := b;
+  actCopySelectedColors_PascalHex.Enabled := b;
+  actCopySelectedColors_PascalInt.Enabled := b;
+  actCopySelectedColors_CppHex.Enabled := b;
 end;
 
 procedure TFormPaletteEditor.InitCtrls(Sender: TObject);
 begin
   InitControls;
 end;
+
+
+procedure TFormPaletteEditor.InitFilterControls;
+begin
+  edFilter_Name.Enabled := chFilter_ColorName.Checked;
+  lblFilter_WildcardsTip.Enabled := chFilter_ColorName.Checked;
+
+
+  cbFilter_RgbRed_Operator.Enabled := chFilter_RgbRed.Checked;
+  spedFilter_RgbRed.Enabled := chFilter_RgbRed.Checked;
+
+  cbFilter_RgbGreen_Operator.Enabled := chFilter_RgbGreen.Checked;
+  spedFilter_RgbGreen.Enabled := chFilter_RgbGreen.Checked;
+
+  cbFilter_RgbBlue_Operator.Enabled := chFilter_RgbBlue.Checked;
+  spedFilter_RgbBlue.Enabled := chFilter_RgbBlue.Checked;
+
+
+  cbFilter_HslCss_Hue_Operator.Enabled := chFilter_HslCss_Hue.Checked;
+  spedFilter_HslCss_Hue.Enabled := chFilter_HslCss_Hue.Checked;
+
+  cbFilter_HslCss_Sat_Operator.Enabled := chFilter_HslCss_Sat.Checked;
+  spedFilter_HslCss_Sat.Enabled := chFilter_HslCss_Sat.Checked;
+
+  cbFilter_HslCss_Lum_Operator.Enabled := chFilter_HslCss_Lum.Checked;
+  spedFilter_HslCss_Lum.Enabled := chFilter_HslCss_Lum.Checked;
+
+
+  cbFilter_HslWin_Hue_Operator.Enabled := chFilter_HslWin_Hue.Checked;
+  spedFilter_HslWin_Hue.Enabled := chFilter_HslWin_Hue.Checked;
+
+  cbFilter_HslWin_Sat_Operator.Enabled := chFilter_HslWin_Sat.Checked;
+  spedFilter_HslWin_Sat.Enabled := chFilter_HslWin_Sat.Checked;
+
+  cbFilter_HslWin_Lum_Operator.Enabled := chFilter_HslWin_Lum.Checked;
+  spedFilter_HslWin_Lum.Enabled := chFilter_HslWin_Lum.Checked;
+
+
+  cbFilter_Cmyk_Cyan_Operator.Enabled := chFilter_Cmyk_Cyan.Checked;
+  spedFilter_Cmyk_Cyan.Enabled := chFilter_Cmyk_Cyan.Checked;
+
+  cbFilter_Cmyk_Magenta_Operator.Enabled := chFilter_Cmyk_Magenta.Checked;
+  spedFilter_Cmyk_Magenta.Enabled := chFilter_Cmyk_Magenta.Checked;
+
+  cbFilter_Cmyk_Yellow_Operator.Enabled := chFilter_Cmyk_Yellow.Checked;
+  spedFilter_Cmyk_Yellow.Enabled := chFilter_Cmyk_Yellow.Checked;
+
+  cbFilter_Cmyk_Black_Operator.Enabled := chFilter_Cmyk_Black.Checked;
+  spedFilter_Cmyk_Black.Enabled := chFilter_Cmyk_Black.Checked;
+
+
+  actDisableFilter.Enabled := vstHiddenCount > 0;
+
+  actFilterList.Enabled :=
+    chFilter_ColorName.Checked or                                                                  // Color name
+    chFilter_RgbRed.Checked or chFilter_RgbGreen.Checked or chFilter_RgbBlue.Checked or            // RGB
+    chFilter_HslCss_Hue.Checked or chFilter_HslCss_Sat.Checked or chFilter_HslCss_Lum.Checked or   // HSL CSS
+    chFilter_HslWin_Hue.Checked or chFilter_HslWin_Sat.Checked or chFilter_HslWin_Lum.Checked or   // HSL WIN
+    chFilter_Cmyk_Cyan.Checked or chFilter_Cmyk_Magenta.Checked or chFilter_Cmyk_Yellow.Checked or chFilter_Cmyk_Black.Checked  // CMYK
+    ;
+end;
+
+procedure TFormPaletteEditor.InitFilterCtrls(Sender: TObject);
+begin
+  InitFilterControls;
+end;
+
 {$endregion InitControls}
 
 
@@ -438,22 +750,72 @@ begin
   ccbColor.ButtonCopyColor.Hint := lsMain.GetString('ButtonCopyColor', 'Copy color to the clipboard');
   ccbColor.ButtonPasteColor.Hint := lsMain.GetString('ButtonPasteColor', 'Paste color from the clipboard');
 
+
   vst.Header.Columns[COL_NO].Text := lsEditor.GetString('colNo', 'No');
   vst.Header.Columns[COL_COLOR].Text := lsEditor.GetString('colColor', 'Color');
   vst.Header.Columns[COL_NAME].Text := lsEditor.GetString('colName', 'Name');
+
   vst.Header.Columns[COL_COLOR_RGB].Text := lsEditor.GetString('colRgb', 'RGB');
+  vst.Header.Columns[COL_COLOR_RGB_RED].Text := lsMain.GetString('RGB_Red', 'Red');
+  vst.Header.Columns[COL_COLOR_RGB_GREEN].Text := lsMain.GetString('RGB_Green', 'Green');
+  vst.Header.Columns[COL_COLOR_RGB_BLUE].Text := lsMain.GetString('RGB_Blue', 'Blue');
   vst.Header.Columns[COL_COLOR_RGB_PERCENT].Text := lsEditor.GetString('colRgbPercent', 'RGB %');
+
   vst.Header.Columns[COL_COLOR_HTML].Text := lsEditor.GetString('colHtml', 'HTML');
+
   vst.Header.Columns[COL_COLOR_HSL_CSS].Text := lsEditor.GetString('colHslCss', 'HSL CSS');
+  vst.Header.Columns[COL_COLOR_HSL_CSS_HUE].Text := lsMain.GetString('HSL_Hue', 'Hue') + ' - HSL CSS';
+  vst.Header.Columns[COL_COLOR_HSL_CSS_SAT].Text := lsMain.GetString('HSL_Sat', 'Sat') + ' - HSL CSS';
+  vst.Header.Columns[COL_COLOR_HSL_CSS_LUM].Text := lsMain.GetString('HSL_Lum', 'Lum') + ' - HSL CSS';
+
   vst.Header.Columns[COL_COLOR_HSL_WIN].Text := lsEditor.GetString('colHslWin', 'HSL WIN');
+  vst.Header.Columns[COL_COLOR_HSL_WIN_HUE].Text := lsMain.GetString('HSL_Hue', 'Hue') + ' - HSL WIN';
+  vst.Header.Columns[COL_COLOR_HSL_WIN_SAT].Text := lsMain.GetString('HSL_Sat', 'Sat') + ' - HSL WIN';
+  vst.Header.Columns[COL_COLOR_HSL_WIN_LUM].Text := lsMain.GetString('HSL_Lum', 'Lum') + ' - HSL WIN';
+
   vst.Header.Columns[COL_COLOR_CMYK].Text := lsEditor.GetString('colCmyk', 'CMYK');
+  vst.Header.Columns[COL_COLOR_CMYK_CYAN].Text := lsMain.GetString('CMYK_Cyan', 'Cyan');
+  vst.Header.Columns[COL_COLOR_CMYK_MAGENTA].Text := lsMain.GetString('CMYK_Magenta', 'Magenta');
+  vst.Header.Columns[COL_COLOR_CMYK_YELLOW].Text := lsMain.GetString('CMYK_Yellow', 'Yellow');
+  vst.Header.Columns[COL_COLOR_CMYK_BLACK].Text := lsMain.GetString('CMYK_Black', 'Black');
+
   vst.Header.Columns[COL_COLOR_PASCAL_HEX].Text := lsEditor.GetString('colPascalHex', 'Pascal HEX');
   vst.Header.Columns[COL_COLOR_PASCAL_INT].Text := lsEditor.GetString('colPascalInt', 'Pascal INT');
   vst.Header.Columns[COL_COLOR_CPP_HEX].Text := lsEditor.GetString('colCppHex', 'C++ Hex');
 
-  vst.Header.Columns[COL_COLOR_RGB_RED].Text := lsMain.GetString('RGB_Red', 'Red');
-  vst.Header.Columns[COL_COLOR_RGB_GREEN].Text := lsMain.GetString('RGB_Green', 'Green');
-  vst.Header.Columns[COL_COLOR_RGB_BLUE].Text := lsMain.GetString('RGB_Blue', 'Blue');
+
+  actSwitchColVisible_No.Caption := vstGetColumnCaption(COL_NO);
+  actSwitchColVisible_Name.Caption := vstGetColumnCaption(COL_NAME);
+
+  actSwitchColVisible_Rgb.Caption := vstGetColumnCaption(COL_COLOR_RGB);
+  actSwitchColVisible_RgbRed.Caption := vstGetColumnCaption(COL_COLOR_RGB_RED);
+  actSwitchColVisible_RgbGreen.Caption := vstGetColumnCaption(COL_COLOR_RGB_GREEN);
+  actSwitchColVisible_RgbBlue.Caption := vstGetColumnCaption(COL_COLOR_RGB_BLUE);
+  actSwitchColVisible_Rgb_Percent.Caption := vstGetColumnCaption(COL_COLOR_RGB_PERCENT);
+
+  actSwitchColVisible_Html.Caption := vstGetColumnCaption(COL_COLOR_HTML);
+
+  actSwitchColVisible_HslCss.Caption := vstGetColumnCaption(COL_COLOR_HSL_CSS);
+  actSwitchColVisible_HslCss_Hue.Caption := vstGetColumnCaption(COL_COLOR_HSL_CSS_HUE);
+  actSwitchColVisible_HslCss_Sat.Caption := vstGetColumnCaption(COL_COLOR_HSL_CSS_SAT);
+  actSwitchColVisible_HslCss_Lum.Caption := vstGetColumnCaption(COL_COLOR_HSL_CSS_LUM);
+
+  actSwitchColVisible_HslWin.Caption := vstGetColumnCaption(COL_COLOR_HSL_WIN);
+  actSwitchColVisible_HslWin_Hue.Caption := vstGetColumnCaption(COL_COLOR_HSL_WIN_HUE);
+  actSwitchColVisible_HslWin_Sat.Caption := vstGetColumnCaption(COL_COLOR_HSL_WIN_SAT);
+  actSwitchColVisible_HslWin_Lum.Caption := vstGetColumnCaption(COL_COLOR_HSL_WIN_LUM);
+
+  actSwitchColVisible_Cmyk.Caption := vstGetColumnCaption(COL_COLOR_CMYK);
+  actSwitchColVisible_Cmyk_Cyan.Caption := vstGetColumnCaption(COL_COLOR_CMYK_CYAN);
+  actSwitchColVisible_Cmyk_Magenta.Caption := vstGetColumnCaption(COL_COLOR_CMYK_MAGENTA);
+  actSwitchColVisible_Cmyk_Yellow.Caption := vstGetColumnCaption(COL_COLOR_CMYK_YELLOW);
+  actSwitchColVisible_Cmyk_Black.Caption := vstGetColumnCaption(COL_COLOR_CMYK_BLACK);
+
+  actSwitchColVisible_PascalHex.Caption := vstGetColumnCaption(COL_COLOR_PASCAL_HEX);
+  actSwitchColVisible_PascalInt.Caption := vstGetColumnCaption(COL_COLOR_PASCAL_INT);
+  actSwitchColVisible_CppHex.Caption := vstGetColumnCaption(COL_COLOR_CPP_HEX);
+
+
 
   actClearColorList.Caption := lsMain.GetComponentProperty('actClearPalette', 'Caption');
   actClearColorList.Hint := lsMain.GetComponentProperty('actClearPalette', 'Hint');
@@ -466,7 +828,33 @@ begin
     end;
 
   actColorWheel.Caption := FormMain.actPalette_ColorWheel.Caption;
-  actColorWheel.Hint := actColorWheel.Caption; // FormMain.actPalette_ColorWheel.Hint;
+  actColorWheel.Hint := actColorWheel.Caption;
+
+  mnuColumns.Hint := lsEditor.GetString('Columns', 'Columns');
+
+  chFilter_RgbRed.Caption := lsMain.GetString('RGB_Red', 'Red');
+  chFilter_RgbGreen.Caption := lsMain.GetString('RGB_Green', 'Green');
+  chFilter_RgbBlue.Caption := lsMain.GetString('RGB_Blue', 'Blue');
+  chFilter_HslCss_Hue.Caption := lsMain.GetString('HSL_Hue', 'Hue');
+  chFilter_HslCss_Sat.Caption := lsMain.GetString('HSL_Sat', 'Sat');
+  chFilter_HslCss_Lum.Caption := lsMain.GetString('HSL_Lum', 'Lum');
+  chFilter_HslWin_Hue.Caption := lsMain.GetString('HSL_Hue', 'Hue');
+  chFilter_HslWin_Sat.Caption := lsMain.GetString('HSL_Sat', 'Sat');
+  chFilter_HslWin_Lum.Caption := lsMain.GetString('HSL_Lum', 'Lum');
+  chFilter_Cmyk_Cyan.Caption := lsMain.GetString('CMYK_Cyan', 'Cyan');
+  chFilter_Cmyk_Magenta.Caption := lsMain.GetString('CMYK_Magenta', 'Magenta');
+  chFilter_Cmyk_Yellow.Caption := lsMain.GetString('CMYK_Yellow', 'Yellow');
+  chFilter_Cmyk_Black.Caption := lsMain.GetString('CMYK_Black', 'Black');
+
+  actCopySelectedColors_HTML.Caption := FormMain.actCopySelectedColors_HTML.Caption;
+  actCopySelectedColors_RGB.Caption := FormMain.actCopySelectedColors_RGB.Caption;
+  actCopySelectedColors_RGB_Percent.Caption := FormMain.actCopySelectedColors_RGB_Percent.Caption;
+  actCopySelectedColors_HslCss.Caption := FormMain.actCopySelectedColors_HSL_CSS.Caption;
+  actCopySelectedColors_HslWin.Caption := FormMain.actCopySelectedColors_HSL_WIN.Caption;
+  actCopySelectedColors_CMYK.Caption := FormMain.actCopySelectedColors_CMYK.Caption;
+  actCopySelectedColors_PascalHex.Caption := FormMain.actCopySelectedColors_PascalHEX.Caption;
+  actCopySelectedColors_PascalInt.Caption := FormMain.actCopySelectedColors_PascalINT.Caption;
+  actCopySelectedColors_CppHex.Caption := FormMain.actCopySelectedColors_CppHex.Caption;
 
 end;
 
@@ -474,7 +862,7 @@ end;
 {$endregion SetLang}
 
 
-procedure TFormPaletteEditor.FillColorPalette(const cp: TColorPalette);
+procedure TFormPaletteEditor.FillColorPalette(const cp: TColorPalette; VisibleOnly: Boolean = True; SelectedOnly: Boolean = False);
 var
   cg: TColorGroup;
   Node: PVirtualNode;
@@ -486,8 +874,24 @@ begin
   cg := cp.AddGroup(COLOR_GROUP_NAME);
 
   Node := vst.GetFirst;
+
   while Node <> nil do
   begin
+
+    if VisibleOnly then
+      if not Node^.Visible then
+        begin
+          Node := vst.GetNext(Node);
+          Continue;
+        end;
+
+    if SelectedOnly then
+      if not Node^.Selected then
+      begin
+        Node := vst.GetNext(Node);
+        Continue;
+      end;
+
     vd := vst.GetNodeData(Node);
     if vd <> nil then cg.AddColor(vd^.Color, vd^.ColorName);
     Node := vst.GetNext(Node);
@@ -684,6 +1088,69 @@ begin
     end;
 
 
+    // -------------------------- Filter --------------------------
+
+    Section.WriteBool('pnFilter.Visible', pnFilter.Visible);
+    TAppHelper.WriteCheckboxState(chFilter_ColorName);
+    Section.WriteString('edFilter_Name.Text', edFilter_Name.Text);
+
+    // Filter - RGB
+    TAppHelper.WriteCheckboxState(chFilter_RgbRed);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_RgbRed_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_RgbRed);
+
+    TAppHelper.WriteCheckboxState(chFilter_RgbGreen);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_RgbGreen_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_RgbGreen);
+
+    TAppHelper.WriteCheckboxState(chFilter_RgbBlue);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_RgbBlue_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_RgbBlue);
+
+    // Filter - HSL CSS
+    TAppHelper.WriteCheckboxState(chFilter_HslCss_Hue);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_HslCss_Hue_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_HslCss_Hue);
+
+    TAppHelper.WriteCheckboxState(chFilter_HslCss_Sat);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_HslCss_Sat_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_HslCss_Sat);
+
+    TAppHelper.WriteCheckboxState(chFilter_HslCss_Lum);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_HslCss_Lum_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_HslCss_Lum);
+
+    // Filter - HSL WIN
+    TAppHelper.WriteCheckboxState(chFilter_HslWin_Hue);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_HslWin_Hue_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_HslWin_Hue);
+
+    TAppHelper.WriteCheckboxState(chFilter_HslWin_Sat);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_HslWin_Sat_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_HslWin_Sat);
+
+    TAppHelper.WriteCheckboxState(chFilter_HslWin_Lum);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_HslWin_Lum_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_HslWin_Lum);
+
+    // Filter - CMYK
+    TAppHelper.WriteCheckboxState(chFilter_Cmyk_Cyan);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_Cmyk_Cyan_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_Cmyk_Cyan);
+
+    TAppHelper.WriteCheckboxState(chFilter_Cmyk_Magenta);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_Cmyk_Magenta_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_Cmyk_Magenta);
+
+    TAppHelper.WriteCheckboxState(chFilter_Cmyk_Yellow);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_Cmyk_Yellow_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_Cmyk_Yellow);
+
+    TAppHelper.WriteCheckboxState(chFilter_Cmyk_Black);
+    TAppHelper.WriteComboBoxIndexName(cbFilter_Cmyk_Black_Operator, SplitString(OPERATORS_STR, ','));
+    TAppHelper.WriteSpinEditIntValue(spedFilter_Cmyk_Black);
+
+
     Ini.UpdateFile;
 
   finally
@@ -713,7 +1180,9 @@ begin
 
     TAppHelper.ReadFormSize(Self, Constraints.MinWidth, Screen.Width - 100, Constraints.MinHeight, Screen.Height - 100);
 
+
     // ------------------ Columns -------------------
+
     for i := 0 to vst.Header.Columns.Count - 1 do
     begin
       Column := vst.Header.Columns[i];
@@ -723,6 +1192,71 @@ begin
       s := Section.ReadString(vcp.IniID, vcp.ToIniStr);
       vcp.ApplyIniStr(Column, s, vst.Header.Columns.Count - 1);
     end;
+
+    // ----------------------- Filter -----------------------
+
+    pnFilter.Visible := Section.ReadBool('pnFilter.Visible', pnFilter.Visible);
+    actShowHideFilterPanel.Checked := pnFilter.Visible;
+
+    TAppHelper.ReadCheckboxState(chFilter_ColorName);
+    edFilter_Name.Text := Section.ReadString('edFilter_Name.Text', edFilter_Name.Text);
+
+    // Filter - RGB
+    TAppHelper.ReadCheckboxState(chFilter_RgbRed);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_RgbRed_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_RgbRed);
+
+    TAppHelper.ReadCheckboxState(chFilter_RgbGreen);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_RgbGreen_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_RgbGreen);
+
+    TAppHelper.ReadCheckboxState(chFilter_RgbBlue);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_RgbBlue_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_RgbBlue);
+
+    // Filter - HSL CSS
+    TAppHelper.ReadCheckboxState(chFilter_HslCss_Hue);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_HslCss_Hue_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_HslCss_Hue);
+
+    TAppHelper.ReadCheckboxState(chFilter_HslCss_Sat);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_HslCss_Sat_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_HslCss_Sat);
+
+    TAppHelper.ReadCheckboxState(chFilter_HslCss_Lum);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_HslCss_Lum_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_HslCss_Lum);
+
+    // Filter - HSL WIN
+    TAppHelper.ReadCheckboxState(chFilter_HslWin_Hue);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_HslWin_Hue_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_HslWin_Hue);
+
+    TAppHelper.ReadCheckboxState(chFilter_HslWin_Sat);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_HslWin_Sat_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_HslWin_Sat);
+
+    TAppHelper.ReadCheckboxState(chFilter_HslWin_Lum);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_HslWin_Lum_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_HslWin_Lum);
+
+    // Filter - CMYK
+    TAppHelper.ReadCheckboxState(chFilter_Cmyk_Cyan);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_Cmyk_Cyan_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_Cmyk_Cyan);
+
+    TAppHelper.ReadCheckboxState(chFilter_Cmyk_Magenta);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_Cmyk_Magenta_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_Cmyk_Magenta);
+
+    TAppHelper.ReadCheckboxState(chFilter_Cmyk_Yellow);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_Cmyk_Yellow_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_Cmyk_Yellow);
+
+    TAppHelper.ReadCheckboxState(chFilter_Cmyk_Black);
+    TAppHelper.ReadComboBoxIndexByName(cbFilter_Cmyk_Black_Operator, SplitString(OPERATORS_STR, ','), 0);
+    TAppHelper.ReadSpinEditIntValue(spedFilter_Cmyk_Black);
+
 
   finally
     Ini.Free;
@@ -860,6 +1394,7 @@ end;
 
 
 
+
 {$region '                                            VST related                                             '}
 
 procedure TFormPaletteEditor.SelectFirst;
@@ -958,7 +1493,6 @@ var
   R: TRect;
   bSelected: Boolean;
   dx: integer;
-  //clOriginalBg, clOriginalBorder: TColor;
 begin
   if CellPaintMode <> cpmPaint then Exit;
 
@@ -1013,43 +1547,12 @@ begin
   end;
 
 
-
-//    clOriginalBg := $00D56D11;
-//    clOriginalBorder := $00D56D11;
-////      vst.Colors.FocusedSelectionColor := clOriginalBg;
-////      vst.Colors.FocusedSelectionBorderColor := clOriginalBorder;
-//
-//  if bSelected then
-//  begin
-//
-//
-//    case Column of
-//      COL_COLOR_RGB_RED:
-//        begin
-//          vst.Colors.FocusedSelectionColor := AvgColor(clOriginalBg, ccRgb_Red.Background);// else vst.Colors.FocusedSelectionColor := clOriginalBg;
-//          vst.Colors.FocusedSelectionBorderColor := vst.Colors.FocusedSelectionColor;
-//        end;
-//    else
-////      vst.Colors.FocusedSelectionColor := clOriginalBg;
-////      vst.Colors.FocusedSelectionBorderColor := clOriginalBorder;
-//    end;
-//  end;
-
-//  if bSelected then
-//  with TargetCanvas do
-//  begin
-//    Brush.Style := bsSolid;
-//    Brush.Color := clRed;
-//    Rectangle(R);
-//  end;
-
 end;
 
 procedure TFormPaletteEditor.vstPaintText(Sender: TBaseVirtualTree; const TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType);
 var
   clText: TColor;
 begin
-  //if (Column in [COL_COLOR_RGB..COL_COLOR_CPP_HEX]) then
   if Column > COL_NAME then
   with TargetCanvas do
   begin
@@ -1085,6 +1588,8 @@ begin
   if clText <> clNone then TargetCanvas.Font.Color := clText;
 end;
 
+
+
 procedure TFormPaletteEditor.vstAfterCellPaint(Sender: TBaseVirtualTree; TargetCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; CellRect: TRect);
 var
   Color: TColor;
@@ -1109,20 +1614,13 @@ begin
       Rectangle(R);
     end;
 
-//  if vsSelected in Node^.States then
-//  with TargetCanvas do
-//  begin
-//    Brush.Style := bsSolid;
-//    Brush.Color := clGray;
-//    Rectangle(R);
-//  end;
-
 end;
 
 procedure TFormPaletteEditor.vstAfterColumnWidthTracking(Sender: TVTHeader; Column: TColumnIndex);
 begin
   vst.Repaint;
 end;
+
 
 procedure TFormPaletteEditor.vstChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
@@ -1262,6 +1760,7 @@ begin
 end;
 
 
+
 function TFormPaletteEditor.vstGetNodeColorValue(Node: PVirtualNode; clInvalid: TColor): TColor;
 var
   vd: PVSTData;
@@ -1282,6 +1781,24 @@ end;
 procedure TFormPaletteEditor.vstGetNodeDataSize(Sender: TBaseVirtualTree; var NodeDataSize: Integer);
 begin
   NodeDataSize := SizeOf(TVSTData);
+end;
+
+procedure TFormPaletteEditor.vstGetStats(var NodeStats: TVstNodeStats);
+var
+  Node: PVirtualNode;
+begin
+  NodeStats.Visible := 0;
+  NodeStats.Hidden := 0;
+  NodeStats.All := 0;
+
+  Node := vst.GetFirst;
+  while Node <> nil do
+  begin
+    Inc(NodeStats.All);
+    if Node^.Visible then Inc(NodeStats.Visible)
+    else Inc(NodeStats.Hidden);
+    Node := vst.GetNext(Node);
+  end;
 end;
 
 procedure TFormPaletteEditor.vstGetText(Sender: TBaseVirtualTree; Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
@@ -1342,10 +1859,10 @@ end;
 
 
 
-
 procedure TFormPaletteEditor.vstHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
 begin
   if bUpdatingControls then Exit;
+  if HitInfo.Button = mbRight then Exit;
   if SortDirection = sdAscending then SortDirection := sdDescending
   else SortDirection := sdAscending;
   vst.SortTree(HitInfo.Column, SortDirection);
@@ -1355,7 +1872,6 @@ procedure TFormPaletteEditor.vstCompareNodes(Sender: TBaseVirtualTree; Node1, No
 var
   vd1, vd2: PVSTData;
   cl1, cl2: TColor;
-  //Red1, Red2, Green1, Green2, Blue1, Blue2: Byte;
 
   function CompareBytes(const bt1, bt2: integer): integer;
   begin
@@ -1440,7 +1956,226 @@ begin
   vst.Header.Options := vst.Header.Options + [hoOwnerDraw];
 end;
 
+procedure TFormPaletteEditor.vstSwitchColumnVisible(const ColumnIndex: integer);
+var
+  Column: TVirtualTreeColumn;
+begin
+  if ColumnIndex = COL_COLOR then Exit; // Always visible
+  if not (ColumnIndex in [0..vst.Header.Columns.Count - 1]) then Exit;
+
+  Column := vst.Header.Columns[ColumnIndex];
+  if coVisible in Column.Options then Column.Options := Column.Options - [coVisible]
+  else Column.Options := Column.Options + [coVisible];
+end;
+
+procedure TFormPaletteEditor.vstUpdateFilterStats;
+var
+  ns: TVstNodeStats;
+begin
+  vstGetStats(ns);
+  dlblFilter_Stats_All.RightCaption := IntToStrEx(ns.All);
+  dlblFilter_Stats_Visible.RightCaption := IntToStrEx(ns.Visible);
+  dlblFilter_Stats_Hidden.RightCaption := ' ' + IntToStrEx(ns.Hidden) + ' ';
+end;
+
+function TFormPaletteEditor.vstVisibleCount: integer;
+var
+  NodeStats: TVstNodeStats;
+begin
+  vstGetStats(NodeStats);
+  Result := NodeStats.Visible;
+end;
+
+function TFormPaletteEditor.vstHiddenCount: integer;
+var
+  NodeStats: TVstNodeStats;
+begin
+  vstGetStats(NodeStats);
+  Result := NodeStats.Hidden;
+end;
+
+function TFormPaletteEditor.vstColumnVisible(const ColumnIndex: integer): Boolean;
+begin
+  if not (ColumnIndex in [0..vst.Header.Columns.Count - 1]) then Exit(False);
+  Result := coVisible in vst.Header.Columns[ColumnIndex].Options;
+end;
+
+function TFormPaletteEditor.vstGetColumnCaption(const ColumnIndex: integer): string;
+begin
+  if not (ColumnIndex in [0..vst.Header.Columns.Count - 1]) then Exit('');
+  Result := vst.Header.Columns[ColumnIndex].Text;
+end;
+
 {$endregion VST related}
+
+
+
+
+{$region '                 Columns                     '}
+procedure TFormPaletteEditor.actSwitchColVisible_NoExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_NO);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_NameExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_NAME);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_RgbExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_RGB);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_RgbRedExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_RGB_RED);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_RgbGreenExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_RGB_GREEN);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_RgbBlueExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_RGB_BLUE);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_Rgb_PercentExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_RGB_PERCENT);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HtmlExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HTML);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslCssExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_CSS);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslCss_HueExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_CSS_HUE);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslCss_SatExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_CSS_SAT);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslCss_LumExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_CSS_LUM);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslWinExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_WIN);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslWin_HueExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_WIN_HUE);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslWin_SatExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_WIN_SAT);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_HslWin_LumExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_HSL_WIN_LUM);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_CmykExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_CMYK);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_Cmyk_CyanExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_CMYK_CYAN);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_Cmyk_MagentaExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_CMYK_MAGENTA);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_Cmyk_YellowExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_CMYK_YELLOW);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_Cmyk_BlackExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_CMYK_BLACK);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_PascalHexExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_PASCAL_HEX);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_PascalIntExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_PASCAL_INT);
+end;
+
+procedure TFormPaletteEditor.actSwitchColVisible_CppHexExecute(Sender: TObject);
+begin
+  vstSwitchColumnVisible(COL_COLOR_CPP_HEX);
+end;
+
+
+procedure TFormPaletteEditor.popColumnsPopup(Sender: TObject);
+begin
+  InitColumnsPopup;
+end;
+
+procedure TFormPaletteEditor.InitColumnsPopup;
+begin
+  actSwitchColVisible_No.Checked := vstColumnVisible(COL_NO);
+  actSwitchColVisible_Name.Checked := vstColumnVisible(COL_NAME);
+
+  actSwitchColVisible_Rgb.Checked := vstColumnVisible(COL_COLOR_RGB);
+  actSwitchColVisible_RgbRed.Checked := vstColumnVisible(COL_COLOR_RGB_RED);
+  actSwitchColVisible_RgbGreen.Checked := vstColumnVisible(COL_COLOR_RGB_GREEN);
+  actSwitchColVisible_RgbBlue.Checked := vstColumnVisible(COL_COLOR_RGB_BLUE);
+  actSwitchColVisible_Rgb_Percent.Checked := vstColumnVisible(COL_COLOR_RGB_PERCENT);
+
+  actSwitchColVisible_Html.Checked := vstColumnVisible(COL_COLOR_HTML);
+
+  actSwitchColVisible_HslCss.Checked := vstColumnVisible(COL_COLOR_HSL_CSS);
+  actSwitchColVisible_HslCss_Hue.Checked := vstColumnVisible(COL_COLOR_HSL_CSS_HUE);
+  actSwitchColVisible_HslCss_Sat.Checked := vstColumnVisible(COL_COLOR_HSL_CSS_SAT);
+  actSwitchColVisible_HslCss_Lum.Checked := vstColumnVisible(COL_COLOR_HSL_CSS_LUM);
+
+  actSwitchColVisible_HslWin.Checked := vstColumnVisible(COL_COLOR_HSL_WIN);
+  actSwitchColVisible_HslWin_Hue.Checked := vstColumnVisible(COL_COLOR_HSL_WIN_HUE);
+  actSwitchColVisible_HslWin_Sat.Checked := vstColumnVisible(COL_COLOR_HSL_WIN_SAT);
+  actSwitchColVisible_HslWin_Lum.Checked := vstColumnVisible(COL_COLOR_HSL_WIN_LUM);
+
+  actSwitchColVisible_Cmyk.Checked := vstColumnVisible(COL_COLOR_CMYK);
+  actSwitchColVisible_Cmyk_Cyan.Checked := vstColumnVisible(COL_COLOR_CMYK_CYAN);
+  actSwitchColVisible_Cmyk_Magenta.Checked := vstColumnVisible(COL_COLOR_CMYK_MAGENTA);
+  actSwitchColVisible_Cmyk_Yellow.Checked := vstColumnVisible(COL_COLOR_CMYK_YELLOW);
+  actSwitchColVisible_Cmyk_Black.Checked := vstColumnVisible(COL_COLOR_CMYK_BLACK);
+
+  actSwitchColVisible_PascalHex.Checked := vstColumnVisible(COL_COLOR_PASCAL_HEX);
+  actSwitchColVisible_PascalInt.Checked := vstColumnVisible(COL_COLOR_PASCAL_INT);
+  actSwitchColVisible_CppHex.Checked := vstColumnVisible(COL_COLOR_CPP_HEX);
+end;
+
+{$endregion Columns}
+
+
+
 
 procedure TFormPaletteEditor.actCancelExecute(Sender: TObject);
 begin
@@ -1613,7 +2348,7 @@ begin
   if not dlgExport.Execute then Exit;
   cp := TColorPalette.Create;
   try
-    FillColorPalette(cp);
+    FillColorPalette(cp, True);
     cp.SaveToGimpPaletteFile(dlgExport.FileName, AppInfo.FullName + ' Color Palette');
   finally
     cp.Free;
@@ -1630,8 +2365,8 @@ begin
   dlgExport.InitialDir := ExtractFileDir(dlgExport.FileName);
   cp := TColorPalette.Create;
   try
-    FillColorPalette(cp);
-    cp.SaveToHtmlFile(dlgExport.FileName, AppInfo.FullName + ' Color Palette', True, True, True, True, True, True, True, True, True);
+    FillColorPalette(cp, True);
+    cp.SaveToHtmlFile(dlgExport.FileName, AppInfo.FullName + ' Color Palette', AP.HtmlExport_AddJson, True, True, True, True, True, True, True, True);
   finally
     cp.Free;
   end;
@@ -1707,6 +2442,16 @@ end;
 
 
 
+procedure TFormPaletteEditor.mnuColumnsPopup(Sender: TTBCustomItem; FromLink: Boolean);
+begin
+  InitColumnsPopup;
+end;
+
+
+
+
+
+
 
 {$region '                                    TVstColumnParams                                     '}
 
@@ -1779,6 +2524,12 @@ begin
     COL_COLOR_HSL_WIN_LUM: IniID := 'colHslWin_Lum';
 
     COL_COLOR_CMYK: IniID := 'colCmyk';
+    COL_COLOR_CMYK_CYAN: IniID := 'colCmyk_Cyan';
+    COL_COLOR_CMYK_MAGENTA: IniID := 'colCmyk_Magenta';
+    COL_COLOR_CMYK_YELLOW: IniID := 'colCmyk_Yellow';
+    COL_COLOR_CMYK_BLACK: IniID := 'colCmyk_Black';
+
+
     COL_COLOR_PASCAL_HEX: IniID := 'colPascalHex';
     COL_COLOR_PASCAL_INT: IniID := 'colPascalInt';
     COL_COLOR_CPP_HEX: IniID := 'colCppHex';
@@ -1800,6 +2551,305 @@ end;
 {$endregion TVstColumnParams}
 
 
+{$region '                           FILTER                          '}
 
+procedure TFormPaletteEditor.actDisableFilterExecute(Sender: TObject);
+var
+  Node: PVirtualNode;
+begin
+  Node := vst.GetFirst;
+  while Node <> nil do
+  begin
+    //TNodeHelper.ShowNode(Node);
+    Node^.Show;
+    Node := vst.GetNext(Node);
+  end;
+  vst.Refresh;
+  InitFilterControls;
+  vstUpdateFilterStats;
+end;
+
+procedure TFormPaletteEditor.actFilterListExecute(Sender: TObject);
+var
+  s, ColorName: string;
+  Node: PVirtualNode;
+  vd: PVSTData;
+  cl: TColor;
+  Hue, Sat, Lum: integer;
+  Cyan, Magenta, Yellow, Black: integer;
+  bHidden: Boolean;
+
+  procedure CheckFilter(OperatorCombo: TComboBox; const ColorValue, UserValue: integer);
+  begin
+    case OperatorCombo.ItemIndex of
+      OPERATOR_LESS: bHidden := not (ColorValue < UserValue);
+      OPERATOR_LESS_OR_EQUAL: bHidden := not (ColorValue <= UserValue);
+      OPERATOR_EQUAL: bHidden := not (ColorValue = UserValue);
+      OPERATOR_GREATER_OR_EQUAL: bHidden := not (ColorValue >= UserValue);
+      OPERATOR_GREATER: bHidden := not (ColorValue > UserValue);
+      OPERATOR_NOT_EQUAL: bHidden := not (ColorValue <> UserValue);
+    else
+      bHidden := False;
+    end;
+  end;
+
+begin
+
+  bHidden := False;
+
+  vst.BeginUpdate;
+  try
+    actDisableFilter.Execute;
+
+    Node := vst.GetFirst;
+    while Node <> nil do
+    begin
+
+      if not vstGetNodeData(Node, vd) then
+      begin
+        Node := vst.GetNext(Node);
+        Continue;
+      end;
+
+      ColorName := vd^.ColorName;
+      cl := vd^.Color;
+
+      // ------------- Color Name -----------------
+      if not bHidden then
+        if chFilter_ColorName.Checked then
+        begin
+          s := edFilter_Name.Text;
+          bHidden := not MatchesMask(ColorName, s);
+          if bHidden then Node^.Hide;
+        end;
+
+
+      {$region '            RGB            '}
+
+      if not bHidden then
+        if chFilter_RgbRed.Checked then
+        begin
+          CheckFilter(cbFilter_RgbRed_Operator, GetRValue(cl), spedFilter_RgbRed.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_RgbGreen.Checked then
+        begin
+          CheckFilter(cbFilter_RgbGreen_Operator, GetGValue(cl), spedFilter_RgbGreen.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_RgbBlue.Checked then
+        begin
+          CheckFilter(cbFilter_RgbBlue_Operator, GetBValue(cl), spedFilter_RgbBlue.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      {$endregion RGB}
+
+
+      {$region '          HSL CSS          '}
+
+      if chFilter_HslCss_Hue.Checked or chFilter_HslCss_Sat.Checked or chFilter_HslCss_Lum.Checked then
+      begin
+        SetHslCssMaxValues;
+        ColortoHSLRange(cl, Hue, Sat, Lum);
+      end;
+
+      if not bHidden then
+        if chFilter_HslCss_Hue.Checked then
+        begin
+          CheckFilter(cbFilter_HslCss_Hue_Operator, Hue, spedFilter_HslCss_Hue.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_HslCss_Sat.Checked then
+        begin
+          CheckFilter(cbFilter_HslCss_Sat_Operator, Sat, spedFilter_HslCss_Sat.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_HslCss_Lum.Checked then
+        begin
+          CheckFilter(cbFilter_HslCss_Lum_Operator, Lum, spedFilter_HslCss_Lum.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      {$endregion HSL CSS}
+
+
+      {$region '          HSL WIN          '}
+
+      if chFilter_HslWin_Hue.Checked or chFilter_HslWin_Sat.Checked or chFilter_HslWin_Lum.Checked then
+      begin
+        SetHslWinMaxValues;
+        ColortoHSLRange(cl, Hue, Sat, Lum);
+      end;
+
+      if not bHidden then
+        if chFilter_HslWin_Hue.Checked then
+        begin
+          CheckFilter(cbFilter_HslWin_Hue_Operator, Hue, spedFilter_HslWin_Hue.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_HslWin_Sat.Checked then
+        begin
+          CheckFilter(cbFilter_HslWin_Sat_Operator, Sat, spedFilter_HslWin_Sat.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_HslWin_Lum.Checked then
+        begin
+          CheckFilter(cbFilter_HslWin_Lum_Operator, Lum, spedFilter_HslWin_Lum.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      {$endregion HSL WIN}
+
+
+      {$region '          CMYK          '}
+
+      if chFilter_Cmyk_Cyan.Checked or chFilter_Cmyk_Magenta.Checked or chFilter_Cmyk_Yellow.Checked or chFilter_Cmyk_Black.Checked then
+      begin
+        GetCmykComponents(cl, Cyan, Magenta, Yellow, Black);
+      end;
+
+      if not bHidden then
+        if chFilter_Cmyk_Cyan.Checked then
+        begin
+          CheckFilter(cbFilter_Cmyk_Cyan_Operator, Cyan, spedFilter_Cmyk_Cyan.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_Cmyk_Magenta.Checked then
+        begin
+          CheckFilter(cbFilter_Cmyk_Magenta_Operator, Magenta, spedFilter_Cmyk_Magenta.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_Cmyk_Yellow.Checked then
+        begin
+          CheckFilter(cbFilter_Cmyk_Yellow_Operator, Yellow, spedFilter_Cmyk_Yellow.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      if not bHidden then
+        if chFilter_Cmyk_Black.Checked then
+        begin
+          CheckFilter(cbFilter_Cmyk_Black_Operator, Black, spedFilter_Cmyk_Black.IntValue);
+          if bHidden then Node^.Hide;
+        end;
+
+      {$endregion CMYK}
+
+
+      bHidden := False;
+      Node := vst.GetNext(Node);
+
+    end; // while
+
+
+  finally
+    vst.EndUpdate;
+    vst.Refresh;
+    InitFilterControls;
+    vstUpdateFilterStats;
+  end;
+end;
+
+procedure TFormPaletteEditor.actShowHideFilterPanelExecute(Sender: TObject);
+begin
+  pnFilter.Visible := not pnFilter.Visible;
+  if pnFilter.Visible then
+  begin
+    InitFilterControls;
+    vstUpdateFilterStats;
+  end;
+  actShowHideFilterPanel.Checked := pnFilter.Visible;
+end;
+
+{$endregion FILTER}
+
+
+
+procedure TFormPaletteEditor.CopyVstColorsToClipboard(const ColorType: TColorType; SelectedOnly: Boolean);
+var
+  cp: TColorPalette;
+  cg: TColorGroup;
+  s: string;
+  i: integer;
+  cl: TColor;
+begin
+  cp := TColorPalette.Create;
+  try
+    FillColorPalette(cp, True, SelectedOnly);
+    if cp.ColorGroupCount = 0 then Exit;
+    cg := cp.ColorGroup[0];
+    s := '';
+    for i := 0 to cg.Count - 1 do
+    begin
+      cl := cg.ColorItem[i].Color;
+      s := s + ColorToStrEx(cl, ColorType) + ENDL;
+    end;
+  finally
+    cp.Free;
+  end;
+  s := Trim(s);
+  if s <> '' then Clipboard.AsText := s;
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_HTMLExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctHtml, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_RGBExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctRgb, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_RGB_PercentExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctRgbPercent, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_HslCssExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctHslCss, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_HslWinExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctHslWin, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_CMYKExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctCmyk, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_PascalHexExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctPascalHex, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_PascalIntExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctPascalInt, True);
+end;
+
+procedure TFormPaletteEditor.actCopySelectedColors_CppHexExecute(Sender: TObject);
+begin
+  CopyVstColorsToClipboard(ctCppHex, True);
+end;
 
 end.

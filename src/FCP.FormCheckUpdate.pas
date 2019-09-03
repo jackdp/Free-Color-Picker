@@ -92,7 +92,6 @@ var
   dwX: DWORD;
   dwFlags: DWORD;
   Headers, s: string;
-//  me: TMemo;
 begin;
 //  me := FormCheckUpdate.me;
 

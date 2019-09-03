@@ -11,7 +11,7 @@ uses
 const
 
   APP_NAME = 'Free Color Picker';
-  APP_VER_STR = '1.0';
+  APP_VER_STR = '1.1';
   APP_FULL_NAME = APP_NAME + ' ' + APP_VER_STR;
 
   COLOR_GROUP_NAME = 'FCP Colors';
@@ -111,6 +111,7 @@ type
     AddNewColorsAtTheTop: Boolean;
     PixelIndicator: TPixelIndicator;
     PixelIndicatorColor: TColor;
+    HtmlExport_AddJson: Boolean;
   end;
   ////////////////////////////////////////////////////////////////
 
@@ -132,7 +133,7 @@ initialization
   AppInfo.FullName := APP_FULL_NAME;
   AppInfo.Author := 'Jacek Pazera';
   AppInfo.LicenseName := 'Freeware';
-  AppInfo.DateStr := '16.08.2019';
+  AppInfo.DateStr := '03.09.2019';
 
   AppInfo.HomePage := 'http://www.pazera-software.com/products/free-color-picker/';
   AppInfo.DownloadPage := 'http://www.pazera-software.com/products/free-color-picker/';

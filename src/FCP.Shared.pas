@@ -17,6 +17,8 @@ uses
 
   JPPegtopTrackBars,
 
+  VirtualTrees,
+
   SpTBXEditors;
 
 
@@ -34,7 +36,8 @@ type
   strict private
     class var FIniSection: TJPIniSection;
   public
-    class function GetValueByID<T>(ID: string; const ArrIDs: array of string; const Values: array of T; const Default: T; IgnoreCase: Boolean = True): T; static;
+    class function GetValueByID<T>(ID: string; const ArrIDs: TArray<string>; const Values: TArray<T>; const Default: T; IgnoreCase: Boolean = True): T; static;
+    //class function GetValueByID<T>(ID: string; const ArrIDs: array of string; const Values: array of T; const Default: T; IgnoreCase: Boolean = True): T; static;
 
     class procedure NilIniSection; static;
 
@@ -70,6 +73,22 @@ type
   end;
 
 
+  TNHelper = record helper for TVirtualNode
+  public
+    procedure Hide;
+    procedure Show;
+    function Visible: Boolean;
+    function Selected: Boolean;
+  end;
+
+//  TNodeHelper = record
+//  public
+//    class procedure HideNode(Node: PVirtualNode); static;
+//    class procedure ShowNode(Node: PVirtualNode); static;
+//    class function NodeVisible(Node: PVirtualNode): Boolean; static;
+//  end;
+
+
 
 procedure GoToURL(const URL: string);
 function FontExists(const FontName: string; bIgnoreCase: Boolean = False): Boolean;
@@ -80,16 +99,217 @@ procedure SwitchFormTop(Form: TForm);
 function EditColor(var AColor: TColor): Boolean;
 function Darker(const cl: TColor; const xPercent: integer): TColor;
 
+procedure DrawHueBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer = 100; Lum: integer = 50);
+procedure DrawHueWinBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer = 120; Lum: integer = 120; HueMin: integer = 0; HueMax: integer = 239);
+procedure DrawHueCssBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer = 100; Lum: integer = 50; HueMin: integer = 0; HueMax: integer = 360);
+
 
 
 implementation
 
 uses
-  FCP.FormMain, FCP.FormEditColor;
+  FCP.FormMain, FCP.FormEditColor, FCP.Bitmap;
 
 
 
 {$region '                            routines                                 '}
+
+
+procedure DrawHueWinBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer = 120; Lum: integer = 120; HueMin: integer = 0; HueMax: integer = 239);
+var
+  i, Hue, xLeft: integer;
+  cl: TColor;
+  Bar: TRect;
+  Bmp2: TBitmap;
+begin
+  if HueMax < HueMin then Exit;
+  if (Bmp.Width < 2) or (Bmp.Height < 2) then Exit;
+
+  if HueMin = HueMax then
+  with Bmp.Canvas do
+  begin
+    cl := HslWinToColor(HueMin, Sat, Lum);
+    Brush.Style := bsSolid;
+    Brush.Color := cl;
+    Pen.Style := psSolid;
+    Pen.Color := cl;
+    Rectangle(0, 0, Bmp.Width, Bmp.Height);
+  end
+
+  else
+
+  begin
+
+    Bmp2 := TBitmap.Create;
+    try
+
+      Bmp2.PixelFormat := pf24bit;
+      Bmp2.Height := Bmp.Height;
+      Bmp2.Width := HueMax - HueMin;
+
+      with Bmp2.Canvas do
+      begin
+
+        Bar.Height := Bmp2.Height;
+
+        xLeft := 0;
+        for i := HueMin to HueMax do
+        begin
+          Hue := i;
+          cl := HslWinToColor(Hue, Sat, Lum);
+          Bar.Left := xLeft;
+          Bar.Width := 1;
+          Pen.Color := cl;
+          Brush.Color := cl;
+          Rectangle(Bar);
+          Inc(xLeft);
+        end;
+
+      end;
+
+      BitmapResize(Bmp2, Bmp.Width, Bmp.Height, rtLanczos);
+      Bmp.Canvas.Draw(0, 0, Bmp2);
+
+    finally
+      Bmp2.Free;
+    end;
+
+  end;
+
+
+  if BorderColor <> clNone then
+  with Bmp.Canvas do
+  begin
+    Brush.Style := bsClear;
+    Bar.Left := 0;
+    Bar.Top := 0;
+    Bar.Width := Bmp.Width;
+    Bar.Height := Bmp.Height;
+    Pen.Style := psSolid;
+    Pen.Width := 1;
+    Pen.Color := BorderColor;
+    Rectangle(Bar);
+  end;
+
+end;
+
+procedure DrawHueCssBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer = 100; Lum: integer = 50; HueMin: integer = 0; HueMax: integer = 360);
+var
+  i, Hue, xLeft: integer;
+  cl: TColor;
+  Bar: TRect;
+  Bmp2: TBitmap;
+begin
+  if HueMax < HueMin then Exit;
+  if (Bmp.Width < 2) or (Bmp.Height < 2) then Exit;
+
+  if HueMin = HueMax then
+  with Bmp.Canvas do
+  begin
+    cl := HslCssToColor(HueMin, Sat, Lum);
+    Brush.Style := bsSolid;
+    Brush.Color := cl;
+    Pen.Style := psSolid;
+    Pen.Color := cl;
+    Rectangle(0, 0, Bmp.Width, Bmp.Height);
+  end
+
+  else
+
+  begin
+
+    Bmp2 := TBitmap.Create;
+    try
+
+      Bmp2.PixelFormat := pf24bit;
+      Bmp2.Height := Bmp.Height;
+      Bmp2.Width := HueMax - HueMin;
+
+      with Bmp2.Canvas do
+      begin
+        Bar.Height := Bmp2.Height;
+        xLeft := 0;
+        for i := HueMin to HueMax do
+        begin
+          Hue := i;
+          cl := HslCssToColor(Hue, Sat, Lum);
+          Bar.Left := xLeft;
+          Bar.Width := 1;
+          Pen.Color := cl;
+          Brush.Color := cl;
+          Rectangle(Bar);
+          Inc(xLeft);
+        end;
+      end;
+
+      BitmapResize(Bmp2, Bmp.Width, Bmp.Height, rtLanczos);
+      Bmp.Canvas.Draw(0, 0, Bmp2);
+
+    finally
+      Bmp2.Free;
+    end;
+
+  end;
+
+
+  if BorderColor <> clNone then
+  with Bmp.Canvas do
+  begin
+    Brush.Style := bsClear;
+    Bar.Left := 0;
+    Bar.Top := 0;
+    Bar.Width := Bmp.Width;
+    Bar.Height := Bmp.Height;
+    Pen.Style := psSolid;
+    Pen.Width := 1;
+    Pen.Color := BorderColor;
+    Rectangle(Bar);
+  end;
+
+end;
+
+procedure DrawHueBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer = 100; Lum: integer = 50);
+var
+  i, Hue: integer;
+  xrw: Single;
+  cl: TColor;
+  Bar: TRect;
+begin
+  if (Bmp.Width < 2) or (Bmp.Height < 2) then Exit;
+
+  with Bmp.Canvas do
+  begin
+
+    xrw := Bmp.Width / 360;
+    Bar.Height := Bmp.Height;
+
+    for i := 0 to 360 do
+    begin
+      Hue := Round(xrw + i);
+      cl := HslCssToColor(Hue, Sat, Lum);
+      Bar.Left := Round(xrw * i);
+      Bar.Width := 1;
+      Pen.Color := cl;
+      Brush.Color := cl;
+      Rectangle(Bar);
+    end;
+
+    if BorderColor <> clNone then
+    begin
+      Brush.Style := bsClear;
+      Bar.Left := 0;
+      Bar.Top := 0;
+      Bar.Width := Bmp.Width;
+      Bar.Height := Bmp.Height;
+      Pen.Style := psSolid;
+      Pen.Width := 1;
+      Pen.Color := BorderColor;
+      Rectangle(Bar);
+    end;
+
+  end;
+
+end;
 
 function Darker(const cl: TColor; const xPercent: integer): TColor;
 begin
@@ -185,7 +405,7 @@ end;
 
 
 
-class function TAppHelper.GetValueByID<T>(ID: string; const ArrIDs: array of string; const Values: array of T; const Default: T; IgnoreCase: Boolean = True): T;
+class function TAppHelper.GetValueByID<T>(ID: string; const ArrIDs: TArray<string>; const Values: TArray<T>; const Default: T; IgnoreCase: Boolean = True): T;
 var
   i: integer;
   sArrID: string;
@@ -547,6 +767,45 @@ end;
 {$endregion TSpTBXSpinEditHelper}
 
 
+
+//{ TNodeHelper }
+//
+//class procedure TNodeHelper.HideNode(Node: PVirtualNode);
+//begin
+//  if vsVisible in Node^.States then Node^.States := Node^.States - [vsVisible];
+//end;
+//
+//class procedure TNodeHelper.ShowNode(Node: PVirtualNode);
+//begin
+//  if not (vsVisible in Node^.States) then Node^.States := Node^.States + [vsVisible];
+//end;
+//
+//class function TNodeHelper.NodeVisible(Node: PVirtualNode): Boolean;
+//begin
+//  Result := vsVisible in Node^.States;
+//end;
+
+{ TNHelper }
+
+procedure TNHelper.Hide;
+begin
+  if vsVisible in States then States := States - [vsVisible];
+end;
+
+function TNHelper.Selected: Boolean;
+begin
+  Result := vsSelected in States;
+end;
+
+procedure TNHelper.Show;
+begin
+  if not (vsVisible in States) then States := States + [vsVisible];
+end;
+
+function TNHelper.Visible: Boolean;
+begin
+  Result := vsVisible in States;
+end;
 
 initialization
 

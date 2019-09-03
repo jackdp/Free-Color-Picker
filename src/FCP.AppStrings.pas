@@ -200,6 +200,12 @@ begin
     lsMain.AddAction(actShowFormColorWheel);
     lsMain.AddAction(actShowFormSimilarColors);
 
+    lsMain.AddAction(actShowHideColorCodesPanel);
+    lsMain.AddAction(actShowHideBottomPanel);
+    lsMain.AddAction(actSetSize_Small);
+    lsMain.AddAction(actSetSize_Medium);
+    lsMain.AddAction(actSetSize_Large);
+
     lsMain.AddString('EditQuickAccessList', 'Edit list of recently opened files...');
     lsMain.AddString('OpenPictureDialog_Title', 'Select image file');
     lsMain.AddString('SavePictureDialog_Title', 'Save image as');
@@ -222,6 +228,10 @@ begin
     lsMain.AddString('HSL_Hue', 'Hue');
     lsMain.AddString('HSL_Sat', 'Saturation');
     lsMain.AddString('HSL_Lum', 'Luminance');
+    lsMain.AddString('CMYK_Cyan', 'Cyan');
+    lsMain.AddString('CMYK_Magenta', 'Magenta');
+    lsMain.AddString('CMYK_Yellow', 'Yellow');
+    lsMain.AddString('CMYK_Black', 'Black');
   end;
 
 end;
@@ -272,6 +282,9 @@ begin
     lsOptions.AddString('PixelIndicator_MediumCross', 'Medium cross');
     lsOptions.AddString('PixelIndicator_FullCross', 'Full cross');
     lsOptions.ac(cswPixelIndicator).ap('BoundLabel.Caption', 'Color:');
+
+    lsOptions.AddCheckBox(chHtmlExport_AddJson);
+    lsOptions.AddAction(actCreateDesktopShortcut);
 
   end;
 end;
@@ -408,6 +421,7 @@ begin
     lsEditor.AddString('colPascalHex', 'Pascal HEX');
     lsEditor.AddString('colPascalInt', 'Pascal INT');
     lsEditor.AddString('colCppHex', 'C++ HEX');
+    lsEditor.AddString('Columns', 'Columns');
 
     lsEditor.AddLabel(lblSelectedColor);
 
@@ -444,6 +458,18 @@ begin
 
     lsEditor.AddAction(actClearColorNames);
     lsEditor.AddAction(actShowFormModifyPalette);
+
+    // ------------- Filter ---------------
+    lsEditor.AddAction(actShowHideFilterPanel);
+    lsEditor.AddAction(actFilterList);
+    lsEditor.AddAction(actDisableFilter);
+    lsEditor.ac(dlblFilter_Stats_All).ap('Caption', 'All colors:');
+    lsEditor.ac(dlblFilter_Stats_Visible).ap('Caption', 'Visible:');
+    lsEditor.ac(dlblFilter_Stats_Hidden).ap('Caption', 'Hidden:');
+
+    lsEditor.AddCheckBox(chFilter_ColorName);
+    lsEditor.ac(edFilter_Name).ap('EditLabel.Caption', 'Name:');
+    lsEditor.AddLabel(lblFilter_WildcardsTip, True, True);
 
   end;
 
@@ -485,6 +511,66 @@ begin
     lsRandom.AddAction(actAdd);
     lsRandom.AddAction(actGenerateRandomColors);
     lsRandom.AddAction(actClose);
+
+    lsRandom.AddString('LockUnlockRange', 'Lock / unlock range');
+    lsRandom.ac(btnPresets_Rgb).ap('Caption', 'RGB Presets');
+    lsRandom.ac(btnPresets_HslCss_Pastels).ap('Caption', 'Pastels');
+    lsRandom.ac(btnPresets_HslCss_Intensive).ap('Caption', 'Intensive');
+    lsRandom.ac(btnPresets_HslCss_Dark).ap('Caption', 'Dark');
+    lsRandom.ac(btnPresets_HslCss_Light).ap('Caption', 'Light');
+    lsRandom.ac(btnPresets_HslCss_Grayscale).ap('Caption', 'Grayscale');
+
+    lsRandom.AddAction(actPreset_HslCss_Pastels_RedLight);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_GreenLight);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_BlueLight);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_YellowLight);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_CyanLight);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_VioletLight);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_PinkLight);
+
+    lsRandom.AddAction(actPreset_HslCss_Pastels_RedDark);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_GreenDark);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_BlueDark);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_YellowDark);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_CyanDark);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_VioletDark);
+    lsRandom.AddAction(actPreset_HslCss_Pastels_PinkDark);
+
+    lsRandom.AddAction(actPreset_HslCss_Intensive_Red);
+    lsRandom.AddAction(actPreset_HslCss_Intensive_Green);
+    lsRandom.AddAction(actPreset_HslCss_Intensive_Blue);
+    lsRandom.AddAction(actPreset_HslCss_Intensive_Yellow);
+    lsRandom.AddAction(actPreset_HslCss_Intensive_Cyan);
+    lsRandom.AddAction(actPreset_HslCss_Intensive_Violet);
+    lsRandom.AddAction(actPreset_HslCss_Intensive_Pink);
+
+    lsRandom.AddAction(actPreset_HslCss_Dark_Red);
+    lsRandom.AddAction(actPreset_HslCss_Dark_Green);
+    lsRandom.AddAction(actPreset_HslCss_Dark_Blue);
+    lsRandom.AddAction(actPreset_HslCss_Dark_Yellow);
+    lsRandom.AddAction(actPreset_HslCss_Dark_Cyan);
+    lsRandom.AddAction(actPreset_HslCss_Dark_Violet);
+    lsRandom.AddAction(actPreset_HslCss_Dark_Pink);
+
+    lsRandom.AddAction(actPreset_HslCss_Light_Red);
+    lsRandom.AddAction(actPreset_HslCss_Light_Green);
+    lsRandom.AddAction(actPreset_HslCss_Light_Blue);
+    lsRandom.AddAction(actPreset_HslCss_Light_Yellow);
+    lsRandom.AddAction(actPreset_HslCss_Light_Cyan);
+    lsRandom.AddAction(actPreset_HslCss_Light_Violet);
+    lsRandom.AddAction(actPreset_HslCss_Light_Pink);
+
+    lsRandom.AddAction(actPreset_HslCss_Grayscale_VeryDark);
+    lsRandom.AddAction(actPreset_HslCss_Grayscale_Dark);
+    lsRandom.AddAction(actPreset_HslCss_Grayscale_Medium);
+    lsRandom.AddAction(actPreset_HslCss_Grayscale_Light);
+    lsRandom.AddAction(actPreset_HslCss_Grayscale_VeryLight);
+
+    lsRandom.AddAction(actPreset_Rgb_VeryDark);
+    lsRandom.AddAction(actPreset_Rgb_Dark);
+    lsRandom.AddAction(actPreset_Rgb_Medium);
+    lsRandom.AddAction(actPreset_Rgb_Light);
+    lsRandom.AddAction(actPreset_Rgb_VeryLight);
 
   end;
 end;

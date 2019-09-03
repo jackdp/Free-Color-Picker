@@ -1,7 +1,7 @@
 ﻿Program name: Free Color Picker (32/64-bit)
-Version: 1.0
+Version: 1.1
 License: Freeware, Open Source
-Release date: 2019.08.16
+Release date: 2019.09.03
 Author: Jacek Pazera
 Web page: http://www.pazera-software.com/products/free-color-picker/
 Help: http://www.pazera-software.com/products/free-color-picker/help.php

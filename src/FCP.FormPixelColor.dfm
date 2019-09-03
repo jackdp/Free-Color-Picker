@@ -611,7 +611,10 @@ object FormPixelColor: TFormPixelColor
       Margins.Bottom = 0
       Align = alTop
       ItemHeight = 15
+      PopupMenu = popColorList
       TabOrder = 0
+      OnClick = InitCtrls
+      Multiselect = True
       BorderStyle = bsNone
       Items.Strings = (
         '-=Web red colors'
@@ -713,8 +716,8 @@ object FormPixelColor: TFormPixelColor
   end
   object Actions: TActionList
     Images = FormMain.pilMain
-    Left = 233
-    Top = 101
+    Left = 244
+    Top = 89
     object actAddToList: TAction
       Caption = 'Add to list'
       Hint = 
@@ -752,13 +755,53 @@ object FormPixelColor: TFormPixelColor
       ShortCut = 116
       OnExecute = actShowPixelPosExecute
     end
+    object actSelectAll: TAction
+      Caption = 'Select all'
+      Hint = 'Select all'
+      ImageIndex = 9
+      ShortCut = 16449
+      OnExecute = actSelectAllExecute
+    end
+    object actInvertSelection: TAction
+      Caption = 'Invert selection'
+      Hint = 'Invert selection'
+      ImageIndex = 10
+      ShortCut = 16457
+      OnExecute = actInvertSelectionExecute
+    end
+    object actDeleteSelected: TAction
+      Caption = 'Remove selected colors'
+      Hint = 'Remove selected colors'
+      ImageIndex = 83
+      ShortCut = 46
+      OnExecute = actDeleteSelectedExecute
+    end
   end
   object tmUpdateColor: TJppTimer
     Enabled = False
     Interval = 200
     OnTimer = tmUpdateColorTimer
     Counter = 0
-    Left = 287
-    Top = 107
+    Left = 312
+    Top = 115
+  end
+  object popColorList: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 211
+    Top = 154
+    object SpTBXItem3: TSpTBXItem
+      Action = actSelectAll
+    end
+    object SpTBXItem2: TSpTBXItem
+      Action = actInvertSelection
+    end
+    object SpTBXItem1: TSpTBXItem
+      Action = actDeleteSelected
+    end
+    object SpTBXSeparatorItem1: TSpTBXSeparatorItem
+    end
+    object SpTBXItem4: TSpTBXItem
+      Action = actClearColors
+    end
   end
 end

@@ -10,7 +10,7 @@ uses
   System.SysUtils, System.Variants, System.Classes, System.Actions,
 
   // VCL
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Menus,
 
   // JPLib
   JPL.Strings, JPL.Conversion, JPL.Colors, JPL.IniFile,
@@ -19,10 +19,10 @@ uses
   JPP.ColorListBox, JPP.BasicPanel, JPP.PngButton, JPP.ColorSwatch, JPP.SimplePanel, JPP.Timer, JPP.BasicSpeedButton,
 
   // SpTBX
-  SpTBXEditors,
+  SpTBXEditors, TB2Item, SpTBXItem,
 
   // FCP
-  FCP.Types, FCP.Shared, FCP.AppStrings, FCP.FormPaletteEditor;
+  FCP.Types, FCP.Shared, FCP.AppStrings;
 
 type
   TFormSimilarColors = class(TForm)
@@ -100,6 +100,15 @@ type
     cswCurrentColor_2: TJppColorSwatchEx;
     sbtnAddToList_CurrentColor: TJppBasicSpeedButton;
     actAddToList_CurrentColor: TAction;
+    popColorList: TSpTBXPopupMenu;
+    actSelectAll: TAction;
+    actInvertSelection: TAction;
+    actDeleteSelected: TAction;
+    SpTBXItem1: TSpTBXItem;
+    SpTBXItem2: TSpTBXItem;
+    SpTBXItem3: TSpTBXItem;
+    SpTBXSeparatorItem1: TSpTBXSeparatorItem;
+    SpTBXItem4: TSpTBXItem;
     procedure actAddExecute(Sender: TObject);
     procedure actAddToList_CurrentColorExecute(Sender: TObject);
     procedure actAddtoList_DarkerExecute(Sender: TObject);
@@ -111,7 +120,10 @@ type
     procedure actAddToList_SatMoreExecute(Sender: TObject);
     procedure actClearColorsExecute(Sender: TObject);
     procedure actCloseExecute(Sender: TObject);
+    procedure actDeleteSelectedExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
+    procedure actInvertSelectionExecute(Sender: TObject);
+    procedure actSelectAllExecute(Sender: TObject);
     procedure cswCurrentColor_2GetBottomColorStrValue(const AColor: TColor; var ColorStr, Prefix, Suffix: string);
     procedure cswCurrentColor_2GetTopColorStrValue(const AColor: TColor; var ColorStr, Prefix, Suffix: string);
     procedure cswCurrentColor_2SelectedColorChanged(Sender: TObject);
@@ -121,6 +133,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure PrepareControls;
     procedure InitControls;
+    procedure InitCtrls(Sender: TObject);
     procedure SetLang;
     procedure GenerateColors_Darker;
     procedure GenerateColors_Lighter;
@@ -158,7 +171,7 @@ var
 implementation
 
 uses
-  FCP.FormMain;
+  FCP.FormMain, FCP.FormPaletteEditor;
 
 
 {$R *.dfm}
@@ -169,7 +182,7 @@ procedure TFormSimilarColors.FormCreate(Sender: TObject);
 begin
   Caption := 'Similar colors';
   Constraints.MinWidth := Width;
-  Constraints.MaxWidth := Width;
+  //Constraints.MaxWidth := Width;
   Constraints.MinHeight := 400;
   PrepareModuleStrings_SimilarColors;
   PrepareControls;
@@ -250,10 +263,19 @@ begin
     cbAddPos.Enabled := actAdd.Enabled;
     lblAddPos.Enabled := actAdd.Enabled;
 
+    actSelectAll.Enabled := (clbColors.SelCount <> xCount) and (xCount > 0);
+    actInvertSelection.Enabled := xCount > 0;
+    actDeleteSelected.Enabled := clbColors.SelCount > 0;
+
     UpdateColorCountLabel;
   finally
     bUpdatingControls := False;
   end;
+end;
+
+procedure TFormSimilarColors.InitCtrls(Sender: TObject);
+begin
+  InitControls;
 end;
 
 {$endregion InitControls}
@@ -299,6 +321,13 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_Top', 'At the top'));
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
+
+  actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
+  actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
+  actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
+  actInvertSelection.Hint := FormPaletteEditor.actInvertSelection.Hint;
+  actDeleteSelected.Caption := FormPaletteEditor.actDeleteSelected.Caption;
+  actDeleteSelected.Hint := FormPaletteEditor.actDeleteSelected.Hint;
 
   //lblHuePlus.Hint := lsSimilar.GetComponentProperty('lblHuePlus', 'Hint', 'aaa');
 end;
@@ -727,5 +756,22 @@ begin
   lblColors.Caption := lsSimilar.GetString('Colors', 'Colors') + ' (' + clbColors.Count.toString + ')';
 end;
 
+procedure TFormSimilarColors.actSelectAllExecute(Sender: TObject);
+begin
+  clbColors.SelectAll;
+  InitControls;
+end;
+
+procedure TFormSimilarColors.actInvertSelectionExecute(Sender: TObject);
+begin
+  clbColors.InvertSelection;
+  InitControls;
+end;
+
+procedure TFormSimilarColors.actDeleteSelectedExecute(Sender: TObject);
+begin
+  clbColors.RemoveSelectedItems;
+  InitControls;
+end;
 
 end.

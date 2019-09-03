@@ -239,13 +239,14 @@ object FormSimilarColors: TFormSimilarColors
           AlignWithMargins = True
           Left = 6
           Top = 4
-          Width = 65
+          Width = 175
           Height = 13
           Margins.Left = 6
           Margins.Top = 4
           Margins.Bottom = 0
           Align = alTop
           Caption = 'Color format'
+          ExplicitWidth = 65
         end
         object rbHslCss: TRadioButton
           Left = 98
@@ -2100,6 +2101,7 @@ object FormSimilarColors: TFormSimilarColors
     Width = 330
     Height = 515
     Align = alRight
+    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1
     Appearance.BackgroundColor = 15395562
     Appearance.BorderColor = 11053224
@@ -2162,7 +2164,10 @@ object FormSimilarColors: TFormSimilarColors
       Margins.Bottom = 0
       Align = alTop
       ItemHeight = 15
+      PopupMenu = popColorList
       TabOrder = 1
+      OnClick = InitCtrls
+      Multiselect = True
       BorderStyle = bsNone
       Items.Strings = (
         'Salmon=250,128,114'
@@ -2213,7 +2218,7 @@ object FormSimilarColors: TFormSimilarColors
       Appearance.ChangeColorItem.Caption = 'Select color...'
       ColorListSet = [cltWebRed]
       Options = [clboAddAtTop]
-      SelectedColor = clNone
+      SelectedColor = 7504122
     end
   end
   object pnBottom: TJppSimplePanel
@@ -2578,6 +2583,24 @@ object FormSimilarColors: TFormSimilarColors
       ImageIndex = 37
       OnExecute = actAddToList_CurrentColorExecute
     end
+    object actSelectAll: TAction
+      Caption = 'Select all'
+      Hint = 'Select all'
+      ImageIndex = 9
+      OnExecute = actSelectAllExecute
+    end
+    object actInvertSelection: TAction
+      Caption = 'Invert selection'
+      Hint = 'Invert selection'
+      ImageIndex = 10
+      OnExecute = actInvertSelectionExecute
+    end
+    object actDeleteSelected: TAction
+      Caption = 'Remove selected colors'
+      Hint = 'Remove selected colors'
+      ImageIndex = 83
+      OnExecute = actDeleteSelectedExecute
+    end
   end
   object tmGenerateColors: TJppTimer
     Enabled = False
@@ -2587,5 +2610,24 @@ object FormSimilarColors: TFormSimilarColors
     RepeatCountLimit = 1
     Left = 190
     Top = 232
+  end
+  object popColorList: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 863
+    Top = 176
+    object SpTBXItem3: TSpTBXItem
+      Action = actSelectAll
+    end
+    object SpTBXItem2: TSpTBXItem
+      Action = actInvertSelection
+    end
+    object SpTBXItem1: TSpTBXItem
+      Action = actDeleteSelected
+    end
+    object SpTBXSeparatorItem1: TSpTBXSeparatorItem
+    end
+    object SpTBXItem4: TSpTBXItem
+      Action = actClearColors
+    end
   end
 end

@@ -2,13 +2,24 @@
 <AxialisIconCollection>
   <Name>Icons</Name>
   <Icon>
+    <Name>button-remove-remove-2</Name>
+    <StockIconName>button-remove.axvi</StockIconName>
+    <StockIconFamily>Axialis Flat Pro 2017</StockIconFamily>
+    <StockIconSet>Basic</StockIconSet>
+    <ColorizeOverlay>#3E78B3</ColorizeOverlay>
+    <StockOverlayName>remove-2.axvi</StockOverlayName>
+    <StockOverlayPos>4</StockOverlayPos>
+    <ResourceIDValue>160</ResourceIDValue>
+    <ResourceID>ID_BUTTON-REMOVE-REMOVE-2</ResourceID>
+  </Icon>
+  <Icon>
     <Name>filter-execute</Name>
     <StockIconName>filter.axvi</StockIconName>
     <StockIconFamily>Axialis Flat Pro 2017</StockIconFamily>
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>execute.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>159</ResourceIDValue>
+    <ResourceIDValue>100</ResourceIDValue>
     <ResourceID>ID_FILTER-EXECUTE</ResourceID>
   </Icon>
   <Icon>
@@ -18,7 +29,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>cancel.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>158</ResourceIDValue>
+    <ResourceIDValue>101</ResourceIDValue>
     <ResourceID>ID_FILTER-CANCEL</ResourceID>
   </Icon>
   <Icon>
@@ -28,7 +39,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>157</ResourceIDValue>
+    <ResourceIDValue>102</ResourceIDValue>
     <ResourceID>ID_FILTER</ResourceID>
   </Icon>
   <Icon>
@@ -38,7 +49,7 @@
     <StockIconSet>Security</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>100</ResourceIDValue>
+    <ResourceIDValue>103</ResourceIDValue>
     <ResourceID>ID_PADLOCK-ROUND</ResourceID>
   </Icon>
   <Icon>
@@ -48,7 +59,7 @@
     <StockIconSet>Spreadsheet</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>101</ResourceIDValue>
+    <ResourceIDValue>104</ResourceIDValue>
     <ResourceID>ID_CELLS-COLUMN</ResourceID>
   </Icon>
   <Icon>
@@ -58,7 +69,7 @@
     <StockIconSet>Development</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>102</ResourceIDValue>
+    <ResourceIDValue>105</ResourceIDValue>
     <ResourceID>ID_COLOR-WHEEL</ResourceID>
   </Icon>
   <Icon>
@@ -68,7 +79,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName>arrow-down.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>103</ResourceIDValue>
+    <ResourceIDValue>106</ResourceIDValue>
     <ResourceID>ID_IMAGE-COLORS-ARROW-DOWN</ResourceID>
   </Icon>
   <Icon>
@@ -78,7 +89,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>104</ResourceIDValue>
+    <ResourceIDValue>107</ResourceIDValue>
     <ResourceID>ID_EXECUTE</ResourceID>
   </Icon>
   <Icon>
@@ -88,7 +99,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>105</ResourceIDValue>
+    <ResourceIDValue>108</ResourceIDValue>
     <ResourceID>ID_IMAGE-BRIGHTNESS</ResourceID>
   </Icon>
   <Icon>
@@ -98,7 +109,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>106</ResourceIDValue>
+    <ResourceIDValue>109</ResourceIDValue>
     <ResourceID>ID_IMAGE-CONTRAST</ResourceID>
   </Icon>
   <Icon>
@@ -109,7 +120,7 @@
     <Colorize>#4DA07D</Colorize>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>107</ResourceIDValue>
+    <ResourceIDValue>110</ResourceIDValue>
     <ResourceID>ID_BUTTON-REFRESH</ResourceID>
   </Icon>
   <Icon>
@@ -120,7 +131,7 @@
     <ColorizeOverlay>#CC4B31</ColorizeOverlay>
     <StockOverlayName>gear.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>108</ResourceIDValue>
+    <ResourceIDValue>111</ResourceIDValue>
     <ResourceID>ID_COLORS-GEAR</ResourceID>
   </Icon>
   <Icon>
@@ -130,7 +141,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName>edit.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>109</ResourceIDValue>
+    <ResourceIDValue>112</ResourceIDValue>
     <ResourceID>ID_FILE-COLOR-SWATCH-EDIT</ResourceID>
   </Icon>
   <Icon>
@@ -140,7 +151,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>edit.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>110</ResourceIDValue>
+    <ResourceIDValue>113</ResourceIDValue>
     <ResourceID>ID_DOCUMENT-COLOR-GREEN-EDIT</ResourceID>
   </Icon>
   <Icon>
@@ -152,7 +163,7 @@
     <Colorize>#3E78B3</Colorize>
     <StockOverlayName>edit.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>111</ResourceIDValue>
+    <ResourceIDValue>114</ResourceIDValue>
     <ResourceID>ID_FONT-EDIT</ResourceID>
   </Icon>
   <Icon>
@@ -163,7 +174,7 @@
     <ColorizeOverlay>#E68055</ColorizeOverlay>
     <StockOverlayName>arrow-up.axvi</StockOverlayName>
     <StockOverlayPos>2</StockOverlayPos>
-    <ResourceIDValue>112</ResourceIDValue>
+    <ResourceIDValue>115</ResourceIDValue>
     <ResourceID>ID_BUTTON-ADD-ARROW-UP</ResourceID>
   </Icon>
   <Icon>
@@ -173,7 +184,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>arrow-down.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>113</ResourceIDValue>
+    <ResourceIDValue>116</ResourceIDValue>
     <ResourceID>ID_BUTTON-ADD-ARROW-DOWN</ResourceID>
   </Icon>
   <Icon>
@@ -183,7 +194,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>add.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>114</ResourceIDValue>
+    <ResourceIDValue>117</ResourceIDValue>
     <ResourceID>ID_OPEN-ADD</ResourceID>
   </Icon>
   <Icon>
@@ -193,7 +204,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>cancel-2.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>115</ResourceIDValue>
+    <ResourceIDValue>118</ResourceIDValue>
     <ResourceID>ID_FONT-CANCEL-2</ResourceID>
   </Icon>
   <Icon>
@@ -205,7 +216,7 @@
     <Colorize>#3E78B3</Colorize>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>116</ResourceIDValue>
+    <ResourceIDValue>119</ResourceIDValue>
     <ResourceID>ID_SYMBOL-UPLOAD</ResourceID>
   </Icon>
   <Icon>
@@ -215,7 +226,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>117</ResourceIDValue>
+    <ResourceIDValue>120</ResourceIDValue>
     <ResourceID>ID_SYMBOL-ARROW-UP</ResourceID>
   </Icon>
   <Icon>
@@ -225,7 +236,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>118</ResourceIDValue>
+    <ResourceIDValue>121</ResourceIDValue>
     <ResourceID>ID_SYMBOL-ARROW-DOWN</ResourceID>
   </Icon>
   <Icon>
@@ -237,7 +248,7 @@
     <Colorize>#3E78B3</Colorize>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>119</ResourceIDValue>
+    <ResourceIDValue>122</ResourceIDValue>
     <ResourceID>ID_SYMBOL-DOWNLOAD</ResourceID>
   </Icon>
   <Icon>
@@ -247,7 +258,7 @@
     <StockIconSet>Business</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>120</ResourceIDValue>
+    <ResourceIDValue>123</ResourceIDValue>
     <ResourceID>ID_MONEY-COINS</ResourceID>
   </Icon>
   <Icon>
@@ -257,7 +268,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>121</ResourceIDValue>
+    <ResourceIDValue>124</ResourceIDValue>
     <ResourceID>ID_GRADIENT-HORIZONTAL</ResourceID>
   </Icon>
   <Icon>
@@ -267,7 +278,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>arrow-right.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>122</ResourceIDValue>
+    <ResourceIDValue>125</ResourceIDValue>
     <ResourceID>ID_BUTTON-ADD-ARROW-RIGHT</ResourceID>
   </Icon>
   <Icon>
@@ -277,7 +288,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>123</ResourceIDValue>
+    <ResourceIDValue>126</ResourceIDValue>
     <ResourceID>ID_SORT</ResourceID>
   </Icon>
   <Icon>
@@ -287,7 +298,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>124</ResourceIDValue>
+    <ResourceIDValue>127</ResourceIDValue>
     <ResourceID>ID_GEARS</ResourceID>
   </Icon>
   <Icon>
@@ -297,7 +308,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>update.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>125</ResourceIDValue>
+    <ResourceIDValue>128</ResourceIDValue>
     <ResourceID>ID_INTERNET-GRAY-UPDATE</ResourceID>
   </Icon>
   <Icon>
@@ -307,7 +318,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>126</ResourceIDValue>
+    <ResourceIDValue>129</ResourceIDValue>
     <ResourceID>ID_SELECT-NONE</ResourceID>
   </Icon>
   <Icon>
@@ -317,7 +328,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName>time.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>127</ResourceIDValue>
+    <ResourceIDValue>130</ResourceIDValue>
     <ResourceID>ID_IMAGE-COLORS-TIME</ResourceID>
   </Icon>
   <Icon>
@@ -327,7 +338,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>128</ResourceIDValue>
+    <ResourceIDValue>131</ResourceIDValue>
     <ResourceID>ID_WINDOW-SEPARATE-HORIZONTAL</ResourceID>
   </Icon>
   <Icon>
@@ -337,7 +348,7 @@
     <StockIconSet>Multimedia</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>129</ResourceIDValue>
+    <ResourceIDValue>132</ResourceIDValue>
     <ResourceID>ID_ACTION-PLAY</ResourceID>
   </Icon>
   <Icon>
@@ -347,7 +358,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>130</ResourceIDValue>
+    <ResourceIDValue>133</ResourceIDValue>
     <ResourceID>ID_IMAGE-COLORS</ResourceID>
   </Icon>
   <Icon>
@@ -357,7 +368,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>131</ResourceIDValue>
+    <ResourceIDValue>134</ResourceIDValue>
     <ResourceID>ID_GEAR</ResourceID>
   </Icon>
   <Icon>
@@ -367,7 +378,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName>arrow-right.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>132</ResourceIDValue>
+    <ResourceIDValue>135</ResourceIDValue>
     <ResourceID>ID_COLORS-ARROW-RIGHT</ResourceID>
   </Icon>
   <Icon>
@@ -377,7 +388,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>133</ResourceIDValue>
+    <ResourceIDValue>136</ResourceIDValue>
     <ResourceID>ID_COLORS</ResourceID>
   </Icon>
   <Icon>
@@ -387,7 +398,7 @@
     <StockIconSet>Word Processing</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>134</ResourceIDValue>
+    <ResourceIDValue>137</ResourceIDValue>
     <ResourceID>ID_VIEW-ZOOM</ResourceID>
   </Icon>
   <Icon>
@@ -397,7 +408,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>135</ResourceIDValue>
+    <ResourceIDValue>138</ResourceIDValue>
     <ResourceID>ID_BUTTON-HELP</ResourceID>
   </Icon>
   <Icon>
@@ -407,7 +418,7 @@
     <StockIconSet>Social Media</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>136</ResourceIDValue>
+    <ResourceIDValue>139</ResourceIDValue>
     <ResourceID>ID_FACEBOOK</ResourceID>
   </Icon>
   <Icon>
@@ -417,7 +428,7 @@
     <StockIconSet>Social Media</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>137</ResourceIDValue>
+    <ResourceIDValue>140</ResourceIDValue>
     <ResourceID>ID_GITHUB</ResourceID>
   </Icon>
   <Icon>
@@ -427,7 +438,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>138</ResourceIDValue>
+    <ResourceIDValue>141</ResourceIDValue>
     <ResourceID>ID_HOME</ResourceID>
   </Icon>
   <Icon>
@@ -437,7 +448,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName>save.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>139</ResourceIDValue>
+    <ResourceIDValue>142</ResourceIDValue>
     <ResourceID>ID_COLORS-SAVE</ResourceID>
   </Icon>
   <Icon>
@@ -447,7 +458,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName>edit.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>140</ResourceIDValue>
+    <ResourceIDValue>143</ResourceIDValue>
     <ResourceID>ID_COLORS-EDIT</ResourceID>
   </Icon>
   <Icon>
@@ -457,7 +468,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>141</ResourceIDValue>
+    <ResourceIDValue>144</ResourceIDValue>
     <ResourceID>ID_BUTTON-ADD</ResourceID>
   </Icon>
   <Icon>
@@ -467,7 +478,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>142</ResourceIDValue>
+    <ResourceIDValue>145</ResourceIDValue>
     <ResourceID>ID_SAVE-AS</ResourceID>
   </Icon>
   <Icon>
@@ -477,7 +488,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>143</ResourceIDValue>
+    <ResourceIDValue>146</ResourceIDValue>
     <ResourceID>ID_SELECT-INVERT</ResourceID>
   </Icon>
   <Icon>
@@ -487,7 +498,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>144</ResourceIDValue>
+    <ResourceIDValue>147</ResourceIDValue>
     <ResourceID>ID_SELECT-ALL</ResourceID>
   </Icon>
   <Icon>
@@ -497,7 +508,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>145</ResourceIDValue>
+    <ResourceIDValue>148</ResourceIDValue>
     <ResourceID>ID_SAVE</ResourceID>
   </Icon>
   <Icon>
@@ -507,7 +518,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>146</ResourceIDValue>
+    <ResourceIDValue>149</ResourceIDValue>
     <ResourceID>ID_CLIPBOARD-PASTE</ResourceID>
   </Icon>
   <Icon>
@@ -517,7 +528,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>147</ResourceIDValue>
+    <ResourceIDValue>150</ResourceIDValue>
     <ResourceID>ID_CLIPBOARD-COPY</ResourceID>
   </Icon>
   <Icon>
@@ -527,7 +538,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>148</ResourceIDValue>
+    <ResourceIDValue>151</ResourceIDValue>
     <ResourceID>ID_CLOSE-WINDOW</ResourceID>
   </Icon>
   <Icon>
@@ -537,7 +548,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>149</ResourceIDValue>
+    <ResourceIDValue>152</ResourceIDValue>
     <ResourceID>ID_OPEN</ResourceID>
   </Icon>
   <Icon>
@@ -547,7 +558,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName>warning.axvi</StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>150</ResourceIDValue>
+    <ResourceIDValue>153</ResourceIDValue>
     <ResourceID>ID_BUTTON-REMOVE-WARNING</ResourceID>
   </Icon>
   <Icon>
@@ -557,7 +568,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>151</ResourceIDValue>
+    <ResourceIDValue>154</ResourceIDValue>
     <ResourceID>ID_BUTTON-REMOVE</ResourceID>
   </Icon>
   <Icon>
@@ -567,7 +578,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>152</ResourceIDValue>
+    <ResourceIDValue>155</ResourceIDValue>
     <ResourceID>ID_BUTTON-OK</ResourceID>
   </Icon>
   <Icon>
@@ -577,7 +588,7 @@
     <StockIconSet>Imaging</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>153</ResourceIDValue>
+    <ResourceIDValue>156</ResourceIDValue>
     <ResourceID>ID_TOOL-EYE-DROPPER</ResourceID>
   </Icon>
   <Icon>
@@ -587,7 +598,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>154</ResourceIDValue>
+    <ResourceIDValue>157</ResourceIDValue>
     <ResourceID>ID_BUTTON-CANCEL</ResourceID>
   </Icon>
   <Icon>
@@ -597,7 +608,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>155</ResourceIDValue>
+    <ResourceIDValue>158</ResourceIDValue>
     <ResourceID>ID_PIN-GREEN</ResourceID>
   </Icon>
   <Icon>
@@ -607,7 +618,7 @@
     <StockIconSet>Basic</StockIconSet>
     <StockOverlayName></StockOverlayName>
     <StockOverlayPos>4</StockOverlayPos>
-    <ResourceIDValue>156</ResourceIDValue>
+    <ResourceIDValue>159</ResourceIDValue>
     <ResourceID>ID_BUTTON-INFO</ResourceID>
   </Icon>
 </AxialisIconCollection>

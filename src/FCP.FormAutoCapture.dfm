@@ -579,7 +579,10 @@ object FormAutoCapture: TFormAutoCapture
       Margins.Bottom = 0
       Align = alTop
       ItemHeight = 15
+      PopupMenu = popColorList
       TabOrder = 0
+      OnClick = InitCtrls
+      Multiselect = True
       BorderStyle = bsNone
       Items.Strings = (
         '-=Web red colors'
@@ -681,6 +684,7 @@ object FormAutoCapture: TFormAutoCapture
   end
   object tmCapture: TJppTimer
     Enabled = False
+    Interval = 500
     OnTimer = tmCaptureTimer
     Counter = 0
     Left = 138
@@ -688,8 +692,8 @@ object FormAutoCapture: TFormAutoCapture
   end
   object Actions: TActionList
     Images = FormMain.pilMain
-    Left = 132
-    Top = 78
+    Left = 148
+    Top = 126
     object actEsc: TAction
       Caption = 'actEsc'
       ShortCut = 27
@@ -725,6 +729,46 @@ object FormAutoCapture: TFormAutoCapture
       Caption = 'Clear colors'
       ImageIndex = 7
       OnExecute = actClearColorsExecute
+    end
+    object actSelectAll: TAction
+      Caption = 'Select all'
+      Hint = 'Select all'
+      ImageIndex = 9
+      ShortCut = 16449
+      OnExecute = actSelectAllExecute
+    end
+    object actInvertSelection: TAction
+      Caption = 'Invert selection'
+      Hint = 'Invert selection'
+      ImageIndex = 10
+      ShortCut = 16457
+      OnExecute = actInvertSelectionExecute
+    end
+    object actDeleteSelected: TAction
+      Caption = 'Remove selected colors'
+      Hint = 'Remove selected colors'
+      ImageIndex = 83
+      ShortCut = 46
+      OnExecute = actDeleteSelectedExecute
+    end
+  end
+  object popColorList: TSpTBXPopupMenu
+    Images = FormMain.pilMain
+    Left = 284
+    Top = 156
+    object SpTBXItem3: TSpTBXItem
+      Action = actSelectAll
+    end
+    object SpTBXItem2: TSpTBXItem
+      Action = actInvertSelection
+    end
+    object SpTBXItem1: TSpTBXItem
+      Action = actDeleteSelected
+    end
+    object SpTBXSeparatorItem1: TSpTBXSeparatorItem
+    end
+    object SpTBXItem4: TSpTBXItem
+      Action = actClearColors
     end
   end
 end

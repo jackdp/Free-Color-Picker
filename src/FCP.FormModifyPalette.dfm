@@ -1548,13 +1548,12 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 358
+            Width = 282
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Change the HSL color components by the given values:'
-            ExplicitWidth = 282
           end
           object sbtnReset_Hsl: TJppBasicSpeedButton
             Left = 311
@@ -1766,13 +1765,12 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 358
+            Width = 156
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Set the value of RGB channels:'
-            ExplicitWidth = 156
           end
           object btnModify_SetRgbValue: TJppPngButton
             Left = 324
@@ -2129,13 +2127,12 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 358
+            Width = 105
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Invert RGB channels:'
-            ExplicitWidth = 105
           end
           object btnModify_InvertRgbChannels: TJppPngButton
             Left = 281
@@ -2270,13 +2267,12 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 358
+            Width = 237
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Change the RGB channels by the given values:'
-            ExplicitWidth = 237
           end
           object btnModify_ChangeRgbValue: TJppPngButton
             Left = 281
@@ -2461,13 +2457,12 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 358
+            Width = 187
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Set the HSL color component values:'
-            ExplicitWidth = 187
           end
           object btnModify_SetHslWinHue: TJppPngButton
             Left = 317

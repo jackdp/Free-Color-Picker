@@ -3,8 +3,8 @@ object FormPaletteEditor: TFormPaletteEditor
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'FormPaletteEditor'
-  ClientHeight = 389
-  ClientWidth = 716
+  ClientHeight = 707
+  ClientWidth = 1074
   Color = clBtnFace
   Constraints.MinHeight = 230
   Constraints.MinWidth = 500
@@ -22,8 +22,8 @@ object FormPaletteEditor: TFormPaletteEditor
   TextHeight = 13
   object pnBottom: TJppSimplePanel
     Left = 0
-    Top = 306
-    Width = 716
+    Top = 624
+    Width = 1074
     Height = 83
     Align = alBottom
     TabOrder = 1
@@ -33,7 +33,7 @@ object FormPaletteEditor: TFormPaletteEditor
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
     DesignSize = (
-      716
+      1074
       83)
     object dlblNo: TJppDoubleLabel
       Left = 7
@@ -52,9 +52,9 @@ object FormPaletteEditor: TFormPaletteEditor
       RightCaptionPosDeltaY = 2
     end
     object sbtnEditColor: TJppBasicSpeedButton
-      Left = 508
+      Left = 866
       Top = 25
-      Width = 25
+      Width = 41
       Height = 22
       Caption = '...'
       Appearance.Normal.Color = clBtnFace
@@ -81,13 +81,14 @@ object FormPaletteEditor: TFormPaletteEditor
     object ccbColor: TJppColorComboBox
       Left = 100
       Top = 25
-      Width = 334
-      Height = 22
+      Width = 692
+      Height = 24
       BevelKind = bkFlat
       Style = csOwnerDrawFixed
       Anchors = [akLeft, akTop, akRight]
       Constraints.MinWidth = 150
       DropDownCount = 20
+      ItemHeight = 18
       ItemIndex = 0
       TabOrder = 0
       Items.Strings = (
@@ -544,7 +545,7 @@ object FormPaletteEditor: TFormPaletteEditor
       BoundLabel.FocusControl = ccbColor
       BoundLabelSpacing = 3
       ButtonsSpacing = 2
-      ButtonChangeColor.Left = 436
+      ButtonChangeColor.Left = 794
       ButtonChangeColor.Top = 25
       ButtonChangeColor.Width = 22
       ButtonChangeColor.Height = 22
@@ -570,7 +571,7 @@ object FormPaletteEditor: TFormPaletteEditor
       ButtonChangeColor.ParentShowHint = False
       ButtonChangeColor.ShowHint = True
       ButtonChangeColor.Visible = True
-      ButtonCopyColor.Left = 460
+      ButtonCopyColor.Left = 818
       ButtonCopyColor.Top = 25
       ButtonCopyColor.Width = 22
       ButtonCopyColor.Height = 22
@@ -596,7 +597,7 @@ object FormPaletteEditor: TFormPaletteEditor
       ButtonCopyColor.ParentShowHint = False
       ButtonCopyColor.ShowHint = True
       ButtonCopyColor.Visible = True
-      ButtonPasteColor.Left = 484
+      ButtonPasteColor.Left = 842
       ButtonPasteColor.Top = 25
       ButtonPasteColor.Width = 22
       ButtonPasteColor.Height = 22
@@ -667,7 +668,7 @@ object FormPaletteEditor: TFormPaletteEditor
     object edColorName: TLabeledEdit
       Left = 100
       Top = 53
-      Width = 334
+      Width = 692
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       Constraints.MinWidth = 150
@@ -687,7 +688,7 @@ object FormPaletteEditor: TFormPaletteEditor
       AlignWithMargins = True
       Left = 0
       Top = 1
-      Width = 716
+      Width = 1074
       Height = 17
       Margins.Left = 0
       Margins.Top = 1
@@ -720,7 +721,7 @@ object FormPaletteEditor: TFormPaletteEditor
       end
     end
     object pnRight_Buttons: TJppSimplePanel
-      Left = 596
+      Left = 954
       Top = 18
       Width = 120
       Height = 65
@@ -934,7 +935,7 @@ object FormPaletteEditor: TFormPaletteEditor
       end
     end
     object btnSaveSelectedColor: TJppPngButton
-      Left = 492
+      Left = 850
       Top = 53
       Width = 96
       Height = 25
@@ -1019,7 +1020,7 @@ object FormPaletteEditor: TFormPaletteEditor
     end
   end
   object pnMain: TJppSimplePanel
-    Left = 37
+    Left = 8
     Top = 32
     Width = 553
     Height = 163
@@ -1054,7 +1055,7 @@ object FormPaletteEditor: TFormPaletteEditor
       Header.DefaultHeight = 22
       Header.Height = 22
       Header.Options = [hoColumnResize, hoDrag, hoHotTrack, hoOwnerDraw, hoShowHint, hoShowImages, hoShowSortGlyphs, hoVisible]
-      Header.PopupMenu = popVstHeader
+      Header.PopupMenu = popColumns
       Header.Style = hsFlatButtons
       LineStyle = lsSolid
       PopupMenu = popVst
@@ -1108,7 +1109,7 @@ object FormPaletteEditor: TFormPaletteEditor
           Alignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coEditable, coStyleColor]
           Position = 3
           Text = 'RGB'
           Width = 100
@@ -1147,7 +1148,7 @@ object FormPaletteEditor: TFormPaletteEditor
           Alignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coEditable, coStyleColor]
           Position = 7
           Text = 'RGB %'
           Width = 100
@@ -1165,10 +1166,10 @@ object FormPaletteEditor: TFormPaletteEditor
           Alignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coEditable, coStyleColor]
           Position = 9
           Text = 'HSL CSS'
-          Width = 100
+          Width = 120
         end
         item
           Alignment = taRightJustify
@@ -1201,7 +1202,7 @@ object FormPaletteEditor: TFormPaletteEditor
           Alignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coEditable, coStyleColor]
           Position = 13
           Text = 'HSL WIN'
           Width = 100
@@ -1211,7 +1212,7 @@ object FormPaletteEditor: TFormPaletteEditor
           CaptionAlignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
           Position = 14
           Text = 'Hue - HSL WIN'
         end
@@ -1220,7 +1221,7 @@ object FormPaletteEditor: TFormPaletteEditor
           CaptionAlignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
           Position = 15
           Text = 'Sat - HSL WIN'
         end
@@ -1229,7 +1230,7 @@ object FormPaletteEditor: TFormPaletteEditor
           CaptionAlignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
           Position = 16
           Text = 'Lum - HSL WIN'
         end
@@ -1237,7 +1238,7 @@ object FormPaletteEditor: TFormPaletteEditor
           Alignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Options = [coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coEditable, coStyleColor]
           Position = 17
           Text = 'CMYK'
           Width = 120
@@ -1282,17 +1283,17 @@ object FormPaletteEditor: TFormPaletteEditor
           Alignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coEditable, coStyleColor]
           Position = 22
           Text = 'Pascal HEX'
-          Width = 90
+          Width = 110
         end
         item
           Alignment = taRightJustify
           CaptionAlignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coUseCaptionAlignment, coEditable, coStyleColor]
           Position = 23
           Text = 'Pascal INT'
           Width = 90
@@ -1301,17 +1302,17 @@ object FormPaletteEditor: TFormPaletteEditor
           Alignment = taCenter
           Color = clWhite
           MaxWidth = 200
-          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coVisible, coAllowFocus, coEditable, coStyleColor]
+          Options = [coAllowClick, coDraggable, coEnabled, coParentBidiMode, coResizable, coShowDropMark, coAllowFocus, coEditable, coStyleColor]
           Position = 24
           Text = 'C++ Hex'
-          Width = 90
+          Width = 110
         end>
     end
   end
   object dockMain: TSpTBXDock
     Left = 0
     Top = 0
-    Width = 716
+    Width = 1074
     Height = 26
     AllowDrag = False
     object SpTBXToolbar1: TSpTBXToolbar
@@ -1380,17 +1381,17 @@ object FormPaletteEditor: TFormPaletteEditor
       end
       object SpTBXSeparatorItem9: TSpTBXSeparatorItem
       end
-      object SpTBXItem25: TSpTBXItem
-        Action = actMoveToEnd
-      end
-      object SpTBXItem23: TSpTBXItem
-        Action = actMoveDown
+      object SpTBXItem24: TSpTBXItem
+        Action = actMoveToTop
       end
       object SpTBXItem22: TSpTBXItem
         Action = actMoveUp
       end
-      object SpTBXItem24: TSpTBXItem
-        Action = actMoveToTop
+      object SpTBXItem23: TSpTBXItem
+        Action = actMoveDown
+      end
+      object SpTBXItem25: TSpTBXItem
+        Action = actMoveToEnd
       end
       object SpTBXSeparatorItem7: TSpTBXSeparatorItem
       end
@@ -1400,6 +1401,15 @@ object FormPaletteEditor: TFormPaletteEditor
       object SpTBXItem18: TSpTBXItem
         Action = actShowFormSortBy
       end
+      object SpTBXItem63: TSpTBXItem
+        Action = actShowHideFilterPanel
+      end
+      object mnuColumns: TSpTBXSubmenuItem
+        Caption = 'Columns'
+        Hint = 'Columns'
+        ImageIndex = 59
+        OnPopup = mnuColumnsPopup
+      end
       object SpTBXSeparatorItem6: TSpTBXSeparatorItem
       end
       object SpTBXItem16: TSpTBXItem
@@ -1407,10 +1417,1043 @@ object FormPaletteEditor: TFormPaletteEditor
       end
     end
   end
+  object pnFilter: TJppSimplePanel
+    Left = 850
+    Top = 26
+    Width = 224
+    Height = 598
+    Align = alRight
+    TabOrder = 3
+    Visible = False
+    Appearance.BackgroundColor = 14342874
+    Appearance.BorderColor = 11053224
+    Appearance.DrawBottomBorder = False
+    Appearance.DrawRightBorder = False
+    object sboxFilter: TScrollBox
+      AlignWithMargins = True
+      Left = 7
+      Top = 116
+      Width = 210
+      Height = 473
+      Margins.Left = 1
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      HorzScrollBar.Tracking = True
+      VertScrollBar.Tracking = True
+      Color = 13434879
+      ParentColor = False
+      TabOrder = 0
+      object pnFilterParams: TJppSimplePanel
+        Left = 8
+        Top = 3
+        Width = 178
+        Height = 917
+        TabOrder = 0
+        Appearance.BackgroundColor = 12566463
+        Appearance.BorderColor = 11053224
+        Appearance.DrawTopBorder = False
+        Appearance.DrawBottomBorder = False
+        Appearance.DrawLeftBorder = False
+        Appearance.DrawRightBorder = False
+        object pnFilter_RGB: TJppSimplePanel
+          AlignWithMargins = True
+          Left = 5
+          Top = 98
+          Width = 168
+          Height = 186
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          TabOrder = 0
+          Appearance.BackgroundColor = 15066597
+          Appearance.BorderColor = 11053224
+          object dlblFilter_Rgb: TJppDoubleLineLabel
+            AlignWithMargins = True
+            Left = 6
+            Top = 4
+            Width = 156
+            Height = 13
+            Margins.Left = 6
+            Margins.Top = 4
+            Margins.Right = 6
+            RightCaption = '255, 255, 255'
+            LineStyle = dllsNone
+            Align = alTop
+            Caption = 'RGB'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            RightCaptionFont.Charset = DEFAULT_CHARSET
+            RightCaptionFont.Color = clWindowText
+            RightCaptionFont.Height = -11
+            RightCaptionFont.Name = 'Segoe UI'
+            RightCaptionFont.Style = []
+            ExplicitLeft = 12
+            ExplicitTop = 12
+            ExplicitWidth = 166
+          end
+          object chFilter_RgbRed: TCheckBox
+            Left = 18
+            Top = 24
+            Width = 119
+            Height = 17
+            Caption = 'Red'
+            TabOrder = 0
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_RgbRed_Operator: TComboBox
+            Left = 34
+            Top = 44
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 1
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_RgbRed: TSpTBXSpinEdit
+            Left = 89
+            Top = 44
+            Width = 48
+            Height = 21
+            TabOrder = 2
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 255.000000000000000000
+            SpinOptions.Value = 128.000000000000000000
+          end
+          object chFilter_RgbGreen: TCheckBox
+            Left = 18
+            Top = 78
+            Width = 116
+            Height = 17
+            Caption = 'Green'
+            TabOrder = 3
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_RgbGreen_Operator: TComboBox
+            Left = 34
+            Top = 98
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 4
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_RgbGreen: TSpTBXSpinEdit
+            Left = 89
+            Top = 98
+            Width = 48
+            Height = 21
+            TabOrder = 5
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 255.000000000000000000
+            SpinOptions.Value = 128.000000000000000000
+          end
+          object chFilter_RgbBlue: TCheckBox
+            Left = 18
+            Top = 133
+            Width = 121
+            Height = 17
+            Caption = 'Blue'
+            TabOrder = 6
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_RgbBlue_Operator: TComboBox
+            Left = 34
+            Top = 153
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 7
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_RgbBlue: TSpTBXSpinEdit
+            Left = 89
+            Top = 153
+            Width = 48
+            Height = 21
+            TabOrder = 8
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 255.000000000000000000
+            SpinOptions.Value = 128.000000000000000000
+          end
+        end
+        object pnFilter_ColorName: TJppSimplePanel
+          AlignWithMargins = True
+          Left = 5
+          Top = 0
+          Width = 168
+          Height = 93
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          TabOrder = 1
+          Appearance.BackgroundColor = 15066597
+          Appearance.BorderColor = 11053224
+          DesignSize = (
+            168
+            93)
+          object lblFilter_WildcardsTip: TLabel
+            Left = 10
+            Top = 72
+            Width = 70
+            Height = 13
+            Hint = 
+              'You can use wildcards:'#13#10'* - any number of any characters'#13#10'? - on' +
+              'e character'
+            Caption = 'Wildcards: * ?'
+            ParentShowHint = False
+            ShowHint = True
+          end
+          object chFilter_ColorName: TCheckBox
+            Left = 10
+            Top = 10
+            Width = 97
+            Height = 17
+            Caption = 'Color name'
+            TabOrder = 0
+            OnClick = InitFilterCtrls
+          end
+          object edFilter_Name: TJppEdit
+            Left = 10
+            Top = 47
+            Width = 148
+            Height = 21
+            Anchors = [akLeft, akTop, akRight]
+            EditLabel.Width = 32
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Name:'
+            LabelSpacing = 1
+            TabOrder = 1
+            TabOnEnter = False
+          end
+        end
+        object pnFilter_HslCss: TJppSimplePanel
+          AlignWithMargins = True
+          Left = 5
+          Top = 289
+          Width = 168
+          Height = 186
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          TabOrder = 2
+          Appearance.BackgroundColor = 15066597
+          Appearance.BorderColor = 11053224
+          object dlblFilter_HslCss: TJppDoubleLineLabel
+            AlignWithMargins = True
+            Left = 6
+            Top = 4
+            Width = 156
+            Height = 13
+            Margins.Left = 6
+            Margins.Top = 4
+            Margins.Right = 6
+            RightCaption = '360'#176', 100%, 100%'
+            LineStyle = dllsNone
+            Align = alTop
+            Caption = 'HSL CSS'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            RightCaptionFont.Charset = DEFAULT_CHARSET
+            RightCaptionFont.Color = clWindowText
+            RightCaptionFont.Height = -11
+            RightCaptionFont.Name = 'Segoe UI'
+            RightCaptionFont.Style = []
+            ExplicitLeft = 49
+            ExplicitTop = 42
+            ExplicitWidth = 190
+          end
+          object chFilter_HslCss_Hue: TCheckBox
+            Left = 10
+            Top = 24
+            Width = 119
+            Height = 17
+            Caption = 'Hue'
+            TabOrder = 0
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_HslCss_Hue_Operator: TComboBox
+            Left = 26
+            Top = 44
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 1
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_HslCss_Hue: TSpTBXSpinEdit
+            Left = 81
+            Top = 44
+            Width = 48
+            Height = 21
+            TabOrder = 2
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 360.000000000000000000
+            SpinOptions.Value = 180.000000000000000000
+          end
+          object chFilter_HslCss_Sat: TCheckBox
+            Left = 10
+            Top = 78
+            Width = 119
+            Height = 17
+            Caption = 'Saturation'
+            TabOrder = 3
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_HslCss_Sat_Operator: TComboBox
+            Left = 26
+            Top = 98
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 4
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_HslCss_Sat: TSpTBXSpinEdit
+            Left = 81
+            Top = 98
+            Width = 48
+            Height = 21
+            TabOrder = 5
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 100.000000000000000000
+            SpinOptions.Value = 50.000000000000000000
+          end
+          object chFilter_HslCss_Lum: TCheckBox
+            Left = 10
+            Top = 133
+            Width = 119
+            Height = 17
+            Caption = 'Luminance'
+            TabOrder = 6
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_HslCss_Lum_Operator: TComboBox
+            Left = 26
+            Top = 153
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 7
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_HslCss_Lum: TSpTBXSpinEdit
+            Left = 81
+            Top = 153
+            Width = 48
+            Height = 21
+            TabOrder = 8
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 100.000000000000000000
+            SpinOptions.Value = 50.000000000000000000
+          end
+        end
+        object pnFilter_HslWin: TJppSimplePanel
+          AlignWithMargins = True
+          Left = 5
+          Top = 480
+          Width = 168
+          Height = 186
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          TabOrder = 3
+          Appearance.BackgroundColor = 15066597
+          Appearance.BorderColor = 11053224
+          object dlblFilter_HslWin: TJppDoubleLineLabel
+            AlignWithMargins = True
+            Left = 6
+            Top = 4
+            Width = 156
+            Height = 13
+            Margins.Left = 6
+            Margins.Top = 4
+            Margins.Right = 6
+            RightCaption = '239, 240, 240'
+            LineStyle = dllsNone
+            Align = alTop
+            Caption = 'HSL WIN'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            RightCaptionFont.Charset = DEFAULT_CHARSET
+            RightCaptionFont.Color = clWindowText
+            RightCaptionFont.Height = -11
+            RightCaptionFont.Name = 'Segoe UI'
+            RightCaptionFont.Style = []
+            ExplicitLeft = 49
+            ExplicitTop = 42
+            ExplicitWidth = 190
+          end
+          object chFilter_HslWin_Hue: TCheckBox
+            Left = 10
+            Top = 24
+            Width = 119
+            Height = 17
+            Caption = 'Hue'
+            TabOrder = 0
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_HslWin_Hue_Operator: TComboBox
+            Left = 26
+            Top = 44
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 1
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_HslWin_Hue: TSpTBXSpinEdit
+            Left = 81
+            Top = 44
+            Width = 48
+            Height = 21
+            TabOrder = 2
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 239.000000000000000000
+            SpinOptions.Value = 120.000000000000000000
+          end
+          object chFilter_HslWin_Sat: TCheckBox
+            Left = 10
+            Top = 78
+            Width = 119
+            Height = 17
+            Caption = 'Saturation'
+            TabOrder = 3
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_HslWin_Sat_Operator: TComboBox
+            Left = 26
+            Top = 98
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 4
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_HslWin_Sat: TSpTBXSpinEdit
+            Left = 81
+            Top = 98
+            Width = 48
+            Height = 21
+            TabOrder = 5
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 240.000000000000000000
+            SpinOptions.Value = 120.000000000000000000
+          end
+          object chFilter_HslWin_Lum: TCheckBox
+            Left = 10
+            Top = 133
+            Width = 119
+            Height = 17
+            Caption = 'Luminance'
+            TabOrder = 6
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_HslWin_Lum_Operator: TComboBox
+            Left = 26
+            Top = 153
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 7
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_HslWin_Lum: TSpTBXSpinEdit
+            Left = 81
+            Top = 153
+            Width = 48
+            Height = 21
+            TabOrder = 8
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 240.000000000000000000
+            SpinOptions.Value = 120.000000000000000000
+          end
+        end
+        object pnFilter_Cmyk: TJppSimplePanel
+          AlignWithMargins = True
+          Left = 5
+          Top = 671
+          Width = 168
+          Height = 240
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          TabOrder = 4
+          Appearance.BackgroundColor = 15066597
+          Appearance.BorderColor = 11053224
+          object dlblFilter_Cmyk: TJppDoubleLineLabel
+            AlignWithMargins = True
+            Left = 6
+            Top = 4
+            Width = 156
+            Height = 13
+            Margins.Left = 6
+            Margins.Top = 4
+            Margins.Right = 6
+            RightCaption = '100, 100, 100, 100'
+            LineStyle = dllsNone
+            Align = alTop
+            Caption = 'CMYK'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            RightCaptionFont.Charset = DEFAULT_CHARSET
+            RightCaptionFont.Color = clWindowText
+            RightCaptionFont.Height = -11
+            RightCaptionFont.Name = 'Segoe UI'
+            RightCaptionFont.Style = []
+            ExplicitLeft = 49
+            ExplicitTop = 42
+            ExplicitWidth = 190
+          end
+          object chFilter_Cmyk_Cyan: TCheckBox
+            Left = 10
+            Top = 24
+            Width = 119
+            Height = 17
+            Caption = 'Cyan'
+            TabOrder = 0
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_Cmyk_Cyan_Operator: TComboBox
+            Left = 26
+            Top = 44
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 1
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_Cmyk_Cyan: TSpTBXSpinEdit
+            Left = 81
+            Top = 44
+            Width = 48
+            Height = 21
+            TabOrder = 2
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 100.000000000000000000
+            SpinOptions.Value = 50.000000000000000000
+          end
+          object chFilter_Cmyk_Magenta: TCheckBox
+            Left = 10
+            Top = 78
+            Width = 119
+            Height = 17
+            Caption = 'Magenta'
+            TabOrder = 3
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_Cmyk_Magenta_Operator: TComboBox
+            Left = 26
+            Top = 98
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 4
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_Cmyk_Magenta: TSpTBXSpinEdit
+            Left = 81
+            Top = 98
+            Width = 48
+            Height = 21
+            TabOrder = 5
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 100.000000000000000000
+            SpinOptions.Value = 50.000000000000000000
+          end
+          object chFilter_Cmyk_Yellow: TCheckBox
+            Left = 10
+            Top = 133
+            Width = 119
+            Height = 17
+            Caption = 'Yellow'
+            TabOrder = 6
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_Cmyk_Yellow_Operator: TComboBox
+            Left = 26
+            Top = 153
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 7
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_Cmyk_Yellow: TSpTBXSpinEdit
+            Left = 81
+            Top = 153
+            Width = 48
+            Height = 21
+            TabOrder = 8
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 100.000000000000000000
+            SpinOptions.Value = 50.000000000000000000
+          end
+          object chFilter_Cmyk_Black: TCheckBox
+            Left = 10
+            Top = 187
+            Width = 119
+            Height = 17
+            Caption = 'Black'
+            TabOrder = 9
+            OnClick = InitFilterCtrls
+          end
+          object cbFilter_Cmyk_Black_Operator: TComboBox
+            Left = 26
+            Top = 207
+            Width = 47
+            Height = 21
+            Style = csDropDownList
+            ItemIndex = 0
+            TabOrder = 10
+            Text = '<'
+            Items.Strings = (
+              '<'
+              '<='
+              '='
+              '>='
+              '>'
+              '<>')
+          end
+          object spedFilter_Cmyk_Black: TSpTBXSpinEdit
+            Left = 81
+            Top = 207
+            Width = 48
+            Height = 21
+            TabOrder = 11
+            SpinButton.Left = 30
+            SpinButton.Top = 0
+            SpinButton.Width = 14
+            SpinButton.Height = 17
+            SpinButton.Align = alRight
+            SpinOptions.MaxValue = 100.000000000000000000
+            SpinOptions.Value = 50.000000000000000000
+          end
+        end
+      end
+    end
+    object pnFilter_Buttons: TJppSimplePanel
+      AlignWithMargins = True
+      Left = 6
+      Top = 6
+      Width = 212
+      Height = 96
+      Margins.Left = 6
+      Margins.Top = 6
+      Margins.Right = 6
+      Margins.Bottom = 6
+      Align = alTop
+      TabOrder = 1
+      Appearance.BackgroundColor = 15066597
+      Appearance.BorderColor = 11053224
+      DesignSize = (
+        212
+        96)
+      object dlblFilter_Stats_All: TJppDoubleLineLabel
+        Left = 13
+        Top = 42
+        Width = 185
+        Height = 13
+        RightCaption = '128'
+        LinePeriod = 4
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'All colors:'
+        RightCaptionFont.Charset = DEFAULT_CHARSET
+        RightCaptionFont.Color = clWindowText
+        RightCaptionFont.Height = -11
+        RightCaptionFont.Name = 'Verdana'
+        RightCaptionFont.Style = [fsBold]
+        LineSizeDeltaX1 = 6
+        LineSizeDeltaX2 = -6
+      end
+      object dlblFilter_Stats_Visible: TJppDoubleLineLabel
+        Left = 13
+        Top = 58
+        Width = 185
+        Height = 13
+        RightCaption = '128'
+        LinePeriod = 4
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Visible:'
+        RightCaptionFont.Charset = DEFAULT_CHARSET
+        RightCaptionFont.Color = 3257630
+        RightCaptionFont.Height = -11
+        RightCaptionFont.Name = 'Verdana'
+        RightCaptionFont.Style = [fsBold]
+        LineSizeDeltaX1 = 6
+        LineSizeDeltaX2 = -6
+      end
+      object dlblFilter_Stats_Hidden: TJppDoubleLineLabel
+        Left = 13
+        Top = 74
+        Width = 185
+        Height = 13
+        RightCaption = ' 128 '
+        LinePeriod = 4
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Hidden:'
+        RightCaptionFont.Charset = DEFAULT_CHARSET
+        RightCaptionFont.Color = 15592954
+        RightCaptionFont.Height = -11
+        RightCaptionFont.Name = 'Verdana'
+        RightCaptionFont.Style = [fsBold]
+        LineSizeDeltaX1 = 6
+        LineSizeDeltaX2 = -6
+        RightCaptionColor = 1447584
+        RightCaptionBorderColor = 1447584
+      end
+      object btnFilterList: TJppPngButton
+        Left = 7
+        Top = 9
+        Width = 90
+        Height = 25
+        Action = actFilterList
+        Caption = 'Filter'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        Appearance.Normal.Border.Color = 7368816
+        Appearance.Normal.Color = 15987699
+        Appearance.Normal.Font.Charset = DEFAULT_CHARSET
+        Appearance.Normal.Font.Color = clBlack
+        Appearance.Normal.Font.Height = -11
+        Appearance.Normal.Font.Name = 'Tahoma'
+        Appearance.Normal.Font.Style = []
+        Appearance.Normal.UpperGradient.SpeedPercent = 100
+        Appearance.Normal.UpperGradient.ColorFrom = 15856113
+        Appearance.Normal.UpperGradient.ColorTo = 15461355
+        Appearance.Normal.BottomGradient.SpeedPercent = 100
+        Appearance.Normal.BottomGradient.ColorFrom = 14540253
+        Appearance.Normal.BottomGradient.ColorTo = 13619151
+        Appearance.Normal.UpperGradientPercent = 46
+        Appearance.Hot.Border.Color = 11632444
+        Appearance.Hot.Color = 16578024
+        Appearance.Hot.Font.Charset = DEFAULT_CHARSET
+        Appearance.Hot.Font.Color = clBlack
+        Appearance.Hot.Font.Height = -11
+        Appearance.Hot.Font.Name = 'Tahoma'
+        Appearance.Hot.Font.Style = []
+        Appearance.Hot.UpperGradient.SpeedPercent = 100
+        Appearance.Hot.UpperGradient.ColorFrom = 16643818
+        Appearance.Hot.UpperGradient.ColorTo = 16576729
+        Appearance.Hot.BottomGradient.SpeedPercent = 100
+        Appearance.Hot.BottomGradient.ColorFrom = 16639678
+        Appearance.Hot.BottomGradient.ColorTo = 16112039
+        Appearance.Hot.UpperGradientPercent = 46
+        Appearance.Down.Border.Color = 5849118
+        Appearance.Down.Color = 15852229
+        Appearance.Down.Font.Charset = DEFAULT_CHARSET
+        Appearance.Down.Font.Color = clBlack
+        Appearance.Down.Font.Height = -11
+        Appearance.Down.Font.Name = 'Tahoma'
+        Appearance.Down.Font.Style = []
+        Appearance.Down.UpperGradient.SpeedPercent = 100
+        Appearance.Down.UpperGradient.ColorFrom = 16577765
+        Appearance.Down.UpperGradient.ColorTo = 16180676
+        Appearance.Down.BottomGradient.SpeedPercent = 100
+        Appearance.Down.BottomGradient.ColorFrom = 15716760
+        Appearance.Down.BottomGradient.ColorTo = 14662002
+        Appearance.Down.UpperGradientPercent = 52
+        Appearance.Disabled.Border.Color = 11907757
+        Appearance.Disabled.Color = 16053492
+        Appearance.Disabled.Font.Charset = DEFAULT_CHARSET
+        Appearance.Disabled.Font.Color = 10526880
+        Appearance.Disabled.Font.Height = -11
+        Appearance.Disabled.Font.Name = 'Tahoma'
+        Appearance.Disabled.Font.Style = []
+        Appearance.Disabled.UpperGradient.SpeedPercent = 100
+        Appearance.Disabled.UpperGradient.ColorFrom = 16053492
+        Appearance.Disabled.UpperGradient.ColorTo = 16053492
+        Appearance.Disabled.BottomGradient.SpeedPercent = 100
+        Appearance.Disabled.BottomGradient.ColorFrom = 16053492
+        Appearance.Disabled.BottomGradient.ColorTo = 16053492
+        Appearance.Disabled.UpperGradientPercent = 46
+        Appearance.Focused.Border.Color = 13675044
+        Appearance.Focused.Color = 15987699
+        Appearance.Focused.Font.Charset = DEFAULT_CHARSET
+        Appearance.Focused.Font.Color = clBlack
+        Appearance.Focused.Font.Height = -11
+        Appearance.Focused.Font.Name = 'Tahoma'
+        Appearance.Focused.Font.Style = []
+        Appearance.Focused.UpperGradient.SpeedPercent = 100
+        Appearance.Focused.UpperGradient.ColorFrom = 15856113
+        Appearance.Focused.UpperGradient.ColorTo = 15461355
+        Appearance.Focused.BottomGradient.SpeedPercent = 100
+        Appearance.Focused.BottomGradient.ColorFrom = 14540253
+        Appearance.Focused.BottomGradient.ColorTo = 13619151
+        Appearance.Focused.UpperGradientPercent = 46
+        Appearance.FocusRect.Pen.Color = 13675044
+        Appearance.BorderWhenDefault.Color = 13675044
+      end
+      object btnDisableFilter: TJppPngButton
+        Left = 101
+        Top = 9
+        Width = 104
+        Height = 25
+        Action = actDisableFilter
+        Caption = 'Disable'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 1
+        Appearance.Normal.Border.Color = 7368816
+        Appearance.Normal.Color = 15987699
+        Appearance.Normal.Font.Charset = DEFAULT_CHARSET
+        Appearance.Normal.Font.Color = clBlack
+        Appearance.Normal.Font.Height = -11
+        Appearance.Normal.Font.Name = 'Tahoma'
+        Appearance.Normal.Font.Style = []
+        Appearance.Normal.UpperGradient.SpeedPercent = 100
+        Appearance.Normal.UpperGradient.ColorFrom = 15856113
+        Appearance.Normal.UpperGradient.ColorTo = 15461355
+        Appearance.Normal.BottomGradient.SpeedPercent = 100
+        Appearance.Normal.BottomGradient.ColorFrom = 14540253
+        Appearance.Normal.BottomGradient.ColorTo = 13619151
+        Appearance.Normal.UpperGradientPercent = 46
+        Appearance.Hot.Border.Color = 11632444
+        Appearance.Hot.Color = 16578024
+        Appearance.Hot.Font.Charset = DEFAULT_CHARSET
+        Appearance.Hot.Font.Color = clBlack
+        Appearance.Hot.Font.Height = -11
+        Appearance.Hot.Font.Name = 'Tahoma'
+        Appearance.Hot.Font.Style = []
+        Appearance.Hot.UpperGradient.SpeedPercent = 100
+        Appearance.Hot.UpperGradient.ColorFrom = 16643818
+        Appearance.Hot.UpperGradient.ColorTo = 16576729
+        Appearance.Hot.BottomGradient.SpeedPercent = 100
+        Appearance.Hot.BottomGradient.ColorFrom = 16639678
+        Appearance.Hot.BottomGradient.ColorTo = 16112039
+        Appearance.Hot.UpperGradientPercent = 46
+        Appearance.Down.Border.Color = 5849118
+        Appearance.Down.Color = 15852229
+        Appearance.Down.Font.Charset = DEFAULT_CHARSET
+        Appearance.Down.Font.Color = clBlack
+        Appearance.Down.Font.Height = -11
+        Appearance.Down.Font.Name = 'Tahoma'
+        Appearance.Down.Font.Style = []
+        Appearance.Down.UpperGradient.SpeedPercent = 100
+        Appearance.Down.UpperGradient.ColorFrom = 16577765
+        Appearance.Down.UpperGradient.ColorTo = 16180676
+        Appearance.Down.BottomGradient.SpeedPercent = 100
+        Appearance.Down.BottomGradient.ColorFrom = 15716760
+        Appearance.Down.BottomGradient.ColorTo = 14662002
+        Appearance.Down.UpperGradientPercent = 52
+        Appearance.Disabled.Border.Color = 11907757
+        Appearance.Disabled.Color = 16053492
+        Appearance.Disabled.Font.Charset = DEFAULT_CHARSET
+        Appearance.Disabled.Font.Color = 10526880
+        Appearance.Disabled.Font.Height = -11
+        Appearance.Disabled.Font.Name = 'Tahoma'
+        Appearance.Disabled.Font.Style = []
+        Appearance.Disabled.UpperGradient.SpeedPercent = 100
+        Appearance.Disabled.UpperGradient.ColorFrom = 16053492
+        Appearance.Disabled.UpperGradient.ColorTo = 16053492
+        Appearance.Disabled.BottomGradient.SpeedPercent = 100
+        Appearance.Disabled.BottomGradient.ColorFrom = 16053492
+        Appearance.Disabled.BottomGradient.ColorTo = 16053492
+        Appearance.Disabled.UpperGradientPercent = 46
+        Appearance.Focused.Border.Color = 13675044
+        Appearance.Focused.Color = 15987699
+        Appearance.Focused.Font.Charset = DEFAULT_CHARSET
+        Appearance.Focused.Font.Color = clBlack
+        Appearance.Focused.Font.Height = -11
+        Appearance.Focused.Font.Name = 'Tahoma'
+        Appearance.Focused.Font.Style = []
+        Appearance.Focused.UpperGradient.SpeedPercent = 100
+        Appearance.Focused.UpperGradient.ColorFrom = 15856113
+        Appearance.Focused.UpperGradient.ColorTo = 15461355
+        Appearance.Focused.BottomGradient.SpeedPercent = 100
+        Appearance.Focused.BottomGradient.ColorFrom = 14540253
+        Appearance.Focused.BottomGradient.ColorTo = 13619151
+        Appearance.Focused.UpperGradientPercent = 46
+        Appearance.FocusRect.Pen.Color = 13675044
+        Appearance.BorderWhenDefault.Color = 13675044
+      end
+    end
+    object pnFilter_Separator: TJppSimplePanel
+      Left = 0
+      Top = 108
+      Width = 224
+      Height = 5
+      Align = alTop
+      TabOrder = 2
+      Appearance.BackgroundColor = 12566463
+      Appearance.BorderColor = 12566463
+    end
+  end
   object Actions: TActionList
     Images = FormMain.pilMain
-    Left = 318
-    Top = 157
+    Left = 395
+    Top = 216
     object actSaveAndClose: TAction
       Caption = 'OK'
       Hint = 'Save all changes and close'
@@ -1428,6 +2471,7 @@ object FormPaletteEditor: TFormPaletteEditor
       Caption = 'Select all'
       Hint = 'Select all'
       ImageIndex = 9
+      ShortCut = 16449
       OnExecute = actSelectAllExecute
     end
     object actInvertSelection: TAction
@@ -1440,7 +2484,7 @@ object FormPaletteEditor: TFormPaletteEditor
     object actDeleteSelected: TAction
       Caption = 'Delete selected colors'
       Hint = 'Delete selected colors'
-      ImageIndex = 7
+      ImageIndex = 83
       ShortCut = 46
       OnExecute = actDeleteSelectedExecute
     end
@@ -1575,6 +2619,197 @@ object FormPaletteEditor: TFormPaletteEditor
       ShortCut = 24663
       OnExecute = actColorWheelExecute
     end
+    object actSwitchColVisible_No: TAction
+      Category = 'Columns'
+      Caption = 'No'
+      OnExecute = actSwitchColVisible_NoExecute
+    end
+    object actSwitchColVisible_Name: TAction
+      Category = 'Columns'
+      Caption = 'Name'
+      OnExecute = actSwitchColVisible_NameExecute
+    end
+    object actSwitchColVisible_Rgb: TAction
+      Category = 'Columns'
+      Caption = 'RGB'
+      OnExecute = actSwitchColVisible_RgbExecute
+    end
+    object actSwitchColVisible_RgbRed: TAction
+      Category = 'Columns'
+      Caption = 'RGB Red'
+      OnExecute = actSwitchColVisible_RgbRedExecute
+    end
+    object actSwitchColVisible_RgbGreen: TAction
+      Category = 'Columns'
+      Caption = 'RGB Green'
+      OnExecute = actSwitchColVisible_RgbGreenExecute
+    end
+    object actSwitchColVisible_RgbBlue: TAction
+      Category = 'Columns'
+      Caption = 'RGB Blue'
+      OnExecute = actSwitchColVisible_RgbBlueExecute
+    end
+    object actSwitchColVisible_Html: TAction
+      Category = 'Columns'
+      Caption = 'HTML'
+      OnExecute = actSwitchColVisible_HtmlExecute
+    end
+    object actSwitchColVisible_HslCss: TAction
+      Category = 'Columns'
+      Caption = 'HSL CSS'
+      OnExecute = actSwitchColVisible_HslCssExecute
+    end
+    object actSwitchColVisible_HslCss_Hue: TAction
+      Category = 'Columns'
+      Caption = 'HSL CSS Hue'
+      OnExecute = actSwitchColVisible_HslCss_HueExecute
+    end
+    object actSwitchColVisible_HslCss_Sat: TAction
+      Category = 'Columns'
+      Caption = 'HSL CSS Sat'
+      OnExecute = actSwitchColVisible_HslCss_SatExecute
+    end
+    object actSwitchColVisible_HslCss_Lum: TAction
+      Category = 'Columns'
+      Caption = 'HSL CSS Lum'
+      OnExecute = actSwitchColVisible_HslCss_LumExecute
+    end
+    object actSwitchColVisible_HslWin: TAction
+      Category = 'Columns'
+      Caption = 'HSL WIN'
+      OnExecute = actSwitchColVisible_HslWinExecute
+    end
+    object actSwitchColVisible_HslWin_Hue: TAction
+      Category = 'Columns'
+      Caption = 'HSL WIN Hue'
+      OnExecute = actSwitchColVisible_HslWin_HueExecute
+    end
+    object actSwitchColVisible_HslWin_Sat: TAction
+      Category = 'Columns'
+      Caption = 'HSL WIN Sat'
+      OnExecute = actSwitchColVisible_HslWin_SatExecute
+    end
+    object actSwitchColVisible_HslWin_Lum: TAction
+      Category = 'Columns'
+      Caption = 'HSL WIN Lum'
+      OnExecute = actSwitchColVisible_HslWin_LumExecute
+    end
+    object actSwitchColVisible_Rgb_Percent: TAction
+      Category = 'Columns'
+      Caption = 'RGB %'
+      OnExecute = actSwitchColVisible_Rgb_PercentExecute
+    end
+    object actSwitchColVisible_Cmyk: TAction
+      Category = 'Columns'
+      Caption = 'CMYK'
+      OnExecute = actSwitchColVisible_CmykExecute
+    end
+    object actSwitchColVisible_Cmyk_Cyan: TAction
+      Category = 'Columns'
+      Caption = 'CMYK Cyan'
+      OnExecute = actSwitchColVisible_Cmyk_CyanExecute
+    end
+    object actSwitchColVisible_Cmyk_Magenta: TAction
+      Category = 'Columns'
+      Caption = 'CMYK Magenta'
+      OnExecute = actSwitchColVisible_Cmyk_MagentaExecute
+    end
+    object actSwitchColVisible_Cmyk_Yellow: TAction
+      Category = 'Columns'
+      Caption = 'CMYK Yellow'
+      OnExecute = actSwitchColVisible_Cmyk_YellowExecute
+    end
+    object actSwitchColVisible_Cmyk_Black: TAction
+      Category = 'Columns'
+      Caption = 'CMYK Black'
+      OnExecute = actSwitchColVisible_Cmyk_BlackExecute
+    end
+    object actSwitchColVisible_PascalHex: TAction
+      Category = 'Columns'
+      Caption = 'Pascal HEX'
+      OnExecute = actSwitchColVisible_PascalHexExecute
+    end
+    object actSwitchColVisible_PascalInt: TAction
+      Category = 'Columns'
+      Caption = 'Pascal INT'
+      OnExecute = actSwitchColVisible_PascalIntExecute
+    end
+    object actSwitchColVisible_CppHex: TAction
+      Category = 'Columns'
+      Caption = 'C++ HEX'
+      OnExecute = actSwitchColVisible_CppHexExecute
+    end
+    object actFilterList: TAction
+      Caption = 'Filter'
+      ImageIndex = 82
+      OnExecute = actFilterListExecute
+    end
+    object actDisableFilter: TAction
+      Caption = 'Disable'
+      ImageIndex = 81
+      OnExecute = actDisableFilterExecute
+    end
+    object actShowHideFilterPanel: TAction
+      Caption = 'Show / Hide filter panel'
+      Hint = 'Show / Hide filter panel'
+      ImageIndex = 80
+      ShortCut = 24646
+      OnExecute = actShowHideFilterPanelExecute
+    end
+    object actCopySelectedColors_HTML: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - HTML'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_HTMLExecute
+    end
+    object actCopySelectedColors_RGB: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - RGB'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_RGBExecute
+    end
+    object actCopySelectedColors_RGB_Percent: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - RGB %'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_RGB_PercentExecute
+    end
+    object actCopySelectedColors_HslCss: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - HSL CSS'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_HslCssExecute
+    end
+    object actCopySelectedColors_HslWin: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - HSL Win'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_HslWinExecute
+    end
+    object actCopySelectedColors_CMYK: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - CMYK'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_CMYKExecute
+    end
+    object actCopySelectedColors_PascalHex: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - Pascal HEX'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_PascalHexExecute
+    end
+    object actCopySelectedColors_PascalInt: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - Pascal INT'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_PascalIntExecute
+    end
+    object actCopySelectedColors_CppHex: TAction
+      Category = 'Copy_Color'
+      Caption = 'Copy selected colors - C++ HEX'
+      ImageIndex = 22
+      OnExecute = actCopySelectedColors_CppHexExecute
+    end
   end
   object dlgOpenPalette: TOpenDialog
     DefaultExt = '.colors'
@@ -1582,33 +2817,28 @@ object FormPaletteEditor: TFormPaletteEditor
       'All supported files (*.colors;*.gpl)|*.colors;*.gpl|COLORS palet' +
       'te files (*.colors)|*.colors|GIMP palette files (*.gpl)|*.gpl'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
-    Left = 247
-    Top = 212
+    Left = 114
+    Top = 217
   end
   object dlgSavePalette: TSaveDialog
     DefaultExt = '.colors'
     Filter = 'Color palette files (*.colors)|*.colors'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    Left = 155
-    Top = 172
+    Left = 56
+    Top = 287
   end
   object dlgExport: TSaveDialog
     DefaultExt = '.html'
     Filter = 'HTML files (*.html)|*.html'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    Left = 162
-    Top = 226
-  end
-  object popVstHeader: TVTHeaderPopupMenu
-    Options = []
-    OnAddHeaderPopupItem = popVstHeaderAddHeaderPopupItem
-    Left = 47
-    Top = 222
+    Left = 44
+    Top = 213
   end
   object popVst: TSpTBXPopupMenu
     Images = FormMain.pilMain
-    Left = 461
-    Top = 209
+    OnPopup = InitCtrls
+    Left = 487
+    Top = 219
     object SpTBXItem11: TSpTBXItem
       Action = actOpenPaletteFile
     end
@@ -1650,17 +2880,17 @@ object FormPaletteEditor: TFormPaletteEditor
     end
     object SpTBXSeparatorItem10: TSpTBXSeparatorItem
     end
-    object SpTBXItem31: TSpTBXItem
-      Action = actMoveToEnd
-    end
-    object SpTBXItem30: TSpTBXItem
-      Action = actMoveDown
+    object SpTBXItem28: TSpTBXItem
+      Action = actMoveToTop
     end
     object SpTBXItem29: TSpTBXItem
       Action = actMoveUp
     end
-    object SpTBXItem28: TSpTBXItem
-      Action = actMoveToTop
+    object SpTBXItem30: TSpTBXItem
+      Action = actMoveDown
+    end
+    object SpTBXItem31: TSpTBXItem
+      Action = actMoveToEnd
     end
     object SpTBXSeparatorItem8: TSpTBXSeparatorItem
     end
@@ -1670,10 +2900,131 @@ object FormPaletteEditor: TFormPaletteEditor
     object SpTBXItem19: TSpTBXItem
       Action = actShowFormSortBy
     end
+    object SpTBXItem64: TSpTBXItem
+      Action = actShowHideFilterPanel
+    end
     object SpTBXSeparatorItem1: TSpTBXSeparatorItem
     end
     object SpTBXItem17: TSpTBXItem
       Action = actClearColorList
+    end
+    object SpTBXSeparatorItem19: TSpTBXSeparatorItem
+    end
+    object SpTBXItem67: TSpTBXItem
+      Action = actCopySelectedColors_HTML
+    end
+    object SpTBXItem65: TSpTBXItem
+      Action = actCopySelectedColors_RGB
+    end
+    object SpTBXItem66: TSpTBXItem
+      Action = actCopySelectedColors_RGB_Percent
+    end
+    object SpTBXItem70: TSpTBXItem
+      Action = actCopySelectedColors_HslCss
+    end
+    object SpTBXItem69: TSpTBXItem
+      Action = actCopySelectedColors_HslWin
+    end
+    object SpTBXItem68: TSpTBXItem
+      Action = actCopySelectedColors_CMYK
+    end
+    object SpTBXItem73: TSpTBXItem
+      Action = actCopySelectedColors_PascalHex
+    end
+    object SpTBXItem72: TSpTBXItem
+      Action = actCopySelectedColors_PascalInt
+    end
+    object SpTBXItem71: TSpTBXItem
+      Action = actCopySelectedColors_CppHex
+    end
+  end
+  object popColumns: TSpTBXPopupMenu
+    OnPopup = popColumnsPopup
+    Left = 210
+    Top = 219
+    object SpTBXItem39: TSpTBXItem
+      Action = actSwitchColVisible_No
+    end
+    object SpTBXItem43: TSpTBXItem
+      Action = actSwitchColVisible_Name
+    end
+    object SpTBXSeparatorItem13: TSpTBXSeparatorItem
+    end
+    object SpTBXItem42: TSpTBXItem
+      Action = actSwitchColVisible_Rgb
+    end
+    object SpTBXItem44: TSpTBXItem
+      Action = actSwitchColVisible_RgbRed
+    end
+    object SpTBXItem41: TSpTBXItem
+      Action = actSwitchColVisible_RgbGreen
+    end
+    object SpTBXItem40: TSpTBXItem
+      Action = actSwitchColVisible_RgbBlue
+    end
+    object SpTBXItem54: TSpTBXItem
+      Action = actSwitchColVisible_Rgb_Percent
+    end
+    object SpTBXSeparatorItem14: TSpTBXSeparatorItem
+    end
+    object SpTBXItem45: TSpTBXItem
+      Action = actSwitchColVisible_Html
+    end
+    object SpTBXSeparatorItem15: TSpTBXSeparatorItem
+    end
+    object SpTBXItem49: TSpTBXItem
+      Action = actSwitchColVisible_HslCss
+    end
+    object SpTBXItem48: TSpTBXItem
+      Action = actSwitchColVisible_HslCss_Hue
+    end
+    object SpTBXItem47: TSpTBXItem
+      Action = actSwitchColVisible_HslCss_Sat
+    end
+    object SpTBXItem46: TSpTBXItem
+      Action = actSwitchColVisible_HslCss_Lum
+    end
+    object SpTBXSeparatorItem16: TSpTBXSeparatorItem
+    end
+    object SpTBXItem53: TSpTBXItem
+      Action = actSwitchColVisible_HslWin
+    end
+    object SpTBXItem52: TSpTBXItem
+      Action = actSwitchColVisible_HslWin_Hue
+    end
+    object SpTBXItem51: TSpTBXItem
+      Action = actSwitchColVisible_HslWin_Sat
+    end
+    object SpTBXItem50: TSpTBXItem
+      Action = actSwitchColVisible_HslWin_Lum
+    end
+    object SpTBXSeparatorItem17: TSpTBXSeparatorItem
+    end
+    object SpTBXItem58: TSpTBXItem
+      Action = actSwitchColVisible_Cmyk
+    end
+    object SpTBXItem57: TSpTBXItem
+      Action = actSwitchColVisible_Cmyk_Cyan
+    end
+    object SpTBXItem56: TSpTBXItem
+      Action = actSwitchColVisible_Cmyk_Magenta
+    end
+    object SpTBXItem55: TSpTBXItem
+      Action = actSwitchColVisible_Cmyk_Yellow
+    end
+    object SpTBXItem59: TSpTBXItem
+      Action = actSwitchColVisible_Cmyk_Black
+    end
+    object SpTBXSeparatorItem18: TSpTBXSeparatorItem
+    end
+    object SpTBXItem62: TSpTBXItem
+      Action = actSwitchColVisible_PascalHex
+    end
+    object SpTBXItem61: TSpTBXItem
+      Action = actSwitchColVisible_PascalInt
+    end
+    object SpTBXItem60: TSpTBXItem
+      Action = actSwitchColVisible_CppHex
     end
   end
 end

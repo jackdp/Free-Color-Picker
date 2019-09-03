@@ -1,4 +1,4 @@
-# FCP - Free Color Picker - Notes
+﻿# FCP - Free Color Picker - Notes
 
 ---
 
@@ -39,6 +39,9 @@ The main window shortcuts
 | Ctrl + Shift + W | Color wheel for selected color |
 | Ctrl + Shift + F1 | About |
 | Ctrl + Shift + U | Check for updates |
+| Ctrl + Shift + 1 | Small size of the main window |
+| Ctrl + Shift + 2 | Medium size |
+| Ctrl + Shift + 3 | The large size |
 
 
 **Color Palette Editor** shortcuts
@@ -62,6 +65,7 @@ The main window shortcuts
 | Ctrl + Down | Move down |
 | Ctrl + Shift + Down | Move to end |
 | Ctrl + Shift + W | Color wheel for selected color |
+| Ctrl + Shift + F | Show / hide filter panel |
 
 
 ---
