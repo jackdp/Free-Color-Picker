@@ -22,7 +22,7 @@ Any captured color can be changed freely using the built-in color editor. In add
 
 ### The main window collapsed
 
-![The main window](./doc_img/fcp_collapsed.png)
+![The main window collapsed](./doc_img/fcp_collapsed.png)
 
 ### Color palette editor
 
