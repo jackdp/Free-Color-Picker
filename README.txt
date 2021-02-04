@@ -1,10 +1,10 @@
 ﻿Program name: Free Color Picker (32/64-bit)
-Version: 1.1
+Version: 1.2
 License: Freeware, Open Source
-Release date: 2019.09.03
+Release date: 2021.02.04
 Author: Jacek Pazera
-Web page: http://www.pazera-software.com/products/free-color-picker/
-Help: http://www.pazera-software.com/products/free-color-picker/help.php
+Web page: https://www.pazera-software.com/products/free-color-picker/
+Help: https://www.pazera-software.com/products/free-color-picker/help.php
 Source: https://github.com/jackdp/Free-Color-Picker
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,12 +29,13 @@ Open source projects / components used in the program:
   JPLib: https://github.com/jackdp/JPLib
   JPModLib: https://github.com/jackdp/JPModLib
   SpTBXLib: https://github.com/SilverpointDev/sptbxlib
-  Toolbar2000: http://www.jrsoftware.org/tb2k.php
+  Toolbar2000: https://www.jrsoftware.org/tb2k.php
+  PngComponents: https://github.com/UweRaabe/PngComponents
   Pegtop Common Components: http://www.pegtop.net/delphi/components/common/index.htm
   Graphics32 library: https://github.com/graphics32/graphics32
   Virtual TreeView: https://github.com/Virtual-TreeView/Virtual-TreeView
   Json Data Objects: https://github.com/ahausladen/JsonDataObjects
-  TPJFormDropFiles: http://www.delphidabbler.com/software/dropfiles
-  DzHTMLText2: https://github.com/jackdp/DzHTMLText2 (DzHTMLText fork)
+  TPJFormDropFiles: https://www.delphidabbler.com/software/dropfiles
+  DzHTMLText2: https://github.com/jackdp/DzHTMLText2
   Color Lib: http://mxs.bergsoft.net/index.php?p=2
-  Delphi GDI+ Library: http://www.bilsen.com/gdiplus/index.shtml
+  GDI+ Library: https://github.com/jackdp/GDIPlus-Library-for-Delphi-and-Lazarus

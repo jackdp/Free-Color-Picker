@@ -254,6 +254,7 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
 
+  TAppHelper.CheckForm(TFormPaletteEditor);
   actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
   actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
   actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
@@ -305,7 +306,7 @@ begin
     clFont := GetSimilarColor(clBg, 70, False);
     clBg := GetSimilarColor2(clBg, 70);
 
-    sDist := spedDegDist_Triad.IntValue.ToString;
+    sDist := itos(spedDegDist_Triad.IntValue);
     sCurrentColor := ColorToRgbIntStr(cswCurrentColor.SelectedColor);
 
     cl := cswTriad1.SelectedColor;
@@ -336,7 +337,7 @@ begin
     clFont := GetSimilarColor(clBg, 70, False);
     clBg := GetSimilarColor2(clBg, 70);
 
-    sDist := spedDegDist_Tetrad.IntValue.ToString;
+    sDist := itos(spedDegDist_Tetrad.IntValue);
     sCurrentColor := ColorToRgbIntStr(cswCurrentColor.SelectedColor);
 
     cl := cswTetrad1.SelectedColor;
@@ -628,7 +629,7 @@ end;
 
 procedure TFormColorWheel.UpdateColorCountLabel;
 begin
-  lblColors.Caption := lsWheel.GetString('Colors', 'Colors') + ' (' + clbColors.Count.toString + ')';
+  lblColors.Caption := lsWheel.GetString('Colors', 'Colors') + ' (' + itos(clbColors.Count) + ')';
 end;
 
 
@@ -725,7 +726,7 @@ const
     if bDashed then Pen.SetDashPattern(DashValues)
     else Pen.DashStyle := DashStyleSolid;
     pt1.X := 0;
-    pt2.Y := 0;
+    pt1.Y := 0;
 
     fi := 90 - HueValue;
     dxr := Radius + 0;

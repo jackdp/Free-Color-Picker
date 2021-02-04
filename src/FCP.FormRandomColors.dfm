@@ -446,8 +446,6 @@ object FormRandomColors: TFormRandomColors
       Options = [clboAddAtTop]
       SelectedColor = clNone
       OnGetColorStrValue = clbColorsGetColorStrValue
-      ExplicitLeft = -1
-      ExplicitTop = 296
     end
     object dockMenu: TSpTBXDock
       AlignWithMargins = True
@@ -460,8 +458,6 @@ object FormRandomColors: TFormRandomColors
       Margins.Right = 0
       Margins.Bottom = 0
       AllowDrag = False
-      ExplicitLeft = 0
-      ExplicitWidth = 414
       object tbMain: TSpTBXToolbar
         AlignWithMargins = True
         Left = 1

@@ -9,12 +9,13 @@ interface
 
 uses
   Winapi.Windows,
-  System.SysUtils, System.Classes, System.UITypes, System.StrUtils, System.Types, System.Generics.Collections, System.IniFiles,
+  System.SysUtils, System.Classes, System.UITypes, System.StrUtils, System.Types, System.Generics.Collections, //System.IniFiles,
   Vcl.Graphics,
 
   JsonDataObjects,
   JP.JsonDataObjects,
 
+  JPL.MemIniFile,
   JPL.Conversion, JPL.Strings, JPL.Colors, JPL.Colors.ColorClass, JPL.Dialogs;
 
 const
@@ -60,9 +61,9 @@ type
     procedure AddColor(const Color: TColor; ColorName: string);
     function AsIniStr: string;
     procedure SaveToJsonObject(Obj: TJsonObject);
-    procedure SaveToIni(Ini: TMemIniFile);
+    procedure SaveToIni(Ini: TJppMemIniFile);
     procedure SaveToIniFile(const FileName: string);
-    procedure LoadFromIni(Ini: TMemIniFile; bClear: Boolean = True);
+    procedure LoadFromIni(Ini: TJppMemIniFile; bClear: Boolean = True);
     procedure LoadFromIniFile(const FileName: string; bClear: Boolean = True);
 
     property GroupName: string read FGroupName write SetGroupName;
@@ -468,12 +469,12 @@ end;
 
 procedure TColorPalette.LoadFromIniFile(const FileName: string);
 var
-  Ini: TMemIniFile;
+  Ini: TJppMemIniFile;
   sl: TStringList;
 begin
   Clear;
 
-  Ini := TMemIniFile.Create(FileName);
+  Ini := TJppMemIniFile.Create(FileName);
   sl := TStringList.Create;
   try
     Ini.GetStrings(sl);
@@ -487,7 +488,7 @@ end;
 
 procedure TColorPalette.LoadFromIniStr(const IniStr: string);
 var
-  Ini: TMemIniFile;
+  Ini: TJppMemIniFile;
   sl, slSections: TStringList;
   i: integer;
   sColorName, sColor, Section: string;
@@ -496,7 +497,7 @@ var
 begin
   Clear;
 
-  Ini := TMemIniFile.Create('');
+  Ini := TJppMemIniFile.Create('');
   sl := TStringList.Create;
   slSections := TStringList.Create;
   try
@@ -671,13 +672,13 @@ end;
 
 procedure TColorPalette.SaveToIniFile(const FileName: string);
 var
-  Ini: TMemIniFile;
+  Ini: TJppMemIniFile;
   i, x, xNo: integer;
   ci: TColorItem;
   Section: string;
   cg: TColorGroup;
 begin
-  Ini := TMemIniFile.Create(FileName, TEncoding.UTF8);
+  Ini := TJppMemIniFile.Create(FileName, TEncoding.UTF8);
   try
     xNo := 0;
     for i := 0 to FColorGroups.Count - 1 do
@@ -1061,7 +1062,7 @@ begin
 end;
 
   {$region '                      TColorGroup: Load & Save (INI, JSON)                       '}
-procedure TColorGroup.LoadFromIni(Ini: TMemIniFile; bClear: Boolean = True);
+procedure TColorGroup.LoadFromIni(Ini: TJppMemIniFile; bClear: Boolean = True);
 var
   slSections: TStringList;
   i: integer;
@@ -1089,11 +1090,11 @@ end;
 
 procedure TColorGroup.LoadFromIniFile(const FileName: string; bClear: Boolean);
 var
-  Ini: TMemIniFile;
+  Ini: TJppMemIniFile;
 begin
   if bClear then FColorList.Clear;
   if not FileExists(FileName) then Exit;
-  Ini := TMemIniFile.Create(FileName, TEncoding.UTF8);
+  Ini := TJppMemIniFile.Create(FileName, TEncoding.UTF8);
   try
     LoadFromIni(Ini);
   finally
@@ -1101,7 +1102,7 @@ begin
   end;
 end;
 
-procedure TColorGroup.SaveToIni(Ini: TMemIniFile);
+procedure TColorGroup.SaveToIni(Ini: TJppMemIniFile);
 var
   i: integer;
   ci: TColorItem;
@@ -1119,9 +1120,9 @@ end;
 
 procedure TColorGroup.SaveToIniFile(const FileName: string);
 var
-  Ini: TMemIniFile;
+  Ini: TJppMemIniFile;
 begin
-  Ini := TMemIniFile.Create(FileName, TEncoding.UTF8);
+  Ini := TJppMemIniFile.Create(FileName, TEncoding.UTF8);
   try
     SaveToIni(Ini);
     Ini.UpdateFile;

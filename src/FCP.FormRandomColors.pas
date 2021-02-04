@@ -366,6 +366,8 @@ begin
 
  tbMain.FullSize := True;
  shLine.Height := 1;
+
+ ApplyFontParams(clbColors.Appearance.NumericFont, AP.MonospaceFont);
 end;
 
 {$endregion PrepareControls}
@@ -515,6 +517,7 @@ begin
   actLockUnlockRange_HslWin_Sat.Hint := s;
   actLockUnlockRange_HslWin_Lum.Hint := s;
 
+  TAppHelper.CheckForm(TFormPaletteEditor);
   actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
   actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
   actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;

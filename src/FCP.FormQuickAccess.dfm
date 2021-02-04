@@ -116,7 +116,6 @@ object FormQuickAccess: TFormQuickAccess
       Appearance.Focused.UpperGradientPercent = 46
       Appearance.FocusRect.Pen.Color = 13675044
       Appearance.BorderWhenDefault.Color = 13675044
-      ExplicitLeft = 442
     end
     object btnOK: TJppPngButton
       Left = 496
@@ -201,7 +200,6 @@ object FormQuickAccess: TFormQuickAccess
       Appearance.Focused.UpperGradientPercent = 46
       Appearance.FocusRect.Pen.Color = 13675044
       Appearance.BorderWhenDefault.Color = 13675044
-      ExplicitLeft = 662
     end
     object btnSort: TJppPngButton
       Left = 13

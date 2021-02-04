@@ -45,7 +45,6 @@ object FormColorWheel: TFormColorWheel
         Margins.Left = 1
         Margins.Top = 1
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -297,7 +296,6 @@ object FormColorWheel: TFormColorWheel
           Margins.Left = 1
           Margins.Top = 1
           Margins.Right = 1
-          Margins.Bottom = 0
           Align = alTop
           Alignment = taCenter
           AutoSize = False
@@ -830,7 +828,6 @@ object FormColorWheel: TFormColorWheel
         Margins.Left = 1
         Margins.Top = 1
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -1425,7 +1422,6 @@ object FormColorWheel: TFormColorWheel
         Margins.Left = 1
         Margins.Top = 1
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False

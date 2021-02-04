@@ -159,6 +159,8 @@ begin
     cswEndColor.ButtonPasteColor.Appearance.Assign(FormMain.sbtnT1.Appearance);
     cswEndColor.ButtonPasteColor.Appearance.ShowCaption := False;
 
+    ApplyFontParams(clbColors.Appearance.NumericFont, AP.MonospaceFont);
+
   finally
     bUpdatingControls := False;
   end;
@@ -212,6 +214,7 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
 
+  TAppHelper.CheckForm(TFormPaletteEditor);
   actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
   actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
   actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;

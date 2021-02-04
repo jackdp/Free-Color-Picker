@@ -239,14 +239,12 @@ object FormSimilarColors: TFormSimilarColors
           AlignWithMargins = True
           Left = 6
           Top = 4
-          Width = 175
+          Width = 65
           Height = 13
           Margins.Left = 6
           Margins.Top = 4
-          Margins.Bottom = 0
           Align = alTop
           Caption = 'Color format'
-          ExplicitWidth = 65
         end
         object rbHslCss: TRadioButton
           Left = 98
@@ -421,7 +419,6 @@ object FormSimilarColors: TFormSimilarColors
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -435,7 +432,7 @@ object FormSimilarColors: TFormSimilarColors
       object clbDarker: TJppColorListBox
         AlignWithMargins = True
         Left = 0
-        Top = 18
+        Top = 21
         Width = 134
         Height = 102
         Margins.Left = 0
@@ -499,6 +496,7 @@ object FormSimilarColors: TFormSimilarColors
         Options = [clboAddAtTop]
         SelectedColor = clNone
         OnGetColorStrValue = GetColorStrValue
+        ExplicitTop = 18
       end
       object pnDarker_Bottom: TJppSimplePanel
         AlignWithMargins = True
@@ -629,7 +627,6 @@ object FormSimilarColors: TFormSimilarColors
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -643,7 +640,7 @@ object FormSimilarColors: TFormSimilarColors
       object clbLighter: TJppColorListBox
         AlignWithMargins = True
         Left = 0
-        Top = 18
+        Top = 21
         Width = 134
         Height = 102
         Margins.Left = 0
@@ -707,6 +704,7 @@ object FormSimilarColors: TFormSimilarColors
         Options = [clboAddAtTop]
         SelectedColor = clNone
         OnGetColorStrValue = GetColorStrValue
+        ExplicitTop = 18
       end
       object pnLighter_Bottom: TJppSimplePanel
         AlignWithMargins = True
@@ -837,7 +835,6 @@ object FormSimilarColors: TFormSimilarColors
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -857,7 +854,7 @@ object FormSimilarColors: TFormSimilarColors
       object clbSatMore: TJppColorListBox
         AlignWithMargins = True
         Left = 0
-        Top = 18
+        Top = 21
         Width = 134
         Height = 102
         Margins.Left = 0
@@ -922,6 +919,7 @@ object FormSimilarColors: TFormSimilarColors
         Options = [clboAddAtTop]
         SelectedColor = clNone
         OnGetColorStrValue = GetColorStrValue
+        ExplicitTop = 18
       end
       object pnSatMore_Bottom: TJppSimplePanel
         AlignWithMargins = True
@@ -1052,7 +1050,6 @@ object FormSimilarColors: TFormSimilarColors
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -1072,7 +1069,7 @@ object FormSimilarColors: TFormSimilarColors
       object clbSatLess: TJppColorListBox
         AlignWithMargins = True
         Left = 0
-        Top = 18
+        Top = 21
         Width = 134
         Height = 102
         Margins.Left = 0
@@ -1137,6 +1134,7 @@ object FormSimilarColors: TFormSimilarColors
         Options = [clboAddAtTop]
         SelectedColor = clNone
         OnGetColorStrValue = GetColorStrValue
+        ExplicitTop = 18
       end
       object pnSatLess_Bottom: TJppSimplePanel
         AlignWithMargins = True
@@ -1268,7 +1266,6 @@ object FormSimilarColors: TFormSimilarColors
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -1283,7 +1280,7 @@ object FormSimilarColors: TFormSimilarColors
       object clbHuePlus: TJppColorListBox
         AlignWithMargins = True
         Left = 0
-        Top = 18
+        Top = 21
         Width = 134
         Height = 102
         Margins.Left = 0
@@ -1348,6 +1345,7 @@ object FormSimilarColors: TFormSimilarColors
         Options = [clboAddAtTop]
         SelectedColor = clNone
         OnGetColorStrValue = GetColorStrValue
+        ExplicitTop = 18
       end
       object pnHuePlus_Bottom: TJppSimplePanel
         AlignWithMargins = True
@@ -1479,7 +1477,6 @@ object FormSimilarColors: TFormSimilarColors
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 1
-        Margins.Bottom = 0
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -1494,7 +1491,7 @@ object FormSimilarColors: TFormSimilarColors
       object clbHueMinus: TJppColorListBox
         AlignWithMargins = True
         Left = 0
-        Top = 18
+        Top = 21
         Width = 134
         Height = 102
         Margins.Left = 0
@@ -1559,6 +1556,7 @@ object FormSimilarColors: TFormSimilarColors
         Options = [clboAddAtTop]
         SelectedColor = clNone
         OnGetColorStrValue = GetColorStrValue
+        ExplicitTop = 18
       end
       object pnHueMinus_Bottom: TJppSimplePanel
         AlignWithMargins = True

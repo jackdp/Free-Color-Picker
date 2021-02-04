@@ -7,11 +7,11 @@ uses
 
   System.SysUtils, System.Classes,
 
-  Vcl.Graphics, Vcl.Forms, Vcl.StdCtrls, Vcl.Clipbrd,
+  Vcl.Graphics, Vcl.Forms, Vcl.StdCtrls, Vcl.Clipbrd, Vcl.Controls,
 
-  JPL.Strings, JPL.Math, JPL.Conversion, JPL.IniFile, JPL.Colors,
+  JPL.Strings, JPL.Math, JPL.Conversion, JPL.IniFile, JPL.Colors, JPL.RTTI, JPL.Dialogs,
 
-  FCP.Types, FCP.ColorPalette,
+  FCP.Types, FCP.ColorPalette, FCP.AppStrings,
 
   JPP.ColorSwatch, JPP.ColorComboBox, JPP.ColorListBox,
 
@@ -36,8 +36,8 @@ type
   strict private
     class var FIniSection: TJPIniSection;
   public
-    class function GetValueByID<T>(ID: string; const ArrIDs: TArray<string>; const Values: TArray<T>; const Default: T; IgnoreCase: Boolean = True): T; static;
-    //class function GetValueByID<T>(ID: string; const ArrIDs: array of string; const Values: array of T; const Default: T; IgnoreCase: Boolean = True): T; static;
+    //class function GetValueByID<T>(ID: string; const ArrIDs: TArray<string>; const Values: TArray<T>; const Default: T; IgnoreCase: Boolean = True): T; static;
+    class function GetValueByID<T>(ID: string; const ArrIDs: array of string; const Values: array of T; const Default: T; IgnoreCase: Boolean = True): T; static;
 
     class procedure NilIniSection; static;
 
@@ -70,6 +70,8 @@ type
     class procedure CopyListBoxColorsToClipboard(clb: TJppColorListBox; const ColorType: TColorType; SelectedOnly: Boolean); static;
 
     class property IniSection: TJPIniSection read FIniSection write FIniSection;
+
+    class procedure CheckForm(FormClass: TComponentClass); static;
   end;
 
 
@@ -95,6 +97,7 @@ function FontExists(const FontName: string; bIgnoreCase: Boolean = False): Boole
 procedure ApplyFontParams(Font: TFont; const FontParams: TFontParams);
 function IsSupportedGraphicFile(const FileName: string): Boolean;
 procedure SwitchFormTop(Form: TForm);
+procedure EnableOrDisableControls(const Enable: Boolean; Controls: array of TControl);
 
 function EditColor(var AColor: TColor): Boolean;
 function Darker(const cl: TColor; const xPercent: integer): TColor;
@@ -108,11 +111,22 @@ procedure DrawHueCssBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer
 implementation
 
 uses
-  FCP.FormMain, FCP.FormEditColor, FCP.Bitmap;
+  FCP.FormMain, FCP.FormPaletteEditor, FCP.FormAbout, FCP.FormAutoCapture, FCP.FormCheckUpdate, FCP.FormColorMixer, FCP.FormColorWheel,
+  FCP.FormEditColor, FCP.FormEditColorName, FCP.FormGradientColors, FCP.FormModifyPalette, FCP.FormPixelColor,
+  FCP.FormQuickAccess, FCP.FormRandomColors, FCP.FormSimilarColors, FCP.FormSortBy, FCP.FormOptions,
+  FCP.Bitmap;
 
 
 
 {$region '                            routines                                 '}
+
+procedure EnableOrDisableControls(const Enable: Boolean; Controls: array of TControl);
+var
+  i: integer;
+begin
+  for i := 0 to High(Controls) do
+    Controls[i].Enabled := Enable;
+end;
 
 
 procedure DrawHueWinBar(Bmp: TBitmap; BorderColor: TColor = clNone; Sat: integer = 120; Lum: integer = 120; HueMin: integer = 0; HueMax: integer = 239);
@@ -405,7 +419,8 @@ end;
 
 
 
-class function TAppHelper.GetValueByID<T>(ID: string; const ArrIDs: TArray<string>; const Values: TArray<T>; const Default: T; IgnoreCase: Boolean = True): T;
+//class function TAppHelper.GetValueByID<T>(ID: string; const ArrIDs: TArray<string>; const Values: TArray<T>; const Default: T; IgnoreCase: Boolean = True): T;
+class function TAppHelper.GetValueByID<T>(ID: string; const ArrIDs: array of string; const Values: array of T; const Default: T; IgnoreCase: Boolean = True): T;
 var
   i: integer;
   sArrID: string;
@@ -436,7 +451,7 @@ end;
 class procedure TAppHelper.WriteFormSize(Form: TForm);
 begin
   if FIniSection = nil then Exit;
-  FIniSection.WriteString(Form.Name + '.Size', Form.Width.ToString + 'x' + Form.Height.ToString);
+  FIniSection.WriteString(Form.Name + '.Size', itos(Form.Width) + 'x' + itos(Form.Height));
 end;
 
 class function TAppHelper.ReadFormSize(Form: TForm; const MinWidth, MaxWidth, MinHeight, MaxHeight: integer): Boolean;
@@ -541,7 +556,7 @@ begin
   if Length(Arr) < ComboBox.Items.Count then
   begin
     SetLength(Arr, ComboBox.Items.Count);
-    for i := Length(Names) to High(Arr) do Arr[i] := i.ToString;
+    for i := Length(Names) to High(Arr) do Arr[i] := itos(i);
   end;
   FIniSection.WriteString(ComboBox.Name, Arr[ComboBox.ItemIndex]);
 end;
@@ -632,7 +647,7 @@ end;
 class procedure TAppHelper.WriteRangeBarPos(RangeBar: TJPPegtopRangeBar);
 begin
   if FIniSection = nil then Exit;
-  FIniSection.WriteString(RangeBar.Name + '.Range', RangeBar.PositionMin.ToString + ':' + RangeBar.PositionMax.ToString);
+  FIniSection.WriteString(RangeBar.Name + '.Range', itos(RangeBar.PositionMin) + ':' + itos(RangeBar.PositionMax));
 end;
 
 class procedure TAppHelper.ReadRangeBarPos(RangeBar: TJPPegtopRangeBar);
@@ -653,6 +668,9 @@ end;
 
 
   {$region '                 TAppHelper - ColorLisBox related                      '}
+
+
+
 class procedure TAppHelper.CopyListBoxColorsToClipboard(clb: TJppColorListBox; const ColorType: TColorType; SelectedOnly: Boolean);
 var
   cp: TColorPalette;
@@ -733,6 +751,106 @@ begin
 end;
   {$endregion TAppHelper - ColorLisBox related}
 
+
+class procedure TAppHelper.CheckForm(FormClass: TComponentClass);
+begin
+  if (FormClass = TFormAbout) and (not Assigned(FormAbout)) then
+  begin
+    Application.CreateForm(TFormAbout, FormAbout);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormAbout.SetLang;
+  end
+  else if (FormClass = TFormOptions) and (not Assigned(FormOptions)) then
+  begin
+    Application.CreateForm(TFormOptions, FormOptions);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormOptions.SetLang;
+  end
+  else if (FormClass = TFormEditColor) and (not Assigned(FormEditColor)) then
+  begin
+    Application.CreateForm(TFormEditColor, FormEditColor);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormEditColor.SetLang;
+  end
+  else if (FormClass = TFormPaletteEditor) and (not Assigned(FormPaletteEditor)) then
+  begin
+    Application.CreateForm(TFormPaletteEditor, FormPaletteEditor);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormPaletteEditor.SetLang;
+  end
+  else if (FormClass = TFormAutoCapture) and (not Assigned(FormAutoCapture)) then
+  begin
+    Application.CreateForm(TFormAutoCapture, FormAutoCapture);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormAutoCapture.SetLang;
+  end
+  else if (FormClass = TFormCheckUpdate) and (not Assigned(FormCheckUpdate)) then
+  begin
+    Application.CreateForm(TFormCheckUpdate, FormCheckUpdate);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormCheckUpdate.SetLang;
+  end
+  else if (FormClass = TFormColorMixer) and (not Assigned(FormColorMixer)) then
+  begin
+    Application.CreateForm(TFormColorMixer, FormColorMixer);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormColorMixer.SetLang;
+  end
+  else if (FormClass = TFormColorWheel) and (not Assigned(FormColorWheel)) then
+  begin
+    Application.CreateForm(TFormColorWheel, FormColorWheel);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormColorWheel.SetLang;
+  end
+  else if (FormClass = TFormEditColorName) and (not Assigned(FormEditColorName)) then
+  begin
+    Application.CreateForm(TFormEditColorName, FormEditColorName);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormEditColorName.SetLang;
+  end
+  else if (FormClass = TFormGradientColors) and (not Assigned(FormGradientColors)) then
+  begin
+    Application.CreateForm(TFormGradientColors, FormGradientColors);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormGradientColors.SetLang;
+  end
+  else if (FormClass = TFormModifyPalette) and (not Assigned(FormModifyPalette)) then
+  begin
+    Application.CreateForm(TFormModifyPalette, FormModifyPalette);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormModifyPalette.SetLang;
+  end
+  else if (FormClass = TFormPixelColor) and (not Assigned(FormPixelColor)) then
+  begin
+    Application.CreateForm(TFormPixelColor, FormPixelColor);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormPixelColor.SetLang;
+  end
+  else if (FormClass = TFormQuickAccess) and (not Assigned(FormQuickAccess)) then
+  begin
+    Application.CreateForm(TFormQuickAccess, FormQuickAccess);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormQuickAccess.SetLang;
+  end
+  else if (FormClass = TFormRandomColors) and (not Assigned(FormRandomColors)) then
+  begin
+    Application.CreateForm(TFormRandomColors, FormRandomColors);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormRandomColors.SetLang;
+  end
+  else if (FormClass = TFormSimilarColors) and (not Assigned(FormSimilarColors)) then
+  begin
+    Application.CreateForm(TFormSimilarColors, FormSimilarColors);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormSimilarColors.SetLang;
+  end
+  else if (FormClass = TFormSortBy) and (not Assigned(FormSortBy)) then
+  begin
+    Application.CreateForm(TFormSortBy, FormSortBy);
+    LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
+    FormSortBy.SetLang;
+  end
+end;
 
 {$endregion TAppHelper}
 

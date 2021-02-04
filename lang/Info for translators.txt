@@ -4,7 +4,7 @@ First of all, a big thanks to all translators! You are doing a great job.
 ////////////////////////////////////////////////////////////////////////////////
 
 Free Color Picker
-http://www.pazera-software.com/products/free-color-picker/
+https://www.pazera-software.com/products/free-color-picker/
 
 
 Tips
@@ -27,6 +27,18 @@ Tips
 --------------------------------------------------------------------------------
 
 CHANGES
+
+--------------------------------------------------------------------------------
+Version 1.1 -> 1.2
+
+New strings:
+
+  MAIN
+    actShowHidePalette.Caption
+
+  Options
+    chColorRectangle_AutoColor.Caption
+    cswColorRectangle_BorderColor.BoundLabel.Caption
 
 --------------------------------------------------------------------------------
 Version 1.0 -> 1.1

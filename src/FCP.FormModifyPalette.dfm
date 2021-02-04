@@ -1548,12 +1548,13 @@ object FormModifyPalette: TFormModifyPalette
             AlignWithMargins = True
             Left = 6
             Top = 4
-            Width = 282
+            Width = 358
             Height = 13
             Margins.Left = 6
             Margins.Top = 4
             Align = alTop
             Caption = 'Change the HSL color components by the given values:'
+            ExplicitWidth = 282
           end
           object sbtnReset_Hsl: TJppBasicSpeedButton
             Left = 311
@@ -1744,6 +1745,8 @@ object FormModifyPalette: TFormModifyPalette
         Left = 0
         Top = 0
         Caption = 'RGB'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object pnRgbSet: TJppSimplePanel
           AlignWithMargins = True
           Left = 0
@@ -2436,6 +2439,8 @@ object FormModifyPalette: TFormModifyPalette
         Left = 0
         Top = 0
         Caption = 'HSL_Win'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object pnHslWinSet: TJppSimplePanel
           AlignWithMargins = True
           Left = 0
@@ -2626,7 +2631,6 @@ object FormModifyPalette: TFormModifyPalette
             NewArrowStyle = True
             TabOrder = 7
             OnChange = cpHueWinChange
-            CanDrawArrowPos = False
           end
           object tbHslWinSat: TJPPegtopTrackBar
             Left = 81

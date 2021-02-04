@@ -132,7 +132,8 @@ procedure TFormColorMixer.PrepareControls;
     ccb.ButtonChangeColor.PngImage.Assign(FormMain.PngCollection.GetPngImageByName('Colors'));
 
     ccb.Items.Clear;
-    ccb.Items.Assign(FormEditColor.clbColors.Items);
+    //ccb.Items.Assign(FormEditColor.clbColors.Items);
+    ccb.Items.Assign(FormMain.clbT.Items);
   end;
 
 begin
@@ -158,6 +159,8 @@ begin
   pnFirst.Appearance.BorderStyle := psClear;
   pnMid.Appearance.BorderStyle := psClear;
   pnSecond.Appearance.BorderStyle := psClear;
+
+  ApplyFontParams(clbColors.Appearance.NumericFont, AP.MonospaceFont);
 end;
 {$endregion PrepareControls}
 
@@ -211,6 +214,7 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
 
+  TAppHelper.CheckForm(TFormPaletteEditor);
   actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
   actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
   actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;

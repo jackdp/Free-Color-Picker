@@ -7,7 +7,7 @@ uses
   Winapi.Windows, Winapi.Messages,
 
   // System
-  System.SysUtils, System.Variants, System.Classes, System.UITypes, System.IniFiles, System.Actions,
+  System.SysUtils, System.Variants, System.Classes, System.UITypes, //{System.IniFiles,} System.Actions,
 
   // VCL
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ActnList, Vcl.StdCtrls, Vcl.Buttons, Vcl.Menus,
@@ -20,10 +20,11 @@ uses
 
   // JPLib
   JPL.Strings, JPL.Strings.Ext, JPL.Conversion, JPL.Colors, JPL.Colors.ColorClass, JPL.Dialogs, JPL.LangMgr, JPL.Math, JPL.FileSearch,
+  JPL.MemIniFile,
 
   // JPPack
   JPP.Graphics, JPP.Panel, JPP.PngButton, JPP.BasicSpeedButton, JPP.ColorListBox, JPP.BasicPanel, JPP.PngCollection,
-  JPP.DoubleLabel, JPP.DoubleLineLabel, JPP.ColorSwatch, JPP.SimplePanel,
+  JPP.DoubleLabel, JPP.DoubleLineLabel, JPP.ColorSwatch, JPP.SimplePanel, JPP.Common.Procs, JPP.ColorControls.Common,
 
   // Graphics32
   GR32, GR32_Resamplers, GR32_Filters,
@@ -34,7 +35,7 @@ uses
   FCP.FormColorMixer, FCP.FormModifyPalette, FCP.FormColorWheel, FCP.FormSimilarColors, FCP.FormQuickAccess,
 
   // other
-  PngImageList, VirtualTrees, PJDropFiles;
+  PngImageList, VirtualTrees, PJDropFiles, JPP.HtmlHint, System.Actions;
 
 type
 
@@ -46,7 +47,7 @@ type
     actEsc: TAction;
     actCaptureColor: TAction;
     pnImg: TJppSimplePanel;
-    pnRight: TJppSimplePanel;
+    pnPalette: TJppSimplePanel;
     tmColor: TTimer;
     actZoom_1: TAction;
     actZoom_2: TAction;
@@ -159,7 +160,7 @@ type
     popCopyColor_HSL_CSS: TSpTBXItem;
     popCopyColor_RGB: TSpTBXItem;
     popCopyColor_HTML: TSpTBXItem;
-    Splitter1: TSplitter;
+    splMain: TSplitter;
     actSavePreviewImage: TAction;
     SpTBXItem1: TSpTBXItem;
     actGoTo_HomePage: TAction;
@@ -373,6 +374,17 @@ type
     SpTBXItem105: TSpTBXItem;
     actReloadCurrentLanguageFile: TAction;
     shLine: TShape;
+    AppHint: TJppHtmlHint;
+    actPalette_SimilarColors: TAction;
+    popPalette_SimilarColors: TSpTBXItem;
+    SpTBXItem106: TSpTBXItem;
+    actShowHidePalette: TAction;
+    mnuShowHideoPalette: TSpTBXItem;
+    popShowHidePalette: TSpTBXItem;
+    meColorsT: TMemo;
+    clbT: TJppColorListBox;
+    popP_ShowHidePalette: TSpTBXItem;
+    SpTBXSeparatorItem34: TSpTBXSeparatorItem;
     procedure actAboutExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -507,6 +519,10 @@ type
     procedure MenuPaletteFileClick(Sender: TObject);
     procedure GetLastOpenedFileList(sl: TStringList);
     function RecentFileAlreadyOnList(const FileName: string): Boolean;
+    procedure splMainMoved(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure actPalette_SimilarColorsExecute(Sender: TObject);
+    procedure actShowHidePaletteExecute(Sender: TObject);
   protected
     procedure SaveColorsToPaletteFile(const FileName: string);
     procedure SaveColorsToColorPalette(cp: TColorPalette; SelectedOnly: Boolean = False);
@@ -566,6 +582,8 @@ implementation
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   InitAppParams;
+
+  SpTBXHintWindowClass := TJppHtmlHintWindow;
   Application.HintHidePause := 6000;
   AppMode := amPreview;
   MouseScrollStep := 6;
@@ -720,11 +738,11 @@ end;
 
 function TFormMain.FirstRun: Boolean;
 var
-  Ini: TIniFile;
+  Ini: TJppMemIniFile;
 begin
   if not FileExists(AP.IniFile) then Exit(True);
 
-  Ini := TIniFile.Create(AP.IniFile);
+  Ini := TJppMemIniFile.Create(AP.IniFile);
   try
     Result := Ini.ReadInteger(INI_SECTION_MAIN, 'Left', 0) > 0;
   finally
@@ -834,9 +852,13 @@ begin
 
   dlgSaveImage.Filter := lsMain.GetString('DialogFilter_PNG', 'Portable Network Graphics (*.png)') + '|*.png';
 
+  actPalette_SimilarColors.Caption := actShowFormSimilarColors.Caption;
+
   UpdateColorPaletteCount;
 end;
-  {$endregion SetLang}
+
+
+{$endregion SetLang}
 
 {$ENDREGION LANGUAGE}
 
@@ -903,13 +925,8 @@ begin
   AP.MonospaceFont.Size := 9;
   AP.MonospaceFont.Style := [];
   AP.MonospaceFont.Color := clBlack;
-  if FontExists('Consolas', True) then AP.MonospaceFont.Name := 'Consolas'
-  else if FontExists('Fira Mono', True) then AP.MonospaceFont.Name := 'Fira Mono'
-  else if FontExists('Fira Code', True) then AP.MonospaceFont.Name := 'Fira Code'
-  else if FontExists('Hack', True) then AP.MonospaceFont.Name := 'Hack'
-  else if FontExists('Lucida Console', True) then AP.MonospaceFont.Name := 'Lucida Console'
-  else AP.MonospaceFont.Name := 'Consolas';
-  //AP.MonospaceFont.Name := 'Lucida Console';
+  AP.MonospaceFont.Name := GetFontName(['Fira Mono', 'Roboto Mono', 'Consolas']);
+
   AP.MonospaceFont.PosYDelta := 1;
 
   AP.ShowColorCodesOnTitleBar := True;
@@ -928,6 +945,9 @@ begin
   AP.PixelIndicatorColor := RGB(255, 102, 000);
 
   AP.HtmlExport_AddJson := True;
+
+  AP.ColorRectangle_BorderColor := clBlack;
+  AP.ColorRectangle_AutoBorderColor := True;
 
 end;
 {$endregion InitAppParams}
@@ -969,9 +989,11 @@ begin
   actCopySelectedColors_PascalINT.Enabled := b;
   actCopySelectedColors_CppHex.Enabled := b;
   actPalette_ColorWheel.Enabled := b;
+  actPalette_SimilarColors.Enabled := b;
 
   actCloseImage.Enabled := (CurrentImageFile <> '') and (imgPicture.Picture <> nil);
 
+  actShowHidePalette.Enabled := not Folded;
 end;
 
 procedure TFormMain.InitCtrls(Sender: TObject);
@@ -1129,6 +1151,7 @@ var
   dlg: TOpenDialog;
   s: string;
 begin
+  TAppHelper.CheckForm(TFormPaletteEditor);
   dlg := FormPaletteEditor.dlgOpenPalette;
   if not dlg.Execute then Exit;
 
@@ -1148,6 +1171,7 @@ procedure TFormMain.actSaveColorPaletteExecute(Sender: TObject);
 var
   dlg: TSaveDialog;
 begin
+  TAppHelper.CheckForm(TFormPaletteEditor);
   dlg := FormPaletteEditor.dlgSavePalette;
   if not dlg.Execute then Exit;
   SaveColorsToPaletteFile(dlg.FileName);
@@ -1204,6 +1228,7 @@ begin
     sl.Free;
   end;
 
+  UpdateColorPaletteCount;
 end;
 
 procedure TFormMain.AssignColorPalette(const cp: TColorPalette; bClearCurrentPalette: Boolean = True);
@@ -1263,7 +1288,8 @@ end;
 
 procedure TFormMain.UpdateColorPaletteCount;
 begin
-  lblColorPalette.Caption := lsMain.GetComponentProperty('lblColorPalette', 'Caption', 'Color Palette') + ' (' + itos(clbColors.Count) + ')';
+  if lblColorPalette.Width < 100 then lblColorPalette.Caption := itos(clbColors.Count)
+  else lblColorPalette.Caption := lsMain.GetComponentProperty('lblColorPalette', 'Caption', 'Color Palette') + ' (' + itos(clbColors.Count) + ')';
 end;
 
 
@@ -1275,34 +1301,35 @@ end;
 
 procedure TFormMain.SaveSettingsToIni;
 var
-  Ini: TMemIniFile;
-  Section, s: string;
+  Ini: TJppMemIniFile;
+  s: string;
   sl: TStringList;
   i: integer;
 begin
-  Ini := TMemIniFile.Create(AP.IniFile, TEncoding.UTF8);
+  Ini := TJppMemIniFile.Create(AP.IniFile, TEncoding.UTF8);
   try
 
-    Section := INI_SECTION_MAIN;
+    Ini.CurrentSection := INI_SECTION_MAIN;
 
-    Ini.WriteString(Section, 'LanguageIni', ExtractFileName(AP.LanguageIni));
+    Ini.WriteString('LanguageIni', ExtractFileName(AP.LanguageIni));
 
-    Ini.WriteBool(Section, 'Folded', Folded);
+    Ini.WriteBool('Folded', Folded);
 
-    Ini.WriteInteger(Section, 'Left', Left);
-    Ini.WriteInteger(Section, 'Top', Top);
+    Ini.WriteInteger('Left', Left);
+    Ini.WriteInteger('Top', Top);
     if not Folded then
     begin
-      Ini.WriteInteger(Section, 'Width', Width);
-      Ini.WriteInteger(Section, 'Height', Height);
+      Ini.WriteInteger('Width', Width);
+      Ini.WriteInteger('Height', Height);
     end;
-    Ini.WriteInteger(Section, 'FoldedWidth', FoldedWidth);
-    Ini.WriteInteger(Section, 'FoldedHeight', FoldedHeight);
+    Ini.WriteInteger('FoldedWidth', FoldedWidth);
+    Ini.WriteInteger('FoldedHeight', FoldedHeight);
 
-    Ini.WriteInteger(Section, 'pnRight.Width', pnRight.Width);
+    Ini.WriteInteger('pnPalette.Width', pnPalette.Width);
+    Ini.WriteBool('PaletteVisible', pnPalette.Visible);
 
-    Ini.WriteInteger(Section, 'ZoomFactor', ZoomFactor);
-    Ini.WriteBool(Section, 'CreatePreview', chCreatePreview.Checked);
+    Ini.WriteInteger('ZoomFactor', ZoomFactor);
+    Ini.WriteBool('CreatePreview', chCreatePreview.Checked);
 
     case cbResampler.ItemIndex of
       IND_RESAMPLER_BOX: s := 'Box';
@@ -1313,48 +1340,52 @@ begin
       IND_RESAMPLER_LANCZOS: s := 'Lanczos';
       else s := '';
     end;
-    Ini.WriteString(Section, 'Resampler', s);
+    Ini.WriteString('Resampler', s);
 
-    Ini.WriteBool(Section, 'OnTop', actSwitchOnTop.Checked);
+    Ini.WriteBool('OnTop', actSwitchOnTop.Checked);
 
-    Ini.WriteString(Section, 'MonospaceFont_Name', AP.MonospaceFont.Name);
-    Ini.WriteInteger(Section, 'MonospaceFont_Size', AP.MonospaceFont.Size);
-    Ini.WriteInteger(Section, 'MonospaceFont_PosYDelta', AP.MonospaceFont.PosYDelta);
+    Ini.WriteString('MonospaceFont_Name', AP.MonospaceFont.Name);
+    Ini.WriteInteger('MonospaceFont_Size', AP.MonospaceFont.Size);
+    Ini.WriteInteger('MonospaceFont_PosYDelta', AP.MonospaceFont.PosYDelta);
 
-    Ini.WriteString(Section, 'dlOpenPictureDir', dlgOpenImage.InitialDir);
-    Ini.WriteString(Section, 'dlgSavePictureDir', dlgSaveImage.InitialDir);
+    Ini.WriteString('dlOpenPictureDir', dlgOpenImage.InitialDir);
+    Ini.WriteString('dlgSavePictureDir', dlgSaveImage.InitialDir);
 
-    Ini.WriteBool(Section, 'CopyOnCapture', AP.CopyOnCapture);
-    Ini.WriteString(Section, 'CopyOnCaptureColorType', ColorTypeToStr(AP.CopyOnCaptureColorType));
-    Ini.WriteString(Section, 'CopyColorType', ColorTypeToStr(AP.CopyColorType));
-    Ini.WriteBool(Section, 'AskForColorName', AP.AskForColorName);
-    Ini.WriteBool(Section, 'AddNewColorsAtTheTop', AP.AddNewColorsAtTheTop);
+    Ini.WriteBool('CopyOnCapture', AP.CopyOnCapture);
+    Ini.WriteString('CopyOnCaptureColorType', ColorTypeToStr(AP.CopyOnCaptureColorType));
+    Ini.WriteString('CopyColorType', ColorTypeToStr(AP.CopyColorType));
+    Ini.WriteBool('AskForColorName', AP.AskForColorName);
+    Ini.WriteBool('AddNewColorsAtTheTop', AP.AddNewColorsAtTheTop);
 
     s := '';
     if clbColors.Appearance.ShowRgbInt then s := s + 'RGB,';
     if clbColors.Appearance.ShowRgbHex then s := s + 'HTML';
     s := TrimFromEnd(s, ',');
     if s = '' then s := 'None';
-    Ini.WriteString(Section, 'ColorPalette_ColorFormat', s);
+    Ini.WriteString('ColorPalette_ColorFormat', s);
 
-    Ini.WriteBool(Section, 'ColorPalette_ShowNames', clbColors.Appearance.ShowColorName);
+    Ini.WriteBool('ColorPalette_ShowNames', clbColors.Appearance.ShowColorName);
 
-    Ini.WriteBool(Section, 'ShowBottomPanel', pnBottom.Visible);
-    Ini.WriteBool(Section, 'ShowColorCodesPanel', pnColorCodes.Visible);
-    Ini.WriteBool(Section, 'ShowRGBGraph', pnRgbGraph.Visible);
+    Ini.WriteBool('ShowBottomPanel', pnBottom.Visible);
+    Ini.WriteBool('ShowColorCodesPanel', pnColorCodes.Visible);
+    Ini.WriteBool('ShowRGBGraph', pnRgbGraph.Visible);
 
-    Ini.WriteInteger(Section, 'ColorRectangleWidth', clbColors.Appearance.ColorRectangle.Width);
-    Ini.WriteBool(Section, 'ShowColorRectangleBorder', clbColors.Appearance.ColorRectangle.BorderWidth > 0);
-    Ini.WriteBool(Section, 'ColorRectanglesConnected', clbColors.Appearance.ColorRectangle.PaddingTop = 0);
+    Ini.WriteInteger('ColorRectangleWidth', clbColors.Appearance.ColorRectangle.Width);
+    Ini.WriteBool('ShowColorRectangleBorder', clbColors.Appearance.ColorRectangle.BorderWidth > 0);
+    Ini.WriteBool('ColorRectanglesConnected', clbColors.Appearance.ColorRectangle.PaddingTop = 0);
+    Ini.WriteBool('ColorRectangle_AutoBorderColor', AP.ColorRectangle_AutoBorderColor);
+    Ini.WriteColor('ColorRectangle_BorderColor', AP.ColorRectangle_BorderColor);
+    //if clbColors.Appearance.ColorRectangle.BorderMode = bmSimpleColor then
 
-    Ini.WriteInteger(Section, 'ColorPaletteRowHeight', clbColors.ItemHeight);
-    Ini.WriteString(Section, 'ColorPaletteBgColor', ColorToHtmlColorStr(clbColors.Color));
-    Ini.WriteString(Section, 'ColorPaletteFontColor', ColorToHtmlColorStr(clbColors.Font.Color));
-    Ini.WriteBool(Section, 'ShowColorPaletteToolbar', tbColorPalette.Visible);
 
-    Ini.WriteInteger(Section, 'CapturingInterval', tmColor.Interval);
+    Ini.WriteInteger('ColorPaletteRowHeight', clbColors.ItemHeight);
+    Ini.WriteString('ColorPaletteBgColor', ColorToHtmlColorStr(clbColors.Color));
+    Ini.WriteString('ColorPaletteFontColor', ColorToHtmlColorStr(clbColors.Font.Color));
+    Ini.WriteBool('ShowColorPaletteToolbar', tbColorPalette.Visible);
 
-    Ini.WriteBool(Section, 'ShowColorCodesOnTitleBar', AP.ShowColorCodesOnTitleBar);
+    Ini.WriteInteger('CapturingInterval', tmColor.Interval);
+
+    Ini.WriteBool('ShowColorCodesOnTitleBar', AP.ShowColorCodesOnTitleBar);
 
     case AP.PixelIndicator of
       piSquare: s := 'Square';
@@ -1364,11 +1395,11 @@ begin
     else
       s := 'Square';
     end;
-    Ini.WriteString(Section, 'PixelIndicator', s);
+    Ini.WriteString('PixelIndicator', s);
 
-    Ini.WriteString(Section, 'PixelIndicatorColor', ColorToHtmlColorStr(AP.PixelIndicatorColor, '#'));
+    Ini.WriteString('PixelIndicatorColor', ColorToHtmlColorStr(AP.PixelIndicatorColor, '#'));
 
-    Ini.WriteBool(Section, 'HtmlExport_AddJson', AP.HtmlExport_AddJson);
+    Ini.WriteBool('HtmlExport_AddJson', AP.HtmlExport_AddJson);
 
     // -------------- Quick Access: The last opened files ----------------
     sl := TStringList.Create;
@@ -1377,7 +1408,7 @@ begin
       for i := 0 to sl.Count - 1 do
       begin
         if Trim(sl[i]) = '' then Continue;
-        Ini.WriteString(INI_SECTION_RECENTLY_OPENED, i.ToString, sl[i]);
+        Ini.WriteString(INI_SECTION_RECENTLY_OPENED, itos(i), sl[i]);
       end;
     finally
       sl.Free;
@@ -1396,7 +1427,7 @@ end;
 
 procedure TFormMain.LoadSettingsFromIni;
 var
-  Ini: TMemIniFile;
+  Ini: TJppMemIniFile;
   Section, s, Ext: string;
   bUD: Boolean;
   x, i: integer;
@@ -1411,10 +1442,11 @@ begin
   bUD := bUpdatingControls;
   try
 
-    Ini := TMemIniFile.Create(AP.IniFile, TEncoding.UTF8);
+    Ini := TJppMemIniFile.Create(AP.IniFile, TEncoding.UTF8);
     try
 
       Section := INI_SECTION_MAIN;
+      Ini.CurrentSection := INI_SECTION_MAIN;
 
       actEsc.Enabled := Ini.ReadBool(Section, 'EscExit', False);
 
@@ -1446,9 +1478,13 @@ begin
       x := GetIntInRange(x, 100, Screen.Height);
       Height := x;
 
-      x := Ini.ReadInteger(Section, 'pnRight.Width', pnRight.Width);
-      x := GetIntInRange(x, pnRight.Constraints.MinWidth, 500);
-      pnRight.Width := x;
+      x := Ini.ReadInteger(Section, 'pnPalette.Width', pnPalette.Width);
+      x := GetIntInRange(x, pnPalette.Constraints.MinWidth, 500);
+      pnPalette.Width := x;
+
+      b := Ini.ReadBool('PaletteVisible', pnPalette.Visible);
+      if not b then actShowHidePalette.Execute;
+      actShowHidePalette.Checked := pnPalette.Visible;
 
       x := Ini.ReadInteger(Section, 'ZoomFactor', ZoomFactor);
       if x < 1 then x := 1;
@@ -1530,6 +1566,20 @@ begin
       clbColors.Appearance.ColorRectangle.PaddingBottom := x;
 
       clbColors.Appearance.ColorRectangle.HideTopBorder := clbColors.Appearance.ColorRectangle.PaddingTop = 0;
+
+      AP.ColorRectangle_BorderColor := Ini.ReadColor('ColorRectangle_BorderColor', AP.ColorRectangle_BorderColor);
+      if Ini.ReadBool('ColorRectangle_AutoBorderColor', True) then
+      begin
+        AP.ColorRectangle_AutoBorderColor := True;
+        clbColors.Appearance.ColorRectangle.BorderColor := clGray;
+        clbColors.Appearance.ColorRectangle.BorderMode := bmAverageColor;
+      end
+      else
+      begin
+        AP.ColorRectangle_AutoBorderColor := False;
+        clbColors.Appearance.ColorRectangle.BorderColor := AP.ColorRectangle_BorderColor;
+        clbColors.Appearance.ColorRectangle.BorderMode := bmSimpleColor;
+      end;
 
 
       x := Ini.ReadInteger(Section, 'ColorPaletteRowHeight', clbColors.ItemHeight);
@@ -1663,6 +1713,7 @@ begin
 
   if AP.AskForColorName then
   begin
+    TAppHelper.CheckForm(TFormEditColorName);
     FormEditColorName.ColorSwatchColor := cl;
     FormEditColorName.ColorName := '';
     FormEditColorName.ActiveControl := FormEditColorName.edColorName;
@@ -1744,7 +1795,6 @@ var
 begin
   if clbColors.Count = 0 then Exit;
 
-
   if clbColors.ItemIndex < 0 then
   begin
     xInd := 0;
@@ -1752,6 +1802,8 @@ begin
   end;
   xInd := clbColors.ItemIndex;
   if not clbColors.IsColorItem(xInd) then Exit;
+
+  TAppHelper.CheckForm(TFormEditColor);
 
   cl := clbColors.SelectedColor;
   FormEditColor.SetCurrentColor(cl);
@@ -1775,6 +1827,7 @@ procedure TFormMain.actEditPaletteExecute(Sender: TObject);
 var
   cp: TColorPalette;
 begin
+  TAppHelper.CheckForm(TFormPaletteEditor);
   cp := TColorPalette.Create;
   try
     SaveColorsToColorPalette(cp);
@@ -1796,6 +1849,7 @@ procedure TFormMain.actExportPaletteToGPLExecute(Sender: TObject);
 var
   dlg: TSaveDialog;
 begin
+  TAppHelper.CheckForm(TFormPaletteEditor);
   dlg := FormPaletteEditor.dlgExport;
   dlg.DefaultExt := '.gpl';
   dlg.Filter := 'GIMP palette files (*.gpl)|*.gpl';
@@ -1807,6 +1861,7 @@ procedure TFormMain.actExportPaletteToHtmlExecute(Sender: TObject);
 var
   dlg: TSaveDialog;
 begin
+  TAppHelper.CheckForm(TFormPaletteEditor);
   dlg := FormPaletteEditor.dlgExport;
   dlg.DefaultExt := '.html';
   dlg.Filter := 'HTML files (*.html)|*.html';
@@ -1842,6 +1897,7 @@ begin
   if xInd < 0 then Exit;
   if not clbColors.IsColorItem(xInd) then Exit;
 
+  TAppHelper.CheckForm(TFormEditColorName);
   clbColors.GetItemInfo(xInd, ItemData);
   FormEditColorName.ColorSwatchColor := ItemData.Color;
   FormEditColorName.ColorName := ItemData.Name;
@@ -1863,6 +1919,7 @@ begin
   if xInd < 0 then Exit;
   if not clbColors.IsColorItem(xInd) then Exit;
 
+  TAppHelper.CheckForm(TFormColorWheel);
   clbColors.GetItemInfo(xInd, ItemData);
   FormColorWheel.CurrentColor := ItemData.Color;
 
@@ -2019,8 +2076,8 @@ begin
     xBottom := cy + xHalfImgHeight div xFactor;
 
     if lblImageRect.Visible then
-        lblImageRect.Caption := '(' + xLeft.ToString + ',' + xTop.ToString + ') (' + xRight.ToString + ',' + xBottom.ToString + ')' + ENDL + 'W: ' +
-        (xRight - xLeft).ToString + '   H: ' + (xBottom - xTop).ToString;
+        lblImageRect.Caption := '(' + itos(xLeft) + ',' + itos(xTop) + ') (' + itos(xRight) + ',' + itos(xBottom) + ')' + ENDL + 'W: ' +
+        itos(xRight - xLeft) + '   H: ' + itos(xBottom - xTop);
     //'  IMAGE RECT:   Left: ' + xLeft.ToString + '  Top: ' + xTop.ToString + '  Right: ' + xRight.ToString + '  Bottom: ' + xBottom.ToString;
 
     RectSrc := Rect(xLeft, xTop, xRight, xBottom);
@@ -2343,6 +2400,7 @@ procedure TFormMain.cbResamplerChange(Sender: TObject);
 begin
   if bUpdatingControls then Exit;
   if AppMode = amImage then PerformOpenImage(CurrentImageFile);
+  TAppHelper.CheckForm(TFormOptions);
   if Assigned(FormOptions) and FormOptions.Visible then
   begin
     bUpdatingControls := True;
@@ -2439,6 +2497,11 @@ begin
   btnStartCapturing.Visible := not Folded;
   btnStopCapturing.Visible := not Folded;
 
+  actShowHideColorCodesPanel.Enabled := not Folded;
+  actShowHideBottomPanel.Enabled := not Folded;
+  actShowHidePalette.Enabled := not Folded;
+
+  InitControls;
 end;
 
 
@@ -2584,6 +2647,7 @@ end;
 
 procedure TFormMain.actCheckUpdateExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormCheckUpdate);
   FormCheckUpdate.Show;
   FormCheckUpdate.actCheckNow.Execute;
 end;
@@ -2610,6 +2674,13 @@ end;
 
 procedure TFormMain.actOptionsExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormOptions);
+  bUpdatingControls := True;
+  try
+    FormOptions.cbResampler.ItemIndex := cbResampler.ItemIndex;
+  finally
+    bUpdatingControls := False;
+  end;
   FormOptions.Show;
   FormOptions.InitControls;
 end;
@@ -2628,6 +2699,7 @@ end;
 
 procedure TFormMain.actShowFormAutoCaptureExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormAutoCapture);
   FormAutoCapture.Show;
 end;
 
@@ -2661,6 +2733,29 @@ begin
   InitControls;
 end;
 
+procedure TFormMain.actPalette_SimilarColorsExecute(Sender: TObject);
+var
+  xInd: integer;
+  cl: TColor;
+begin
+  TAppHelper.CheckForm(TFormSimilarColors);
+
+  if clbColors.Count = 0 then Exit;
+
+  if clbColors.ItemIndex < 0 then
+  begin
+    xInd := 0;
+    clbColors.ItemIndex := xInd;
+  end;
+  xInd := clbColors.ItemIndex;
+  if not clbColors.IsColorItem(xInd) then Exit;
+
+  cl := clbColors.SelectedColor;
+
+  FormSimilarColors.CurrentColor := cl;
+  FormSimilarColors.Show;
+end;
+
 procedure TFormMain.actPalette_InvertSelectionExecute(Sender: TObject);
 begin
   clbColors.InvertSelection;
@@ -2685,6 +2780,11 @@ procedure TFormMain.FormResize(Sender: TObject);
 begin
   Repaint;
   if AppMode = amImage then CenterImg;
+end;
+
+procedure TFormMain.FormShow(Sender: TObject);
+begin
+  UpdateColorPaletteCount;
 end;
 
 procedure TFormMain.GetLastOpenedFileList(sl: TStringList);
@@ -2731,26 +2831,32 @@ begin
   popShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
   actShowHideBottomPanel.Checked := pnBottom.Visible;
   popShowHideBottomPanel.Checked := pnBottom.Visible;
+  actShowHidePalette.Checked := pnPalette.Visible;
+  popShowHidePalette.Checked := pnPalette.Visible;
 end;
 
 procedure TFormMain.actShowFormColorMixerExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormColorMixer);
   FormColorMixer.Show;
 end;
 
 procedure TFormMain.actShowFormGradientColorsExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormGradientColors);
   FormGradientColors.Show;
 end;
 
 procedure TFormMain.actShowFormPixelColorExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormPixelColor);
   FormPixelColor.Show;
   FormPixelColor.tmUpdateColor.Start;
 end;
 
 procedure TFormMain.actShowFormRandomColorsExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormRandomColors);
   FormRandomColors.Show;
 end;
 
@@ -2771,6 +2877,7 @@ end;
 
 procedure TFormMain.actAboutExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormAbout);
   FormAbout.Show;
 end;
 
@@ -2794,6 +2901,7 @@ end;
 
 procedure TFormMain.actShowFormColorWheelExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormColorWheel);
   FormColorWheel.Show;
 end;
 
@@ -2801,6 +2909,7 @@ end;
 
 procedure TFormMain.actShowFormSimilarColorsExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormSimilarColors);
   FormSimilarColors.Show;
 end;
 
@@ -2896,6 +3005,7 @@ var
   fName, Ext: string;
   fs: TFormStyle;
 begin
+  TAppHelper.CheckForm(TFormQuickAccess);
   sl := TStringList.Create;
   try
     GetLastOpenedFileList(sl);
@@ -2946,6 +3056,7 @@ begin
   if bUpdatingControls then Exit;
   pnBottom.Visible := not pnBottom.Visible;
   actShowHideBottomPanel.Checked := pnBottom.Visible;
+
   if Assigned(FormOptions) and FormOptions.Visible then
   begin
     bUpdatingControls := True;
@@ -2963,6 +3074,7 @@ begin
   pnColorCodes.Visible := not pnColorCodes.Visible;
   actShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
   popShowHideColorCodesPanel.Checked := pnColorCodes.Visible;
+
   if Assigned(FormOptions) and FormOptions.Visible then
   begin
     bUpdatingControls := True;
@@ -2974,6 +3086,26 @@ begin
   end;
 end;
 
+
+procedure TFormMain.actShowHidePaletteExecute(Sender: TObject);
+begin
+  if Folded then Exit;
+  pnPalette.Visible := not pnPalette.Visible;
+  splMain.Visible := pnPalette.Visible;
+  if splMain.Visible then splMain.Left := pnPalette.Left - splMain.Width - 10;
+  actShowHidePalette.Checked := pnPalette.Visible;
+  UpdateColorPaletteCount;
+
+  if Assigned(FormOptions) and FormOptions.Visible then
+  begin
+    bUpdatingControls := True;
+    try
+      FormOptions.chColorPalette_Visible.Checked := pnPalette.Visible;
+    finally
+      bUpdatingControls := False;
+    end;
+  end;
+end;
 
 function TFormMain.RecentFileAlreadyOnList(const FileName: string): Boolean;
 var
@@ -2997,7 +3129,7 @@ procedure TFormMain.actSetSize_SmallExecute(Sender: TObject);
 begin
   if Folded then actCollapse.Execute;
   WindowState := wsNormal;
-  pnRight.Width := 138;
+  pnPalette.Width := 138;
   Width := 514;
   Height := 240;
 end;
@@ -3006,7 +3138,7 @@ procedure TFormMain.actSetSize_MediumExecute(Sender: TObject);
 begin
   if Folded then actCollapse.Execute;
   WindowState := wsNormal;
-  pnRight.Width := 138;
+  pnPalette.Width := 138;
   Width := 580;
   Height := 370;
 end;
@@ -3015,7 +3147,7 @@ procedure TFormMain.actSetSize_LargeExecute(Sender: TObject);
 begin
   if Folded then actCollapse.Execute;
   WindowState := wsNormal;
-  pnRight.Width := 138;
+  pnPalette.Width := 138;
   Width := 810;
   Height := 528;
 end;
@@ -3023,11 +3155,16 @@ end;
 
 procedure TFormMain.actReloadCurrentLanguageFileExecute(Sender: TObject);
 begin
-  if not Assigned(FormOptions) then Exit;
+  TAppHelper.CheckForm(TFormOptions);
+  //if not Assigned(FormOptions) then Exit;
   FormOptions.cbLangChange(Self);
 end;
 
 
+procedure TFormMain.splMainMoved(Sender: TObject);
+begin
+  UpdateColorPaletteCount;
+end;
 
 
 

@@ -30,7 +30,6 @@ object FormGradientColors: TFormGradientColors
     Appearance.DrawBottomBorder = False
     Appearance.DrawLeftBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitTop = 286
     DesignSize = (
       694
       41)
@@ -663,7 +662,6 @@ object FormGradientColors: TFormGradientColors
     Appearance.DrawTopBorder = False
     Appearance.DrawBottomBorder = False
     Appearance.DrawRightBorder = False
-    ExplicitHeight = 227
     object pnColorPaletteTitle: TJppBasicPanel
       AlignWithMargins = True
       Left = 1

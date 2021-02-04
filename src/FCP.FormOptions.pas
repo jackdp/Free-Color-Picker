@@ -16,10 +16,10 @@ uses
   JPL.Colors, JPL.Strings, JPL.Win.Shortcuts,
 
   // JPPack
-  JPP.PngButton, JPP.ColorListBox, JPP.ColorComboBox, JPP.SimplePanel, JPP.ColorSwatch,
+  JPP.PngButton, JPP.ColorListBox, JPP.ColorComboBox, JPP.SimplePanel, JPP.ColorSwatch, JPP.ColorControls.Common,
 
   // FCP
-  FCP.Types, FCP.Shared, FCP.AppStrings;
+  FCP.Types, FCP.Shared, FCP.AppStrings, JPP.ComboBox;
 
 type
 
@@ -67,7 +67,6 @@ type
     udCapturingInterval: TUpDown;
     lblMs: TLabel;
     chAskForName: TCheckBox;
-    cbAddColorsPosition: TComboBox;
     lblAddColorsPosition: TLabel;
     pnPixelIndicator: TJppSimplePanel;
     lblPixelIndicator: TLabel;
@@ -76,11 +75,15 @@ type
     chHtmlExport_AddJson: TCheckBox;
     btnDesktopShortcut: TJppPngButton;
     actCreateDesktopShortcut: TAction;
+    cswColorRectangle_BorderColor: TJppColorSwatchEx;
+    chColorRectangle_AutoColor: TCheckBox;
+    cbAddColorsPosition: TJppComboBox;
+    chColorPalette_Visible: TCheckBox;
     procedure actCloseExecute(Sender: TObject);
     procedure actCreateDesktopShortcutExecute(Sender: TObject);
     procedure actEscExecute(Sender: TObject);
     procedure cbPixelIndicatorChange(Sender: TObject);
-    procedure cbAddColorsPositionChange(Sender: TObject);
+    procedure cbAddColorsPosition__Change(Sender: TObject);
     procedure cbColorFormatChange(Sender: TObject);
     procedure cbColorFormat_CaptureChange(Sender: TObject);
     procedure cbLangChange(Sender: TObject);
@@ -110,6 +113,10 @@ type
     procedure udCapturingIntervalClick(Sender: TObject; Button: TUDBtnType);
     procedure udColorPalette_RowHeightClick(Sender: TObject; Button: TUDBtnType);
     procedure udColorRectangle_WidthClick(Sender: TObject; Button: TUDBtnType);
+    procedure cswPixelIndicatorBtnChangeColorClick(Sender: TObject);
+    procedure cswColorRectangle_BorderColorSelectedColorChanged(Sender: TObject);
+    procedure chColorRectangle_AutoColorClick(Sender: TObject);
+    procedure chColorPalette_VisibleClick(Sender: TObject);
   private
     bUpdatingControls: Boolean;
   end;
@@ -191,9 +198,18 @@ begin
     cswPixelIndicator.ButtonChangeColor.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
     cswPixelIndicator.ButtonChangeColor.PngImage.Assign(FormMain.PngCollection.GetPngImageByName('Colors'));
 
+    cswColorRectangle_BorderColor.SelectedColor := AP.ColorRectangle_BorderColor;;
+    cswColorRectangle_BorderColor.ButtonChangeColor.Appearance.Assign(FormMain.sbtnT1.Appearance, True);
+    cswColorRectangle_BorderColor.ButtonChangeColor.PngImage.Assign(FormMain.PngCollection.GetPngImageByName('Colors'));
+
+    chColorRectangle_AutoColor.Checked := AP.ColorRectangle_AutoBorderColor;
+
     chHtmlExport_AddJson.Checked := AP.HtmlExport_AddJson;
 
     btnDesktopShortcut.Appearance.Assign(FormMain.btnT1.Appearance);
+
+    ApplyFontParams(ccbColorPalette_BgColor.Appearance.NumericFont, AP.MonospaceFont);
+    ApplyFontParams(ccbColorPalette_FontColor.Appearance.NumericFont, AP.MonospaceFont);
 
   finally
     bUpdatingControls := False;
@@ -205,7 +221,7 @@ end;
 {$region '                         InitControls                           '}
 procedure TFormOptions.InitControls;
 var
-  b: Boolean;
+  b, b2: Boolean;
   bRgb, bHtml: Boolean;
 begin
   if not Assigned(FormMain) then Exit;
@@ -231,6 +247,7 @@ begin
     chShowRgbGraph.Checked := FormMain.pnRgbGraph.Visible;
     chShowRgbGraph.Enabled := chShowColorCodesPanel.Checked;
 
+
     udColorRectangle_Width.Position := FormMain.clbColors.Appearance.ColorRectangle.Width;
     chColorRectangle_DrawBorder.Checked := FormMain.clbColors.Appearance.ColorRectangle.BorderWidth > 0;
     chColorRectangle_Connected.Checked := FormMain.clbColors.Appearance.ColorRectangle.PaddingTop = 0;
@@ -244,6 +261,38 @@ begin
     chAskForName.Checked := AP.AskForColorName;
     if AP.AddNewColorsAtTheTop then cbAddColorsPosition.ItemIndex := 0
     else cbAddColorsPosition.ItemIndex := 1;
+
+    chColorPalette_Visible.Checked := FormMain.pnPalette.Visible;
+
+    b := chColorPalette_Visible.Checked;
+    EnableOrDisableControls(b, [
+      lblColorPalette_ColorFormat, rbColorPalette_RGB, rbColorPalette_HTML, rbColorPalette_RGB_HTML, rbColorPalette_None,
+      pnColorRectangle, chColorPalette_ShowNames,
+      lblColorRectangle, edColorRectangle_Width, udColorRectangle_Width, chColorRectangle_Connected, chColorRectangle_DrawBorder,
+      chColorRectangle_AutoColor, cswColorRectangle_BorderColor, edColorPalette_RowHeight, udColorPalette_RowHeight,
+      ccbColorPalette_BgColor, ccbColorPalette_FontColor, chColorPalette_ShowToolbar
+    ]);
+
+    b2 := chColorRectangle_DrawBorder.Checked and b;
+    chColorRectangle_AutoColor.Enabled := b2;
+    cswColorRectangle_BorderColor.Enabled := b2 and (not AP.ColorRectangle_AutoBorderColor);
+
+    if cswColorRectangle_BorderColor.Enabled then
+    begin
+      cswColorRectangle_BorderColor.Appearance.TopColorValue.BackgroundColor := $00505050;
+      cswColorRectangle_BorderColor.Appearance.TopColorValue.Font.Color := $00F4F4F4;
+      cswColorRectangle_BorderColor.Appearance.BorderColor := $00414141;
+      cswColorRectangle_BorderColor.Appearance.BackgroundColor := $00414141;
+    end
+    else
+    begin
+      cswColorRectangle_BorderColor.Appearance.TopColorValue.BackgroundColor := clSilver;
+      cswColorRectangle_BorderColor.Appearance.TopColorValue.Font.Color := $00F4F4F4;
+      cswColorRectangle_BorderColor.Appearance.BorderColor := clSilver;
+      cswColorRectangle_BorderColor.Appearance.BackgroundColor := clSilver;
+    end;
+
+
 
   finally
     bUpdatingControls := False;
@@ -288,6 +337,9 @@ begin
     cbPixelIndicator.ItemIndex := x;
 
     cswPixelIndicator.ButtonChangeColor.Hint := lsMain.GetString('ButtonChangeColor', 'Change color...');
+    cswColorRectangle_BorderColor.ButtonChangeColor.Hint := cswPixelIndicator.ButtonChangeColor.Hint;
+
+    chColorPalette_Visible.Caption := FormMain.actShowHidePalette.Caption;
 
   finally
     bUpdatingControls := False;
@@ -417,23 +469,25 @@ begin
 
   SetLang;
   FormMain.SetLang;
-  FormAbout.SetLang;
-  FormPaletteEditor.SetLang;
-  FormEditColor.SetLang;
-  FormAutoCapture.SetLang;
-  FormPixelColor.SetLang;
-  FormCheckUpdate.SetLang;
-  FormSortBy.SetLang;
-  FormRandomColors.SetLang;
-  FormGradientColors.SetLang;
-  FormEditColorName.SetLang;
-  FormColorMixer.SetLang;
-  FormModifyPalette.SetLang;
-  FormColorWheel.SetLang;
-  FormSimilarColors.SetLang;
-  FormQuickAccess.SetLang;
+  if Assigned(FormAbout) then FormAbout.SetLang;
+  if Assigned(FormPaletteEditor) then FormPaletteEditor.SetLang;
+  if Assigned(FormEditColor) then FormEditColor.SetLang;
+  if Assigned(FormAutoCapture) then FormAutoCapture.SetLang;
+  if Assigned(FormPixelColor) then FormPixelColor.SetLang;
+  if Assigned(FormCheckUpdate) then FormCheckUpdate.SetLang;
+  if Assigned(FormSortBy) then FormSortBy.SetLang;
+  if Assigned(FormRandomColors) then FormRandomColors.SetLang;
+  if Assigned(FormGradientColors) then FormGradientColors.SetLang;
+  if Assigned(FormEditColorName) then FormEditColorName.SetLang;
+  if Assigned(FormColorMixer) then FormColorMixer.SetLang;
+  if Assigned(FormModifyPalette) then FormModifyPalette.SetLang;
+  if Assigned(FormColorWheel) then FormColorWheel.SetLang;
+  if Assigned(FormSimilarColors) then FormSimilarColors.SetLang;
+  if Assigned(FormQuickAccess) then FormQuickAccess.SetLang;
 
   AP.LanguageIni := LangMgr.GetLanguageFileNameByIndex(cbLang.ItemIndex);
+
+  cbAddColorsPosition.Repaint;
 end;
 
 {$endregion Language Combo}
@@ -471,7 +525,7 @@ begin
   clb.Appearance.ShowColorName := chColorPalette_ShowNames.Checked;
 end;
 
-procedure TFormOptions.cbAddColorsPositionChange(Sender: TObject);
+procedure TFormOptions.cbAddColorsPosition__Change(Sender: TObject);
 begin
   if bUpdatingControls then Exit;
   AP.AddNewColorsAtTheTop := cbAddColorsPosition.ItemIndex = 0;
@@ -495,6 +549,43 @@ begin
   FormMain.tbColorPalette.Visible := chColorPalette_ShowToolbar.Checked;
 end;
 
+procedure TFormOptions.chColorPalette_VisibleClick(Sender: TObject);
+var
+  b: Boolean;
+begin
+  if bUpdatingControls then Exit;
+  b := chColorPalette_Visible.Checked;
+  FormMain.actShowHidePalette.Checked := b;
+  FormMain.pnPalette.Visible := b;
+  FormMain.splMain.Visible := b;
+  if b then
+    FormMain.splMain.Left := FormMain.pnPalette.Left - FormMain.splMain.Width - 10;
+  InitControls;
+end;
+
+procedure TFormOptions.chColorRectangle_AutoColorClick(Sender: TObject);
+var
+  clb: TJppColorListBox;
+begin
+  if bUpdatingControls then Exit;
+  AP.ColorRectangle_AutoBorderColor := chColorRectangle_AutoColor.Checked;
+
+  clb := FormMain.clbColors;
+
+  if AP.ColorRectangle_AutoBorderColor then
+  begin
+    clb.Appearance.ColorRectangle.BorderColor := clGray;
+    clb.Appearance.ColorRectangle.BorderMode := bmAverageColor;
+  end
+  else
+  begin
+    clb.Appearance.ColorRectangle.BorderColor := AP.ColorRectangle_BorderColor;;
+    clb.Appearance.ColorRectangle.BorderMode := bmSimpleColor;
+  end;
+
+  InitControls;
+end;
+
 procedure TFormOptions.chColorRectangle_ConnectedClick(Sender: TObject);
 var
   x: integer;
@@ -514,6 +605,7 @@ begin
   if chColorRectangle_DrawBorder.Checked then x := 1 else x := 0;
   FormMain.clbColors.Appearance.ColorRectangle.BorderWidth := x;
   FormMain.clbColors.Appearance.ColorRectangle.HideTopBorder := FormMain.clbColors.Appearance.ColorRectangle.PaddingTop = 0;
+  InitControls;
 end;
 
 procedure TFormOptions.chCopyColor_CaptureClick(Sender: TObject);
@@ -622,6 +714,23 @@ end;
 procedure TFormOptions.chHtmlExport_AddJsonClick(Sender: TObject);
 begin
   AP.HtmlExport_AddJson := chHtmlExport_AddJson.Checked;
+end;
+
+procedure TFormOptions.cswColorRectangle_BorderColorSelectedColorChanged(Sender: TObject);
+begin
+  AP.ColorRectangle_BorderColor := cswColorRectangle_BorderColor.SelectedColor;
+  //if FormMain.clbColors.Appearance.ColorRectangle.BorderMode = bmSimpleColor then
+  if not AP.ColorRectangle_AutoBorderColor then
+    FormMain.clbColors.Appearance.ColorRectangle.BorderColor := AP.ColorRectangle_BorderColor;
+end;
+
+procedure TFormOptions.cswPixelIndicatorBtnChangeColorClick(Sender: TObject);
+var
+  cl: TColor;
+begin
+  cl := cswPixelIndicator.SelectedColor;
+  if not EditColor(cl) then Exit;
+  cswPixelIndicator.SelectedColor := cl;
 end;
 
 procedure TFormOptions.cswPixelIndicatorSelectedColorChanged(Sender: TObject);

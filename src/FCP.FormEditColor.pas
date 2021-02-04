@@ -31,7 +31,7 @@ uses
   SpTBXEditors,
 
   // FCP
-  FCP.Shared, FCP.AppStrings;
+  FCP.Shared, FCP.AppStrings, FCP.Types, JPP.Labels;
 
 type
 
@@ -50,7 +50,6 @@ type
     lblRgbRed: TLabel;
     lblRgbGreen: TLabel;
     lblRgbBlue: TLabel;
-    lblRgb: TLabel;
     pnHsPickerBg: TJppSimplePanel;
     cpHS: TColorPickerHS;
     LPicker: TLColorPicker;
@@ -58,7 +57,6 @@ type
     lblHslHue: TLabel;
     lblHslSat: TLabel;
     lblHslLum: TLabel;
-    lblHsl: TLabel;
     spedHslHue: TSpTBXSpinEdit;
     spedHslSat: TSpTBXSpinEdit;
     spedHslLum: TSpTBXSpinEdit;
@@ -133,6 +131,8 @@ type
     actCopyColor_HslWin: TAction;
     actF3: TAction;
     pnColorList: TJppSimplePanel;
+    lblRgb: TJppShadowLabel;
+    lblHsl: TJppShadowLabel;
 
     procedure actCloseExecute(Sender: TObject);
     procedure actCopyColor_CmykExecute(Sender: TObject);
@@ -219,6 +219,9 @@ var
   sbtn: TJppBasicSpeedButton;
 begin
   clbColors.Align := alClient;
+  clbColors.Items.Clear;
+//  clbColors.Items.Assign(FormMain.meColorsT.Lines);
+  clbColors.Items.Assign(FormMain.clbT.Items);
 
   lblSelectedColor.Align := alClient;
   sbtn := FormMain.sbtnT1;
@@ -264,6 +267,18 @@ begin
   pnPascalInt.Appearance.Assign(pnHtml.Appearance);
   pnCppHex.Appearance.Assign(pnHtml.Appearance);
   pnCppHex.Appearance.DrawBottomBorder := True;
+
+  ApplyFontParams(edHtml.Font, AP.MonospaceFont);
+  ApplyFontParams(edRgb.Font, AP.MonospaceFont);
+  ApplyFontParams(edRgbPercent.Font, AP.MonospaceFont);
+  ApplyFontParams(edHslCss.Font, AP.MonospaceFont);
+  ApplyFontParams(edHslWin.Font, AP.MonospaceFont);
+  ApplyFontParams(edCmyk.Font, AP.MonospaceFont);
+  ApplyFontParams(edPascalHex.Font, AP.MonospaceFont);
+  ApplyFontParams(edPascalInt.Font, AP.MonospaceFont);
+  ApplyFontParams(edCppHex.Font, AP.MonospaceFont);
+
+  ApplyFontParams(clbColors.Appearance.NumericFont, AP.MonospaceFont);
 
 end;
 {$endregion PrepareControls}

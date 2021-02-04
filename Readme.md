@@ -2,9 +2,24 @@
 
 An advanced color picker, screen magnifier and color palette manager.
 
+## Table of content
+
+* [Download](#download)
+* [Overview](#overview)
+* [Screenshots](#screenshots)
+	* [The main window](#the-main-window)
+	* [The main window collapsed](#the-main-window-collapsed)
+	* [Color palette editor](#color-palette-editor)
+	* [Color dialog](#color-dialog)
+	* [Color wheel](#color-wheel)
+	* [Random colors](#random-colors)
+	* [Modify color palette](#modify-color-palette)
+* [Program features](#program-features)
+* [Compilation](#compilation)
+
 ## Download
 
-Compiled executable files (32 and 64-bit for Windows) can be downloaded from the program website: [http://www.pazera-software.com/products/free-color-picker/](http://www.pazera-software.com/products/free-color-picker/)
+Compiled executable files (32 and 64-bit for Windows) can be downloaded from the program website: [https://www.pazera-software.com/products/free-color-picker/](https://www.pazera-software.com/products/free-color-picker/)
 
 ## Overview
 
@@ -69,3 +84,24 @@ The most important functions of the program:
 - Built-in multi-language support mechanism based on INI text files with UTF-8 encoding. To write subsequent language versions, an ordinary text editor is sufficient, e.g. the system Notepad.
 - The program is portable: it does not use the system registry, and all configuration data is saved in one INI file located in the program directory. The program can be copied to an external disk and used on another computer without any installation.
 - The program is completely free, for private and commercial use.
+
+## Compilation
+
+To compile Free Color Picker you need [Delphi](https://www.embarcadero.com/products/delphi) XE4 or newer. The free [Delphi Community](https://www.embarcadero.com/products/delphi/starter/free-download) version is enough.
+
+You also need several libraries and components listed below:
+- JPLib: https://github.com/jackdp/JPLib
+- JPPack: https://github.com/jackdp/JPPack
+- JPModLib: https://github.com/jackdp/JPModLib
+- SpTBXLib: https://github.com/SilverpointDev/sptbxlib
+- Toolbar2000: https://www.jrsoftware.org/tb2k.php (you must apply patch from SpTBX)
+- PngComponents: https://github.com/UweRaabe/PngComponents
+- Graphics32 library: https://github.com/graphics32/graphics32
+- Virtual TreeView: https://github.com/Virtual-TreeView/Virtual-TreeView
+- Json Data Objects: https://github.com/ahausladen/JsonDataObjects
+- TPJFormDropFiles: https://www.delphidabbler.com/software/dropfiles
+- DzHTMLText2: https://github.com/jackdp/DzHTMLText2
+- Color Lib: http://mxs.bergsoft.net/index.php?p=2
+- GDI+ Library: https://github.com/jackdp/GDIPlus-Library-for-Delphi-and-Lazarus
+
+To compile, just open `FreeColorPicker.dproj` file in the Delphi IDE and select *Project*->*Compile* from the main menu (or press Ctrl+F9).

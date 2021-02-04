@@ -3,7 +3,7 @@ object FormOptions: TFormOptions
   Top = 0
   BorderStyle = bsDialog
   Caption = 'FormOptions'
-  ClientHeight = 479
+  ClientHeight = 549
   ClientWidth = 720
   Color = 14342874
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object FormOptions: TFormOptions
   OnCreate = FormCreate
   DesignSize = (
     720
-    479)
+    549)
   PixelsPerInch = 96
   TextHeight = 13
   object pnLanguage: TJppSimplePanel
@@ -51,7 +51,7 @@ object FormOptions: TFormOptions
   end
   object btnClose: TJppPngButton
     Left = 628
-    Top = 446
+    Top = 516
     Width = 84
     Height = 25
     Action = actClose
@@ -138,51 +138,53 @@ object FormOptions: TFormOptions
     Left = 361
     Top = 6
     Width = 351
-    Height = 434
+    Height = 499
     Margins.Left = 6
     Margins.Right = 6
     TabOrder = 2
     Appearance.BackgroundColor = 15395562
     Appearance.BorderColor = 11053224
+    DoubleBuffered = True
+    ParentDoubleBuffered = False
     DesignSize = (
       351
-      434)
+      499)
     object lblColorPalette: TLabel
       AlignWithMargins = True
       Left = 8
       Top = 4
       Width = 340
-      Height = 13
+      Height = 17
       Margins.Left = 8
       Margins.Top = 4
       Align = alTop
       Caption = 'Color Palette'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitWidth = 67
+      ExplicitWidth = 80
     end
     object lblColorPalette_ColorFormat: TLabel
       Left = 40
-      Top = 35
+      Top = 62
       Width = 68
       Height = 13
       Alignment = taRightJustify
       Caption = 'Color format:'
     end
     object lblAddColorsPosition: TLabel
-      Left = 11
-      Top = 353
+      Left = 12
+      Top = 426
       Width = 83
       Height = 13
       Caption = 'Add new colors:'
     end
     object rbColorPalette_RGB: TRadioButton
       Left = 120
-      Top = 24
+      Top = 52
       Width = 53
       Height = 16
       Caption = 'RGB'
@@ -193,7 +195,7 @@ object FormOptions: TFormOptions
     end
     object rbColorPalette_HTML: TRadioButton
       Left = 120
-      Top = 42
+      Top = 70
       Width = 53
       Height = 16
       Caption = 'HTML'
@@ -202,7 +204,7 @@ object FormOptions: TFormOptions
     end
     object rbColorPalette_RGB_HTML: TRadioButton
       Left = 179
-      Top = 24
+      Top = 52
       Width = 95
       Height = 16
       Caption = 'RGB + HTML'
@@ -211,7 +213,7 @@ object FormOptions: TFormOptions
     end
     object chColorPalette_ShowNames: TCheckBox
       Left = 10
-      Top = 63
+      Top = 91
       Width = 209
       Height = 17
       Caption = 'Show color names'
@@ -220,7 +222,7 @@ object FormOptions: TFormOptions
     end
     object rbColorPalette_None: TRadioButton
       Left = 179
-      Top = 42
+      Top = 70
       Width = 95
       Height = 16
       Caption = 'None'
@@ -228,10 +230,10 @@ object FormOptions: TFormOptions
       OnClick = SetColorPaletteParams
     end
     object pnColorRectangle: TJppSimplePanel
-      Left = 10
-      Top = 87
+      Left = 11
+      Top = 114
       Width = 330
-      Height = 63
+      Height = 123
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 5
       Appearance.BackgroundColor = 16053492
@@ -280,26 +282,146 @@ object FormOptions: TFormOptions
       end
       object chColorRectangle_DrawBorder: TCheckBox
         Left = 134
-        Top = 14
+        Top = 38
         Width = 187
         Height = 17
         Caption = 'Draw borders'
-        TabOrder = 2
+        TabOrder = 3
         OnClick = chColorRectangle_DrawBorderClick
       end
       object chColorRectangle_Connected: TCheckBox
         Left = 134
-        Top = 35
+        Top = 17
         Width = 191
         Height = 17
         Caption = 'Connected rectangles'
-        TabOrder = 3
+        TabOrder = 2
         OnClick = chColorRectangle_ConnectedClick
+      end
+      object cswColorRectangle_BorderColor: TJppColorSwatchEx
+        Left = 105
+        Top = 90
+        Width = 117
+        Height = 21
+        TabOrder = 5
+        Appearance.BackgroundColor = 4276545
+        Appearance.BorderColor = 4276545
+        Appearance.TopColorValue.Font.Charset = DEFAULT_CHARSET
+        Appearance.TopColorValue.Font.Color = 16053492
+        Appearance.TopColorValue.Font.Height = -12
+        Appearance.TopColorValue.Font.Name = 'Consolas'
+        Appearance.TopColorValue.Font.Style = []
+        Appearance.TopColorValue.BackgroundColor = 5263440
+        Appearance.BottomColorValue.ColorType = ctHtml
+        Appearance.BottomColorValue.Font.Charset = DEFAULT_CHARSET
+        Appearance.BottomColorValue.Font.Color = 16053492
+        Appearance.BottomColorValue.Font.Height = -12
+        Appearance.BottomColorValue.Font.Name = 'Consolas'
+        Appearance.BottomColorValue.Font.Style = []
+        Appearance.BottomColorValue.BackgroundColor = 9211020
+        Appearance.BottomColorValue.Visible = False
+        Appearance.ColorRect.Width = 21
+        Appearance.ColorRect.Margins.Left = 1
+        Appearance.ColorRect.Margins.Right = 1
+        Appearance.ColorRect.Margins.Top = 1
+        Appearance.ColorRect.Margins.Bottom = 1
+        Appearance.ColorRect.DrawBorder = False
+        OnSelectedColorChanged = cswColorRectangle_BorderColorSelectedColorChanged
+        BoundLabel.Width = 66
+        BoundLabel.Height = 13
+        BoundLabel.Caption = 'Border color:'
+        BoundLabel.FocusControl = cswColorRectangle_BorderColor
+        ButtonsSpacing = 2
+        ButtonChangeColor.Left = 224
+        ButtonChangeColor.Top = 88
+        ButtonChangeColor.Width = 25
+        ButtonChangeColor.Height = 25
+        ButtonChangeColor.Hint = 'Change color...'
+        ButtonChangeColor.Caption = '...'
+        ButtonChangeColor.Appearance.Normal.Color = clBtnFace
+        ButtonChangeColor.Appearance.Normal.FontColor = clWindowText
+        ButtonChangeColor.Appearance.Normal.BorderColor = 13421772
+        ButtonChangeColor.Appearance.Normal.BorderWidth = 1
+        ButtonChangeColor.Appearance.Hot.Color = clHighlight
+        ButtonChangeColor.Appearance.Hot.FontColor = clHighlightText
+        ButtonChangeColor.Appearance.Hot.BorderColor = clHighlight
+        ButtonChangeColor.Appearance.Hot.BorderWidth = 1
+        ButtonChangeColor.Appearance.Down.Color = 11758628
+        ButtonChangeColor.Appearance.Down.FontColor = clHighlightText
+        ButtonChangeColor.Appearance.Down.BorderColor = 11758628
+        ButtonChangeColor.Appearance.Down.BorderWidth = 1
+        ButtonChangeColor.Appearance.Disabled.Color = 16250871
+        ButtonChangeColor.Appearance.Disabled.FontColor = clBtnShadow
+        ButtonChangeColor.Appearance.Disabled.BorderColor = clBtnShadow
+        ButtonChangeColor.Appearance.Disabled.BorderWidth = 1
+        ButtonChangeColor.Appearance.ShowCaption = False
+        ButtonChangeColor.AutoWidth = False
+        ButtonChangeColor.ParentShowHint = False
+        ButtonChangeColor.ShowHint = True
+        ButtonChangeColor.Visible = True
+        ButtonCopyColor.Left = 251
+        ButtonCopyColor.Top = 88
+        ButtonCopyColor.Width = 25
+        ButtonCopyColor.Height = 25
+        ButtonCopyColor.Hint = 'Copy color'
+        ButtonCopyColor.Caption = 'C'
+        ButtonCopyColor.Appearance.Normal.Color = clBtnFace
+        ButtonCopyColor.Appearance.Normal.FontColor = clWindowText
+        ButtonCopyColor.Appearance.Normal.BorderColor = 13421772
+        ButtonCopyColor.Appearance.Normal.BorderWidth = 1
+        ButtonCopyColor.Appearance.Hot.Color = clHighlight
+        ButtonCopyColor.Appearance.Hot.FontColor = clHighlightText
+        ButtonCopyColor.Appearance.Hot.BorderColor = clHighlight
+        ButtonCopyColor.Appearance.Hot.BorderWidth = 1
+        ButtonCopyColor.Appearance.Down.Color = 11758628
+        ButtonCopyColor.Appearance.Down.FontColor = clHighlightText
+        ButtonCopyColor.Appearance.Down.BorderColor = 11758628
+        ButtonCopyColor.Appearance.Down.BorderWidth = 1
+        ButtonCopyColor.Appearance.Disabled.Color = 16250871
+        ButtonCopyColor.Appearance.Disabled.FontColor = clBtnShadow
+        ButtonCopyColor.Appearance.Disabled.BorderColor = clBtnShadow
+        ButtonCopyColor.Appearance.Disabled.BorderWidth = 1
+        ButtonCopyColor.AutoWidth = False
+        ButtonCopyColor.Visible = False
+        ButtonPasteColor.Left = 251
+        ButtonPasteColor.Top = 88
+        ButtonPasteColor.Width = 25
+        ButtonPasteColor.Height = 25
+        ButtonPasteColor.Hint = 'Paste color'
+        ButtonPasteColor.Caption = 'P'
+        ButtonPasteColor.Appearance.Normal.Color = clBtnFace
+        ButtonPasteColor.Appearance.Normal.FontColor = clWindowText
+        ButtonPasteColor.Appearance.Normal.BorderColor = 13421772
+        ButtonPasteColor.Appearance.Normal.BorderWidth = 1
+        ButtonPasteColor.Appearance.Hot.Color = clHighlight
+        ButtonPasteColor.Appearance.Hot.FontColor = clHighlightText
+        ButtonPasteColor.Appearance.Hot.BorderColor = clHighlight
+        ButtonPasteColor.Appearance.Hot.BorderWidth = 1
+        ButtonPasteColor.Appearance.Down.Color = 11758628
+        ButtonPasteColor.Appearance.Down.FontColor = clHighlightText
+        ButtonPasteColor.Appearance.Down.BorderColor = 11758628
+        ButtonPasteColor.Appearance.Down.BorderWidth = 1
+        ButtonPasteColor.Appearance.Disabled.Color = 16250871
+        ButtonPasteColor.Appearance.Disabled.FontColor = clBtnShadow
+        ButtonPasteColor.Appearance.Disabled.BorderColor = clBtnShadow
+        ButtonPasteColor.Appearance.Disabled.BorderWidth = 1
+        ButtonPasteColor.AutoWidth = False
+        ButtonPasteColor.Visible = False
+        ButtonsAlignment = taVerticalCenter
+      end
+      object chColorRectangle_AutoColor: TCheckBox
+        Left = 21
+        Top = 67
+        Width = 212
+        Height = 17
+        Caption = 'Automatic border color'
+        TabOrder = 4
+        OnClick = chColorRectangle_AutoColorClick
       end
     end
     object edColorPalette_RowHeight: TLabeledEdit
       Left = 111
-      Top = 166
+      Top = 249
       Width = 33
       Height = 21
       Alignment = taRightJustify
@@ -312,7 +434,7 @@ object FormOptions: TFormOptions
     end
     object udColorPalette_RowHeight: TUpDown
       Left = 144
-      Top = 166
+      Top = 249
       Width = 16
       Height = 21
       Associate = edColorPalette_RowHeight
@@ -324,7 +446,7 @@ object FormOptions: TFormOptions
     end
     object ccbColorPalette_BgColor: TJppColorComboBox
       Left = 10
-      Top = 214
+      Top = 296
       Width = 249
       Height = 22
       BevelKind = bkFlat
@@ -431,7 +553,7 @@ object FormOptions: TFormOptions
       BoundLabelSpacing = 2
       ButtonsSpacing = 2
       ButtonChangeColor.Left = 261
-      ButtonChangeColor.Top = 214
+      ButtonChangeColor.Top = 296
       ButtonChangeColor.Width = 25
       ButtonChangeColor.Height = 22
       ButtonChangeColor.Hint = 'Change color...'
@@ -457,7 +579,7 @@ object FormOptions: TFormOptions
       ButtonChangeColor.Visible = True
       ButtonChangeColor.OnClick = ccbColorPalette_BgColorBtnChangeColorClick
       ButtonCopyColor.Left = 288
-      ButtonCopyColor.Top = 214
+      ButtonCopyColor.Top = 296
       ButtonCopyColor.Width = 23
       ButtonCopyColor.Height = 22
       ButtonCopyColor.Hint = 'Copy color'
@@ -482,7 +604,7 @@ object FormOptions: TFormOptions
       ButtonCopyColor.ShowHint = True
       ButtonCopyColor.Visible = True
       ButtonPasteColor.Left = 313
-      ButtonPasteColor.Top = 214
+      ButtonPasteColor.Top = 296
       ButtonPasteColor.Width = 22
       ButtonPasteColor.Height = 22
       ButtonPasteColor.Hint = 'Paste color'
@@ -550,7 +672,7 @@ object FormOptions: TFormOptions
     end
     object ccbColorPalette_FontColor: TJppColorComboBox
       Left = 10
-      Top = 258
+      Top = 340
       Width = 249
       Height = 22
       BevelKind = bkFlat
@@ -657,7 +779,7 @@ object FormOptions: TFormOptions
       BoundLabelSpacing = 2
       ButtonsSpacing = 2
       ButtonChangeColor.Left = 261
-      ButtonChangeColor.Top = 258
+      ButtonChangeColor.Top = 340
       ButtonChangeColor.Width = 25
       ButtonChangeColor.Height = 22
       ButtonChangeColor.Hint = 'Change color...'
@@ -683,7 +805,7 @@ object FormOptions: TFormOptions
       ButtonChangeColor.Visible = True
       ButtonChangeColor.OnClick = ccbColorPalette_FontColorBtnChangeColorClick
       ButtonCopyColor.Left = 288
-      ButtonCopyColor.Top = 258
+      ButtonCopyColor.Top = 340
       ButtonCopyColor.Width = 23
       ButtonCopyColor.Height = 22
       ButtonCopyColor.Hint = 'Copy color'
@@ -708,7 +830,7 @@ object FormOptions: TFormOptions
       ButtonCopyColor.ShowHint = True
       ButtonCopyColor.Visible = True
       ButtonPasteColor.Left = 313
-      ButtonPasteColor.Top = 258
+      ButtonPasteColor.Top = 340
       ButtonPasteColor.Width = 22
       ButtonPasteColor.Height = 22
       ButtonPasteColor.Hint = 'Paste color'
@@ -776,7 +898,7 @@ object FormOptions: TFormOptions
     end
     object chColorPalette_ShowToolbar: TCheckBox
       Left = 10
-      Top = 297
+      Top = 376
       Width = 240
       Height = 17
       Caption = 'Show toolbar'
@@ -785,37 +907,53 @@ object FormOptions: TFormOptions
     end
     object chAskForName: TCheckBox
       Left = 10
-      Top = 319
+      Top = 398
       Width = 333
       Height = 17
       Caption = 'Ask for a color name when adding to the color palette'
       TabOrder = 11
       OnClick = chAskForNameClick
     end
-    object cbAddColorsPosition: TComboBox
-      Left = 30
-      Top = 369
-      Width = 247
-      Height = 21
-      Style = csDropDownList
-      ItemIndex = 0
-      TabOrder = 12
-      Text = 'At the top of the color palette'
-      OnChange = cbAddColorsPositionChange
-      Items.Strings = (
-        'At the top of the color palette'
-        'At the end of the color palette')
-    end
     object chHtmlExport_AddJson: TCheckBox
       Left = 10
-      Top = 405
+      Top = 473
       Width = 333
       Height = 17
       Caption = 'Add JSON code when exporting the palette to HTML'
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 13
+      TabOrder = 12
       OnClick = chHtmlExport_AddJsonClick
+    end
+    object cbAddColorsPosition: TJppComboBox
+      Left = 32
+      Top = 442
+      Width = 265
+      Height = 21
+      ColorDisabled = 15790320
+      ItemIndex = 0
+      Items.Strings = (
+        'At the top of the color palette'
+        'At the end of the color palette')
+      Style = csDropDownList
+      TabOrder = 13
+      Text = 'At the top of the color palette'
+      OnChange = cbAddColorsPosition__Change
+      BoundLabel.Width = 3
+      BoundLabel.Height = 13
+      BoundLabel.FocusControl = cbAddColorsPosition
+      BoundLabelPosition = lpAbove
+      AnchoredControls.Top.Control = lblAddColorsPosition
+      AnchoredControls.Top.DeltaPosX = -20
+    end
+    object chColorPalette_Visible: TCheckBox
+      Left = 10
+      Top = 29
+      Width = 319
+      Height = 17
+      Caption = 'Show color palette'
+      TabOrder = 14
+      OnClick = chColorPalette_VisibleClick
     end
   end
   object pnMain: TJppSimplePanel
@@ -823,7 +961,7 @@ object FormOptions: TFormOptions
     Left = 6
     Top = 62
     Width = 349
-    Height = 378
+    Height = 443
     Margins.Left = 6
     Margins.Right = 6
     TabOrder = 3
@@ -831,31 +969,31 @@ object FormOptions: TFormOptions
     Appearance.BorderColor = 11053224
     DesignSize = (
       349
-      378)
+      443)
     object lblResampler: TLabel
       Left = 10
-      Top = 7
+      Top = 9
       Width = 56
       Height = 13
       Caption = 'Resampler:'
     end
     object lblCopyColorFormat: TLabel
       Left = 34
-      Top = 78
+      Top = 84
       Width = 68
       Height = 13
       Caption = 'Color format:'
     end
     object lblCopyColor: TLabel
       Left = 10
-      Top = 131
+      Top = 140
       Width = 258
       Height = 13
       Caption = 'The color format to copy after pressing the F3 key:'
     end
     object lblCapturingInterval: TLabel
       Left = 10
-      Top = 260
+      Top = 300
       Width = 163
       Height = 39
       Caption = 
@@ -864,14 +1002,14 @@ object FormOptions: TFormOptions
     end
     object lblMs: TLabel
       Left = 279
-      Top = 272
+      Top = 312
       Width = 14
       Height = 13
       Caption = 'ms'
     end
     object cbResampler: TComboBox
       Left = 34
-      Top = 24
+      Top = 26
       Width = 145
       Height = 21
       Style = csDropDownList
@@ -882,7 +1020,7 @@ object FormOptions: TFormOptions
     end
     object chShowBottomPanel: TCheckBox
       Left = 10
-      Top = 183
+      Top = 212
       Width = 279
       Height = 17
       Caption = 'Show bottom panel'
@@ -891,7 +1029,7 @@ object FormOptions: TFormOptions
     end
     object chCopyColor_Capture: TCheckBox
       Left = 10
-      Top = 59
+      Top = 65
       Width = 328
       Height = 17
       Caption = 'Copy the color to the clipboard after the capture'
@@ -900,7 +1038,7 @@ object FormOptions: TFormOptions
     end
     object cbColorFormat_Capture: TComboBox
       Left = 34
-      Top = 94
+      Top = 100
       Width = 145
       Height = 21
       Style = csDropDownList
@@ -910,7 +1048,7 @@ object FormOptions: TFormOptions
     end
     object chShowColorCodesPanel: TCheckBox
       Left = 10
-      Top = 206
+      Top = 235
       Width = 279
       Height = 17
       Caption = 'Show panel with color codes'
@@ -919,7 +1057,7 @@ object FormOptions: TFormOptions
     end
     object chShowRgbGraph: TCheckBox
       Left = 32
-      Top = 224
+      Top = 253
       Width = 220
       Height = 17
       Caption = 'Show RGB graph'
@@ -928,7 +1066,7 @@ object FormOptions: TFormOptions
     end
     object cbColorFormat: TComboBox
       Left = 34
-      Top = 147
+      Top = 156
       Width = 145
       Height = 21
       Style = csDropDownList
@@ -938,7 +1076,7 @@ object FormOptions: TFormOptions
     end
     object edCapturingInterval: TEdit
       Left = 219
-      Top = 269
+      Top = 309
       Width = 39
       Height = 21
       Alignment = taRightJustify
@@ -948,7 +1086,7 @@ object FormOptions: TFormOptions
     end
     object udCapturingInterval: TUpDown
       Left = 258
-      Top = 269
+      Top = 309
       Width = 16
       Height = 21
       Associate = edCapturingInterval
@@ -960,9 +1098,9 @@ object FormOptions: TFormOptions
     end
     object pnPixelIndicator: TJppSimplePanel
       Left = 10
-      Top = 313
+      Top = 369
       Width = 328
-      Height = 54
+      Height = 60
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 9
       Appearance.BackgroundColor = 16053492
@@ -986,7 +1124,7 @@ object FormOptions: TFormOptions
       end
       object cbPixelIndicator: TComboBox
         Left = 12
-        Top = 22
+        Top = 25
         Width = 145
         Height = 21
         Style = csDropDownList
@@ -1002,7 +1140,7 @@ object FormOptions: TFormOptions
       end
       object cswPixelIndicator: TJppColorSwatchEx
         Left = 173
-        Top = 22
+        Top = 25
         Width = 117
         Height = 21
         TabOrder = 1
@@ -1037,7 +1175,7 @@ object FormOptions: TFormOptions
         BoundLabelSpacing = 2
         ButtonsSpacing = 2
         ButtonChangeColor.Left = 292
-        ButtonChangeColor.Top = 20
+        ButtonChangeColor.Top = 23
         ButtonChangeColor.Width = 25
         ButtonChangeColor.Height = 25
         ButtonChangeColor.Hint = 'Change color...'
@@ -1063,8 +1201,9 @@ object FormOptions: TFormOptions
         ButtonChangeColor.ParentShowHint = False
         ButtonChangeColor.ShowHint = True
         ButtonChangeColor.Visible = True
+        ButtonChangeColor.OnClick = cswPixelIndicatorBtnChangeColorClick
         ButtonCopyColor.Left = 319
-        ButtonCopyColor.Top = 20
+        ButtonCopyColor.Top = 23
         ButtonCopyColor.Width = 25
         ButtonCopyColor.Height = 25
         ButtonCopyColor.Hint = 'Copy color'
@@ -1088,7 +1227,7 @@ object FormOptions: TFormOptions
         ButtonCopyColor.AutoWidth = False
         ButtonCopyColor.Visible = False
         ButtonPasteColor.Left = 319
-        ButtonPasteColor.Top = 20
+        ButtonPasteColor.Top = 23
         ButtonPasteColor.Width = 25
         ButtonPasteColor.Height = 25
         ButtonPasteColor.Hint = 'Paste color'
@@ -1117,7 +1256,7 @@ object FormOptions: TFormOptions
   end
   object btnDesktopShortcut: TJppPngButton
     Left = 6
-    Top = 446
+    Top = 516
     Width = 236
     Height = 25
     Action = actCreateDesktopShortcut

@@ -326,18 +326,20 @@ object FormEditColorName: TFormEditColorName
       Width = 336
       Height = 22
       Anchors = [akLeft, akTop, akRight]
-      EditLabel.Width = 62
-      EditLabel.Height = 13
-      EditLabel.Caption = 'Color name:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = 'Verdana'
       Font.Style = []
-      LabelSpacing = 2
       ParentFont = False
       TabOrder = 1
       TabOnEnter = False
+      BoundLabel.Width = 62
+      BoundLabel.Height = 13
+      BoundLabel.Caption = 'Color name:'
+      BoundLabel.FocusControl = edColorName
+      BoundLabelPosition = lpAbove
+      BoundLabelSpacing = 2
     end
   end
   object Actions: TActionList

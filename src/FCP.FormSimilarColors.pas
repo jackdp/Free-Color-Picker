@@ -246,6 +246,14 @@ begin
 
   sbtnAddToList_CurrentColor.Appearance.Assign(FormMain.sbtnT1.Appearance);
 
+  clbDarker.Appearance.NumericFont.Name := AP.MonospaceFont.Name;
+  clbLighter.Appearance.NumericFont.Name := AP.MonospaceFont.Name;
+  clbSatMore.Appearance.NumericFont.Name := AP.MonospaceFont.Name;
+  clbSatLess.Appearance.NumericFont.Name := AP.MonospaceFont.Name;
+  clbHuePlus.Appearance.NumericFont.Name := AP.MonospaceFont.Name;
+  clbHueMinus.Appearance.NumericFont.Name := AP.MonospaceFont.Name;
+  clbColors.Appearance.NumericFont.Name := AP.MonospaceFont.Name;
+
 end;
 {$endregion PrepareControls}
 
@@ -322,6 +330,7 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
 
+  TAppHelper.CheckForm(TFormPaletteEditor);
   actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
   actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
   actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;
@@ -399,12 +408,12 @@ begin
       cl := clb.GetItemColor(i);
 
       case ColorType of
-        gctDarker: ColorName := 'Darker ' + Pad((i + 1).toString, 2, '0') + ' for ' + sCurrentColor;
-        gctLighter: ColorName := 'Lighter ' + Pad((i + 1).toString, 2, '0') + ' for ' + sCurrentColor;
-        gctSatMore: ColorName := 'Saturation[+] ' + Pad((i + 1).toString, 2, '0') + ' for ' + sCurrentColor;
-        gctSatLess: ColorName := 'Saturation[-] ' + Pad((i + 1).toString, 2, '0') + ' for ' + sCurrentColor;
-        gctHuePlus: ColorName := 'Hue[+] ' + Pad((i + 1).toString, 2, '0') + ' for ' + sCurrentColor;
-        gctHueMinus: ColorName := 'Hue[-] ' + Pad((i + 1).toString, 2, '0') + ' for ' + sCurrentColor;
+        gctDarker: ColorName := 'Darker ' + Pad(itos(i + 1), 2, '0') + ' for ' + sCurrentColor;
+        gctLighter: ColorName := 'Lighter ' + Pad(itos(i + 1), 2, '0') + ' for ' + sCurrentColor;
+        gctSatMore: ColorName := 'Saturation[+] ' + Pad(itos(i + 1), 2, '0') + ' for ' + sCurrentColor;
+        gctSatLess: ColorName := 'Saturation[-] ' + Pad(itos(i + 1), 2, '0') + ' for ' + sCurrentColor;
+        gctHuePlus: ColorName := 'Hue[+] ' + Pad(itos(i + 1), 2, '0') + ' for ' + sCurrentColor;
+        gctHueMinus: ColorName := 'Hue[-] ' + Pad(itos(i + 1), 2, '0') + ' for ' + sCurrentColor;
       else
         ColorName := '';
       end;
@@ -753,7 +762,7 @@ end;
 
 procedure TFormSimilarColors.UpdateColorCountLabel;
 begin
-  lblColors.Caption := lsSimilar.GetString('Colors', 'Colors') + ' (' + clbColors.Count.toString + ')';
+  lblColors.Caption := lsSimilar.GetString('Colors', 'Colors') + ' (' + itos(clbColors.Count) + ')';
 end;
 
 procedure TFormSimilarColors.actSelectAllExecute(Sender: TObject);

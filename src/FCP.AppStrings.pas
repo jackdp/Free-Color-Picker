@@ -89,6 +89,7 @@ end;
 procedure PrepareModuleStrings_Main;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormMain) then Exit;
 
   lsMain := LangMgr.AddSection(LANG_INI_SECTION_MAIN);
 
@@ -206,6 +207,8 @@ begin
     lsMain.AddAction(actSetSize_Medium);
     lsMain.AddAction(actSetSize_Large);
 
+    lsMain.AddAction(actShowHidePalette);
+
     lsMain.AddString('EditQuickAccessList', 'Edit list of recently opened files...');
     lsMain.AddString('OpenPictureDialog_Title', 'Select image file');
     lsMain.AddString('SavePictureDialog_Title', 'Save image as');
@@ -242,6 +245,7 @@ end;
 procedure PrepareModuleStrings_Options;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormOptions) then Exit;
 
   lsOptions := LangMgr.AddSection(LANG_INI_SECTION_OPTIONS);
 
@@ -286,6 +290,9 @@ begin
     lsOptions.AddCheckBox(chHtmlExport_AddJson);
     lsOptions.AddAction(actCreateDesktopShortcut);
 
+    lsOptions.AddCheckBox(chColorRectangle_AutoColor);
+    lsOptions.ac(cswColorRectangle_BorderColor).ap('BoundLabel.Caption', cswColorRectangle_BorderColor.BoundLabel.Caption);
+
   end;
 end;
 {$endregion PrepareModuleStrings_Options}
@@ -295,6 +302,7 @@ end;
 procedure PrepareModuleStrings_AutoCapture;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormAutoCapture) then Exit;
 
   lsAutoCapture := LangMgr.AddSection(LANG_INI_SECTION_AUTO_CAPTURE);
 
@@ -321,6 +329,7 @@ end;
 procedure PrepareModuleStrings_PixelColor;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormPixelColor) then Exit;
 
   lsPixelColor := LangMgr.AddSection(LANG_INI_SECTION_PIXEL_COLOR);
 
@@ -346,6 +355,7 @@ end;
 procedure PrepareModuleStrings_CheckUpdate;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormCheckUpdate) then Exit;
 
   lsCheckUpdate := LangMgr.AddSection(LANG_INI_SECTION_CHECK_UPDATE);
 
@@ -374,6 +384,7 @@ end;
 procedure PrepareModuleStrings_ColorEditor;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormEditColor) then Exit;
 
   lsColorEditor := LangMgr.AddSection(LANG_INI_SECTION_COLOR_EDITOR);
 
@@ -401,6 +412,7 @@ end;
 procedure PrepareModuleStrings_PaletteEditor;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormPaletteEditor) then Exit;
 
   lsEditor := LangMgr.AddSection(LANG_INI_SECTION_PALETTE_EDITOR);
 
@@ -481,6 +493,7 @@ end;
 procedure PrepareModuleStrings_About;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormAbout) then Exit;
 
   lsAbout := LangMgr.AddSection(LANG_INI_SECTION_ABOUT);
 
@@ -498,6 +511,7 @@ end;
 procedure PrepareModuleStrings_RandomColors;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormRandomColors) then Exit;
 
   lsRandom := LangMgr.AddSection(LANG_INI_SECTION_RANDOM_COLORS);
 
@@ -581,6 +595,7 @@ end;
 procedure PrepareModuleStrings_Sort;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormSortBy) then Exit;
 
   lsSort := LangMgr.AddSection(LANG_INI_SECTION_SORT);
 
@@ -618,6 +633,7 @@ end;
 procedure PrepareModuleStrings_Gradient;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormGradientColors) then Exit;
 
   lsGradient := LangMgr.AddSection(LANG_INI_SECTION_GRADIENT);
 
@@ -644,6 +660,7 @@ end;
 procedure PrepareModuleStrings_ColorName;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormEditColorName) then Exit;
 
   lsColorName := LangMgr.AddSection(LANG_INI_SECTION_COLOR_NAME);
 
@@ -653,7 +670,8 @@ begin
     lsColorName.AddString('Caption', 'Edit color name');
     lsColorName.AddAction(actOK);
     lsColorName.ac(btnCancel).ap('Caption', 'Cancel');
-    lsColorName.AddLabeledEdit(edColorName);
+    lsColorName.ac(edColorName).ap('BoundLabel.Caption', 'Color name:');
+    //lsColorName.AddLabeledEdit(edColorName);
     lsColorName.ac(cswColor).ap('BoundLabel.Caption', 'Color:');
 
   end;
@@ -665,6 +683,7 @@ end;
 procedure PrepareModuleStrings_ColorMixer;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormColorMixer) then Exit;
 
   lsMixer := LangMgr.AddSection(LANG_INI_SECTION_MIXER);
 
@@ -690,6 +709,7 @@ end;
 procedure PrepareModuleStrings_ModifyPalette;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormModifyPalette) then Exit;
 
   lsMod := LangMgr.AddSection(LANG_INI_SECTION_MODIFY_PALETTE);
 
@@ -733,6 +753,7 @@ end;
 procedure PrepareModuleStrings_ColorWheel;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormColorWheel) then Exit;
 
   lsWheel := LangMgr.AddSection(LANG_INI_SECTION_COLOR_WHEEL);
 
@@ -774,6 +795,7 @@ end;
 procedure PrepareModuleStrings_SimilarColors;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormSimilarColors) then Exit;
 
   lsSimilar := LangMgr.AddSection(LANG_INI_SECTION_SIMILAR_COLORS);
 
@@ -810,10 +832,12 @@ begin
 end;
 {$endregion PrepareModuleStrings_SimilarColors}
 
+
 {$region '                              PrepareModuleStrings_RecentlyOpened                                '}
 procedure PrepareModuleStrings_RecentlyOpened;
 begin
   if not Assigned(LangMgr) then InitLangMgr;
+  if not Assigned(FormQuickAccess) then Exit;
 
   lsRecent := LangMgr.AddSection(LANG_INI_SECTION_RECENTLY_OPENED);
 

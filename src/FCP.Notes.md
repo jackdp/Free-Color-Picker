@@ -37,6 +37,7 @@ The main window shortcuts
 | Ctrl + M | Tool: Color mixer |
 | Ctrl + W | Tool: Color wheel |
 | Ctrl + Shift + W | Color wheel for selected color |
+| Ctrl + Shift + Q | Similar colors for selected color |
 | Ctrl + Shift + F1 | About |
 | Ctrl + Shift + U | Check for updates |
 | Ctrl + Shift + 1 | Small size of the main window |

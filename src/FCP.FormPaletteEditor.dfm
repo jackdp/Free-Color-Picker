@@ -39,7 +39,7 @@ object FormPaletteEditor: TFormPaletteEditor
       Left = 7
       Top = 24
       Width = 46
-      Height = 17
+      Height = 18
       RightCaption = '0'
       Layout = tlCenter
       Caption = 'dlblNo'
@@ -54,7 +54,7 @@ object FormPaletteEditor: TFormPaletteEditor
     object sbtnEditColor: TJppBasicSpeedButton
       Left = 623
       Top = 25
-      Width = 25
+      Width = 41
       Height = 22
       Caption = '...'
       Appearance.Normal.Color = clBtnFace
@@ -89,456 +89,10 @@ object FormPaletteEditor: TFormPaletteEditor
       Constraints.MinWidth = 150
       DropDownCount = 20
       ItemHeight = 18
-      ItemIndex = 0
       TabOrder = 0
       Items.Strings = (
-        '=255,255,255'
-        '-=Basic colors'
-        'Black=000,000,000'
-        'Gray 80%=051,051,051'
-        'Gray 50%=128,128,128'
-        'Gray 35%=165,165,165'
-        'Gray 25%=192,192,192'
-        'Gray 15%=217,217,217'
-        'Gray 5%=242,242,242'
-        'Cream=255,251,240'
-        'White=255,255,255'
-        'Dark Brown=051,051,000'
-        'Maroon=128,000,000'
-        'Brown=153,051,000'
-        'Red=255,000,000'
-        'Orange=255,102,000'
-        'Light Orange=255,153,000'
-        'Gold=255,204,000'
-        'Beige=255,204,153'
-        'Yellow=255,255,000'
-        'Light Yellow=255,255,153'
-        'Olive=128,128,000'
-        'Dark Green=000,051,000'
-        'Green=000,128,000'
-        'Teal=000,128,128'
-        'Sea=051,153,102'
-        'Light Green=153,204,000'
-        'Lime=000,255,000'
-        'Money Green=192,220,192'
-        'Pale Green=204,255,204'
-        'Navy=000,000,128'
-        'Indigo=051,051,153'
-        'Blue=000,000,255'
-        'Light Blue=051,102,255'
-        'Azure=000,204,255'
-        'Pale Blue=153,204,255'
-        'Aqua=000,255,255'
-        'Aquamarine=051,204,204'
-        'Purple=128,000,128'
-        'Fuchsia=255,000,255'
-        'Plum=153,051,102'
-        '-=System colors'
-        'Active Border=180,180,180'
-        'Active Caption=153,180,209'
-        'Application Workspace=171,171,171'
-        'Background=051,045,064'
-        'Button Face=240,240,240'
-        'Button Highlight=255,255,255'
-        'Button Shadow=160,160,160'
-        'Button Text=000,000,000'
-        'Caption Text=000,000,000'
-        'Gradient Active Caption=185,209,234'
-        'Gradient Inactive Caption=215,228,242'
-        'Gray Text=109,109,109'
-        'Highlight Background=051,153,255'
-        'Highlight Text=255,255,255'
-        'Hot Light=000,102,204'
-        'Inactive Border=244,247,252'
-        'Inactive Caption=191,205,219'
-        'Inactive Caption Text=067,078,084'
-        'Info Background=255,255,225'
-        'Info Text=000,000,000'
-        'Menu Background=240,240,240'
-        'Menu Bar=240,240,240'
-        'Menu Highlight=051,153,255'
-        'Menu Text=000,000,000'
-        'Scroll Bar=200,200,200'
-        '3D Dark Shadow=105,105,105'
-        '3D Light=227,227,227'
-        'Window Background=255,255,255'
-        'Window Frame=100,100,100'
-        'Window Text=000,000,000'
-        '-=Standard 16 colors'
-        'Black=000,000,000'
-        'Maroon=128,000,000'
-        'Green=000,128,000'
-        'Olive=128,128,000'
-        'Navy=000,000,128'
-        'Purple=128,000,128'
-        'Teal=000,128,128'
-        'Silver=192,192,192'
-        'Gray=128,128,128'
-        'Red=255,000,000'
-        'Lime=000,255,000'
-        'Yellow=255,255,000'
-        'Blue=000,000,255'
-        'Fuchsia=255,000,255'
-        'Aqua=000,255,255'
-        'White=255,255,255'
-        '-=Standard 48 colors'
-        '=255,128,128'
-        '=255,255,128'
-        '=128,255,128'
-        '=000,255,128'
-        '=128,255,255'
-        '=000,128,255'
-        '=255,128,192'
-        '=255,128,255'
-        'Red=255,000,000'
-        'Yellow=255,255,000'
-        '=128,255,000'
-        '=000,255,064'
-        'Aqua=000,255,255'
-        '=000,128,192'
-        '=128,128,192'
-        'Pink=255,000,255'
-        '=128,064,064'
-        '=255,128,064'
-        'Lime=000,255,000'
-        'Teal=000,128,128'
-        '=000,064,128'
-        '=128,128,255'
-        '=128,000,064'
-        '=255,000,128'
-        'Maroon=128,000,000'
-        '=255,128,000'
-        'Green=000,128,000'
-        '=000,128,064'
-        'Blue=000,000,255'
-        '=000,000,160'
-        'Purple=128,000,128'
-        '=128,000,255'
-        '=064,000,000'
-        '=128,064,000'
-        '=000,064,000'
-        '=000,064,064'
-        'Navy=000,000,128'
-        '=000,000,064'
-        '=064,000,064'
-        '=064,000,128'
-        'Black=000,000,000'
-        'Olive=128,128,000'
-        '=128,128,064'
-        'Gray=128,128,128'
-        '=064,128,128'
-        'Silver=192,192,192'
-        '=064,000,064'
-        'White=255,255,255'
-        '-=Windows 10 theme colors'
-        '=255,185,000'
-        '=255,140,000'
-        '=247,099,012'
-        '=202,080,016'
-        '=218,059,001'
-        '=239,105,080'
-        '=209,052,056'
-        '=255,067,067'
-        '=231,072,086'
-        '=232,017,035'
-        '=234,000,094'
-        '=195,000,082'
-        '=227,000,140'
-        '=191,000,119'
-        '=194,057,179'
-        '=154,000,137'
-        '=000,120,215'
-        '=000,099,177'
-        '=142,140,216'
-        '=107,105,214'
-        '=135,100,184'
-        '=116,077,169'
-        '=177,070,194'
-        '=136,023,152'
-        '=000,153,188'
-        '=045,125,154'
-        '=000,183,195'
-        '=003,131,135'
-        '=000,178,148'
-        '=001,133,116'
-        '=000,204,106'
-        '=016,137,062'
-        '=122,117,116'
-        '=093,090,088'
-        '=104,118,138'
-        '=081,092,107'
-        '=086,124,115'
-        '=072,104,096'
-        '=073,130,005'
-        '=016,124,016'
-        '=118,118,118'
-        '=076,074,072'
-        '=105,121,126'
-        '=074,084,089'
-        '=100,124,100'
-        '=082,094,084'
-        '=132,117,069'
-        '=126,115,095'
-        
-          '-=Web gray and black colors@@BgColor=4,4,4@BgColorTo=29,29,29@Fo' +
-          'ntColor=250,250,250'
-        'Gainsboro=220,220,220@@BgColor=50,50,50@FontColor=250,250,250'
-        'LightGrey=211,211,211@@BgColor=50,50,50@FontColor=250,250,250'
-        'Silver=192,192,192@@BgColor=50,50,50@FontColor=250,250,250'
-        'DarkGray=169,169,169@@BgColor=50,50,50@FontColor=250,250,250'
-        'Gray=128,128,128@@BgColor=50,50,50@FontColor=250,250,250'
-        'DimGray=105,105,105@@BgColor=50,50,50@FontColor=250,250,250'
-        
-          'LightSlateGray=119,136,153@@BgColor=50,50,50@FontColor=250,250,2' +
-          '50'
-        'SlateGray=112,128,144@@BgColor=50,50,50@FontColor=250,250,250'
-        
-          'DarkSlateGray=047,079,079@@BgColor=50,50,50@FontColor=250,250,25' +
-          '0'
-        'Black=000,000,000@@BgColor=50,50,50@FontColor=250,250,250'
-        
-          '-=Web white colors@@BgColor=254,254,254@BgColorTo=244,244,244@Fo' +
-          'ntColor=0,0,0'
-        'White=255,255,255'
-        'Snow=255,250,250'
-        'Honeydew=240,255,240'
-        'MintCream=245,255,250'
-        'Azure=240,255,255'
-        'AliceBlue=240,248,255'
-        'GhostWhite=248,248,255'
-        'WhiteSmoke=245,245,245'
-        'Seashell=255,245,238'
-        'Beige=245,245,220'
-        'OldLace=253,245,230'
-        'FloralWhite=255,250,240'
-        'Ivory=255,255,240'
-        'AntiqueWhite=250,235,215'
-        'Linen=250,240,230'
-        'LavenderBlush=255,240,245'
-        'MistyRose=255,228,225'
-        
-          '-=Web pink colors@@BgColor=254,231,237@BgColorTo=244,208,213@Fon' +
-          'tColor=83,0,13'
-        'Pink=255,192,203@@BgColor=255,215,221@FontColor=83,0,13'
-        'LightPink=255,182,193@@BgColor=255,215,221@FontColor=83,0,13'
-        'HotPink=255,105,180@@BgColor=255,215,221@FontColor=83,0,13'
-        'DeepPink=255,020,147@@BgColor=255,215,221@FontColor=83,0,13'
-        'PaleVioletRed=219,112,147@@BgColor=255,215,221@FontColor=83,0,13'
-        
-          'MediumVioletRed=199,021,133@@BgColor=255,215,221@FontColor=83,0,' +
-          '13'
-        
-          '-=Web red colors@@BgColor=232,069,063@BgColorTo=196,059,054@Font' +
-          'Color=255,234,234'
-        
-          'LightSalmon=255,160,122@@BgColor=209,063,058@FontColor=255,234,2' +
-          '34'
-        'Salmon=250,128,114@@BgColor=209,063,058@FontColor=255,234,234'
-        
-          'DarkSalmon=233,150,122@@BgColor=209,063,058@FontColor=255,234,23' +
-          '4'
-        
-          'LightCoral=240,128,128@@BgColor=209,063,058@FontColor=255,234,23' +
-          '4'
-        'IndianRed=205,092,092@@BgColor=209,063,058@FontColor=255,234,234'
-        'Crimson=205,092,092@@BgColor=209,063,058@FontColor=255,234,234'
-        'FireBrick=178,034,034@@BgColor=209,063,058@FontColor=255,234,234'
-        'DarkRed=139,000,000@@BgColor=209,063,058@FontColor=255,234,234'
-        'Red=255,000,000@@BgColor=209,063,058@FontColor=255,234,234'
-        
-          '-=Web orange colors@@BgColor=254,221,124@BgColorTo=240,199,112@F' +
-          'ontColor=64,41,0'
-        'OrangeRed=255,069,000@@BgColor=250,206,116@FontColor=64,41,0'
-        'Tomato=255,099,071@@BgColor=250,206,116@FontColor=64,41,0'
-        'Coral=255,127,080@@BgColor=250,206,116@FontColor=64,41,0'
-        'DarkOrange=255,140,000@@BgColor=250,206,116@FontColor=64,41,0'
-        'Orange=255,165,000@@BgColor=250,206,116@FontColor=64,41,0'
-        
-          '-=Web yellow colors@@BgColor=254,254,226@BgColorTo=243,241,204@F' +
-          'ontColor=43,41,0'
-        'Yellow=255,255,000@@BgColor=254,251,211@FontColor=43,41,0'
-        'LightYellow=255,255,224@@BgColor=254,251,211@FontColor=43,41,0'
-        'LemonChiffon=255,250,205@@BgColor=254,251,211@FontColor=43,41,0'
-        
-          'LightGoldenrodYellow=250,250,210@@BgColor=254,251,211@FontColor=' +
-          '43,41,0'
-        'PapayaWhip=255,239,213@@BgColor=254,251,211@FontColor=43,41,0'
-        'Moccasin=255,228,181@@BgColor=254,251,211@FontColor=43,41,0'
-        'PeachPuff=255,218,185@@BgColor=254,251,211@FontColor=43,41,0'
-        'PaleGoldenrod=238,232,170@@BgColor=254,251,211@FontColor=43,41,0'
-        'Khaki=240,230,140@@BgColor=254,251,211@FontColor=43,41,0'
-        'DarkKhaki=189,183,107@@BgColor=254,251,211@FontColor=43,41,0'
-        'Gold=255,215,000@@BgColor=254,251,211@FontColor=43,41,0'
-        
-          '-=Web brown colors@@BgColor=129,095,061@BgColorTo=104,076,049@Fo' +
-          'ntColor=230,215,202'
-        'Cornsilk=255,248,220@@BgColor=114,084,054@FontColor=230,215,202'
-        
-          'BlanchedAlmond=255,235,205@@BgColor=114,084,054@FontColor=230,21' +
-          '5,202'
-        'Bisque=255,228,196@@BgColor=114,084,054@FontColor=230,215,202'
-        
-          'NavajoWhite=255,222,173@@BgColor=114,084,054@FontColor=230,215,2' +
-          '02'
-        'Wheat=245,222,179@@BgColor=114,084,054@FontColor=230,215,202'
-        'BurlyWood=222,184,135@@BgColor=114,084,054@FontColor=230,215,202'
-        'Tan=210,180,140@@BgColor=114,084,054@FontColor=230,215,202'
-        'RosyBrown=188,143,143@@BgColor=114,084,054@FontColor=230,215,202'
-        
-          'SandyBrown=244,164,096@@BgColor=114,084,054@FontColor=230,215,20' +
-          '2'
-        'Goldenrod=218,165,032@@BgColor=114,084,054@FontColor=230,215,202'
-        
-          'DarkGoldenrod=184,134,011@@BgColor=114,084,054@FontColor=230,215' +
-          ',202'
-        'Peru=205,133,063@@BgColor=114,084,054@FontColor=230,215,202'
-        'Chocolate=210,105,030@@BgColor=114,084,054@FontColor=230,215,202'
-        
-          'SaddleBrown=139,069,019@@BgColor=114,084,054@FontColor=230,215,2' +
-          '02'
-        'Sienna=160,082,045@@BgColor=114,084,054@FontColor=230,215,202'
-        'Brown=165,042,042@@BgColor=114,084,054@FontColor=230,215,202'
-        'Maroon=128,000,000@@BgColor=114,084,054@FontColor=230,215,202'
-        
-          '-=Web green colors@@BgColor=076,142,102@BgColorTo=061,114,082@Fo' +
-          'ntColor=204,234,214'
-        
-          'DarkOliveGreen=085,107,047@@BgColor=067,126,090@FontColor=204,23' +
-          '4,214'
-        'Olive=128,128,000@@BgColor=067,126,090@FontColor=204,234,214'
-        'OliveDrab=107,142,035@@BgColor=067,126,090@FontColor=204,234,214'
-        
-          'YellowGreen=154,205,050@@BgColor=067,126,090@FontColor=204,234,2' +
-          '14'
-        'LimeGreen=050,205,050@@BgColor=067,126,090@FontColor=204,234,214'
-        'Lime=000,255,000@@BgColor=067,126,090@FontColor=204,234,214'
-        'LawnGreen=124,252,000@@BgColor=067,126,090@FontColor=204,234,214'
-        
-          'Chartreuse=127,255,000@@BgColor=067,126,090@FontColor=204,234,21' +
-          '4'
-        
-          'GreenYellow=173,255,047@@BgColor=067,126,090@FontColor=204,234,2' +
-          '14'
-        
-          'SpringGreen=000,255,127@@BgColor=067,126,090@FontColor=204,234,2' +
-          '14'
-        
-          'MediumSpringGreen=000,250,154@@BgColor=067,126,090@FontColor=204' +
-          ',234,214'
-        
-          'LightGreen=144,238,144@@BgColor=067,126,090@FontColor=204,234,21' +
-          '4'
-        'PaleGreen=152,251,152@@BgColor=067,126,090@FontColor=204,234,214'
-        
-          'DarkSeaGreen=143,188,143@@BgColor=067,126,090@FontColor=204,234,' +
-          '214'
-        
-          'MediumAquamarine=102,205,170@@BgColor=067,126,090@FontColor=204,' +
-          '234,214'
-        
-          'MediumSeaGreen=060,179,113@@BgColor=067,126,090@FontColor=204,23' +
-          '4,214'
-        'SeaGreen=046,139,087@@BgColor=067,126,090@FontColor=204,234,214'
-        
-          'ForestGreen=034,139,034@@BgColor=067,126,090@FontColor=204,234,2' +
-          '14'
-        'Green=000,128,000@@BgColor=067,126,090@FontColor=204,234,214'
-        'DarkGreen=000,100,000@@BgColor=067,126,090@FontColor=204,234,214'
-        
-          '-=Web cyan colors@@BgColor=211,254,254@BgColorTo=191,239,242@Fon' +
-          'tColor=14,78,88'
-        'Aqua=000,255,255@@BgColor=197,249,252@FontColor=14,78,88'
-        'Cyan=000,255,255@@BgColor=197,249,252@FontColor=14,78,88'
-        'LightCyan=224,255,255@@BgColor=197,249,252@FontColor=14,78,88'
-        
-          'PaleTurquoise=175,238,238@@BgColor=197,249,252@FontColor=14,78,8' +
-          '8'
-        'Aquamarine=127,255,212@@BgColor=197,249,252@FontColor=14,78,88'
-        'Turquoise=064,224,208@@BgColor=197,249,252@FontColor=14,78,88'
-        
-          'MediumTurquoise=072,209,204@@BgColor=197,249,252@FontColor=14,78' +
-          ',88'
-        
-          'DarkTurquoise=000,206,209@@BgColor=197,249,252@FontColor=14,78,8' +
-          '8'
-        
-          'LightSeaGreen=032,178,170@@BgColor=197,249,252@FontColor=14,78,8' +
-          '8'
-        'CadetBlue=095,158,160@@BgColor=197,249,252@FontColor=14,78,88'
-        'DarkCyan=000,139,139@@BgColor=197,249,252@FontColor=14,78,88'
-        'Teal=000,128,128@@BgColor=197,249,252@FontColor=14,78,88'
-        
-          '-=Web blue colors@@BgColor=032,095,203@BgColorTo=026,076,163@Fon' +
-          'tColor=207,228,250'
-        
-          'LightSteelBlue=176,196,222@@BgColor=028,084,179@FontColor=207,22' +
-          '8,250'
-        
-          'PowderBlue=176,224,230@@BgColor=028,084,179@FontColor=207,228,25' +
-          '0'
-        'LightBlue=173,216,230@@BgColor=028,084,179@FontColor=207,228,250'
-        'SkyBlue=135,206,235@@BgColor=028,084,179@FontColor=207,228,250'
-        
-          'LightSkyBlue=135,206,250@@BgColor=028,084,179@FontColor=207,228,' +
-          '250'
-        
-          'DeepSkyBlue=000,191,255@@BgColor=028,084,179@FontColor=207,228,2' +
-          '50'
-        
-          'DodgerSkyBlue=030,144,255@@BgColor=028,084,179@FontColor=207,228' +
-          ',250'
-        
-          'CornflowerBlue=100,149,237@@BgColor=028,084,179@FontColor=207,22' +
-          '8,250'
-        'SteelBlue=070,130,180@@BgColor=028,084,179@FontColor=207,228,250'
-        'RoyalBlue=065,105,225@@BgColor=028,084,179@FontColor=207,228,250'
-        'Blue=000,000,255@@BgColor=028,084,179@FontColor=207,228,250'
-        
-          'MediumBlue=000,000,205@@BgColor=028,084,179@FontColor=207,228,25' +
-          '0'
-        'DarkBlue=000,000,139@@BgColor=028,084,179@FontColor=207,228,250'
-        'Navy=000,000,128@@BgColor=028,084,179@FontColor=207,228,250'
-        
-          'MidnightBlue=025,025,112@@BgColor=028,084,179@FontColor=207,228,' +
-          '250'
-        
-          '-=Web purple, violet, magenta colors@@BgColor=151,094,162@BgColo' +
-          'rTo=127,080,137@FontColor=238,220,245'
-        'Lavender=230,230,250@@BgColor=136,085,147@FontColor=238,220,245'
-        'Thistle=216,191,216@@BgColor=136,085,147@FontColor=238,220,245'
-        'Plum=221,160,221@@BgColor=136,085,147@FontColor=238,220,245'
-        'Violet=238,130,238@@BgColor=136,085,147@FontColor=238,220,245'
-        'Orchid=218,112,214@@BgColor=136,085,147@FontColor=238,220,245'
-        'Fuchsia=255,000,255@@BgColor=136,085,147@FontColor=238,220,245'
-        'Magenta=255,000,255@@BgColor=136,085,147@FontColor=238,220,245'
-        
-          'MediumOrchid=186,085,211@@BgColor=136,085,147@FontColor=238,220,' +
-          '245'
-        
-          'MediumPurple=147,112,219@@BgColor=136,085,147@FontColor=238,220,' +
-          '245'
-        
-          'BlueViolet=138,043,226@@BgColor=136,085,147@FontColor=238,220,24' +
-          '5'
-        
-          'DarkViolet=148,000,211@@BgColor=136,085,147@FontColor=238,220,24' +
-          '5'
-        
-          'DarkOrchid=153,050,204@@BgColor=136,085,147@FontColor=238,220,24' +
-          '5'
-        
-          'DarkMagenta=139,000,139@@BgColor=136,085,147@FontColor=238,220,2' +
-          '45'
-        'Purple=128,000,128@@BgColor=136,085,147@FontColor=238,220,245'
-        'Indigo=075,000,130@@BgColor=136,085,147@FontColor=238,220,245'
-        
-          'DarkSlateBlue=072,061,139@@BgColor=136,085,147@FontColor=238,220' +
-          ',245'
-        'SlateBlue=106,090,205@@BgColor=136,085,147@FontColor=238,220,245'
-        
-          'MediumSlateBlue=117,099,226@@BgColor=136,085,147@FontColor=238,2' +
-          '20,245')
-      SelectedColor = clWhite
+        '@=Change color...')
+      SelectedColor = clNone
       BoundLabel.Width = 31
       BoundLabel.Height = 13
       BoundLabel.Caption = 'Color:'
@@ -663,7 +217,7 @@ object FormPaletteEditor: TFormPaletteEditor
       Appearance.ChangeColorItem.Alignment = taLeftJustify
       Appearance.ChangeColorItem.CaptionMargin = 6
       Appearance.ChangeColorItem.Caption = 'Change color...'
-      ColorListSet = [cltBasic, cltStandard16, cltStandard48, cltWin10Theme, cltSystem, cltWebGrayBlack, cltWebWhite, cltWebPink, cltWebRed, cltWebOrange, cltWebYellow, cltWebBrown, cltWebGreen, cltWebCyan, cltWebBlue, cltWebPurpleVioletMagenta]
+      ColorListSet = []
     end
     object edColorName: TLabeledEdit
       Left = 100
@@ -672,9 +226,9 @@ object FormPaletteEditor: TFormPaletteEditor
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       Constraints.MinWidth = 150
-      EditLabel.Width = 62
+      EditLabel.Width = 70
       EditLabel.Height = 13
-      EditLabel.Caption = 'Color name:'
+      EditLabel.Caption = 'edColorName'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -1663,12 +1217,14 @@ object FormPaletteEditor: TFormPaletteEditor
             Width = 148
             Height = 21
             Anchors = [akLeft, akTop, akRight]
-            EditLabel.Width = 32
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Name:'
-            LabelSpacing = 1
             TabOrder = 1
             TabOnEnter = False
+            BoundLabel.Width = 32
+            BoundLabel.Height = 13
+            BoundLabel.Caption = 'Name:'
+            BoundLabel.FocusControl = edFilter_Name
+            BoundLabelPosition = lpAbove
+            BoundLabelSpacing = 1
           end
         end
         object pnFilter_HslCss: TJppSimplePanel

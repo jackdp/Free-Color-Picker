@@ -524,6 +524,9 @@ begin
   vst.RootNodeCount := 0;
   vst.Align := alClient;
 
+  ccbColor.Items.Clear;
+  ccbColor.Items.Assign(FormMain.clbT.Items);
+
   ccbColor.ButtonChangeColor.Appearance.Assign(FormMain.sbtnT1.Appearance);
   ccbColor.ButtonChangeColor.Appearance.ShowCaption := False;
   ccbColor.ButtonCopyColor.Appearance.Assign(FormMain.sbtnT1.Appearance);
@@ -536,6 +539,8 @@ begin
   ccbColor.ButtonChangeColor.PngImage.Assign(FormMain.PngCollection.GetPngImageByName('Colors'));
 
   ccbColor.SelectedColor := clBlack;
+
+  ApplyFontParams(ccbColor.Appearance.NumericFont, AP.MonospaceFont);
 
   btnSaveSelectedColor.Appearance.Assign(FormMain.btnT1.Appearance);
   btnOK.Appearance.Assign(FormMain.btnT1.Appearance);
@@ -2197,6 +2202,9 @@ var
   fs: TFormStyle;
 begin
   cl := ccbColor.SelectedColor;
+
+  TAppHelper.CheckForm(TFormEditColor);
+
   FormEditColor.SetCurrentColor(cl);
   fs := FormMain.FormStyle;
   FormMain.FormStyle := fsNormal;
@@ -2250,6 +2258,7 @@ begin
   if vst.FocusedNode = nil then Exit;
   cl := vstGetNodeColorValue(vst.FocusedNode, clNone);
   if cl = clNone then Exit;
+  TAppHelper.CheckForm(TFormColorWheel);
   FormColorWheel.CurrentColor := cl;
   FormColorWheel.Show;
 end;
@@ -2380,6 +2389,7 @@ procedure TFormPaletteEditor.actShowFormSortByExecute(Sender: TObject);
 var
   fs: TFormStyle;
 begin
+  TAppHelper.CheckForm(TFormSortBy);
   fs := FormMain.FormStyle;
   try
     FormMain.FormStyle := fsNormal;
@@ -2415,6 +2425,7 @@ var
   fs: TFormStyle;
   Arr: TColorListArray;
 begin
+  TAppHelper.CheckForm(TFormModifyPalette);
   SaveToVSTItemArray(Arr);
 
   fs := FormMain.FormStyle;

@@ -325,6 +325,9 @@ begin
   lblHslWinTitle.Align := alClient;
 
   UpdateSwitchButtons;
+
+  ApplyFontParams(clbOriginalColors.Appearance.NumericFont, AP.MonospaceFont);
+  ApplyFontParams(clbModifiedColors.Appearance.NumericFont, AP.MonospaceFont);
 end;
 {$endregion PrepareControls}
 

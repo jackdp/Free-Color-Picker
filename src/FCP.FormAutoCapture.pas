@@ -144,6 +144,7 @@ begin
   lblColors.Align := alClient;
   actStopCapturing.Enabled := False;
   sCapturedColors := 'Captured Colors';
+  ApplyFontParams(clbColors.Appearance.NumericFont, AP.MonospaceFont);
 end;
 {$endregion PrepareControls}
 
@@ -196,6 +197,7 @@ begin
   cbAddPos.Items.Add(lsMain.GetString('AddPos_End', 'At the end'));
   cbAddPos.ItemIndex := x;
 
+  TAppHelper.CheckForm(TFormPaletteEditor);
   actSelectAll.Caption := FormPaletteEditor.actSelectAll.Caption;
   actSelectAll.Hint := FormPaletteEditor.actSelectAll.Hint;
   actInvertSelection.Caption := FormPaletteEditor.actInvertSelection.Caption;

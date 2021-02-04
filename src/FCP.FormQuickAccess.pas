@@ -71,6 +71,7 @@ begin
   btnSort.Appearance.Assign(FormMain.btnT1.Appearance);
   me.Align := alClient;
   me.Lines.Clear;
+  ApplyFontParams(me.Font, AP.MonospaceFont);
 end;
 
 procedure TFormQuickAccess.SetLang;

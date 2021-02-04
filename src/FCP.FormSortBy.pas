@@ -197,6 +197,7 @@ end;
 
 procedure TFormSortBy.actSortExecute(Sender: TObject);
 begin
+  TAppHelper.CheckForm(TFormPaletteEditor);
   FormPaletteEditor.SortBy(SortingMode, Ascending);
 end;
 

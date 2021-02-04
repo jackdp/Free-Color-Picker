@@ -11,7 +11,7 @@ uses
 const
 
   APP_NAME = 'Free Color Picker';
-  APP_VER_STR = '1.1';
+  APP_VER_STR = '1.2';
   APP_FULL_NAME = APP_NAME + ' ' + APP_VER_STR;
 
   COLOR_GROUP_NAME = 'FCP Colors';
@@ -112,6 +112,8 @@ type
     PixelIndicator: TPixelIndicator;
     PixelIndicatorColor: TColor;
     HtmlExport_AddJson: Boolean;
+    ColorRectangle_BorderColor: TColor;
+    ColorRectangle_AutoBorderColor: Boolean;
   end;
   ////////////////////////////////////////////////////////////////
 
@@ -133,15 +135,15 @@ initialization
   AppInfo.FullName := APP_FULL_NAME;
   AppInfo.Author := 'Jacek Pazera';
   AppInfo.LicenseName := 'Freeware';
-  AppInfo.DateStr := '03.09.2019';
+  AppInfo.DateStr := '04.02.2021';
 
-  AppInfo.HomePage := 'http://www.pazera-software.com/products/free-color-picker/';
-  AppInfo.DownloadPage := 'http://www.pazera-software.com/products/free-color-picker/';
+  AppInfo.HomePage := 'https://www.pazera-software.com/products/free-color-picker/';
+  AppInfo.DownloadPage := 'https://www.pazera-software.com/products/free-color-picker/';
   AppInfo.HelpPage := AppInfo.HomePage + 'help.php';
   AppInfo.VerIniUrl := AppInfo.HomePage + 'ver.ini';
-  AppInfo.FacebookUrl := 'http://www.facebook.com/Pazera.Software';
-  AppInfo.TwitterUrl := 'http://twitter.com/PazeraSoftware';
-  AppInfo.DonationUrl := 'http://www.pazera-software.com/donation/';
+  AppInfo.FacebookUrl := 'https://www.facebook.com/Pazera.Software';
+  AppInfo.TwitterUrl := 'https://twitter.com/PazeraSoftware';
+  AppInfo.DonationUrl := 'https://www.pazera-software.com/donation/';
   AppInfo.GitHubUrl := 'https://github.com/jackdp/Free-Color-Picker';
 
 

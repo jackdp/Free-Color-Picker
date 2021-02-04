@@ -5,11 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, Winapi.ShellApi, Winapi.WinInet,
 
-  System.SysUtils, System.Variants, System.Classes, System.Actions, System.IniFiles,
+  System.SysUtils, System.Variants, System.Classes, System.Actions, //System.IniFiles,
 
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ActnList, Vcl.ExtCtrls,
 
-  JPL.Dialogs, JPL.Win.System, JPL.Win.FileSystem, JPL.Files, JPL.Strings,
+  JPL.Dialogs, JPL.Win.System, JPL.Win.FileSystem, JPL.Files, JPL.Strings, JPL.MemIniFile,
 
   JPP.PngButton, JPP.SimplePanel,
 
@@ -194,8 +194,8 @@ end;
 {$region '                      CheckNow                          '}
 procedure TFormCheckUpdate.actCheckNowExecute(Sender: TObject);
 var
-  Ini: TMemIniFile;
-  s, fName, Section: string;
+  Ini: TJppMemIniFile;
+  s, fName: string;
   sl: TStringList;
 begin
   me.Lines.Clear;
@@ -203,12 +203,12 @@ begin
   actCheckNow.Enabled := False;
   actGoToDownloadPage.Visible := False;
   lblLatestVersion.Caption := '';
-  Section := 'VersionInfo';
   Randomize;
   fName := rbs(TempDir) + '\ver_fcp_' + GetRandomHexStr(4) + '.ini';
-  Ini := TMemIniFile.Create(fName);
+  Ini := TJppMemIniFile.Create(fName);
   sl := TStringList.Create;
   try
+    Ini.CurrentSection := 'VersionInfo';
 
     me.Text := lsCheckUpdate.GetString('CheckingUpdates');
     s := GetHtmlPageText(AppInfo.VerIniUrl);
@@ -224,14 +224,14 @@ begin
 
     Ini.SetStrings(sl);
 
-    if not Ini.SectionExists(Section) then
+    if not Ini.SectionExists(Ini.CurrentSection) then
     begin
       me.Text := lsCheckUpdate.GetString('CannotCheck');
       SetStatusColors(StatusFailed);
       Exit;
     end;
 
-    s := Ini.ReadString(Section, 'LastVersion', '');
+    s := Ini.ReadString('LastVersion', '');
     if s = '' then
     begin
       me.Text := lsCheckUpdate.GetString('CannotCheck');
@@ -256,7 +256,7 @@ begin
       me.Text := lsCheckUpdate.GetString('UpdatesAvailable');
       me.Lines.Add('');
       me.Lines.Add('LatestVersion=' + s);
-      me.Lines.Add('ReleaseDate=' + Ini.ReadString(Section, 'ReleaseDate', ''));
+      me.Lines.Add('ReleaseDate=' + Ini.ReadString('ReleaseDate', ''));
       lblLatestVersion.Caption := s;
       actGoToDownloadPage.Visible := True;
     end;
