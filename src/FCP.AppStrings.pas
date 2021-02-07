@@ -480,7 +480,7 @@ begin
     lsEditor.ac(dlblFilter_Stats_Hidden).ap('Caption', 'Hidden:');
 
     lsEditor.AddCheckBox(chFilter_ColorName);
-    lsEditor.ac(edFilter_Name).ap('EditLabel.Caption', 'Name:');
+    lsEditor.ac(edFilter_Name).ap('BoundLabel.Caption', 'Name:');
     lsEditor.AddLabel(lblFilter_WildcardsTip, True, True);
 
   end;
