@@ -89,6 +89,7 @@ object FormPaletteEditor: TFormPaletteEditor
       Constraints.MinWidth = 150
       DropDownCount = 20
       ItemHeight = 18
+      ItemIndex = 0
       TabOrder = 0
       Items.Strings = (
         '@=Change color...')
@@ -287,9 +288,9 @@ object FormPaletteEditor: TFormPaletteEditor
       Appearance.DrawBottomBorder = False
       Appearance.DrawRightBorder = False
       object btnOK: TJppPngButton
-        Left = 18
+        Left = 16
         Top = 5
-        Width = 84
+        Width = 88
         Height = 25
         Action = actSaveAndClose
         Caption = 'OK'
@@ -370,9 +371,9 @@ object FormPaletteEditor: TFormPaletteEditor
         Appearance.BorderWhenDefault.Color = 13675044
       end
       object btnCancel: TJppPngButton
-        Left = 18
+        Left = 16
         Top = 34
-        Width = 84
+        Width = 88
         Height = 25
         Action = actCancel
         Caption = 'Cancel'
@@ -489,9 +490,9 @@ object FormPaletteEditor: TFormPaletteEditor
       end
     end
     object btnSaveSelectedColor: TJppPngButton
-      Left = 607
+      Left = 600
       Top = 53
-      Width = 96
+      Width = 103
       Height = 25
       Action = actSaveSelectedColor
       Anchors = [akTop, akRight]
@@ -1829,9 +1830,9 @@ object FormPaletteEditor: TFormPaletteEditor
         RightCaptionBorderColor = 1447584
       end
       object btnFilterList: TJppPngButton
-        Left = 7
+        Left = 5
         Top = 9
-        Width = 90
+        Width = 86
         Height = 25
         Action = actFilterList
         Caption = 'Filter'
@@ -1912,9 +1913,9 @@ object FormPaletteEditor: TFormPaletteEditor
         Appearance.BorderWhenDefault.Color = 13675044
       end
       object btnDisableFilter: TJppPngButton
-        Left = 101
+        Left = 95
         Top = 9
-        Width = 104
+        Width = 112
         Height = 25
         Action = actDisableFilter
         Caption = 'Disable'

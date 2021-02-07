@@ -1288,7 +1288,7 @@ end;
 
 procedure TFormMain.UpdateColorPaletteCount;
 begin
-  if lblColorPalette.Width < 100 then lblColorPalette.Caption := itos(clbColors.Count)
+  if pnPalette.Width < 100 then lblColorPalette.Caption := itos(clbColors.Count)
   else lblColorPalette.Caption := lsMain.GetComponentProperty('lblColorPalette', 'Caption', 'Color Palette') + ' (' + itos(clbColors.Count) + ')';
 end;
 
@@ -1820,6 +1820,7 @@ begin
 
   finally
     FormStyle := fs;
+    UpdateColorPaletteCount;
   end;
 end;
 
@@ -1841,6 +1842,7 @@ begin
   FormPaletteEditor.Show;
   FormPaletteEditor.SelectFirst;
   FormPaletteEditor.vst.SetFocus;
+  UpdateColorPaletteCount;
 end;
 
 

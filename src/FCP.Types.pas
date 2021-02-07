@@ -11,7 +11,7 @@ uses
 const
 
   APP_NAME = 'Free Color Picker';
-  APP_VER_STR = '1.2';
+  APP_VER_STR = '1.2.1';
   APP_FULL_NAME = APP_NAME + ' ' + APP_VER_STR;
 
   COLOR_GROUP_NAME = 'FCP Colors';
@@ -135,7 +135,7 @@ initialization
   AppInfo.FullName := APP_FULL_NAME;
   AppInfo.Author := 'Jacek Pazera';
   AppInfo.LicenseName := 'Freeware';
-  AppInfo.DateStr := '04.02.2021';
+  AppInfo.DateStr := '07.02.2021';
 
   AppInfo.HomePage := 'https://www.pazera-software.com/products/free-color-picker/';
   AppInfo.DownloadPage := 'https://www.pazera-software.com/products/free-color-picker/';

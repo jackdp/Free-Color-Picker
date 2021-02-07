@@ -2,7 +2,7 @@
 
 rem --------------- common -----------------
 set AppName=Free Color Picker
-set AppVer=1.2
+set AppVer=1.2.1
 set AppFullName=%AppName% %AppVer%
 set AppUrl=http://www.pazera-software.com/products/free-color-picker/
 set AppName_=Free_Color_Picker
