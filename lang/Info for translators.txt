@@ -40,6 +40,14 @@ New strings:
     chColorRectangle_AutoColor.Caption
     cswColorRectangle_BorderColor.BoundLabel.Caption
 
+Renamed keys:
+
+  PaletteEditor
+    edFilter_Name.EditLabel.Caption -> edFilter_Name.BoundLabel.Caption
+
+  EditColorName
+    edColorName.EditLabel.Caption -> edColorName.BoundLabel.Caption
+
 --------------------------------------------------------------------------------
 Version 1.0 -> 1.1
 
