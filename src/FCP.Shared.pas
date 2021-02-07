@@ -338,6 +338,7 @@ begin
   fs := FormMain.FormStyle;
   FormMain.FormStyle := fsNormal;
 
+  TAppHelper.CheckForm(TFormEditColor);
   FormEditColor.SetCurrentColor(AColor);
 
   try
@@ -849,7 +850,9 @@ begin
     Application.CreateForm(TFormSortBy, FormSortBy);
     LangMgr.SetActiveLanguageByIniFileName(AP.LanguageIni);
     FormSortBy.SetLang;
-  end
+  end;
+
+  FormMain.UpdateColorPaletteCount;
 end;
 
 {$endregion TAppHelper}
