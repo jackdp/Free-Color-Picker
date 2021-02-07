@@ -217,7 +217,7 @@ var
 begin
   Ini := TJPIniFile.Create(AP.IniFile, TEncoding.UTF8, True);
   try
-    Section := Ini.GetSection(INI_SECTION_AUTO_CAPTURE, False);
+    Section := Ini.GetSection(INI_SECTION_AUTO_CAPTURE, True);
     TAppHelper.IniSection := Section;
     if Section = nil then Exit;
 
