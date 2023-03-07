@@ -1,0 +1,604 @@
+;-------------------------------------------------------
+;  UTF-8 Encoding with BOM
+;-------------------------------------------------------
+;  All lines starting with ";" (semicolon) are comments.
+;-------------------------------------------------------
+;  %s - placeholder for string
+;  \n - placeholder for a newline
+;-------------------------------------------------------
+;  Prefixes:
+;    lbl - Label
+;    dlbl - DoubleLabel
+;    gb - GroupBox
+;    ch - CheckBox
+;    rb - RadioButton
+;    act - Action (can be assigned to buttons, menu items, etc.)
+;    btn - Button
+;    sbtn - SpeedButton
+;    ed - Edit
+;    cb - ComboBox
+;    ccb - ColorComboBox
+;    csw - ColorSwatch
+;    ud - UpDown
+;    sped - SpinEdit
+;    mnu - Menu
+;    pn - Panel
+;    col - Column
+;-------------------------------------------------------
+
+[APP]
+AppName=Free Color Picker
+AppVersion=1.2.1
+
+[INFO]
+LangName_InEnglish=Korean
+LangName_Native=한국어 (번역: 비너스걸💋)
+Translator=VenusGirl
+TranslatorUrl=https://venusgirls.tistory.com
+TranslatorEmail=venusgirl@outlook.com
+TranslationDate=2021.02.07
+;  TranslationVersion
+;    Integer number
+;    Each version of the translation should have its unique number.
+;    This number is not the version number of the program, only translation.
+;    It will be used by the update module.
+TranslationVersion=2
+
+[MAIN]
+;-------------------------
+mnuFile.Caption=파일
+mnuZoom.Caption=확대/축소
+mnuHelp.Caption=도움말
+mnuPalette.Caption=색상 팔레트
+;----------------------------------
+actCaptureColor.Caption=색상 캡처
+actStartCapturing.Caption=캡처 시작
+actStartCapturing.Hint=커서 아래 색상 캡처 시작
+btnStartCapturing.Caption=시작
+actStopCapturing.Caption=캡처 중지
+actStopCapturing.Hint=캡처 중지
+btnStopCapturing.Caption=중지
+actCollapse.Caption=기본 창 축소 / 확장
+actCollapse.Hint=기본 창 축소 / 확장
+actShowFormAutoCapture.Caption=자동 색상 캡처...
+;-------------------------------------
+actOpenImage.Caption=이미지 열기...
+actOpenImage.Hint=이미지 파일 열기...
+sbtnOpenImage.Caption=이미지 열기...
+actCloseImage.Caption=이미지 닫기
+actSwitchOnTop.Caption=맨 위에 유지
+actSwitchOnTop.Hint=맨 위에 유지
+actExitApplication.Caption=종료
+actAbout.Caption=정보...
+;--------- Zoom --------------
+actZoom_1.Caption=확대 1x
+actZoom_2.Caption=확대 2x
+actZoom_4.Caption=확대 4x
+actZoom_6.Caption=확대 6x
+actZoom_8.Caption=확대 8x
+actZoom_10.Caption=확대 10x
+actZoom_14.Caption=확대 14x
+actZoom_18.Caption=확대 18x
+actZoom_22.Caption=확대 22x
+actZoom_26.Caption=확대 26x
+actZoom_30.Caption=확대 30x
+;---------------------------
+actCopyColor_HTML.Caption=클립보드에 색상 복사 - HTML
+actCopyColor_RGB.Caption=클립보드에 색상 복사 - RGB
+actCopyColor_RGB_Percent.Caption=클립보드에 색상 복사 - RGB %
+actCopyColor_HSL_CSS.Caption=클립보드에 색상 복사 - HSL CSS
+actCopyColor_HSL_WIN.Caption=클립보드에 색상 복사 - HSL Win
+actCopyColor_CMYK.Caption=클립보드에 색상 복사 - CMYK
+actCopyColor_PascalHEX.Caption=클립보드에 색상 복사 - Pascal HEX
+actCopyColor_PascalINT.Caption=클립보드에 색상 복사 - Pascal INT
+actCopyColor_CppHex.Caption=클립보드에 색상 복사 - C++ HEX
+;---------------------
+actCopySelectedColors_HTML.Caption=선택한 색상을 클립보드에 복사 - HTML
+actCopySelectedColors_RGB.Caption=선택한 색상을 클립보드에 복사 - RGB
+actCopySelectedColors_RGB_Percent.Caption=선택한 색상을 클립보드에 복사 - RGB %
+actCopySelectedColors_HSL_CSS.Caption=선택한 색상을 클립보드에 복사 - HSL CSS
+actCopySelectedColors_HSL_WIN.Caption=선택한 색상을 클립보드에 복사 - HSL Win
+actCopySelectedColors_CMYK.Caption=선택한 색상을 클립보드에 복사 - CMYK
+actCopySelectedColors_PascalHEX.Caption=선택한 색상을 클립보드에 복사 - Pascal HEX
+actCopySelectedColors_PascalINT.Caption=선택한 색상을 클립보드에 복사 - Pascal INT
+actCopySelectedColors_CppHex.Caption=선택한 색상을 클립보드에 복사 - C++ HEX
+;---------------------
+actEditPalette.Caption=색상 팔레트 편집...
+actEditPalette.Hint=색상 팔레트 편집...
+btnEditPalette.Caption=팔레트 편집...
+;-------------------------
+cbResampler.Hint=이미지를 확대하는 데 사용되는 알고리즘
+;-------------------------------
+ColorUnderCursor=커서 아래 색상
+lblColorPalette.Caption=색상 팔레트
+lblCaptureCopyColorInfo.Caption=F4 - 색상 캡처\nF3 - 색상 복사
+pnCaptureColorInfo.Hint=커서 아래 색상을 색상 팔레트에 추가하려면 F4\n커서 아래 색상 코드를 복사하려면 F3을 누릅니다
+chCreatePreview.Caption=미리 보기 이미지 만들기
+actSwitchToImageMode.Caption="이미지" 모드
+actSwitchToPreviewMode.Caption="미리보기" 모드
+pnCursorPosition.Hint=커서 위치
+ClearPaletteQuery=색상 팔레트를 지우시겠습니까?
+actClearPalette.Caption=색상 팔레트 지우기...
+actClearPalette.Hint=색상 팔레트 지우기...
+actOpenColorPalette.Caption=파일에서 색상 팔레트 불러오기...
+actOpenColorPalette.Hint=파일에서 색상 팔레트 불러오기...
+actSaveColorPalette.Caption=색상 팔레트 저장...
+actSaveColorPalette.Hint=색상 팔레트 저장...
+actSavePreviewImage.Caption=미리 보기 이미지를 PNG 파일로 저장...
+lblImageRect.Hint=미리 보기 이미지가 있는 직사각형의 크기 및 화면 좌표
+actGoTo_HomePage.Caption=프로그램 홈 페이지
+actGoTo_Github.Caption=Github에 있는 프로그램의 소스 코드
+actGoTo_Donation.Caption=저자에 대한 지지
+actExportPaletteToHtml.Caption=색상 팔레트를 HTML 파일로 내보내기...
+actExportPaletteToHtml.Hint=색상 팔레트를 HTML 파일로 내보내기...
+actExportPaletteToGPL.Caption=색상 팔레트를 GPL 파일로 내보내기 (GIMP 팔레트)...
+actExportPaletteToGPL.Hint=상 팔레트를 GPL 파일로 내보내기 (GIMP 팔레트)...
+actOptions.Caption=옵션...
+actOptions.Hint=옵션...
+actEditColor.Caption=선택한 색상 편집...
+actEditColor.Hint=선택한 색상 편집...
+actRestoreMainWindow.Caption=기본 창 복원
+actMinimizeToTray.Caption=시스템 트레이로 최소화
+actPalette_SelectAll.Caption=모두 선택
+actPalette_InvertSelection.Caption=선택 반전
+actPalette_RemoveSelected.Caption=선택한 색상 제거
+actPalette_RemoveSelected.Hint=선택한 색상 제거
+actPalette_UnselectAll.Caption=모두 선택 취소
+actShowFormPixelColor.Caption=좌표가 있는 픽셀의 색상 가져오기...
+;------------------------------
+actMini_HeightMinus.Hint=높이 감소
+actMini_HeightPlus.Hint=높이 감소
+;---------------------------------
+ErrCannotLoadPalette=%s 파일에서 색상 팔레트를 불러올 수 없습니다
+actCheckUpdate.Caption=업데이트 확인...
+LastCapturedColor=마지막으로 캡처한 색상:
+actShowFormRandomColors.Caption=임의 색상...
+actShowFormGradientColors.Caption=그라데이션 색상...
+actHelp.Caption=도움말
+actEditColorName.Caption=선택한 색상 이름 편집...
+actEditColorName.Hint=선택한 색상 이름 편집...
+actShowFormColorMixer.Caption=색상 혼합기...
+actShowFormColorMixer.Hint=색상 혼합기...
+actShowFormColorWheel.Caption=색상환...
+actShowFormColorWheel.Hint=색상환...
+actShowFormSimilarColors.Caption=비슷한 색깔...
+actShowFormSimilarColors.Hint=비슷한 색깔...
+EditQuickAccessList=최근에 연 파일 목록 편집...
+actShowHideColorCodesPanel.Caption=색상 코드가 있는 패널 표시
+actShowHideBottomPanel.Caption=아래쪽 패널 표시
+actSetSize_Small.Caption=작은 크기
+actSetSize_Medium.Caption=중간 크기
+actSetSize_Large.Caption=큰 크기
+; ----------- Open / Save picture dialogs -----------
+OpenPictureDialog_Title=이미지 파일 선택
+SavePictureDialog_Title=이미지 저장 위치
+DialogFilter_AllSupported=지원되는 모든 파일 (PNG, JPG, BMP, GIF)
+DialogFilter_PNG=휴대용 네트워크 그래픽 (*.png)
+DialogFilter_JPG=JPEG 이미지 파일 (*.jpg, *.jpeg)
+DialogFilter_GIF=CompuServe GIF 이미지 (*.gif)
+DialogFilter_BMP=비트맵 (*.bmp)
+; -------------------------------------------------------
+; ----------------------- COMMON ------------------------
+; -------------------------------------------------------
+lblAddPos=위치:
+AddPos_Top=맨 위에
+AddPos_End=맨 끝에
+ButtonChangeColor=색상 변경...
+ButtonCopyColor=클립보드에 색상 복사
+ButtonPasteColor=클립보드에서 색상 붙여넣기
+RGB_Red=빨강
+RGB_Green=녹색
+RGB_Blue=파랑
+HSL_Hue=색조
+HSL_Sat=채도
+HSL_Lum=휘도
+CMYK_Cyan=청록색
+CMYK_Magenta=자홍색
+CMYK_Yellow=노랑색
+CMYK_Black=검정
+actShowHidePalette.Caption=색상 팔레트 표시
+
+[PaletteEditor]
+Caption=색상 팔레트 편집
+;------- Columns --------
+colNo=번호
+colColor=색상
+colName=이름
+colRgb=RGB
+colRgbPercent=RGB %
+colHtml=HTML
+colHslCss=HSL CSS
+colHslWin=HSL WIN
+colCMYK=CMYK
+colPascalHex=Pascal HEX
+colPascalInt=Pascal INT
+colCppHex=C++ HEX
+Columns=열
+;--------------------------
+lblSelectedColor.Caption=선택한 색상
+ccbColor.BoundLabel.Caption=색상:
+edColorName.EditLabel.Caption=색상 이름:
+;--------------------------------
+actSaveAndClose.Caption=확인
+actSaveAndClose.Hint=모든 변경 내용 저장 후 닫기
+actSaveSelectedColor.Caption=저장
+actSaveSelectedColor.Hint=선택한 색상 저장
+actCancel.Caption=취소
+actCancel.Hint=모든 변경사항 취소 및 닫기
+actOpenPaletteFile.Caption=파일에서 색상 팔레트 불러오기...
+actOpenPaletteFile.Hint=파일에서 색상 팔레트 불러오기...
+actOpenAdd.Caption=파일에서 현재 팔레트에 색상 추가...
+actOpenAdd.Hint=파일에서 현재 팔레트에 색상 추가...
+actSavePaletteToFile.Caption=팔레트 저장...
+actSavePaletteToFile.Hint=다른 이름으로 색상 팔레트 저장..
+actSelectAll.Caption=모두 선택
+actSelectAll.Hint=모두 선택
+actInvertSelection.Caption=선택 반전
+actInvertSelection.Hint=선택 반전
+actDeleteSelected.Caption=선택한 색상 삭제
+actDeleteSelected.Hint=선택한 색상 삭제
+actAddColorAtEnd.Caption=목록 끝에 새 색상 추가
+actAddColorAtEnd.Hint=목록 끝에 새 색상 추가
+actAddColorAtTop.Caption=목록 맨 위에 새 색상 추가
+actAddColorAtTop.Hint=목록 맨 위에 새 색상 추가
+dlblNo.Caption=번호:
+actExportPaletteToHtml.Caption=색상 팔레트를 HTML 파일로 내보내기...
+actExportPaletteToHtml.Hint=색상 팔레트를 HTML 파일로 내보내기...
+actExportPaletteToGPL.Caption=색상 팔레트를 GIMP 팔레트 파일로 내보내기 (GPL)...
+actExportPaletteToGPL.Hint=색상 팔레트를 GIMP 팔레트 파일로 내보내기 (GPL)...
+actAdvancedColorEditor.Caption=고급 색상 편집기...
+actAdvancedColorEditor.Hint=고급 색상 편집기...
+actShowFormSortBy.Caption=고급 정렬...
+actShowFormSortBy.Hint=고급 정렬...
+actRenumber.Caption=모든 색상이 오름차순으로 번호 지정
+actRenumber.Hint=모든 색상이 오름차순으로 번호 지정
+actMoveUp.Caption=위로 이동
+actMoveUp.Hint=위로 이동
+actMoveDown.Caption=아래로 이동
+actMoveDown.Hint=아래로 이동
+actMoveToTop.Caption=맨 위로 이동
+actMoveToTop.Hint=맨 위로 이동
+actMoveToEnd.Caption=맨 끝으로 이동
+actMoveToEnd.Hint=맨 끝으로 이동
+actClearColorNames.Caption=선택한 색상의 이름 지우기
+actClearColorNames.Hint=선택한 색상의 이름 지우기
+actShowFormModifyPalette.Caption=색상 수정...
+actShowFormModifyPalette.Hint=색상 수정...
+; ------------------ Filter --------------------
+actShowHideFilterPanel.Caption=필터 패널 표시/숨기기
+actShowHideFilterPanel.Hint=필터 패널 표시/숨기기
+actFilterList.Caption=필터
+actDisableFilter.Caption=필터 사용 안 함
+actDisableFilter.Hint=필터를 끄고 모든 색상 표시
+dlblFilter_Stats_All.Caption=모든 색상:
+dlblFilter_Stats_Visible.Caption=보이기:
+dlblFilter_Stats_Hidden.Caption=숨기기:
+chFilter_ColorName.Caption=색상 이름
+edFilter_Name.BoundLabel.Caption=이름:
+lblFilter_WildcardsTip.Caption=와일드 카드: * ?
+lblFilter_WildcardsTip.Hint=와일드카드 문자를 사용할 수 있습니다:\n* - 임의의 문자 수\n? - 하나의 문자
+
+[ColorEditor]
+Caption=색상 편집
+actOk.Caption=확인
+actClose.Caption=닫기
+actShowSystemColorDialog.Caption=...
+actShowSystemColorDialog.Hint=색상 선택을 위한 표준 시스템 대화 상자 표시...
+lblSelectedColor.Caption=선택한 색상
+lblRgb.Caption=RGB - 빨강, 녹색, 파랑
+lblHsl.Caption=HSL - 색조, 채도, 휘도
+lblRgbRed.Caption=빨강:
+lblRgbGreen.Caption=녹색:
+lblRgbBlue.Caption=파랑:
+lblHslHue.Caption=색조:
+lblHslSat.Caption=채도:
+lblHslLum.Caption=휘도:
+
+[About]
+Caption=제품 정보 - 한국어 (번역: 비너스걸💋)
+
+[Options]
+Caption=옵션
+lblLanguage.Caption=언어:
+actClose.Caption=닫기
+chCopyColor_Capture.Caption=캡쳐 후 클립보드에 색상 복사
+lblCopyColorFormat.Caption=색상 형식:
+lblCopyColor.Caption=F3 키를 누른 후 복사할 색상 형식:
+lblColorPalette.Caption=색상 팔레트
+lblColorPalette_ColorFormat.Caption=색상 형식:
+chColorPalette_ShowNames.Caption=색상 이름 표시
+chShowBottomPanel.Caption=아래쪽 패널 표시
+chShowColorCodesPanel.Caption=색상 코드가 있는 패널 표시
+chShowRgbGraph.Caption=RGB 그래프 표시
+rbColorPalette_None.Caption=없음
+lblColorRectangle.Caption=색상 직사각형
+edColorRectangle_Width.EditLabel.Caption=너비:
+chColorRectangle_DrawBorder.Caption=테두리 그리기
+chColorRectangle_Connected.Caption=연결된 직사각형
+edColorPalette_RowHeight.EditLabel.Caption=행 높이:
+ccbColorPalette_BgColor.BoundLabel.Caption=배경 색상:
+ccbColorPalette_FontColor.BoundLabel.Caption=글꼴 색상:
+chColorPalette_ShowToolbar.Caption=도구 모음 표시
+lblCapturingInterval.Caption=커서 아래에서 색상을 캡처하고\n미리보기 이미지를 만드는\n시간 간격:
+chAskForName.Caption=색상 팔레트에 추가할 때 색상 이름을 묻기
+lblAddColorsPosition.Caption=새 색상 추가:
+AddPos_Top=색상 팔레트의 맨 위에
+AddPos_End=색상 팔레트 끝에
+lblResampler.Caption=이미지를 확대하는 데 사용되는 알고리즘:
+lblPixelIndicator.Caption=픽셀 표시기
+PixelIndicator_Square=정사각형
+PixelIndicator_SmallCross=작은 십자가
+PixelIndicator_MediumCross=중간 십자가
+PixelIndicator_FullCross=전체 십자가
+cswPixelIndicator.BoundLabel.Caption=색상:
+chHtmlExport_AddJson.Caption=팔레트를 HTML로 내보낼 때 JSON 코드 추가
+actCreateDesktopShortcut.Caption=바탕 화면에 바로 가기 만들기
+chColorRectangle_AutoColor.Caption=자동 테두리 색상
+cswColorRectangle_BorderColor.BoundLabel.Caption=테두리 색상:
+
+[AutoCapture]
+Caption=자동 색상 캡처
+lblColors.Caption=캡처된 색상
+lblCapturingInterval.Caption=캡처 간격:
+lblMilliseconds.Caption=ms
+chColorLimit.Caption=색상 제한:
+chColorLimit.Hint=한 세션에서 캡처된 최대 색상 수
+chAllowDuplicates.Caption=중복 허용
+actStartCapturing.Caption=시작
+actStartCapturing.Hint=
+actStopCapturing.Caption=중지
+actStopCapturing.Hint=
+actAdd.Caption=추가
+actAdd.Hint=캡처한 색상을 기본 색상 팔레트에 추가
+actClose.Caption=닫기
+actClearColors.Caption=색상 목록 지우기
+
+[PixelColor]
+Caption=픽셀 색상
+ErrInvalidPixelCoordinates=잘못된 픽셀 좌표!
+lblCoordinates.Caption=픽셀 좌표
+actAddToList.Caption=목록에 추가
+actAddToList.Hint=좌표 (X,Y)가 있는 픽셀의 색상을 가져와서 색상 목록에 추가
+lblColors.Caption=캡처된 색상
+actAdd.Caption=추가
+actAdd.Hint=캡처한 색상을 기본 색상 팔레트에 추가
+actClose.Caption=닫기
+actClearColors.Caption=색상 목록 지우기
+actShowPixelPos.Caption=위치 표시
+actShowPixelPos.Hint=픽셀 위치 표시
+
+[CheckUpdate]
+Caption=업데이트 확인
+lblUserVersionDesc.Caption=사용자 버전:
+lblLatestVersionDesc.Caption=최신 버전
+actClose.Caption=닫기
+actCheckNow.Caption=지금 확인
+actGoToDownloadPage.Caption=다운로드 페이지...
+actGoToDownloadPage.Hint=다운로드 페이지로 이동...
+NoUpdates=사용 가능한 업데이트가 없습니다.\n최신 버전이 있습니다.
+UpdatesAvailable=새 버전을 사용할 수 있습니다.
+CheckingUpdates=사용 가능한 업데이트를 확인하는 중입니다.\n기다려주세요...
+ConnectionFailed=서버에 연결할 수 없습니다.\n잠시 후 다시 시도하십시오.
+CannotCheck=버전 정보를 검색할 수 없습니다.\n잠시 후 다시 시도하십시오.
+
+[RandomColors]
+Caption=임의 색상
+lblColorCount.Caption=색상 수:
+Colors=색상
+actClearColors.Caption=색상 목록 지우기
+actAdd.Caption=추가
+actAdd.Hint=생성된 색상을 주 색상 팔레트에 추가
+actGenerateRandomColors.Caption=생성
+actGenerateRandomColors.Hint=임의 색상 생성
+actClose.Caption=닫기
+LockUnlockRange=잠금/잠금 해제 범위
+; ----------- Presets - Buttons ------------
+btnPresets_Rgb.Caption=RGB 프리셋
+btnPresets_HslCss_Pastels.Caption=파스텔
+btnPresets_HslCss_Intensive.Caption=강렬한
+btnPresets_HslCss_Dark.Caption=어두운
+btnPresets_HslCss_Light.Caption=밝은
+btnPresets_HslCss_Grayscale.Caption=Grayscale
+; ----------- Presets - Actions - Pastels - Light -------------
+actPreset_HslCss_Pastels_RedLight.Caption=빨강 파스텔 - 밝은
+actPreset_HslCss_Pastels_GreenLight.Caption=녹색 파스텔 - 밝은
+actPreset_HslCss_Pastels_BlueLight.Caption=파랑 파스텔 - 밝은
+actPreset_HslCss_Pastels_YellowLight.Caption=노랑 파스텔 - 밝은
+actPreset_HslCss_Pastels_CyanLight.Caption=청록 파스텔 - 밝은
+actPreset_HslCss_Pastels_VioletLight.Caption=보라 파스텔 - 밝은
+actPreset_HslCss_Pastels_PinkLight.Caption=분홍 파스텔 - 밝은
+; ----------- Presets - Actions - Pastels - Dark -------------
+actPreset_HslCss_Pastels_RedDark.Caption=빨강 파스텔 - 어두운
+actPreset_HslCss_Pastels_GreenDark.Caption=녹색 파스텔 - 어두운
+actPreset_HslCss_Pastels_BlueDark.Caption=파랑 파스텔 - 어두운
+actPreset_HslCss_Pastels_YellowDark.Caption=노랑 파스텔 - 어두운
+actPreset_HslCss_Pastels_CyanDark.Caption=청록 파스텔 - 어두운
+actPreset_HslCss_Pastels_VioletDark.Caption=보라 파스텔 - 어두운
+actPreset_HslCss_Pastels_PinkDark.Caption=분홍 파스텔 - 어두운
+; ----------- Presets - Actions - Intensive -------------
+actPreset_HslCss_Intensive_Red.Caption=강렬한 빨강
+actPreset_HslCss_Intensive_Green.Caption=강렬한 녹색
+actPreset_HslCss_Intensive_Blue.Caption=강렬한 파랑
+actPreset_HslCss_Intensive_Yellow.Caption=강렬한 노랑
+actPreset_HslCss_Intensive_Cyan.Caption=강렬한 청록
+actPreset_HslCss_Intensive_Violet.Caption=강렬한 보라
+actPreset_HslCss_Intensive_Pink.Caption=강렬한 분홍
+; ----------- Presets - Actions - Dark -------------
+actPreset_HslCss_Dark_Red.Caption=어두운 빨강
+actPreset_HslCss_Dark_Green.Caption=어두운 녹색
+actPreset_HslCss_Dark_Blue.Caption=어두운 파랑
+actPreset_HslCss_Dark_Yellow.Caption=어두운 노랑
+actPreset_HslCss_Dark_Cyan.Caption=어두운 청록
+actPreset_HslCss_Dark_Violet.Caption=어두운 보라
+actPreset_HslCss_Dark_Pink.Caption=어두운 분홍
+; ----------- Presets - Actions - Light -------------
+actPreset_HslCss_Light_Red.Caption=밝은 빨강
+actPreset_HslCss_Light_Green.Caption=밝은 녹색
+actPreset_HslCss_Light_Blue.Caption=밝은 파랑
+actPreset_HslCss_Light_Yellow.Caption=밝은 노랑
+actPreset_HslCss_Light_Cyan.Caption=밝은 청록
+actPreset_HslCss_Light_Violet.Caption=밝은 보라
+actPreset_HslCss_Light_Pink.Caption=밝은 분홍
+; ----------- Presets - Actions - Grayscale -------------
+actPreset_HslCss_Grayscale_VeryDark.Caption=회색 - 매우 어두운
+actPreset_HslCss_Grayscale_Dark.Caption=회색 - 어두운
+actPreset_HslCss_Grayscale_Medium.Caption=회색 - 중간
+actPreset_HslCss_Grayscale_Light.Caption=회색 - 밝은
+actPreset_HslCss_Grayscale_VeryLight.Caption=회색 - 매우 밝은
+; ----------- Presets - Actions - RGB -------------
+actPreset_Rgb_VeryDark.Caption=매우 어두운
+actPreset_Rgb_Dark.Caption=어두운
+actPreset_Rgb_Medium.Caption=중간
+actPreset_Rgb_Light.Caption=밝은
+actPreset_Rgb_VeryLight.Caption=매우 밝은
+
+[Sort]
+Caption=색상 팔레트 정렬
+lblSortBy.Caption=정렬 순서:
+lblSortDirection.Caption=정렬:
+rbColorName.Caption=색상 이름
+rbColorValue.Caption=색상 값 (초기)
+rbColorNo.Caption=색상 번호
+rbRgbRed.Caption=RGB - 빨강
+rbRgbGreen.Caption=RGB - 녹색
+rbRgbBlue.Caption=RGB - 파랑
+rbRgbSum.Caption=RGB - 합계
+rbCmykCyan.Caption=CMYK - 청록
+rbCmykMagenta.Caption=CMYK - 자홍
+rbCmykYellow.Caption=CMYK - 노랑
+rbCmykBlack.Caption=CMYK - 검정
+rbHslHue.Caption=HSL - 색조
+rbHslSat.Caption=HSL - 채도
+rbHslLum.Caption=HSL - 휘도
+rbAscending.Caption=오름차순
+rbDescending.Caption=내림차순
+actSort.Caption=정렬
+actClose.Caption=닫기
+
+[Gradient]
+Caption=그라데이션 색상
+lblGradient.Caption=그라데이션
+Colors=색상
+cswStartColor.BoundLabel.Caption=시작 색상:
+cswEndColor.BoundLabel.Caption=끝 색상:
+lblSteps.Caption=단계:
+actClose.Caption=닫기
+actAdd.Caption=추가
+actAdd.Hint=생성된 색상을 기본 색상 팔레트에 추가
+actAddToColorList.Caption=색상 추가
+actAddToColorList.Hint=오른쪽 색상 목록에 그라데이션 색상 추가
+actClearColors.Caption=색상 목록 지우기
+
+[EditColorName]
+Caption=색상 이름 편집
+actOK.Caption=확인
+btnCancel.Caption=취소
+edColorName.BoundLabel.Caption=색상 이름:
+cswColor.BoundLabel.Caption=색상:
+
+[ColorMixer]
+Caption=색상 혼합기
+Colors=색상
+actAdd.Caption=추가
+actAdd.Hint=혼합된 색상을 기본 색상 팔레트에 추가
+actAddToColorList.Caption=색상 추가
+actAddToColorList.Hint=오른쪽 색상 목록에 혼합 색상 추가
+actClearColors.Caption=색상 목록 지우기
+actClose.Caption=닫기
+cswMixedColor.BoundLabel.Caption=혼합된 색상:
+ccbFirstColor.BoundLabel.Caption=첫 번째 색상:
+ccbSecondColor.BoundLabel.Caption=두 번째 색상:
+
+[ModifyPalette]
+Caption=팔레트 색상 수정
+actOK.Caption=확인
+btnCancel.Caption=취소
+Reset=재설정
+Execute=실행
+Brightness=밝기
+Contrast=대비
+Pale=판
+lblOriginalColors.Caption=원래 색상
+lblModifiedColors.Caption=수정된 색상
+actRestoreOriginalColors.Caption=원래 색상 복원
+actSwitchMode_Basic.Caption=기본
+actSwitchMode_Basic.Hint=기본 변경
+actSwitchMode_Rgb.Caption=RGB
+actSwitchMode_Rgb.Hint=RGB 채널 변경
+actModify_Grayscale.Caption=회색조
+actModify_Grayscale.Hint=색상을 회색조로 변환
+actModify_Invert.Caption=반전
+actModify_Invert.Hint=색상 반전
+cswMix.BoundLabel.Caption=색상과 혼합:
+lblHslChangeValue.Caption=지정된 값으로 HSL 색상 구성 요소를 변경
+chHsl_ChangeHue.Caption=색조
+chHsl_ChangeSat.Caption=채도
+chHsl_ChangeLum.Caption=휘도
+lblRgbInvert.Caption=RGB 채널 반전
+lblRgbSetValue.Caption=RGB 채널 값 설정
+lblRgbChangeValue.Caption=지정된 값으로 RGB 채널 변경
+
+[ColorWheel]
+Caption=색상환
+Colors=색상
+actAdd.Caption=추가
+actAdd.Hint=목록의 색상을 기본 색상 팔레트에 추가
+actAddToList_TriadicColors.Caption=색상 추가
+actAddToList_TriadicColors.Hint=오른쪽의 색상 목록에 삼원색 추가
+actAddToList_TetradicColors.Caption=색상 추가
+actAddToList_TetradicColors.Hint=오른쪽의 색상 목록에 사원색 추가
+actClearColors.Caption=색상 목록 지우기
+actClose.Caption=닫기
+lblTriadDist.Caption=거리:
+lblTetradDist.Caption=거리:
+chTriadComplementary.Caption=보색
+chTriadComplementary.Hint=보색 표시
+lblTriadicColorsTitle.Caption=삼원색
+lblTetradicColorsTitle.Caption=사원색
+lblSelectedColorTitle.Caption=선택한 색상
+lblComplementaryColorTitle.Caption=보색
+spedDegDist_Triad.Hint=색상환의 보색으로부터의 거리 (각도)
+spedDegDist_Tetrad.Hint=색상환의 거리 (각도)
+cswTriad1.BoundLabel.Caption=삼원색 1:
+cswTriad2.BoundLabel.Caption=삼원색 2:
+cswTetrad1.BoundLabel.Caption=사원색 1:
+cswTetrad2.BoundLabel.Caption=사원색 2:
+cswTetrad3.BoundLabel.Caption=사원색 3:
+Hue=Hue
+
+[SimilarColors]
+Caption=비슷한 색상
+Colors=색상
+actAdd.Caption=추가
+actAdd.Hint=목록의 색상을 기본 색상 팔레트에 추가
+actClearColors.Caption=색상 목록 지우기
+actClose.Caption=닫기
+AddToList.Caption=목록에 추가
+AddToList.Hint=오른쪽의 색상 목록에 색상 추가
+cswCurrentColor.BoundLabel.Caption=선택한 색상:
+actAddToList_CurrentColor.Hint=선택한 색상을 기본 색상 팔레트에 추가
+lblColorCount.Caption=색상 수:
+lblStep.Caption=단계:
+lblColorFormat.Caption=새상 형식
+rbRgb.Caption=RGB
+rbHtml.Caption=HTML
+rbHslCss.Caption=HSL CSS
+rbHslWin.Caption=HSL WIN
+cswMixed_Black.BoundLabel.Caption=검은색과 혼합:
+cswMixed_Gray.BoundLabel.Caption=회색과 혼합:
+cswMixed_White.BoundLabel.Caption=흰색과 혼합:
+lblDarker.Caption=어둡게
+lblLighter.Caption=밝게
+lblSatMore.Caption=채도 +
+lblSatLess.Caption=채도 -
+lblHuePlus.Caption=색조 +
+lblHuePlus.Hint=색상환에서 회전합니다. 시계방향
+lblHueMinus.Caption=색조 -
+lblHueMinus.Hint=색상환에서 회전합니다. 시계 반대 방향
+
+[RecentlyOpened]
+Caption=최근에 연 파일
+actOK.Caption=확인
+actCancel.Caption=취소
+actSort.Caption=정렬
+
